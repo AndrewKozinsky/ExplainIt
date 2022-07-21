@@ -1,0 +1,44 @@
+version: '3.3'
+
+services:
+  nginx:
+    image: nginx:1.19.7-alpine
+    container_name: explainIt-nginx
+    depends_on:
+      - api
+      - db
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf.dev:/etc/nginx/nginx.conf
+
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile.dev
+    container_name: explainIt-api
+    restart: unless-stopped
+    environment:
+      WORK_MODE: dev
+      PORT: 3002
+    depends_on:
+      - db
+    volumes:
+      - ./api/src:/app/src
+    command: npm run start:dev
+
+  db:
+    image: postgres:13-alpine
+    container_name: explainIt-db
+    restart: unless-stopped
+    ports:
+      - "4001:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: kxPQor_cf23GR
+      POSTGRES_DB: explainIt
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
