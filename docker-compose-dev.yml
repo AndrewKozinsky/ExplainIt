@@ -19,8 +19,8 @@ services:
     container_name: explainIt-api
     restart: unless-stopped
     environment:
-      WORK_MODE: dev
-      PORT: 3002
+      WORK_MODE: dev # Режим работы
+      PORT: 3002     # Порт приложения
     depends_on:
       - db
     volumes:

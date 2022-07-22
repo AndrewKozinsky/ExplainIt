@@ -1,4 +1,4 @@
-import {Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, Post } from '@nestjs/common'
 import CreateArticleDto from './dto/create-article.dto'
 
 @Controller('articles')
@@ -8,3 +8,4 @@ export class ArticlesController {
 		return 'createArticleDto'
 	}
 }
+

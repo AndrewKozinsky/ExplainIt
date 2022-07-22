@@ -17,8 +17,8 @@ module.exports = {
 	],
 	'rules': {
 		'indent': [
-			'error',
-			'tab'
+			'warn',
+			'tab', { 'SwitchCase': 1, 'ignoredNodes': ['PropertyDefinition'] }
 		],
 		'linebreak-style': [
 			'error',
@@ -29,7 +29,12 @@ module.exports = {
 			'single'
 		],
 		'semi': ['warn', 'never'],
+		'no-empty': ['off'],
 		'eol-last': ['warn', 'always'],
-		'@typescript-eslint/ban-ts-comment': 'off'
+		'@typescript-eslint/ban-ts-comment': 'off',
+		'@typescript-eslint/no-empty-function': 'off',
+		'object-curly-spacing': ['warn', 'always'],
+		'@typescript-eslint/ban-types': 'off',
+		'@typescript-eslint/no-namespace': 'off',
 	}
 }
