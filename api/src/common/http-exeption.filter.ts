@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common'
 import { Response } from 'express'
 import ResponseObjType from '../types/responseObjType'
 
@@ -14,15 +14,33 @@ export class HttpExceptionFilter implements ExceptionFilter {
 		const ctx = host.switchToHttp()
 		const response = ctx.getResponse<Response>()
 
+
 		// Если выброшено контролируемое исключение
 		if (exception instanceof HttpException) {
 			const statusCode = exception.getStatus()
 
-			response.json({
-				status: 'fail',
-				statusCode,
-				errors: exception.getResponse() // Объект с названиями свойств и массивом ошибок
-			} as ResponseObjType.Fail)
+			if (statusCode === HttpStatus.FORBIDDEN) {
+				response.json({
+					status: 'fail',
+					statusCode,
+					message: 'У вас нет прав на доступ к этому маршруту'
+				} as ResponseObjType.Fail)
+			}
+			else if (statusCode === HttpStatus.NOT_FOUND) {
+				response.json({
+					status: 'fail',
+					statusCode,
+					message: 'Не найдено'
+				} as ResponseObjType.Fail)
+			}
+			else {
+				response.json({
+					status: 'fail',
+					statusCode,
+					message: 'Ошибка',
+					errors: exception.getResponse() // Объект с названиями свойств и массивом ошибок
+				} as ResponseObjType.Fail)
+			}
 		}
 		// Если возникла неожиданная ошибка
 		else if (exception instanceof Error) {
@@ -30,14 +48,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
 				response.json({
 					status: 'error',
 					statusCode: 500,
-					error: exception.message
+					message: exception.message
 				} as ResponseObjType.Error)
 			}
 			else if (workMode === 'prod') {
 				response.json({
 					status: 'error',
 					statusCode: 500,
-					error: 'A server error occurred'
+					message: 'Ошибка сервера.'
 				} as ResponseObjType.Error)
 			}
 

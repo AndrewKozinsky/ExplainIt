@@ -4,15 +4,17 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:kxPQor_cf23GR@0.0.0.0:4001/explainIt?schema=public"
+  url      = "postgresql://postgres:kxPQor_cf23GR@db:5432/explain?schema=public"
 }
 
 model Article {
-  id             Int     @default(autoincrement()) @db.SmallInt
+  id             Int     @unique @default(autoincrement()) @db.SmallInt
   name           String  @unique @db.VarChar(255)
   article_number String  @unique @db.VarChar(100)
-  published      Boolean
-  summary        String  @unique @db.VarChar(255)
-  content        String  @unique
-  order_number   Int     @unique @db.SmallInt
+  published      Boolean @default(false)
+  summary        String  @db.VarChar(255)
+  content        String
+  order_number   Int     @db.SmallInt
+
+  @@map("articles")
 }

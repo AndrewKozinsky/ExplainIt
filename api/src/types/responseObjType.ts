@@ -6,14 +6,15 @@ namespace ResponseObjType {
 	export type Error = {
 		status: 'error',
 		statusCode: 500,
-		error: string // Текст сообщения об ошибке
+		message: string // Текст сообщения об ошибке
 	}
 
 	// Ошибка пользователя
 	export type Fail = {
-		status: 'fail',
-		statusCode: HttpStatus,
-		errors: Errors // Массив сообщений с названием свойства и массивом ошибок в его значении
+		status: 'fail'
+		statusCode: HttpStatus
+		message: string // Главное сообщение об ошибке. Например: «Доступ запрещён»
+		errors: Errors // Объект с названиями свойства и массивом ошибок в его значении. Это для ошибок при отравке данных в теле запроса.
 	}
 
 	export type Errors = Record<string, string[]>

@@ -3,7 +3,7 @@ version: '3.3'
 services:
   nginx:
     image: nginx:1.19.7-alpine
-    container_name: explainIt-nginx
+    container_name: explain-nginx
     depends_on:
       - api
       - db
@@ -16,7 +16,7 @@ services:
     build:
       context: api
       dockerfile: Dockerfile.dev
-    container_name: explainIt-api
+    container_name: explain-api
     restart: unless-stopped
     environment:
       WORK_MODE: dev # Режим работы
@@ -25,18 +25,19 @@ services:
       - db
     volumes:
       - ./api/src:/app/src
+      - ./api/prisma:/app/prisma
     command: npm run start:dev
 
   db:
     image: postgres:13-alpine
-    container_name: explainIt-db
+    container_name: explain-db
     restart: unless-stopped
     ports:
       - "4001:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: kxPQor_cf23GR
-      POSTGRES_DB: explainIt
+      POSTGRES_DB: explain
     volumes:
       - postgres:/var/lib/postgresql/data
 
