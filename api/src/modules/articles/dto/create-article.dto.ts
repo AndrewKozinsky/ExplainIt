@@ -13,7 +13,7 @@ export default class CreateArticleDto {
 
     @IsBoolean()
     @IsOptional()
-    published: boolean
+    published?: boolean
 
     @IsString({ message: 'Должно быть строковым значением' })
     summary: string
