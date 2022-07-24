@@ -15,6 +15,7 @@ export class ArticlesController {
 	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.CREATED)
 	async create(@Body() articleDto: CreateArticleDto) {
+		console.log(process.env.WORK_MODE)
 		// Создать новую статью в БД
 		const createdArticle = await this.articlesService.create(articleDto)
 

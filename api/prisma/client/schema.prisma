@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client"
+  binaryTargets = ["linux-musl"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:kxPQor_cf23GR@db:5432/explain?schema=public"
+}
+
+model Article {
+  id             Int     @unique @default(autoincrement()) @db.SmallInt
+  name           String  @db.VarChar(255)
+  article_number String  @db.VarChar(100)
+  published      Boolean @default(false)
+  summary        String  @db.VarChar(255)
+  content        String
+  order_number   Int     @db.SmallInt
+
+  @@map("articles")
+}

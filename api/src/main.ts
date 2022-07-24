@@ -11,6 +11,6 @@ async function bootstrap() {
 	app.useGlobalFilters(new HttpExceptionFilter())
 
 	await app.listen(process.env.PORT)
-	console.log('API started at port ' + process.env.PORT + '🔥')
+	console.log('API started at port ' + process.env.PORT + ' in ' + process.env.WORK_MODE.toUpperCase() + ' mode ' + '🔥')
 }
 bootstrap()

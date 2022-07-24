@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+  api:
+    environment:
+      WORK_MODE: test
+
+volumes:
+  postgres:

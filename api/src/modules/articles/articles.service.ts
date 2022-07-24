@@ -1,13 +1,12 @@
-import { Article } from '@prisma/client'
-import { Injectable } from '@nestjs/common'
-import { PrismaService } from '../prisma/prisma.service'
+import { Inject, Injectable } from '@nestjs/common'
 import CreateArticleDto from './dto/create-article.dto'
 import { HelperService } from '../helper/helper.service'
+import { Article, PrismaClient } from 'prisma/client'
 
 @Injectable()
 export class ArticlesService {
 	constructor(
-		private readonly prismaService: PrismaService,
+		@Inject('prismaClient') private prismaService: PrismaClient,
 		private readonly helperService: HelperService
 	) {}
 

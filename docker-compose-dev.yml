@@ -26,7 +26,8 @@ services:
     volumes:
       - ./api/src:/app/src
       - ./api/prisma:/app/prisma
-    command: npm run start:dev
+      - ./api/prisma_test:/app/prisma_test
+    command: npm run start:dev MY='Andrew'
 
   db:
     image: postgres:13-alpine

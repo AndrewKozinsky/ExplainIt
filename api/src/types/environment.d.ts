@@ -5,7 +5,7 @@ declare global {
     namespace NodeJS {
         interface ProcessEnv {
             PORT: number // Порт приложения
-            WORK_MODE: 'dev' | 'prod' // Режим работы
+            WORK_MODE: 'dev' | 'prod' | 'test' // Режим работы
         }
     }
 }

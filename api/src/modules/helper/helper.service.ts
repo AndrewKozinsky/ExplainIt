@@ -1,5 +1,5 @@
 import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common'
-import { Prisma } from '@prisma/client'
+import { Prisma } from 'prisma/client'
 import ResponseObjType from '../../types/responseObjType'
 
 @Injectable()

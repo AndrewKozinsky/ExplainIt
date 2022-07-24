@@ -26,13 +26,19 @@
 4. Для получения значений таблицы нужно использовать обычный SQL: `SELECT * FROM articles;`
 
 ## Что делать после изменения моделей Призмы
-1. В schema.prisma в переменной DB_URL поменять значение на `"postgresql://postgres:kxPQor_cf23GR@0.0.0.0:4001/explain?schema=public"`
-2. В контексте папки api запустить `npx prisma migrate dev --name mig_2` чтобы обновить файлы миграций и таблицы в БД.
-3. Лучше перезапустить редактор кода потому что ВебШторм не отслеживает эти изменения.
-4. В schema.prisma в переменной DB_URL поменять значение на `"postgresql://postgres:kxPQor_cf23GR@db:5432/explain?schema=public"`
-5. Перезапустить Докер (проверь, возможно это уже не требуется!).
-6. Перейти в контейнер API: `docker exec -it explain-api sh`
-7. Запустить `npx prisma generate` для обновления клиента Призмы.
+1. Запустить Докер в стандартном режиме (`docker-compose -f docker-compose-dev.yml up --build`).
+2. В prisma/schema.prisma и в prisma/client/schema.prisma в адресе БД поставить хост 0.0.0.0:4001.
+3. В контексте папки api запустить `npx prisma migrate dev --name mig_2` чтобы обновить файлы миграций и в БД для разработки.
+4. Запустить Докер в режиме тестирования (`docker-compose -f docker-compose-dev.yml -f docker-compose-dev-test.yml up --build`). В prisma_test/schema.prisma в адрес БД поставить хост 0.0.0.0:4001.
+5. В prisma_test/schema.prisma и в prisma_test/client/schema.prisma в адресе БД поставить хост 0.0.0.0:4001.
+6. В контексте папки api запустить `npx prisma migrate dev --name mig_2 --schema ./prisma_test/schema.prisma` чтобы обновить файлы миграций в БД для тестирования.
+7. В prisma/schema.prisma, prisma/client/schema.prisma и в prisma_test/schema.prisma, prisma_test/client/schema.prisma в адресах БД поставить хост db:5432.
+8. Перезапустить Докер в нужном режиме.
 
 ## Как сделать запросы в БД от имени администратора
 В запросе нужно поставить заголовок Admin-Password со значением `ztpmftw4PO`.
+
+## Тестирование API
+Перед запуском теста нужно в Докер в сервис api передать переменную WORK_MODE в значении test. Для этого Докер нужно запустить так:
+`docker-compose -f docker-compose-dev.yml -f docker-compose-dev-test.yml up --build`.
+После этого в Терминале нужно перейти в контекст папки api и там запустить тесты: `npx run test:e2e` 
