@@ -4,8 +4,10 @@ import { ArticlesService } from './articles.service'
 import { HelperService } from '../helper/helper.service'
 import { AuthGuard } from '../../common/auth.guard'
 import UpdateArticleDto from './dto/update-article.dto'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
 @Controller('articles')
+@ApiTags('articles')
 export class ArticlesController {
 	constructor(
 		private readonly articlesService: ArticlesService,
@@ -15,6 +17,7 @@ export class ArticlesController {
 	
 	@Get(':id')
 	@HttpCode(HttpStatus.OK)
+	@ApiOperation({ summary: 'Получение статьи по идентификатору.' })
 	async getOne(@Param('id', ParseIntPipe) id: number) {
 		// Найти статью в БД
 		const foundedArticle = await this.articlesService.getOne(id)
@@ -28,6 +31,7 @@ export class ArticlesController {
 	@Post()
 	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.CREATED)
+	@ApiOperation({ summary: 'Создание новой статьи.' })
 	async create(@Body() articleDto: CreateArticleDto) {
 		// Создать новую статью в БД
 		const createdArticle = await this.articlesService.create(articleDto)
@@ -41,6 +45,7 @@ export class ArticlesController {
 	@Patch(':id')
 	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.OK)
+	@ApiOperation({ summary: 'Обновлении статьи по идентификатору.' })
 	async update(@Body() articleDto: UpdateArticleDto, @Param('id', ParseIntPipe) id: number) {
 		// Обновить статью в БД
 		const updatedArticle = await this.articlesService.update(id, articleDto)
@@ -54,6 +59,7 @@ export class ArticlesController {
 	@Delete('/all')
 	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.OK)
+	@ApiOperation({ summary: 'Удаление всех статей.', description: 'Нужно при тестировании' })
 	async deleteAll() {
 		// Удалить все статьи
 		await this.articlesService.deleteAll()
@@ -67,6 +73,7 @@ export class ArticlesController {
 	@Delete(':id')
 	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.OK)
+	@ApiOperation({ summary: 'Удаление статьи по идентификатору.' })
 	async deleteOne(@Param('id', ParseIntPipe) id: number) {
 		// Удалить статью
 		await this.articlesService.deleteOne(id)
