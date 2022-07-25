@@ -138,6 +138,10 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
+        "value": "darwin"
+      },
+      {
+        "fromEnvVar": null,
         "value": "linux-musl"
       }
     ],
@@ -171,6 +175,9 @@ warnEnvConflicts({
 const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
+
+path.join(__dirname, "libquery_engine-darwin.dylib.node");
+path.join(process.cwd(), "prisma/client/libquery_engine-darwin.dylib.node")
 
 path.join(__dirname, "libquery_engine-linux-musl.so.node");
 path.join(process.cwd(), "prisma/client/libquery_engine-linux-musl.so.node")

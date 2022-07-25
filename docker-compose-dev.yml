@@ -27,7 +27,7 @@ services:
       - ./api/src:/app/src
       - ./api/prisma:/app/prisma
       - ./api/prisma_test:/app/prisma_test
-    command: npm run start:dev MY='Andrew'
+    command: npm run start:dev
 
   db:
     image: postgres:13-alpine

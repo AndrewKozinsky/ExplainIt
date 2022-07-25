@@ -1,5 +1,5 @@
 import { HttpStatus, Injectable } from '@nestjs/common'
-import { Prisma } from 'prisma/client'
+import { Prisma } from '../../../prisma/client'
 import ResponseObjType from '../../types/responseObjType'
 import { GeneralHttpException } from '../../common/general-http-error'
 
@@ -8,7 +8,7 @@ import { GeneralHttpException } from '../../common/general-http-error'
  */
 @Injectable()
 export class HelperService {
-
+	
 	/**
 	 * Метод запускает функцию с методом Призмы. Например для записи сущности в таблицу БД.
 	 * При появлении ошибки будет выброшено исключение.

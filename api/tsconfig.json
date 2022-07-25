@@ -17,6 +17,7 @@
     "noFallthroughCasesInSwitch": false,
     "lib": ["esnext"],
     "esModuleInterop": true,
-    "strictPropertyInitialization": false
-  }
+    "strictPropertyInitialization": false,
+  },
+  "exclude": ["node_modules", "prisma", "prisma_test"]
 }

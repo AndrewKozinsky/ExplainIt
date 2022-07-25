@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common'
 import CreateArticleDto from './dto/create-article.dto'
 import { HelperService } from '../helper/helper.service'
-import { Article, Prisma, PrismaClient } from 'prisma/client'
+import { Article, Prisma, PrismaClient } from '../../../prisma/client'
 import UpdateArticleDto from './dto/update-article.dto'
 
 @Injectable()

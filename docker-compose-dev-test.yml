@@ -4,6 +4,7 @@ services:
   api:
     environment:
       WORK_MODE: test
+    command: npm run test:e2e
 
 volumes:
   postgres:

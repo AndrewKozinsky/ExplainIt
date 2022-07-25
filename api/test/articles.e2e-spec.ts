@@ -10,8 +10,7 @@ describe('Articles', () => {
 	beforeAll(async () => {
 		const moduleRef = await Test.createTestingModule({
 			imports: [AppModule],
-		})
-			.compile()
+		}).compile()
 
 		app = moduleRef.createNestApplication()
 		await app.init()
