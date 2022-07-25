@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common'
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
 import { Response } from 'express'
 import ResponseObjType from '../types/responseObjType'
 
@@ -11,6 +11,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 		// Режим работы API
 		const workMode = process.env.WORK_MODE
 
+		// Контекст запроса и объект ответа
 		const ctx = host.switchToHttp()
 		const response = ctx.getResponse<Response>()
 
@@ -18,47 +19,24 @@ export class HttpExceptionFilter implements ExceptionFilter {
 		// Если выброшено контролируемое исключение
 		if (exception instanceof HttpException) {
 			const statusCode = exception.getStatus()
-
-			if (statusCode === HttpStatus.FORBIDDEN) {
-				response.json({
-					status: 'fail',
-					statusCode,
-					message: 'У вас нет прав на доступ к этому маршруту'
-				} as ResponseObjType.Fail)
+			
+			const respObj: ResponseObjType.Fail = {
+				status: 'fail',
+				statusCode,
+				...exception.getResponse() as ResponseObjType.ErrorsGroup
 			}
-			else if (statusCode === HttpStatus.NOT_FOUND) {
-				response.json({
-					status: 'fail',
-					statusCode,
-					message: 'Не найдено'
-				} as ResponseObjType.Fail)
-			}
-			else {
-				response.json({
-					status: 'fail',
-					statusCode,
-					message: 'Ошибка',
-					errors: exception.getResponse() // Объект с названиями свойств и массивом ошибок
-				} as ResponseObjType.Fail)
-			}
+			
+			response.json(respObj)
 		}
 		// Если возникла неожиданная ошибка
 		else if (exception instanceof Error) {
-			if (workMode === 'dev') {
-				response.json({
-					status: 'error',
-					statusCode: 500,
-					message: exception.message
-				} as ResponseObjType.Error)
-			}
-			else if (workMode === 'prod') {
-				response.json({
-					status: 'error',
-					statusCode: 500,
-					message: 'Ошибка сервера.'
-				} as ResponseObjType.Error)
-			}
-
+			response.json({
+				status: 'error',
+				statusCode: 500,
+				message: ['dev', 'test'].includes(workMode)
+					? exception.message
+					: 'Ошибка сервера.'
+			} as ResponseObjType.Error)
 		}
 	}
 }

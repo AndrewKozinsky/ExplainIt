@@ -1,5 +1,6 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
+import { CanActivate, ExecutionContext, HttpStatus, Injectable } from '@nestjs/common'
 import { Observable } from 'rxjs'
+import { GeneralHttpException } from './general-http-error'
 
 /**
  * Стражник проверяет, что запрос сделал администратор.
@@ -11,6 +12,15 @@ export class AuthGuard implements CanActivate {
 		const ctx = context.switchToHttp()
 		const request = ctx.getRequest()
 
-		return request.headers['admin-password'] === 'ztpmftw4PO'
+		const isAdmin =  request.headers['admin-password'] === 'ztpmftw4PO'
+		
+		if (isAdmin) {
+			return true
+		}
+		else {
+			throw new GeneralHttpException({
+				message: 'У вас нет прав доступа к этому маршруту',
+			}, HttpStatus.BAD_REQUEST)
+		}
 	}
 }

@@ -1,7 +1,11 @@
-import { BadRequestException, HttpStatus, Injectable } from '@nestjs/common'
+import { HttpStatus, Injectable } from '@nestjs/common'
 import { Prisma } from 'prisma/client'
 import ResponseObjType from '../../types/responseObjType'
+import { GeneralHttpException } from '../../common/general-http-error'
 
+/**
+ * Класс с различными методами используемые на всём приложении
+ */
 @Injectable()
 export class HelperService {
 
@@ -17,15 +21,26 @@ export class HelperService {
 		catch(err) {
 			// Типы ошибок Призмы описаны в prisma.io/docs/reference/api-reference/error-reference
 			if (err instanceof Prisma.PrismaClientKnownRequestError) {
+				
 				if (err.code === 'P2002' && err.meta) {
-					throw new BadRequestException({
-						[err.meta.target as string]: ['Значение поля должно быть уникальным']
-					})
+					throw new GeneralHttpException({
+						message: 'Поля тела запроса содержат ошибки',
+						fieldsErrors: {
+							[err.meta.target as string]: ['Значение поля должно быть уникальным.']
+						}
+					}, HttpStatus.BAD_REQUEST)
+				}
+				else if (err.code === 'P2025' && err.meta) {
+					throw new GeneralHttpException({
+						message: 'Удаляемой сущности не найдено.'
+					}, HttpStatus.BAD_REQUEST)
+				}
+				else {
 				}
 			}
 
 			// Если выпадает такая ошибка, то нужно дополнить код новым условием.
-			throw new Error('Неизвестная ошибка. Код 690.')
+			throw new Error('Неизвестная ошибка. Требуется актуализировать список.')
 		}
 	}
 

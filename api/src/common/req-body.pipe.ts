@@ -1,14 +1,21 @@
-import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform, ValidationError } from '@nestjs/common'
+import {
+	ArgumentMetadata,
+	HttpStatus,
+	Injectable,
+	PipeTransform,
+	ValidationError
+} from '@nestjs/common'
 import { plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
 import ResponseObjType from '../types/responseObjType'
+import { GeneralHttpException } from './general-http-error'
 
 /**
  * Трубка проверяющая соответствие тела запроса данным описанным в DTO
  */
 @Injectable()
 export class ReqBodyPipe implements PipeTransform {
-	async transform(value: any, { metatype }: ArgumentMetadata) {
+	async transform(value: unknown, { metatype }: ArgumentMetadata) {
 
 		if (!metatype || !this.toValidate(metatype)) return value
 
@@ -16,7 +23,10 @@ export class ReqBodyPipe implements PipeTransform {
 		const errors = await validate(object)
 
 		if (errors.length > 0) {
-			throw new BadRequestException(this.formatErrors(errors))
+			throw new GeneralHttpException({
+				message: 'Поля тела запроса содержат ошибки',
+				fieldsErrors: this.formatErrors(errors)
+			}, HttpStatus.BAD_REQUEST)
 		}
 		return value
 	}
