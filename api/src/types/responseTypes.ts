@@ -39,5 +39,6 @@ export namespace ResponseObjType {
  */
 export namespace ArticleRespType {
 	export type Generic = { articles: Article[] }
-	export type Return = Promise<ResponseObjType.Success<Generic>>
+	export type SuccessReturn = Promise<ResponseObjType.Success<Generic>>
+	export type SuccessAndFailReturn = Promise<ResponseObjType.Success<Generic> | ResponseObjType.Fail>
 }

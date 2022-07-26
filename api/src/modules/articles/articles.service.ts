@@ -55,22 +55,20 @@ export class ArticlesService {
 	}
 
 	// Удаление статьи
-	async deleteOne(articleId: number): Promise<null | never> {
-		await this.helperService.runQuery<Article>(() => {
+	async deleteOne(articleId: number): Promise<Article | never> {
+		return this.helperService.runQuery<Article>(() => {
 			return this.prismaService.article.delete({
 				where: {
 					id: articleId
 				}
 			})
 		})
-		
-		return null
 	}
 	
 	// Удаление всех статей
-	async deleteAll(): Promise<Prisma.BatchPayload> {
-		return await this.helperService.runQuery<Prisma.BatchPayload>(() => {
-			return this.prismaService.article.deleteMany({})
+	async deleteAll(): Promise<Prisma.BatchPayload | never> {
+		return this.helperService.runQuery<Prisma.BatchPayload>(() => {
+			return this.prismaService.article.deleteMany()
 		})
 	}
 }

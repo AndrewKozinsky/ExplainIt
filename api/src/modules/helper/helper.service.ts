@@ -1,7 +1,8 @@
 import { HttpStatus, Injectable } from '@nestjs/common'
-import { Prisma } from '../../../prisma/client'
 import { ResponseObjType } from '../../types/responseTypes'
 import { GeneralHttpException } from '../../common/general-http-error'
+import { PrismaClientKnownRequestError } from '../../../prisma/client/runtime'
+import { PrismaClientKnownRequestError as PrismaClientKnownRequestErrorTest } from '../../../prisma_test/client/runtime'
 
 /**
  * Класс с различными методами используемые на всём приложении
@@ -10,7 +11,7 @@ import { GeneralHttpException } from '../../common/general-http-error'
 export class HelperService {
 	
 	/**
-	 * Метод запускает функцию с методом Призмы. Например для записи сущности в таблицу БД.
+	 * Метод запускает функцию с методом Призмы. Например, для записи сущности в таблицу БД.
 	 * При появлении ошибки будет выброшено исключение.
 	 * @param queryFn
 	 */
@@ -20,7 +21,7 @@ export class HelperService {
 		}
 		catch(err) {
 			// Типы ошибок Призмы описаны в prisma.io/docs/reference/api-reference/error-reference
-			if (err instanceof Prisma.PrismaClientKnownRequestError) {
+			if (err instanceof PrismaClientKnownRequestError || err instanceof PrismaClientKnownRequestErrorTest) {
 				
 				if (err.code === 'P2002' && err.meta) {
 					throw new GeneralHttpException({
@@ -32,15 +33,18 @@ export class HelperService {
 				}
 				else if (err.code === 'P2025' && err.meta) {
 					throw new GeneralHttpException({
-						message: 'Удаляемой сущности не найдено.'
+						message: 'Сущность не найдена.'
 					}, HttpStatus.BAD_REQUEST)
 				}
 				else {
+					throw new GeneralHttpException({
+						message: 'Необработанная ошибка. Требуется актуализировать список.'
+					}, HttpStatus.BAD_REQUEST)
 				}
 			}
 
 			// Если выпадает такая ошибка, то нужно дополнить код новым условием.
-			throw new Error('Неизвестная ошибка. Требуется актуализировать список.')
+			throw new Error('Неизвестная ошибка сервера.')
 		}
 	}
 
@@ -54,6 +58,19 @@ export class HelperService {
 			status: 'success',
 			statusCode,
 			data
+		}
+	}
+
+	/**
+	 * Функция формирует объект ошибочного ответа клиенту
+	 * @param {Number} statusCode — код статуса
+	 * @param {String} message — общий текст ошибки
+	 */
+	createFailResponse(statusCode: HttpStatus, message?: string, ): ResponseObjType.Fail {
+		return {
+			status: 'fail',
+			statusCode,
+			message
 		}
 	}
 }

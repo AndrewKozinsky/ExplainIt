@@ -4,6 +4,7 @@ import { HttpStatus, INestApplication } from '@nestjs/common'
 import CreateArticleDto from '../src/modules/articles/dto/create-article.dto'
 import { AppModule } from '../src/modules/app/app.module'
 import { ArticleRespType, ResponseObjType } from '../src/types/responseTypes'
+import UpdateArticleDto from '../src/modules/articles/dto/update-article.dto'
 
 // Данные новой создаваемой статьи
 const newArticleDTO: CreateArticleDto = {
@@ -26,17 +27,19 @@ function createTestArticle(app: INestApplication, done: Function, afterCreate?: 
 		.post('/articles')
 		.send(newArticleDTO)
 		.set({ 'admin-password': 'ztpmftw4PO' })
-		.end(function(err, res) {
-			if (err) done(err)
-			
+		.then((res) => {
 			if (afterCreate) {
 				// Запустить функцию поиска созданной статьи
-				afterCreate(JSON.parse(res.text))
+				afterCreate(res.body)
 			}
 			else {
 				done()
 			}
 		})
+}
+
+function getResBody(res: request.Response): ResponseObjType.Success<ArticleRespType.Generic> {
+	return res.body
 }
 
 describe('Articles', () => {
@@ -69,15 +72,17 @@ describe('Articles', () => {
 				.get('/articles')
 				.set({ 'admin-password': 'ztpmftw4PO' })
 				.expect(HttpStatus.OK)
-				.end(function(err, res) {
-					if (err) return done(err)
-					return done()
+				.then((res) => {
+					const { data } = getResBody(res)
+					expect(data.articles.length).toBe(1)
+					
+					done()
 				})
 		}
 	})
 	
 	
-	it('Получение существующий статьи по id /articles/4 (GET)', (done) => {
+	it('Запрос существующий статьи по id /articles/4 (GET)', (done) => {
 		// Создать статью, которую буду получать в следующем запросе
 		createTestArticle(app, done, handleArticleData)
 		
@@ -87,11 +92,23 @@ describe('Articles', () => {
 				.get('/articles/' + data.data.articles[0].id)
 				.set({ 'admin-password': 'ztpmftw4PO' })
 				.expect(HttpStatus.OK)
-				.end(function(err, res) {
-					if (err) return done(err)
-					return done()
+				.then((res) => {
+					const { data } = getResBody(res)
+					expect(data.articles.length).toBe(1)
+					
+					done()
 				})
 		}
+	})
+	
+	
+	it('Запрос несуществующий статьи по id /articles/4 (GET)', (done) => {
+		request(app.getHttpServer())
+			.get('/articles/' + 9999)
+			.expect(HttpStatus.BAD_REQUEST)
+			.then((res) => {
+				done()
+			})
 	})
 	
 	
@@ -101,9 +118,11 @@ describe('Articles', () => {
 			.send(newArticleDTO)
 			.set({ 'admin-password': 'ztpmftw4PO' })
 			.expect(HttpStatus.CREATED)
-			.end(function(err, res) {
-				if (err) return done(err)
-				return done()
+			.then((res) => {
+				const { data } = getResBody(res)
+				expect(data.articles.length).toBe(1)
+				
+				done()
 			})
 	})
 	
@@ -112,17 +131,40 @@ describe('Articles', () => {
 		// Создать статью, которую буду изменять в следующем запросе
 		createTestArticle(app, done, handleArticleData)
 		
+		const updateArticleDTO: UpdateArticleDto = {
+			name: 'New name',
+		}
+		
 		// Функция получает данные созданной статьи и изменяет её
 		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Generic>) {
 			request(app.getHttpServer())
 				.patch('/articles/' + data.data.articles[0].id)
+				.send(updateArticleDTO)
 				.set({ 'admin-password': 'ztpmftw4PO' })
 				.expect(HttpStatus.OK)
-				.end(function(err, res) {
-					if (err) return done(err)
-					return done()
+				.then((res) => {
+					const { data } = getResBody(res)
+					expect(data.articles[0].name).toBe('New name')
+					
+					done()
 				})
 		}
+	})
+	
+	it('Изменение несуществующий статьи по id /articles/4 (PATCH)', (done) => {
+		const updateArticleDTO: UpdateArticleDto = {
+			name: 'New name',
+		}
+		
+		// Функция получает данные созданной статьи и изменяет её
+		request(app.getHttpServer())
+			.patch('/articles/' + 9999)
+			.send(updateArticleDTO)
+			.set({ 'admin-password': 'ztpmftw4PO' })
+			.expect(HttpStatus.BAD_REQUEST)
+			.then((res) => {
+				done()
+			})
 	})
 	
 	
@@ -136,9 +178,11 @@ describe('Articles', () => {
 				.delete('/articles/all')
 				.set({ 'admin-password': 'ztpmftw4PO' })
 				.expect(HttpStatus.OK)
-				.end(function(err, res) {
-					if (err) return done(err)
-					return done()
+				.then((res) => {
+					const { data } = getResBody(res)
+					expect(data.articles.length).toBe(0)
+					
+					done()
 				})
 		}
 	})
@@ -154,11 +198,23 @@ describe('Articles', () => {
 				.delete('/articles/' + data.data.articles[0].id)
 				.set({ 'admin-password': 'ztpmftw4PO' })
 				.expect(HttpStatus.OK)
-				.end(function(err, res) {
-					if (err) return done(err)
-					return done()
+				.then((res) => {
+					const { data } = getResBody(res)
+					expect(data.articles.length).toBe(0)
+					
+					done()
 				})
 		}
+	})
+	
+	it('Удаление несуществующий статьи по id /articles/4 (DELETE)', (done) => {
+		request(app.getHttpServer())
+			.delete('/articles/' + 9999)
+			.set({ 'admin-password': 'ztpmftw4PO' })
+			.expect(HttpStatus.BAD_REQUEST)
+			.then((res) => {
+				done()
+			})
 	})
 	
 
