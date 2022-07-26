@@ -1,7 +1,8 @@
 // Типы данных отправляемых сервером
 import { HttpStatus } from '@nestjs/common'
+import { Article } from '../../prisma/client'
 
-namespace ResponseObjType {
+export namespace ResponseObjType {
 	// Ошибка сервера
 	export type Error = {
 		status: 'error',
@@ -32,4 +33,11 @@ namespace ResponseObjType {
 	}
 }
 
-export default ResponseObjType
+
+/**
+ * Пространство имён с типами данных возвращаемыми методами ArticlesController
+ */
+export namespace ArticleRespType {
+	export type Generic = { articles: Article[] }
+	export type Return = Promise<ResponseObjType.Success<Generic>>
+}

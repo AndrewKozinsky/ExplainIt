@@ -27,6 +27,7 @@ services:
       - ./api/src:/app/src
       - ./api/prisma:/app/prisma
       - ./api/prisma_test:/app/prisma_test
+      - ./api/test:/app/test
     command: npm run start:dev
 
   db:

@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common'
 import { plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
-import ResponseObjType from '../types/responseObjType'
+import { ResponseObjType } from '../types/responseTypes'
 import { GeneralHttpException } from './general-http-error'
 
 /**

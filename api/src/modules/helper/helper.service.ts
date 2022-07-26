@@ -1,6 +1,6 @@
 import { HttpStatus, Injectable } from '@nestjs/common'
 import { Prisma } from '../../../prisma/client'
-import ResponseObjType from '../../types/responseObjType'
+import { ResponseObjType } from '../../types/responseTypes'
 import { GeneralHttpException } from '../../common/general-http-error'
 
 /**

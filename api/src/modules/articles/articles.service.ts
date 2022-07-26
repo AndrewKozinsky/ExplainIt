@@ -11,7 +11,18 @@ export class ArticlesService {
 		private readonly helperService: HelperService
 	) {}
 	
-	// Поиск статьи
+	// Получение всех статей
+	async getAll(): Promise<Article[] | never> {
+		return this.helperService.runQuery<Article[]>(() => {
+			return this.prismaService.article.findMany({
+				orderBy: {
+					order_number: 'asc'
+				}
+			})
+		})
+	}
+	
+	// Получение статьи
 	async getOne(articleId: number): Promise<Article | null | never> {
 		return this.helperService.runQuery<Article | null>(() => {
 			return this.prismaService.article.findFirst({

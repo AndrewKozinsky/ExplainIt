@@ -1,6 +1,6 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
 import { Response } from 'express'
-import ResponseObjType from '../types/responseObjType'
+import { ResponseObjType } from '../types/responseTypes'
 
 /**
  * Фильтр обрабатывает HTTP-исключения и стандартные (неожиданные) ошибки.

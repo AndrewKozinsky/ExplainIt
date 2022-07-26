@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common'
-import ResponseObjType from '../types/responseObjType'
+import { ResponseObjType } from '../types/responseTypes'
 
 /**
  * Обёрточный класс для HTTP-исключения.

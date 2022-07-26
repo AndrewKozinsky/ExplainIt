@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Article {
-  id             Int     @unique @default(autoincrement()) @db.SmallInt
+  id             Int     @unique @default(autoincrement()) @db.Integer
   name           String  @db.VarChar(255)
   article_number String  @db.VarChar(100)
   published      Boolean @default(false)
