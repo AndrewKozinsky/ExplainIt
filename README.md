@@ -42,7 +42,7 @@
 Перед запуском теста нужно в Докер в сервис api передать переменную WORK_MODE в значении test. Для этого Докер нужно запустить так:
 `docker-compose -f docker-compose-dev.yml -f docker-compose-dev-test.yml up --build`.
 После этого в Терминале нужно перейти в контейнер API: `docker exec -it explain-api sh`.
-И там запустить тесты: `npm run test:e2e`
+И там запустить тесты: `npm run test` или `npm run test:e2e`. 
 
 ## Документация API (Swagger)
 Находится по адресу /api/swagger.

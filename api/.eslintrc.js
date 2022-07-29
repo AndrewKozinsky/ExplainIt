@@ -20,14 +20,8 @@ module.exports = {
 			'warn',
 			'tab', { 'SwitchCase': 1, 'ignoredNodes': ['PropertyDefinition'] }
 		],
-		'linebreak-style': [
-			'error',
-			'unix'
-		],
-		'quotes': [
-			'error',
-			'single'
-		],
+		'linebreak-style': ['error', 'unix'],
+		'quotes': ['error', 'single'],
 		'semi': ['warn', 'never'],
 		'no-empty': ['off'],
 		'eol-last': ['warn', 'always'],

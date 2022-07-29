@@ -4,7 +4,11 @@ import { HelperModule } from '../helper/helper.module'
 import { PrismaModule } from '../prisma/prisma.module'
 
 @Module({
-	imports: [PrismaModule.forRoot(), ArticlesModule, HelperModule],
+	imports: [
+		PrismaModule.forRoot(),
+		ArticlesModule,
+		HelperModule
+	],
 	controllers: [],
 	providers: []
 })

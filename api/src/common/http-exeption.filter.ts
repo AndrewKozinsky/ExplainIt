@@ -30,13 +30,15 @@ export class HttpExceptionFilter implements ExceptionFilter {
 		}
 		// Если возникла неожиданная ошибка
 		else if (exception instanceof Error) {
-			response.json({
-				status: 'error',
-				statusCode: 500,
-				message: ['dev', 'test'].includes(workMode)
-					? exception.message
-					: 'Ошибка сервера.'
-			} as ResponseObjType.Error)
+			response.json(
+				{
+					status: 'error',
+					statusCode: 500,
+					message: ['dev', 'test'].includes(workMode)
+						? exception.message
+						: 'Ошибка сервера.'
+				} as ResponseObjType.Error
+			)
 		}
 	}
 }

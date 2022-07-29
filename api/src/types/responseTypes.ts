@@ -38,7 +38,7 @@ export namespace ResponseObjType {
  * Пространство имён с типами данных возвращаемыми методами ArticlesController
  */
 export namespace ArticleRespType {
-	export type Generic = { articles: Article[] }
-	export type SuccessReturn = Promise<ResponseObjType.Success<Generic>>
-	export type SuccessAndFailReturn = Promise<ResponseObjType.Success<Generic> | ResponseObjType.Fail>
+	export type Payload = { articles: Article[] }
+	export type SuccessReturn = Promise<ResponseObjType.Success<Payload>>
+	export type SuccessOrFailReturn = Promise<ResponseObjType.Success<Payload> | ResponseObjType.Fail>
 }

@@ -18,6 +18,7 @@ import { HelperService } from '../helper/helper.service'
 import { AuthGuard } from '../../common/auth.guard'
 import UpdateArticleDto from './dto/update-article.dto'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { Article } from '../../../prisma/client'
 import { ArticleRespType } from '../../types/responseTypes'
 import { Response } from 'express'
 
@@ -38,7 +39,7 @@ export class ArticlesController {
 		const foundedArticle = await this.articlesService.getAll()
 		
 		// Сформировать и возвратить клиенту ответ
-		return this.helperService.createSuccessResponse<ArticleRespType.Generic> (
+		return this.helperService.createSuccessResponse<ArticleRespType.Payload> (
 			{ articles: foundedArticle }, HttpStatus.OK
 		)
 	}
@@ -46,13 +47,16 @@ export class ArticlesController {
 	@Get(':id')
 	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: 'Получение статьи по идентификатору.' })
-	async getOne(@Param('id', ParseIntPipe) id: number, @Res({ passthrough: true }) res: Response): ArticleRespType.SuccessAndFailReturn {
+	async getOne(
+		@Param('id', ParseIntPipe) id: number,
+		@Res({ passthrough: true }) res: Response
+	): ArticleRespType.SuccessOrFailReturn {
 		// Найти статью в БД
-		const foundedArticle = await this.articlesService.getOne(id)
+		const foundArticle = await this.articlesService.getOne(id)
 		
-		if (foundedArticle) {
-			return this.helperService.createSuccessResponse<ArticleRespType.Generic> (
-				{ articles: [foundedArticle] }, HttpStatus.OK
+		if (foundArticle) {
+			return this.helperService.createSuccessResponse<ArticleRespType.Payload> (
+				{ articles: [foundArticle] }, HttpStatus.OK
 			)
 		}
 		else {
@@ -72,7 +76,7 @@ export class ArticlesController {
 		const createdArticle = await this.articlesService.create(articleDto)
 		
 		// Сформировать и возвратить клиенту ответ
-		return this.helperService.createSuccessResponse<ArticleRespType.Generic>(
+		return this.helperService.createSuccessResponse<ArticleRespType.Payload>(
 			{ articles: [createdArticle] }, HttpStatus.CREATED
 		)
 	}
@@ -81,14 +85,26 @@ export class ArticlesController {
 	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: 'Обновлении статьи по идентификатору.' })
-	async update(@Body() articleDto: UpdateArticleDto, @Param('id', ParseIntPipe) id: number): ArticleRespType.SuccessReturn {
+	async update(
+		@Body() articleDto: UpdateArticleDto,
+		@Param('id', ParseIntPipe) id: number,
+		@Res({ passthrough: true }) res: Response
+	): ArticleRespType.SuccessOrFailReturn {
 		// Обновить статью в БД
 		const updatedArticle = await this.articlesService.update(id, articleDto)
 		
 		// Сформировать и возвратить клиенту ответ
-		return this.helperService.createSuccessResponse<ArticleRespType.Generic>(
-			{ articles: [updatedArticle] }, HttpStatus.OK
-		)
+		if (updatedArticle) {
+			return this.helperService.createSuccessResponse<ArticleRespType.Payload> (
+				{ articles: [updatedArticle] }, HttpStatus.OK
+			)
+		}
+		else {
+			res.status(HttpStatus.BAD_REQUEST)
+			return this.helperService.createFailResponse (
+				HttpStatus.BAD_REQUEST, 'Статья не найдена'
+			)
+		}
 	}
 	
 	@Delete('/all')
@@ -100,7 +116,7 @@ export class ArticlesController {
 		await this.articlesService.deleteAll()
 		
 		// Сформировать и возвратить клиенту ответ
-		return this.helperService.createSuccessResponse<ArticleRespType.Generic>(
+		return this.helperService.createSuccessResponse<ArticleRespType.Payload>(
 			{ articles: [] }, HttpStatus.OK
 		)
 	}
@@ -109,13 +125,13 @@ export class ArticlesController {
 	@UseGuards(AuthGuard)
 	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: 'Удаление статьи по идентификатору.' })
-	async deleteOne(@Param('id', ParseIntPipe) id: number, @Res({ passthrough: true }) res: Response): ArticleRespType.SuccessAndFailReturn {
+	async deleteOne(@Param('id', ParseIntPipe) id: number, @Res({ passthrough: true }) res: Response): ArticleRespType.SuccessOrFailReturn {
 		// Удалить статью
-		const foundedArticle = await this.articlesService.deleteOne(id)
+		const deletedArticle = await this.articlesService.deleteOne(id)
 		
-		if (foundedArticle) {
-			return this.helperService.createSuccessResponse<ArticleRespType.Generic> (
-				{ articles: [] }, HttpStatus.OK
+		if (deletedArticle) {
+			return this.helperService.createSuccessResponse<ArticleRespType.Payload> (
+				{ articles: [deletedArticle] }, HttpStatus.OK
 			)
 		}
 		else {

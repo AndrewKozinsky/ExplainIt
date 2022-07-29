@@ -38,7 +38,7 @@ function createTestArticle(app: INestApplication, done: Function, afterCreate?: 
 		})
 }
 
-function getResBody(res: request.Response): ResponseObjType.Success<ArticleRespType.Generic> {
+function getResBody(res: request.Response): ResponseObjType.Success<ArticleRespType.Payload> {
 	return res.body
 }
 
@@ -87,7 +87,7 @@ describe('Articles', () => {
 		createTestArticle(app, done, handleArticleData)
 		
 		// Функция получает данные созданной статьи и запрашивает её
-		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Generic>) {
+		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload>) {
 			request(app.getHttpServer())
 				.get('/articles/' + data.data.articles[0].id)
 				.set({ 'admin-password': 'ztpmftw4PO' })
@@ -136,7 +136,7 @@ describe('Articles', () => {
 		}
 		
 		// Функция получает данные созданной статьи и изменяет её
-		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Generic>) {
+		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload>) {
 			request(app.getHttpServer())
 				.patch('/articles/' + data.data.articles[0].id)
 				.send(updateArticleDTO)
@@ -193,7 +193,7 @@ describe('Articles', () => {
 		createTestArticle(app, done, handleArticleData)
 		
 		// Функция получает данные созданной статьи и удаляет её
-		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Generic>) {
+		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload>) {
 			request(app.getHttpServer())
 				.delete('/articles/' + data.data.articles[0].id)
 				.set({ 'admin-password': 'ztpmftw4PO' })
