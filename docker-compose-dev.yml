@@ -12,6 +12,24 @@ services:
     volumes:
       - ./nginx/nginx.conf.dev:/etc/nginx/nginx.conf
 
+  admin:
+    build:
+      context:   admin
+      dockerfile: Dockerfile.dev
+    container_name: explain-admin
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      WORK_MODE: dev # Режим работы
+      PORT: 3001     # Порт приложения
+    depends_on:
+      - db
+      - api
+    volumes:
+      - ./admin/src:/app/src
+    command: npm run dev
+
   api:
     build:
       context: api
