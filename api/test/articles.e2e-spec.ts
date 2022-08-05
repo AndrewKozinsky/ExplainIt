@@ -9,10 +9,10 @@ import UpdateArticleDto from '../src/modules/articles/dto/update-article.dto'
 // Данные новой создаваемой статьи
 const newArticleDTO: CreateArticleDto = {
 	name: 'name',
-	article_number: '100',
+	label: '100',
 	summary: 'summary',
 	content: 'content',
-	order_number: 5
+	order: 5
 }
 
 /**
@@ -38,7 +38,7 @@ function createTestArticle(app: INestApplication, done: Function, afterCreate?: 
 		})
 }
 
-function getResBody(res: request.Response): ResponseObjType.Success<ArticleRespType.Payload> {
+function getResBody(res: request.Response): ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>> {
 	return res.body
 }
 
@@ -53,7 +53,7 @@ describe('Articles', () => {
 		app = moduleRef.createNestApplication()
 		await app.init()
 	})
-	
+
 	afterEach(async () => {
 		// Удаление всех статей после каждого теста
 		return request(app.getHttpServer())
@@ -61,11 +61,11 @@ describe('Articles', () => {
 			.set({ 'admin-password': 'ztpmftw4PO' })
 			.expect(HttpStatus.OK)
 	})
-	
+
 	it('Получение всех статей /articles (GET)', (done) => {
 		// Создать статью
 		createTestArticle(app, done, getArticles)
-		
+
 		// Функция получает все статьи
 		function getArticles() {
 			request(app.getHttpServer())
@@ -75,19 +75,19 @@ describe('Articles', () => {
 				.then((res) => {
 					const { data } = getResBody(res)
 					expect(data.articles.length).toBe(1)
-					
+
 					done()
 				})
 		}
 	})
-	
-	
+
+
 	it('Запрос существующий статьи по id /articles/4 (GET)', (done) => {
 		// Создать статью, которую буду получать в следующем запросе
 		createTestArticle(app, done, handleArticleData)
-		
+
 		// Функция получает данные созданной статьи и запрашивает её
-		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload>) {
+		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>>) {
 			request(app.getHttpServer())
 				.get('/articles/' + data.data.articles[0].id)
 				.set({ 'admin-password': 'ztpmftw4PO' })
@@ -95,13 +95,13 @@ describe('Articles', () => {
 				.then((res) => {
 					const { data } = getResBody(res)
 					expect(data.articles.length).toBe(1)
-					
+
 					done()
 				})
 		}
 	})
-	
-	
+
+
 	it('Запрос несуществующий статьи по id /articles/4 (GET)', (done) => {
 		request(app.getHttpServer())
 			.get('/articles/' + 9999)
@@ -110,8 +110,8 @@ describe('Articles', () => {
 				done()
 			})
 	})
-	
-	
+
+
 	it('Создание статьи /articles (POST)', (done) => {
 		request(app.getHttpServer())
 			.post('/articles')
@@ -121,22 +121,22 @@ describe('Articles', () => {
 			.then((res) => {
 				const { data } = getResBody(res)
 				expect(data.articles.length).toBe(1)
-				
+
 				done()
 			})
 	})
-	
-	
+
+
 	it('Изменение существующий статьи по id /articles/4 (PATCH)', (done) => {
 		// Создать статью, которую буду изменять в следующем запросе
 		createTestArticle(app, done, handleArticleData)
-		
+
 		const updateArticleDTO: UpdateArticleDto = {
 			name: 'New name',
 		}
-		
+
 		// Функция получает данные созданной статьи и изменяет её
-		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload>) {
+		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>>) {
 			request(app.getHttpServer())
 				.patch('/articles/' + data.data.articles[0].id)
 				.send(updateArticleDTO)
@@ -145,17 +145,17 @@ describe('Articles', () => {
 				.then((res) => {
 					const { data } = getResBody(res)
 					expect(data.articles[0].name).toBe('New name')
-					
+
 					done()
 				})
 		}
 	})
-	
+
 	it('Изменение несуществующий статьи по id /articles/4 (PATCH)', (done) => {
 		const updateArticleDTO: UpdateArticleDto = {
 			name: 'New name',
 		}
-		
+
 		// Функция получает данные созданной статьи и изменяет её
 		request(app.getHttpServer())
 			.patch('/articles/' + 9999)
@@ -166,12 +166,12 @@ describe('Articles', () => {
 				done()
 			})
 	})
-	
-	
+
+
 	it('Удаление всех статей /articles (DELETE)', (done) => {
 		// Создать статью
 		createTestArticle(app, done, deleteArticles)
-		
+
 		// Функция удаляет все статьи
 		function deleteArticles() {
 			request(app.getHttpServer())
@@ -181,19 +181,19 @@ describe('Articles', () => {
 				.then((res) => {
 					const { data } = getResBody(res)
 					expect(data.articles.length).toBe(0)
-					
+
 					done()
 				})
 		}
 	})
-	
-	
+
+
 	it('Удаление существующий статьи по id /articles/4 (DELETE)', (done) => {
 		// Создать статью, которую буду удалять в следующем запросе
 		createTestArticle(app, done, handleArticleData)
-		
+
 		// Функция получает данные созданной статьи и удаляет её
-		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload>) {
+		function handleArticleData(data: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>>) {
 			request(app.getHttpServer())
 				.delete('/articles/' + data.data.articles[0].id)
 				.set({ 'admin-password': 'ztpmftw4PO' })
@@ -201,12 +201,12 @@ describe('Articles', () => {
 				.then((res) => {
 					const { data } = getResBody(res)
 					expect(data.articles.length).toBe(0)
-					
+
 					done()
 				})
 		}
 	})
-	
+
 	it('Удаление несуществующий статьи по id /articles/4 (DELETE)', (done) => {
 		request(app.getHttpServer())
 			.delete('/articles/' + 9999)
@@ -216,7 +216,7 @@ describe('Articles', () => {
 				done()
 			})
 	})
-	
+
 
 	afterAll(async () => {
 		await app.close()

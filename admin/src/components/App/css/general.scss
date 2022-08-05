@@ -1,0 +1,45 @@
+:root {
+    font-size: 10px;
+}
+
+@font-face {
+    font-family: "Suisse";
+    src: url("../fonts/SuisseIntl-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+
+body {
+    font-family: 'Suisse', sans-serif;
+    font-size: 1.5rem;
+    line-height: 2.1rem;
+    font-weight: 400;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/** {
+    &::-webkit-scrollbar {
+        width: .6rem;
+        height: 6px;
+        border-radius: var(--radius-2);
+    }
+    &::-webkit-scrollbar-corner {
+        background-color: var(--button-color);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: hsl(var(--text-placeholder-color));
+        border-radius: var(--radius);
+    }
+    &::-webkit-scrollbar-track {
+        background-color: var(--button-color);
+        border-radius: var(--radius);
+    }
+}*/
+
+
+#root {
+    display: flex;
+    min-height: 100vh;
+    box-sizing: border-box;
+}

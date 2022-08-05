@@ -1,14 +1,14 @@
-import * as React from 'react'
+import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import App from './components/App/App'
+import store from 'store/store'
 
-function App() {
-	return <div>Hello World</div>
-}
+const $root = document.getElementById('root') as HTMLElement
+const root = createRoot($root)
 
-const root = createRoot(document.getElementById('root'))
 root.render(
-	<BrowserRouter basename='/admin'>
+	<Provider store={store}>
 		<App />
-	</BrowserRouter>
+	</Provider>
 )

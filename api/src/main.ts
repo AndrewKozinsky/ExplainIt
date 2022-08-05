@@ -10,7 +10,7 @@ async function bootstrap() {
 	// Проверка тела запроса на соответствие схемы
 	app.useGlobalPipes(new ReqBodyPipe())
 	app.useGlobalFilters(new HttpExceptionFilter())
-	
+
 	// Swagger
 	const config = new DocumentBuilder()
 		.setTitle('API explainit.ru')
@@ -21,6 +21,6 @@ async function bootstrap() {
 	SwaggerModule.setup('swagger', app, document)
 
 	await app.listen(process.env.PORT)
-	console.log('API started at port ' + process.env.PORT + ' in ' + process.env.WORK_MODE.toUpperCase() + ' mode ' + '🔥')
+	console.log('API started at port ' + process.env.PORT + ' in ' + process.env.NODE_ENV.toUpperCase() + ' mode ' + '🔥')
 }
 bootstrap()

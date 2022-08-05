@@ -1,0 +1,27 @@
+$CN: side-block;
+
+.#{$CN} {
+	display: flex;
+	width: 100%;
+}
+
+.#{$CN}__left {
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	border-right: 1px solid var(--gray-color-1);
+}
+
+.#{$CN}__left-top {
+	flex-grow: 1;
+	display: flex;
+}
+
+.#{$CN}__left-bottom {
+	padding: 10px 20px;
+	border-top: 1px solid var(--gray-color-1);
+}
+
+.#{$CN}__right {
+	flex-grow: 1;
+}

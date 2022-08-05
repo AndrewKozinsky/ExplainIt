@@ -9,7 +9,7 @@ import { ResponseObjType } from '../types/responseTypes'
 export class HttpExceptionFilter implements ExceptionFilter {
 	catch(exception: unknown, host: ArgumentsHost) {
 		// Режим работы API
-		const workMode = process.env.WORK_MODE
+		const workMode = process.env.NODE_ENV
 
 		// Контекст запроса и объект ответа
 		const ctx = host.switchToHttp()
@@ -19,13 +19,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
 		// Если выброшено контролируемое исключение
 		if (exception instanceof HttpException) {
 			const statusCode = exception.getStatus()
-			
+
 			const respObj: ResponseObjType.Fail = {
 				status: 'fail',
 				statusCode,
 				...exception.getResponse() as ResponseObjType.ErrorsGroup
 			}
-			
+
 			response.json(respObj)
 		}
 		// Если возникла неожиданная ошибка
@@ -34,7 +34,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 				{
 					status: 'error',
 					statusCode: 500,
-					message: ['dev', 'test'].includes(workMode)
+					message: ['development', 'test'].includes(workMode)
 						? exception.message
 						: 'Ошибка сервера.'
 				} as ResponseObjType.Error

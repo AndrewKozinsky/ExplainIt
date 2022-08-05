@@ -5,7 +5,7 @@ import { PrismaService, PrismaServiceTest } from './prisma.service'
 @Module({})
 export class PrismaModule {
 	static forRoot(): DynamicModule {
-		const PrismaClient = process.env.WORK_MODE === 'test' ?
+		const PrismaClient = process.env.NODE_ENV === 'test' ?
 			PrismaServiceTest : PrismaService
 
 		const prismaProvider = {

@@ -1,6 +1,6 @@
 // Типы данных отправляемых сервером
 import { HttpStatus } from '@nestjs/common'
-import { Article } from '../../prisma/client'
+import { Article as PrismaArticle } from '../../prisma/client'
 
 export namespace ResponseObjType {
 	// Ошибка сервера
@@ -15,17 +15,17 @@ export namespace ResponseObjType {
 		status: 'fail'
 		statusCode: HttpStatus
 		message?: string // Главное сообщение об ошибке. Например: «Доступ запрещён»
-		fieldsErrors?: Errors // Объект с названиями свойства и массивом ошибок в его значении. Это для ошибок при отравке данных в теле запроса.
+		fieldsErrors?: Errors // Объект с названиями свойства и массивом ошибок в его значении. Это для ошибок при отправке данных в теле запроса.
 	}
 
 	export type ErrorsGroup = {
 		message?: string
 		fieldsErrors?: Errors
 	}
-	
+
 	export type Errors = Record<string, string[]>
 
-	// Успешный запрос
+	// Успешный ответ
 	export type Success<T> = {
 		status: 'success',
 		statusCode: HttpStatus,
@@ -38,7 +38,12 @@ export namespace ResponseObjType {
  * Пространство имён с типами данных возвращаемыми методами ArticlesController
  */
 export namespace ArticleRespType {
-	export type Payload = { articles: Article[] }
-	export type SuccessReturn = Promise<ResponseObjType.Success<Payload>>
-	export type SuccessOrFailReturn = Promise<ResponseObjType.Success<Payload> | ResponseObjType.Fail>
+	// Статья со всеми данными
+	export type Article = PrismaArticle
+	// Статья с сокращённым набором данных для формирования списка статей
+	export type ArticleItem = Pick<Article, 'id' | 'name' | 'published' | 'order'>
+
+	export type Payload<T> = { articles: T }
+	export type SuccessReturn<T> = Promise<ResponseObjType.Success<Payload<T>>>
+	export type SuccessOrFailReturn<T> = Promise<ResponseObjType.Success<Payload<T>> | ResponseObjType.Fail>
 }

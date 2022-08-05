@@ -16,26 +16,26 @@ const allArticles: Article[] = [
 	{
 		id: 1,
 		name: 'Вводная глава',
-		article_number: 'Вводная глава',
+		label: 'Вводная глава',
 		published: true,
 		summary: 'Краткое описание статьи',
 		content: 'Контент вводной статьи',
-		order_number: 1
+		order: 1
 	},
 	{
 		id: 2,
 		name: 'Первая глава',
-		article_number: 'Первая глава',
+		label: 'Первая глава',
 		published: false,
 		summary: 'Краткое описание первой главы',
 		content: 'Контент первой главы',
-		order_number: 2
+		order: 2
 	},
 ]
 
 describe('ArticlesController', () => {
 	let articlesController: ArticlesController
-	
+
 	beforeAll(async () => {
 		const moduleRef = await Test.createTestingModule({
 			imports: [HelperModule],
@@ -60,133 +60,133 @@ describe('ArticlesController', () => {
 				deleteOne: (idx: number) => allArticles[idx],
 			})
 			.compile()
-		
+
 		articlesController = moduleRef.get<ArticlesController>(ArticlesController)
 	})
-	
-	
+
+
 	describe('getAll()', () => {
-		const getAllArticlesResp: ResponseObjType.Success<ArticleRespType.Payload> = {
+		const getAllArticlesResp: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.ArticleItem[]>> = {
 			status: 'success',
 			statusCode: HttpStatus.OK,
 			data: { articles: allArticles }
 		}
-		
+
 		it('Получение правильного ответа', async () => {
 			expect(await articlesController.getAll())
 				.toEqual(getAllArticlesResp)
 		})
 	})
-	
-	
+
+
 	describe('getOne()', () => {
-		const getOneArticleResp: ResponseObjType.Success<ArticleRespType.Payload> = {
+		const getOneArticleResp: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>> = {
 			status: 'success',
 			statusCode: HttpStatus.OK,
 			data: { articles: [allArticles[0]] }
 		}
-		
+
 		it('Запрос существующей статьи', async () => {
 			expect(await articlesController.getOne(0, res))
 				.toEqual(getOneArticleResp)
 		})
 	})
-	
-	
+
+
 	describe('getOne()', () => {
 		const getNonExistingArticleResp: ResponseObjType.Fail = {
 			status: 'fail',
 			statusCode: HttpStatus.BAD_REQUEST,
 			message: 'Статья не найдена'
 		}
-		
+
 		it('Запрос несуществующей статьи', async () => {
 			expect(await articlesController.getOne(999, res))
 				.toEqual(getNonExistingArticleResp)
 		})
 	})
-	
-	
+
+
 	describe('create()', () => {
 		const newArticle: Article = {
 			id: 3,
 			name: 'Глава 3',
-			article_number: '3',
+			label: '3',
 			published: false,
 			summary: 'Краткое описание статьи',
 			content: 'Контент вводной статьи',
-			order_number: 3
+			order: 3
 		}
-		const createOneArticleResp: ResponseObjType.Success<ArticleRespType.Payload> = {
+		const createOneArticleResp: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>> = {
 			status: 'success',
 			statusCode: HttpStatus.CREATED,
 			data: { articles: [newArticle] }
 		}
-		
+
 		it('Создание статьи', async () => {
 			expect(await articlesController.create(newArticle))
 				.toEqual(createOneArticleResp)
 		})
 	})
-	
-	
+
+
 	describe('update()', () => {
-		const updateArticleResp: ResponseObjType.Success<ArticleRespType.Payload> = {
+		const updateArticleResp: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>> = {
 			status: 'success',
 			statusCode: HttpStatus.OK,
 			data: { articles: [allArticles[0]] }
 		}
-		
+
 		it('Обновление существующей статьи', async () => {
 			expect(await articlesController.update({}, 0, res))
 				.toEqual(updateArticleResp)
 		})
-		
+
 		const updateNonExistingArticleResp: ResponseObjType.Fail = {
 			status: 'fail',
 			statusCode: HttpStatus.BAD_REQUEST,
 			message: 'Статья не найдена'
 		}
-		
+
 		it('Обновление несуществующей статьи', async () => {
 			expect(await articlesController.update({}, 999, res))
 				.toEqual(updateNonExistingArticleResp)
 		})
 	})
-	
-	
+
+
 	describe('deleteAll()', () => {
-		const deleteAllArticlesResp: ResponseObjType.Success<ArticleRespType.Payload> = {
+		const deleteAllArticlesResp: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>> = {
 			status: 'success',
 			statusCode: HttpStatus.OK,
 			data: { articles: [] }
 		}
-		
+
 		it('Получение пустого массива статей после удаления', async () => {
 			expect(await articlesController.deleteAll())
 				.toEqual(deleteAllArticlesResp)
 		})
 	})
-	
-	
+
+
 	describe('deleteOne()', () => {
-		const deleteArticleResp: ResponseObjType.Success<ArticleRespType.Payload> = {
+		const deleteArticleResp: ResponseObjType.Success<ArticleRespType.Payload<ArticleRespType.Article[]>> = {
 			status: 'success',
 			statusCode: HttpStatus.OK,
 			data: { articles: [allArticles[0]] }
 		}
-		
+
 		it('Удаление существующей статьи', async () => {
 			expect(await articlesController.deleteOne(0, res))
 				.toEqual(deleteArticleResp)
 		})
-		
+
 		const deleteNonExistingArticleResp: ResponseObjType.Fail = {
 			status: 'fail',
 			statusCode: HttpStatus.BAD_REQUEST,
 			message: 'Статья не найдена'
 		}
-		
+
 		it('Обновление несуществующей статьи', async () => {
 			expect(await articlesController.update({}, 999, res))
 				.toEqual(deleteNonExistingArticleResp)

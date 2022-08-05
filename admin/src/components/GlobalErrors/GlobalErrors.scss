@@ -1,0 +1,23 @@
+$CN: global-errors;
+
+.#{$CN} {
+	padding: 0 20px;
+	border-top: 1px solid var(--gray-color-1);
+}
+
+
+
+$CNI: global-error;
+
+.#{$CNI} {
+	display: flex;
+	align-items: flex-start;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--gray-color-1);
+
+}
+
+.#{$CNI}__text {
+	flex-grow: 1;
+	margin-right: 10px;
+}

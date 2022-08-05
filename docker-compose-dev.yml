@@ -21,7 +21,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      WORK_MODE: dev # Режим работы
+      NODE_ENV: development # Режим работы
       PORT: 3001     # Порт приложения
     depends_on:
       - db
@@ -37,7 +37,7 @@ services:
     container_name: explain-api
     restart: unless-stopped
     environment:
-      WORK_MODE: dev # Режим работы
+      NODE_ENV: development # Режим работы
       PORT: 3002     # Порт приложения
     depends_on:
       - db

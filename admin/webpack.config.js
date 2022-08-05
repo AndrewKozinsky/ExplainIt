@@ -2,13 +2,13 @@ const webpack = require('webpack')
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = function () {
 	const env = process.env
-	
+
 	// Режим разработки
-	const isDev = env.WORK_MODE !== 'production'
+	const isDev = env.NODE_ENV !== 'production'
 
 	return {
 		entry: './src/index.tsx',
@@ -16,12 +16,12 @@ module.exports = function () {
 		module: {
 			rules: [
 				parseJS(),
-				// parseCSS( isDev ),
-				// parseAssets()
+				parseCSS( isDev ),
+				parseAssets()
 			]
 		},
-		// devtool: getDevTool( isDev ),
-		// resolve: getResolve(),
+		devtool: getDevTool( isDev ),
+		resolve: getResolve(),
 		devServer: getDevServerSettings(parseInt(env.PORT)),
 		plugins: getPlugins( isDev ),
 		output: {
@@ -42,58 +42,49 @@ function parseJS() {
 }
 
 // Функция возвращает настройки загрузчика для CSS
-/*function parseCSS(isDev) {
-    if (isDev) {
-        return {
-            test: /\.s?css$/i,
-            use: ['style-loader', 'css-loader', 'sass-loader'],
-        }
-    }
-    else {
-        return {
-            test: /\.s?css$/i,
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-        }
-    }
-}*/
+function parseCSS(isDev) {
+	if( isDev ) {
+		return {
+			test: /\.s?css$/i,
+			use: ['style-loader', 'css-loader', 'sass-loader'],
+		}
+	}
+	else {
+		return {
+			test: /\.s?css$/i,
+			use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+		}
+	}
+}
 
 // Функция возвращает настройки загрузчика других типов файлов
-/*function parseAssets() {
-    return {
-        test: /\.(png|jpg|jpeg|gif|woff2|pdf)$/i,
-        type: 'asset/resource',
-    }
-}*/
+function parseAssets() {
+	return {
+		test: /\.(png|jpg|jpeg|gif|woff2|pdf)$/i,
+		type: 'asset/resource',
+	}
+}
 
 // Функция возвращает значение параметра devtools
-/*function getDevTool(isDev) {
-    return isDev ? 'inline-source-map' : false // eval
-}*/
+function getDevTool(isDev) {
+	return isDev ? 'inline-source-map' : false // eval
+}
 
 // Функция возвращает объект для свойства resolve
-/*function getResolve() {
-    return {
-        // Почему-то без этой настройки TypeScript не работает
-        extensions: ['.tsx', '.ts', '.jsx', '.js', '.png', '.woff2'],
-        modules: ['node_modules'],
-        alias: {
-            src:      path.resolve(__dirname, './src/'),
-            articleManager: path.resolve(__dirname, './src/articleManager'),
-            common:   path.resolve(__dirname, './src/common'),
-            editor:   path.resolve(__dirname, './src/editor'),
-            entrance: path.resolve(__dirname, './src/entrance'),
-            libs:     path.resolve(__dirname, './src/libs'),
-            messages: path.resolve(__dirname, './src/messages'),
-            modules:  path.resolve(__dirname, './src/modules'),
-            pages:    path.resolve(__dirname, './src/pages'),
-            requests: path.resolve(__dirname, './src/requests'),
-            store:    path.resolve(__dirname, './src/store'),
-            types:    path.resolve(__dirname, './src/types'),
-            utils:    path.resolve(__dirname, './src/utils'),
-            event:    path.resolve(__dirname, './src/event'),
-        }
-    }
-}*/
+function getResolve() {
+	return {
+		// Почему-то без этой настройки TypeScript не работает
+		extensions: ['.tsx', '.ts', '.jsx', '.js', '.png', '.woff2'],
+		modules: ['node_modules'],
+		alias: {
+			src:      path.resolve(__dirname, './src'),
+			components:   path.resolve(__dirname, './src/components'),
+			store:    path.resolve(__dirname, './src/store'),
+			requests: path.resolve(__dirname, './src/requests'),
+			utils:    path.resolve(__dirname, './src/utils'),
+		}
+	}
+}
 
 // Функция возвращает значение параметра devtools
 function getDevServerSettings(port) {

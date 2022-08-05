@@ -27,11 +27,10 @@
 
 ## Что делать после изменения моделей Призмы
 1. Запустить Докер в стандартном режиме (`docker-compose -f docker-compose-dev.yml up --build`).
-2. В prisma/schema.prisma и в prisma/client/schema.prisma в адресе БД поставить хост 0.0.0.0:4001.
-3. В контексте папки api запустить `npx prisma migrate dev --name mig_2` чтобы обновить файлы миграций и в БД для разработки.
-4. Запустить Докер в режиме тестирования (`docker-compose -f docker-compose-dev.yml -f docker-compose-dev-test.yml up --build`). В prisma_test/schema.prisma в адрес БД поставить хост 0.0.0.0:4001.
-5. В prisma_test/schema.prisma и в prisma_test/client/schema.prisma в адресе БД поставить хост 0.0.0.0:4001.
-6. В контексте папки api запустить `npx prisma migrate dev --name mig_2 --schema ./prisma_test/schema.prisma` чтобы обновить файлы миграций в БД для тестирования.
+2. В prisma/schema.prisma и в prisma_test/schema.prisma в адресе БД поставить хост 0.0.0.0:4001.
+3. В контексте папки api запустить `npx prisma migrate dev --name _` чтобы обновить файлы миграций и в БД для разработки.
+4. Запустить Докер в режиме тестирования (`docker-compose -f docker-compose-dev.yml -f docker-compose-dev-test.yml up --build`).
+6. В контексте папки api запустить `npx prisma migrate dev --name _ --schema ./prisma_test/schema.prisma` чтобы обновить файлы миграций в БД для тестирования.
 7. В prisma/schema.prisma, prisma/client/schema.prisma и в prisma_test/schema.prisma, prisma_test/client/schema.prisma в адресах БД поставить хост db:5432.
 8. Перезапустить Докер в нужном режиме.
 
@@ -39,10 +38,13 @@
 В запросе нужно поставить заголовок Admin-Password со значением `ztpmftw4PO`.
 
 ## Тестирование API
-Перед запуском теста нужно в Докер в сервис api передать переменную WORK_MODE в значении test. Для этого Докер нужно запустить так:
+Перед запуском теста нужно в сервисе api Докера передать переменную NODE_ENV в значении test. Для этого Докер нужно запустить так:
 `docker-compose -f docker-compose-dev.yml -f docker-compose-dev-test.yml up --build`.
 После этого в Терминале нужно перейти в контейнер API: `docker exec -it explain-api sh`.
-И там запустить тесты: `npm run test` или `npm run test:e2e`. 
+И там запустить тесты: `npm run test` или `npm run test:e2e`.
 
 ## Документация API (Swagger)
 Находится по адресу /api/swagger.
+
+## Доступ к административной части
+Для входа в административную часть нужно в браузере в Local Storage поставить свойство `admin-password` со значением `doecFG56$%_pc`.

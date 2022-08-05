@@ -1,0 +1,24 @@
+$CN: app;
+
+.#{$CN} {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr auto;
+	grid-template-areas:
+            "app-left app-right"
+            "app-bottom app-bottom";
+    width: 100%;
+	min-height: 100vh;
+}
+
+.#{$CN} > *:nth-child(1)  {
+	grid-area: app-left;
+	border-right: 1px solid var(--gray-color-1);
+}
+.#{$CN} > *:nth-child(2)  {
+	grid-area: app-right;
+}
+.#{$CN} > *:nth-child(3)  {
+	grid-area: app-bottom;
+	max-height: 200px;
+}

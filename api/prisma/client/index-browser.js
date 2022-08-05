@@ -12,11 +12,11 @@ const Prisma = {}
 exports.Prisma = Prisma
 
 /**
- * Prisma Client JS version: 4.1.0
+ * Prisma Client JS version: 4.1.1
  * Query Engine version: 8d8414deb360336e4698a65aa45a1fbaf1ce13d8
  */
 Prisma.prismaVersion = {
-  client: "4.1.0",
+  client: "4.1.1",
   engine: "8d8414deb360336e4698a65aa45a1fbaf1ce13d8"
 }
 
@@ -90,11 +90,11 @@ function makeEnum(x) { return x; }
 exports.Prisma.ArticleScalarFieldEnum = makeEnum({
   id: 'id',
   name: 'name',
-  article_number: 'article_number',
+  label: 'label',
   published: 'published',
   summary: 'summary',
   content: 'content',
-  order_number: 'order_number'
+  order: 'order'
 });
 
 exports.Prisma.SortOrder = makeEnum({

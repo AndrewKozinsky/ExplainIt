@@ -31,5 +31,9 @@ module.exports = {
 		'@typescript-eslint/ban-types': 'off',
 		'@typescript-eslint/no-namespace': 'off',
 		'@typescript-eslint/no-var-requires': ['warn'],
+		// '@typescript-eslint/explicit-function-return-type': ['warn'],
+		'brace-style': ['warn', 'stroustrup'],
+		'prefer-const': ['off'],
+		'no-debugger': ['off'],
 	}
 }

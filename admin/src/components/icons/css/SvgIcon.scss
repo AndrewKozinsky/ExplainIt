@@ -1,0 +1,6 @@
+$CN: icon;
+
+// Чёрная заливка
+.#{$CN} {
+    fill: var(--text-color);
+}

@@ -8,32 +8,37 @@ export default class UpdateArticleDto {
     @MaxLength(255, { message: 'Значение должно быть короче или равно 255 символам' })
     @IsOptional()
     name?: string
-    
+
     @ApiProperty({ description: 'Номер статьи (например: 7) или метка (например: Вводная глава)' })
     @IsString({ message: 'Должно быть строковым значением' })
     @MaxLength(100, { message: 'Значение должно быть короче или равно 100 символам' })
     @IsOptional()
-    article_number?: string
-    
+    label?: string
+
     @ApiProperty({ description: 'Опубликована ли глава', default: false })
     @IsBoolean({ message: 'Должно быть булевым значением' })
     @IsOptional()
     published?: boolean
-    
+
     @ApiProperty({ description: 'Краткое описание статьи' })
     @IsString({ message: 'Должно быть строковым значением' })
     @MaxLength(255, { message: 'Значение должно быть короче или равно 255 символам' })
     @IsOptional()
     summary?: string
-    
+
     @ApiProperty({ description: 'Содержимое статьи. Разметка берётся из редактора и затем разбирается на компоненты' })
     @IsString({ message: 'Должно быть строковым значением' })
     @IsOptional()
     content?: string
-    
+
     @ApiProperty({ description: 'Порядковый номер статьи' })
     @IsPositive({ message: 'Должно быть число' })
     @Max(65535, { message: 'Значение не должно быть больше 65 535' })
     @IsOptional()
-    order_number?: number
+    order?: number
+
+	@ApiProperty({ description: 'Есть ли новые варианты переводов упражнений', default: false })
+	@IsBoolean({ message: 'Должно быть булевым значением' })
+	@IsOptional()
+	payAtn?: boolean
 }

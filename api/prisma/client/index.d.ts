@@ -19,11 +19,11 @@ type UnwrapTuple<Tuple extends readonly unknown[]> = {
 export type Article = {
   id: number
   name: string
-  article_number: string
+  label: string
   published: boolean
   summary: string
   content: string
-  order_number: number
+  order: number
 }
 
 
@@ -216,7 +216,7 @@ export namespace Prisma {
   export import MetricHistogramBucket = runtime.MetricHistogramBucket
 
   /**
-   * Prisma Client JS version: 4.1.0
+   * Prisma Client JS version: 4.1.1
    * Query Engine version: 8d8414deb360336e4698a65aa45a1fbaf1ce13d8
    */
   export type PrismaVersion = {
@@ -823,84 +823,84 @@ export namespace Prisma {
 
   export type ArticleAvgAggregateOutputType = {
     id: number | null
-    order_number: number | null
+    order: number | null
   }
 
   export type ArticleSumAggregateOutputType = {
     id: number | null
-    order_number: number | null
+    order: number | null
   }
 
   export type ArticleMinAggregateOutputType = {
     id: number | null
     name: string | null
-    article_number: string | null
+    label: string | null
     published: boolean | null
     summary: string | null
     content: string | null
-    order_number: number | null
+    order: number | null
   }
 
   export type ArticleMaxAggregateOutputType = {
     id: number | null
     name: string | null
-    article_number: string | null
+    label: string | null
     published: boolean | null
     summary: string | null
     content: string | null
-    order_number: number | null
+    order: number | null
   }
 
   export type ArticleCountAggregateOutputType = {
     id: number
     name: number
-    article_number: number
+    label: number
     published: number
     summary: number
     content: number
-    order_number: number
+    order: number
     _all: number
   }
 
 
   export type ArticleAvgAggregateInputType = {
     id?: true
-    order_number?: true
+    order?: true
   }
 
   export type ArticleSumAggregateInputType = {
     id?: true
-    order_number?: true
+    order?: true
   }
 
   export type ArticleMinAggregateInputType = {
     id?: true
     name?: true
-    article_number?: true
+    label?: true
     published?: true
     summary?: true
     content?: true
-    order_number?: true
+    order?: true
   }
 
   export type ArticleMaxAggregateInputType = {
     id?: true
     name?: true
-    article_number?: true
+    label?: true
     published?: true
     summary?: true
     content?: true
-    order_number?: true
+    order?: true
   }
 
   export type ArticleCountAggregateInputType = {
     id?: true
     name?: true
-    article_number?: true
+    label?: true
     published?: true
     summary?: true
     content?: true
-    order_number?: true
+    order?: true
     _all?: true
   }
 
@@ -999,11 +999,11 @@ export namespace Prisma {
   export type ArticleGroupByOutputType = {
     id: number
     name: string
-    article_number: string
+    label: string
     published: boolean
     summary: string
     content: string
-    order_number: number
+    order: number
     _count: ArticleCountAggregateOutputType | null
     _avg: ArticleAvgAggregateOutputType | null
     _sum: ArticleSumAggregateOutputType | null
@@ -1028,11 +1028,11 @@ export namespace Prisma {
   export type ArticleSelect = {
     id?: boolean
     name?: boolean
-    article_number?: boolean
+    label?: boolean
     published?: boolean
     summary?: boolean
     content?: boolean
-    order_number?: boolean
+    order?: boolean
   }
 
   export type ArticleGetPayload<
@@ -1745,11 +1745,11 @@ export namespace Prisma {
   export const ArticleScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    article_number: 'article_number',
+    label: 'label',
     published: 'published',
     summary: 'summary',
     content: 'content',
-    order_number: 'order_number'
+    order: 'order'
   };
 
   export type ArticleScalarFieldEnum = (typeof ArticleScalarFieldEnum)[keyof typeof ArticleScalarFieldEnum]
@@ -1782,21 +1782,21 @@ export namespace Prisma {
     NOT?: Enumerable<ArticleWhereInput>
     id?: IntFilter | number
     name?: StringFilter | string
-    article_number?: StringFilter | string
+    label?: StringFilter | string
     published?: BoolFilter | boolean
     summary?: StringFilter | string
     content?: StringFilter | string
-    order_number?: IntFilter | number
+    order?: IntFilter | number
   }
 
   export type ArticleOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    article_number?: SortOrder
+    label?: SortOrder
     published?: SortOrder
     summary?: SortOrder
     content?: SortOrder
-    order_number?: SortOrder
+    order?: SortOrder
   }
 
   export type ArticleWhereUniqueInput = {
@@ -1806,11 +1806,11 @@ export namespace Prisma {
   export type ArticleOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    article_number?: SortOrder
+    label?: SortOrder
     published?: SortOrder
     summary?: SortOrder
     content?: SortOrder
-    order_number?: SortOrder
+    order?: SortOrder
     _count?: ArticleCountOrderByAggregateInput
     _avg?: ArticleAvgOrderByAggregateInput
     _max?: ArticleMaxOrderByAggregateInput
@@ -1824,79 +1824,79 @@ export namespace Prisma {
     NOT?: Enumerable<ArticleScalarWhereWithAggregatesInput>
     id?: IntWithAggregatesFilter | number
     name?: StringWithAggregatesFilter | string
-    article_number?: StringWithAggregatesFilter | string
+    label?: StringWithAggregatesFilter | string
     published?: BoolWithAggregatesFilter | boolean
     summary?: StringWithAggregatesFilter | string
     content?: StringWithAggregatesFilter | string
-    order_number?: IntWithAggregatesFilter | number
+    order?: IntWithAggregatesFilter | number
   }
 
   export type ArticleCreateInput = {
     id?: number
     name: string
-    article_number: string
+    label: string
     published?: boolean
     summary: string
     content: string
-    order_number: number
+    order: number
   }
 
   export type ArticleUncheckedCreateInput = {
     id?: number
     name: string
-    article_number: string
+    label: string
     published?: boolean
     summary: string
     content: string
-    order_number: number
+    order: number
   }
 
   export type ArticleUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    article_number?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     summary?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    order_number?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArticleUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    article_number?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     summary?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    order_number?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArticleCreateManyInput = {
     id?: number
     name: string
-    article_number: string
+    label: string
     published?: boolean
     summary: string
     content: string
-    order_number: number
+    order: number
   }
 
   export type ArticleUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    article_number?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     summary?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    order_number?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
   }
 
   export type ArticleUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    article_number?: StringFieldUpdateOperationsInput | string
+    label?: StringFieldUpdateOperationsInput | string
     published?: BoolFieldUpdateOperationsInput | boolean
     summary?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
-    order_number?: IntFieldUpdateOperationsInput | number
+    order?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter = {
@@ -1933,41 +1933,41 @@ export namespace Prisma {
   export type ArticleCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    article_number?: SortOrder
+    label?: SortOrder
     published?: SortOrder
     summary?: SortOrder
     content?: SortOrder
-    order_number?: SortOrder
+    order?: SortOrder
   }
 
   export type ArticleAvgOrderByAggregateInput = {
     id?: SortOrder
-    order_number?: SortOrder
+    order?: SortOrder
   }
 
   export type ArticleMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    article_number?: SortOrder
+    label?: SortOrder
     published?: SortOrder
     summary?: SortOrder
     content?: SortOrder
-    order_number?: SortOrder
+    order?: SortOrder
   }
 
   export type ArticleMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    article_number?: SortOrder
+    label?: SortOrder
     published?: SortOrder
     summary?: SortOrder
     content?: SortOrder
-    order_number?: SortOrder
+    order?: SortOrder
   }
 
   export type ArticleSumOrderByAggregateInput = {
     id?: SortOrder
-    order_number?: SortOrder
+    order?: SortOrder
   }
 
   export type IntWithAggregatesFilter = {

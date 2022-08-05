@@ -3,6 +3,7 @@ import CreateArticleDto from './dto/create-article.dto'
 import { HelperService } from '../helper/helper.service'
 import { Article, Prisma, PrismaClient } from '../../../prisma/client'
 import UpdateArticleDto from './dto/update-article.dto'
+import { ArticleRespType } from '../../types/responseTypes'
 
 @Injectable()
 export class ArticlesService {
@@ -10,20 +11,26 @@ export class ArticlesService {
 		@Inject('prismaClient') private prismaService: PrismaClient,
 		private readonly helperService: HelperService
 	) {}
-	
+
 	// Получение всех статей
-	async getAll(): Promise<Article[] | never> {
-		return this.helperService.runQuery<Article[]>(() => {
+	async getAll(): Promise<ArticleRespType.ArticleItem[] | never> {
+		return this.helperService.runQuery<ArticleRespType.ArticleItem[]>(() => {
 			return this.prismaService.article.findMany({
+				select: {
+					id: true,
+					name: true,
+					published: true,
+					order: true
+				},
 				orderBy: {
-					order_number: 'asc'
+					order: 'asc'
 				}
 			})
 		})
 	}
-	
+
 	// Получение статьи
-	async getOne(articleId: number): Promise<Article | null | never> {
+	async getOne(articleId: number): Promise<ArticleRespType.Article | null | never> {
 		return this.helperService.runQuery<Article | null>(() => {
 			return this.prismaService.article.findFirst({
 				where: {
@@ -32,18 +39,18 @@ export class ArticlesService {
 			})
 		})
 	}
-	
+
 	// Создание статьи
-	async create(articleDto: CreateArticleDto): Promise<Article | never> {
+	async create(articleDto: CreateArticleDto): Promise<ArticleRespType.Article | never> {
 		return this.helperService.runQuery<Article>(() => {
 			return this.prismaService.article.create({
 				data: articleDto
 			})
 		})
 	}
-	
+
 	// Обновление статьи
-	async update(articleId: number, articleDto: UpdateArticleDto): Promise<Article | never> {
+	async update(articleId: number, articleDto: UpdateArticleDto): Promise<ArticleRespType.Article | never> {
 		return this.helperService.runQuery<Article>(() => {
 			return this.prismaService.article.update({
 				where: {
@@ -55,7 +62,7 @@ export class ArticlesService {
 	}
 
 	// Удаление статьи
-	async deleteOne(articleId: number): Promise<Article | never> {
+	async deleteOne(articleId: number): Promise<ArticleRespType.Article | never> {
 		return this.helperService.runQuery<Article>(() => {
 			return this.prismaService.article.delete({
 				where: {
@@ -64,7 +71,7 @@ export class ArticlesService {
 			})
 		})
 	}
-	
+
 	// Удаление всех статей
 	async deleteAll(): Promise<Prisma.BatchPayload | never> {
 		return this.helperService.runQuery<Prisma.BatchPayload>(() => {
