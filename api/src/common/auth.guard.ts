@@ -1,6 +1,5 @@
 // import { CanActivate, ExecutionContext, HttpStatus, Injectable } from '@nestjs/common'
 // import { Observable } from 'rxjs'
-// import { GeneralHttpException } from './general-http-error'
 
 /**
  * Стражник проверяет, что запрос сделал администратор.
@@ -18,7 +17,7 @@
 			return true
 		}
 		else {
-			throw new GeneralHttpException({
+			throw new HttpException({
 				message: 'У вас нет прав доступа к этому маршруту',
 			}, HttpStatus.BAD_REQUEST)
 		}

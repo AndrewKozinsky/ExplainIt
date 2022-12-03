@@ -1,12 +1,10 @@
-// import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
-// import { Response } from 'express'
-// import { ResponseObjType } from '../types/responseTypes'
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
+import { Response } from 'express'
+import { ResponseObjType } from '../types/responseTypes'
 
-/**
- * Фильтр обрабатывает HTTP-исключения и стандартные (неожиданные) ошибки.
- */
-// @Catch()
-/*export class HttpExceptionFilter implements ExceptionFilter {
+/** Фильтр обрабатывает HTTP-исключения и стандартные (неожиданные) ошибки. */
+@Catch()
+export class HttpExceptionFilter implements ExceptionFilter {
 	catch(exception: unknown, host: ArgumentsHost) {
 		// Режим работы API
 		const workMode = process.env.NODE_ENV
@@ -41,6 +39,4 @@
 			)
 		}
 	}
-}*/
-
-export {}
+}

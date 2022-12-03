@@ -1,9 +1,8 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript'
-
-//export class Article extends Model<Partial<Article>> {
+import articleConstraints from './article.constraints'
 
 @Table
-export class Article extends Model<Article> {
+export class Article extends Model<Partial<Article>> {
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		autoIncrement: true,
@@ -12,25 +11,25 @@ export class Article extends Model<Article> {
 	id: number
 
 	@Column({
-		type: DataType.STRING(255),  // Varchar(255)
+		type: DataType.STRING(articleConstraints.name.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
-	name: string
+	name: string // Название главы
 
 	@Column({
-		type: DataType.STRING(255),  // Varchar(255)
+		type: DataType.STRING(articleConstraints.chapter.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
-	chapter: string
+	chapter: string // Номер главы. Например «Вводная глава» или «Глава 5»
 
 	@Column({
 		type: DataType.BOOLEAN,
 		defaultValue: false
 	})
-	published?: boolean
+	published?: boolean // Опубликована ли глава
 
 	@Column({
-		type: DataType.STRING(255),  // Varchar(255)
+		type: DataType.STRING(articleConstraints.summary.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
 	summary: string

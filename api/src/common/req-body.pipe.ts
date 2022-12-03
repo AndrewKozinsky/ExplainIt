@@ -1,20 +1,20 @@
-// import {
-// 	ArgumentMetadata,
-// 	HttpStatus,
-// 	Injectable,
-// 	PipeTransform,
-// 	ValidationError
-// } from '@nestjs/common'
-// import { plainToInstance } from 'class-transformer'
-// import { validate } from 'class-validator'
-// import { ResponseObjType } from '../types/responseTypes'
-// import { GeneralHttpException } from './general-http-error'
+import {
+	ArgumentMetadata,
+	HttpException,
+	HttpStatus,
+	Injectable,
+	PipeTransform,
+	ValidationError
+} from '@nestjs/common'
+import { plainToInstance } from 'class-transformer'
+import { validate } from 'class-validator'
+import { ResponseObjType } from '../types/responseTypes'
 
 /**
  * Трубка проверяющая соответствие тела запроса данным описанным в DTO
  */
-// @Injectable()
-/*export class ReqBodyPipe implements PipeTransform {
+@Injectable()
+export class ReqBodyPipe implements PipeTransform {
 	async transform(value: unknown, { metatype }: ArgumentMetadata) {
 
 		if (!metatype || !this.toValidate(metatype)) return value
@@ -23,7 +23,7 @@
 		const errors = await validate(object)
 
 		if (errors.length > 0) {
-			throw new GeneralHttpException({
+			throw new HttpException({
 				message: 'Поля тела запроса содержат ошибки',
 				fieldsErrors: this.formatErrors(errors)
 			}, HttpStatus.BAD_REQUEST)
@@ -43,4 +43,4 @@
 			return acc
 		}, {})
 	}
-}*/
+}

@@ -1,7 +1,7 @@
-import { HttpStatus, Injectable } from '@nestjs/common'
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { ValidationError } from 'sequelize'
 import { ResponseObjType } from '../../types/responseTypes'
-import { GeneralHttpException } from '../../common/general-http-error'
+import { log } from 'util'
 
 /** Класс с различными методами используемые на всём приложении */
 @Injectable()
@@ -21,55 +21,31 @@ export class HelperService {
 
 				const errorsCollector: ResponseObjType.Errors = {}
 
-				// console.log('================')
-				// console.log(err.errors)
-				// console.log('================')
-
 				validationError.errors.forEach(error => {
-					if (!error) return
+					if (!error.path || !error.type) return
 
-					//@ts-ignore
-					if (!errorsCollector[error.path]) {
-						//@ts-ignore
+					if (error.path && !errorsCollector[error.path]) {
 						errorsCollector[error.path] = []
 					}
 
-					/*if (error.type == 'notNull Violation') {
-						errorsCollector[error.path].push('Значение поля должно быть уникальным.')
-					}*/
+					if (error.type.toLowerCase() == 'notnull violation') {
+						errorsCollector[error.path].push('Требуется передать значение.')
+						// 'Значение поля должно быть уникальным.'
+						// 'Сущность не найдена.'
+					}
+					else {
+						errorsCollector[error.path].push('Необработанная ошибка. Требуется актуализировать список.')
+					}
 				})
 
 				if (Object.keys(errorsCollector).length) {
-					throw new GeneralHttpException({
+					throw new HttpException({
 						message: 'Поля тела запроса содержат ошибки',
 						fieldsErrors: errorsCollector
 					}, HttpStatus.BAD_REQUEST)
 				}
-
-
-
-
-				/*if (err.code === 'P2002' && err.meta) {
-					throw new GeneralHttpException({
-						message: 'Поля тела запроса содержат ошибки',
-						fieldsErrors: {
-							[err.meta.target as string]: ['Значение поля должно быть уникальным.']
-						}
-					}, HttpStatus.BAD_REQUEST)
-				}*/
-				/*else if (err.code === 'P2025' && err.meta) {
-					throw new GeneralHttpException({
-						message: 'Сущность не найдена.'
-					}, HttpStatus.BAD_REQUEST)
-				}*/
-				/*else {
-					throw new GeneralHttpException({
-						message: 'Необработанная ошибка. Требуется актуализировать список.'
-					}, HttpStatus.BAD_REQUEST)
-				}*/
 			}
 
-			console.log('Произошла ошибка')
 			throw new Error('Неизвестная ошибка сервера.')
 		}
 	}
@@ -92,11 +68,11 @@ export class HelperService {
 	 * @param {Number} statusCode — код статуса
 	 * @param {String} message — общий текст ошибки
 	 */
-	/*createFailResponse(statusCode: HttpStatus, message?: string, ): ResponseObjType.Fail {
+	createFailResponse(statusCode: HttpStatus, message?: string, ): ResponseObjType.Fail {
 		return {
 			status: 'fail',
 			statusCode,
 			message
 		}
-	}*/
+	}
 }
