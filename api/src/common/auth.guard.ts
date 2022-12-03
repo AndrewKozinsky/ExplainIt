@@ -1,19 +1,19 @@
-import { CanActivate, ExecutionContext, HttpStatus, Injectable } from '@nestjs/common'
-import { Observable } from 'rxjs'
-import { GeneralHttpException } from './general-http-error'
+// import { CanActivate, ExecutionContext, HttpStatus, Injectable } from '@nestjs/common'
+// import { Observable } from 'rxjs'
+// import { GeneralHttpException } from './general-http-error'
 
 /**
  * Стражник проверяет, что запрос сделал администратор.
  * Пока просто проверяется, что передан заголовок Admin-Password с указанным значением.
  */
-@Injectable()
-export class AuthGuard implements CanActivate {
+// @Injectable()
+/*export class AuthGuard implements CanActivate {
 	canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
 		const ctx = context.switchToHttp()
 		const request = ctx.getRequest()
 
 		const isAdmin =  request.headers['admin-password'] === 'ztpmftw4PO'
-		
+
 		if (isAdmin) {
 			return true
 		}
@@ -23,4 +23,6 @@ export class AuthGuard implements CanActivate {
 			}, HttpStatus.BAD_REQUEST)
 		}
 	}
-}
+}*/
+
+export {}

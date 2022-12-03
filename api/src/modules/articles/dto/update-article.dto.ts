@@ -1,8 +1,8 @@
-import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
+// import { ApiProperty } from '@nestjs/swagger'
+// import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
 
 
-export default class UpdateArticleDto {
+/*export default class UpdateArticleDto {
     @ApiProperty({ description: 'Название статьи' })
     @IsString({ message: 'Должно быть строковым значением' })
     @MaxLength(255, { message: 'Значение должно быть короче или равно 255 символам' })
@@ -41,4 +41,4 @@ export default class UpdateArticleDto {
 	@IsBoolean({ message: 'Должно быть булевым значением' })
 	@IsOptional()
 	payAtn?: boolean
-}
+}*/
