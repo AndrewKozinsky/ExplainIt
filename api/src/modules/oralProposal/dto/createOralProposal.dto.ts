@@ -17,7 +17,8 @@ export default class CreateOralProposalDto {
 		oralProposalConstraints.note.maxLength,
 		{ message: dtoErrorMessages.mustBeEqualOrShorter(oralProposalConstraints.note.maxLength) }
 	)
-	note: string
+	@IsOptional()
+	note?: string
 
 	@IsString({ message: dtoErrorMessages.mustBeString })
 	@MaxLength(

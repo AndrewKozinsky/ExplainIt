@@ -20,7 +20,7 @@ export class OralProposal extends Model<Partial<OralProposal>> {
 	@Column({
 		type: DataType.STRING(oralProposalConstraints.note.maxLength),  // Varchar(255)
 	})
-	note: string // Номер главы. Например «Вводная глава» или «Глава 5»
+	note?: string // Номер главы. Например «Вводная глава» или «Глава 5»
 
 	@Column({
 		type: DataType.STRING(oralProposalConstraints.engProposal.maxLength),  // Varchar(255)

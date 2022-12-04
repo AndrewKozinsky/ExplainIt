@@ -3,6 +3,12 @@ import { GeneralRespType } from '../../../types/generalResponse'
 
 /** Типы данных возвращаемыми методами группы упражнений */
 export namespace ProposalsGroupRespType {
+	// Получение группы упражнений
+	export type GetOne = ProposalsGroup
+	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
+	export type GetOneFailWrap = GeneralRespType.Fail
+	export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
+
 	// Создание группы упражнений
 	export type CreateOne = ProposalsGroup
 	export type CreateOneSuccessWrap = GeneralRespType.Success<Payload<CreateOne>>

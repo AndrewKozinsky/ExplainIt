@@ -1,4 +1,16 @@
-import { Body, Controller, Delete, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Res } from '@nestjs/common'
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	HttpCode,
+	HttpStatus,
+	Param,
+	ParseIntPipe,
+	Patch,
+	Post,
+	Res
+} from '@nestjs/common'
 import { Response } from 'express'
 import { HelperService } from '../helper/helper.service'
 import { ProposalsGroupService } from './proposalsGroup.service'
@@ -14,6 +26,29 @@ export class ProposalsGroupController {
 		private readonly articlesService: ArticleService,
 		private readonly helperService: HelperService
 	) {}
+
+	@Get(':id')
+	@HttpCode(HttpStatus.OK)
+	async getOne(
+		@Param('id', ParseIntPipe) id: number,
+		@Res({ passthrough: true }) res: Response
+	): Promise<ProposalsGroupRespType.CreateOneWrap> {
+		// Проверить существует ли статья к которой делают группу упражнений
+		const isGroupExist = await this.proposalsGroupService.getOne(id)
+
+		if (isGroupExist) {
+			return this.helperService.createSuccessResponse (
+				{ proposalsGroups: isGroupExist }, HttpStatus.OK
+			)
+		}
+		else {
+			res.status(HttpStatus.BAD_REQUEST)
+
+			return this.helperService.createFailResponse (
+				HttpStatus.BAD_REQUEST, 'Статья не найдена'
+			)
+		}
+	}
 
 	@Post()
 	@HttpCode(HttpStatus.CREATED)

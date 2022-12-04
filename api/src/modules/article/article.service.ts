@@ -7,6 +7,7 @@ import { HelperService } from '../helper/helper.service'
 import UpdateArticleDto from './dto/updateArticle.dto'
 import { ProposalsGroup } from '../proposalsGroup/model/proposalsGroup.model'
 import { ArticleRespType } from './response/responseTypes'
+import { OralProposal } from '../oralProposal/model/oralProposal.model'
 
 @Injectable()
 export class ArticleService {
@@ -30,11 +31,18 @@ export class ArticleService {
 	}
 
 	// Получение статьи
+	// Подробнее про глубокую вложенность:
+	// stackoverflow.com/questions/64540665/how-do-i-get-deep-nesting-of-data-in-sequelize
 	async getOne(articleId: number): Promise<ArticleRespType.GetOne | null | never> {
 		return this.helperService.runQuery<ArticleRespType.GetOne | null>(() => {
 			return this.articleModel.findByPk(
 				articleId,
-				{ include: [ProposalsGroup] }
+				{
+					include: {
+						model: ProposalsGroup,
+						include: [OralProposal]
+					}
+				}
 			)
 		})
 	}

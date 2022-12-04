@@ -6,6 +6,8 @@ import { ProposalsGroup } from './model/proposalsGroup.model'
 import CreateGroupDto from './dto/createGroup.dto'
 import { ProposalsGroupRespType } from './response/responseTypes'
 import UpdateGroupDto from './dto/updateGroup.dto'
+import { ArticleRespType } from '../article/response/responseTypes'
+import { OralProposal } from '../oralProposal/model/oralProposal.model'
 
 @Injectable()
 export class ProposalsGroupService {
@@ -13,28 +15,38 @@ export class ProposalsGroupService {
 		private sequelize: Sequelize,
 
 		@InjectModel(ProposalsGroup)
-		private proposalsGroup: typeof ProposalsGroup,
+		private proposalsGroupModel: typeof ProposalsGroup,
 
 		private readonly helperService: HelperService
 	) {}
 
+	// Получение группы предложений
+	async getOne(groupId: number): Promise<ProposalsGroupRespType.GetOne | null | never> {
+		return this.helperService.runQuery<ProposalsGroupRespType.GetOne | null>(() => {
+			return this.proposalsGroupModel.findByPk(
+				groupId,
+				{ include: [OralProposal] }
+			)
+		})
+	}
+
 	// Существует ли группа предложений?
 	async isExist(groupId: number): Promise<boolean> {
-		const foundedArticle = await this.proposalsGroup.findByPk(groupId)
+		const foundedArticle = await this.proposalsGroupModel.findByPk(groupId)
 		return !!foundedArticle
 	}
 
 	// Создание группы упражнений
 	async createOne(proposalsGroupDto: CreateGroupDto): Promise<ProposalsGroupRespType.CreateOne | never> {
 		return this.helperService.runQuery<ProposalsGroupRespType.CreateOne>(() => {
-			return this.proposalsGroup.create(proposalsGroupDto)
+			return this.proposalsGroupModel.create(proposalsGroupDto)
 		})
 	}
 
 	// Обновление группы упражнений
 	async updateOne(groupId: number, groupDto: UpdateGroupDto): Promise<ProposalsGroupRespType.UpdateOne> {
 		return this.helperService.runQuery<ProposalsGroupRespType.UpdateOne>(async () => {
-			const result = await this.proposalsGroup.update(
+			const result = await this.proposalsGroupModel.update(
 				groupDto,
 				{
 					where: { id: groupId },
@@ -49,7 +61,7 @@ export class ProposalsGroupService {
 	// Удаление группы упражнений
 	async deleteOne(groupId: number): Promise<ProposalsGroupRespType.DeleteOne | never> {
 		return this.helperService.runQuery<true>(async () => {
-			await this.proposalsGroup.destroy(
+			await this.proposalsGroupModel.destroy(
 				{
 					where: { id: groupId }
 				}

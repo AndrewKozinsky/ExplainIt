@@ -18,7 +18,7 @@ import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
 
 			autoLoadModels: true,
 			synchronize: true,
-			sync: { alter: true, force: true }
+			sync: { alter: true, force: false }
 		}),
 		ArticleModule,
 		ProposalsGroupModule,

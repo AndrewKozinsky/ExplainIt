@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
-// import { InjectModel } from '@nestjs/sequelize'
+import { InjectModel } from '@nestjs/sequelize'
 // import { Sequelize } from 'sequelize-typescript'
 // import { Article } from './model/oralProposal.model'
 import CreateOralProposalDto from './dto/createOralProposal.dto'
@@ -14,7 +14,7 @@ export class OralProposalService {
 	constructor(
 		// private sequelize: Sequelize,
 
-		// @InjectModel(Article)
+		@InjectModel(OralProposal)
 		private oralProposalModel: typeof OralProposal,
 
 		private readonly helperService: HelperService
