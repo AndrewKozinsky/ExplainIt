@@ -5,11 +5,11 @@ import { Article } from './model/article.model'
 import CreateArticleDto from './dto/createArticle.dto'
 import { HelperService } from '../helper/helper.service'
 import UpdateArticleDto from './dto/updateArticle.dto'
-import { ExercisesGroup } from '../exercisesGroup/model/exercisesGroup.model'
+import { ProposalsGroup } from '../proposalsGroup/model/proposalsGroup.model'
 import { ArticleRespType } from './response/responseTypes'
 
 @Injectable()
-export class ArticlesService {
+export class ArticleService {
 	constructor(
 		private sequelize: Sequelize,
 
@@ -34,7 +34,7 @@ export class ArticlesService {
 		return this.helperService.runQuery<ArticleRespType.GetOne | null>(() => {
 			return this.articleModel.findByPk(
 				articleId,
-				{ include: [ExercisesGroup] }
+				{ include: [ProposalsGroup] }
 			)
 		})
 	}

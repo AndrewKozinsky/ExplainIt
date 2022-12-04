@@ -12,16 +12,16 @@ import {
 	Res
 } from '@nestjs/common'
 import CreateArticleDto from './dto/createArticle.dto'
-import { ArticlesService } from './articles.service'
+import { ArticleService } from './article.service'
 import { HelperService } from '../helper/helper.service'
 import UpdateArticleDto from './dto/updateArticle.dto'
 import { Response } from 'express'
 import { ArticleRespType } from './response/responseTypes'
 
 @Controller('articles')
-export class ArticlesController {
+export class ArticleController {
 	constructor(
-		private readonly articlesService: ArticlesService,
+		private readonly articlesService: ArticleService,
 		private readonly helperService: HelperService
 	) {}
 

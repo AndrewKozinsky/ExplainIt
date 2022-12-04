@@ -1,11 +1,12 @@
-import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
+import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript'
 import groupConstraints from './group.constraints'
-import { Article } from '../../articles/model/article.model'
+import { Article } from '../../article/model/article.model'
+import { OralProposal } from '../../oralProposal/model/oralProposal.model'
 
 @Table({
 	timestamps: false
 })
-export class ExercisesGroup extends Model<Partial<ExercisesGroup>> {
+export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		autoIncrement: true,
@@ -27,5 +28,8 @@ export class ExercisesGroup extends Model<Partial<ExercisesGroup>> {
 
 	@ForeignKey(() => Article)
 	@Column({ allowNull: false })
-	articleId: number // id статьи к которой принадлежит эта группа упражнений
+	articleId: number // id статьи к которой принадлежит эта группа предложений
+
+	@HasMany(() => OralProposal)
+	proposals: OralProposal[]
 }

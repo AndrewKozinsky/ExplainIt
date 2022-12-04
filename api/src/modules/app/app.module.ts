@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common'
 import { SequelizeModule } from '@nestjs/sequelize'
-import { ArticlesModule } from '../articles/articles.module'
+import { ArticleModule } from '../article/article.module'
 import { HelperModule } from '../helper/helper.module'
-import { ExercisesGroupModule } from '../exercisesGroup/exercisesGroup.module'
-import { ExercisesGroup } from '../exercisesGroup/model/exercisesGroup.model'
-import { Article } from '../articles/model/article.model'
+import { OralProposalModule } from '../oralProposal/oralProposal.module'
+import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
 
 @Module({
 	imports: [
@@ -19,10 +18,11 @@ import { Article } from '../articles/model/article.model'
 
 			autoLoadModels: true,
 			synchronize: true,
-			sync: { alter: true, force: false }
+			sync: { alter: true, force: true }
 		}),
-		ArticlesModule,
-		ExercisesGroupModule,
+		ArticleModule,
+		ProposalsGroupModule,
+		OralProposalModule,
 		HelperModule
 	],
 	controllers: [],

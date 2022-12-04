@@ -1,17 +1,17 @@
 import { Body, Controller, Delete, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Res } from '@nestjs/common'
 import { Response } from 'express'
 import { HelperService } from '../helper/helper.service'
-import { ExercisesGroupService } from './exercisesGroup.service'
+import { ProposalsGroupService } from './proposalsGroup.service'
 import CreateGroupDto from './dto/createGroup.dto'
-import { ArticlesService } from '../articles/articles.service'
-import { ExercisesGroupRespType } from './response/responseTypes'
+import { ArticleService } from '../article/article.service'
+import { ProposalsGroupRespType } from './response/responseTypes'
 import UpdateGroupDto from './dto/updateGroup.dto'
 
-@Controller('exercisesGroup')
-export class ExercisesGroupController {
+@Controller('proposalsGroup')
+export class ProposalsGroupController {
 	constructor(
-		private readonly exercisesGroupService: ExercisesGroupService,
-		private readonly articlesService: ArticlesService,
+		private readonly proposalsGroupService: ProposalsGroupService,
+		private readonly articlesService: ArticleService,
 		private readonly helperService: HelperService
 	) {}
 
@@ -20,7 +20,7 @@ export class ExercisesGroupController {
 	async create(
 		@Body() articleDto: CreateGroupDto,
 		@Res({ passthrough: true }) res: Response
-	): Promise<ExercisesGroupRespType.CreateOneWrap> {
+	): Promise<ProposalsGroupRespType.CreateOneWrap> {
 		// Проверить существует ли статья к которой делают группу упражнений
 		const isArticleExist = await this.articlesService.isExist(articleDto.articleId)
 
@@ -32,11 +32,11 @@ export class ExercisesGroupController {
 		}
 
 		// Создать новую группу упражнений в БД
-		const createdGroup = await this.exercisesGroupService.createOne(articleDto)
+		const createdGroup = await this.proposalsGroupService.createOne(articleDto)
 
 		// Сформировать и возвратить клиенту ответ
 		return this.helperService.createSuccessResponse(
-			{ exercisesGroups: createdGroup }, HttpStatus.CREATED
+			{ proposalsGroups: createdGroup }, HttpStatus.CREATED
 		)
 	}
 
@@ -46,14 +46,14 @@ export class ExercisesGroupController {
 		@Body() groupDto: UpdateGroupDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<ExercisesGroupRespType.UpdateOneWrap> {
+	): Promise<ProposalsGroupRespType.UpdateOneWrap> {
 		// Обновить статью в БД
-		const updatedGroup = await this.exercisesGroupService.updateOne(id, groupDto)
+		const updatedGroup = await this.proposalsGroupService.updateOne(id, groupDto)
 
 		// Сформировать и возвратить клиенту ответ
 		if (updatedGroup) {
 			return this.helperService.createSuccessResponse (
-				{ exercisesGroups: updatedGroup }, HttpStatus.OK
+				{ proposalsGroups: updatedGroup }, HttpStatus.OK
 			)
 		}
 		else {
@@ -69,13 +69,13 @@ export class ExercisesGroupController {
 	async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<ExercisesGroupRespType.DeleteOneWrap> {
+	): Promise<ProposalsGroupRespType.DeleteOneWrap> {
 		// Удалить группу упражнений
-		const isDeleted = await this.exercisesGroupService.deleteOne(id)
+		const isDeleted = await this.proposalsGroupService.deleteOne(id)
 
 		if (isDeleted) {
 			return this.helperService.createSuccessResponse (
-				{ exercisesGroups: null }, HttpStatus.OK
+				{ proposalsGroups: null }, HttpStatus.OK
 			)
 		}
 		else {

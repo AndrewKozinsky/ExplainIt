@@ -1,6 +1,6 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript'
 import articleConstraints from './article.constraints'
-import { ExercisesGroup } from '../../exercisesGroup/model/exercisesGroup.model'
+import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
 
 @Table
 export class Article extends Model<Partial<Article>> {
@@ -47,6 +47,6 @@ export class Article extends Model<Partial<Article>> {
 	})
 	order: number
 
-	@HasMany(() => ExercisesGroup)
-	exercisesGroups: ExercisesGroup[]
+	@HasMany(() => ProposalsGroup)
+	proposalsGroups: ProposalsGroup[]
 }
