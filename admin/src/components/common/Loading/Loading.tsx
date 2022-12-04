@@ -1,15 +1,15 @@
-import React, { ReactElement } from 'react'
-import makeClasses from './Loader-classes'
+// import React, { ReactElement } from 'react'
+// import makeClasses from './Loader-classes'
 
-type ContentLoadingPropType = {
+/*type ContentLoadingPropType = {
 	loading: boolean
 	children: ReactElement
-}
+}*/
 
 /**
  * Обёртка принимающая компонент и рисующая поверх него загрузчик.
  */
-export function ContentLoading(props: ContentLoadingPropType): ReactElement {
+/*export function ContentLoading(props: ContentLoadingPropType): ReactElement {
 	const { loading, children } = props
 
 	// Классы компонента
@@ -23,23 +23,23 @@ export function ContentLoading(props: ContentLoadingPropType): ReactElement {
 			</div>
 		</div>
 	)
-}
+}*/
 
 /** Компонент обёртки загрузчика расположенного по центру */
-export function BlankLoading(): ReactElement {
+/*export function BlankLoading(): ReactElement {
 	return (
 		<div className='loading'>
 			{<Loader />}
 		</div>
 	)
-}
+}*/
 
-type LoaderPropType = {
+/*type LoaderPropType = {
     className?: string // Дополнительный класс обёртки
-}
+}*/
 
 /** Компонент загрузчика */
-export function Loader(props: LoaderPropType): ReactElement {
+/*export function Loader(props: LoaderPropType): ReactElement {
 	const { className } = props
 
 	// Классы компонента
@@ -53,4 +53,6 @@ export function Loader(props: LoaderPropType): ReactElement {
 			</svg>
 		</div>
 	)
-}
+}*/
+
+export {}

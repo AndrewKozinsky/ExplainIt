@@ -1,8 +1,8 @@
-const exercisesGroupConstraints = {
+const groupConstraints = {
 	id: {
 
 	},
-	article_id: {
+	articleId: {
 		min: -32768,
 		max: 32767
 	},
@@ -15,4 +15,4 @@ const exercisesGroupConstraints = {
 	}
 }
 
-export default exercisesGroupConstraints
+export default groupConstraints

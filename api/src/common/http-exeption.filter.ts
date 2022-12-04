@@ -1,6 +1,6 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
 import { Response } from 'express'
-import { ResponseObjType } from '../types/responseTypes'
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common'
+import { GeneralRespType } from 'src/types/generalResponse'
 
 /** Фильтр обрабатывает HTTP-исключения и стандартные (неожиданные) ошибки. */
 @Catch()
@@ -13,15 +13,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
 		const ctx = host.switchToHttp()
 		const response = ctx.getResponse<Response>()
 
-
 		// Если выброшено контролируемое исключение
 		if (exception instanceof HttpException) {
 			const statusCode = exception.getStatus()
 
-			const respObj: ResponseObjType.Fail = {
+			const respObj: GeneralRespType.Fail = {
 				status: 'fail',
 				statusCode,
-				...exception.getResponse() as ResponseObjType.ErrorsGroup
+				...exception.getResponse() as GeneralRespType.ErrorsGroup
 			}
 
 			response.json(respObj)
@@ -35,7 +34,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 					message: ['development', 'test'].includes(workMode)
 						? exception.message
 						: 'Ошибка сервера.'
-				} as ResponseObjType.Error
+				} as GeneralRespType.Error
 			)
 		}
 	}

@@ -1,19 +1,19 @@
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
-import { articleRequests } from 'requests/articles/articleRequests'
-import store from 'store/store'
-import CreateArticleDto from '../../../../../api/src/modules/articles/dto/create-article.dto'
-import { ArticleRespType } from '../../../../../api/src/types/responseTypes'
-import articleSlice from 'store/article/articleSlice'
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
+// import { articleRequests } from 'requests/articles/articleRequests'
+// import store from 'store/store'
+// import CreateArticleDto from '../../../../../api/src/modules/articles/dto/create-article.dto'
+// import articleSlice from 'store/article/articleSlice'
+// import { IndexListItemType } from 'components/common/IndexList/IndexList'
+// import { GeneralRespType } from '../../../../../api/src/types/generalResponse'
 
-export function useIsDisabled() {
+/*export function useIsDisabled() {
 	const { articles } = useGetArticleSelectors()
 
 	return !articles
-}
+}*/
 
-export async function createNewArticle() {
+/*export async function createNewArticle() {
 	const articlesArr = store.getState().article.articles
 
 	const reqBody: CreateArticleDto = {
@@ -46,9 +46,9 @@ export async function createNewArticle() {
 
 		store.dispatch(articleSlice.actions.setNeedToLoadAllArticles(true))
 	}
-}
+}*/
 
-function transformArticleDataToIndexListItem(articleData: ArticleRespType.Article): IndexListItemType {
+/*function transformArticleDataToIndexListItem(articleData: GeneralRespType.Article): IndexListItemType {
 	const indexListItem: IndexListItemType = {
 		id: 1,
 		name: 'name',
@@ -66,4 +66,6 @@ function transformArticleDataToIndexListItem(articleData: ArticleRespType.Articl
 	}
 
 	return indexListItem
-}
+}*/
+
+export {}

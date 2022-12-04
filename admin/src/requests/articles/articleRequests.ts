@@ -1,11 +1,11 @@
-import { ArticleRespType } from '../../../../api/src/types/responseTypes'
-import UpdateArticleDto from '../../../../api/src/modules/articles/dto/update-article.dto'
-import { makeFetch, RequestOptionsType } from 'requests/reqFn/fetch'
-import getApiUrl, { APIAddressesType } from 'requests/reqFn/apiUrls'
-import CreateArticleDto from '../../../../api/src/modules/articles/dto/create-article.dto'
+// import { ArticleRespType } from '../../../../api/src/types/generalResponse'
+// import UpdateArticleDto from '../../../../api/src/modules/articles/dto/update-article.dto'
+// import { makeFetch, RequestOptionsType } from 'requests/reqFn/fetch'
+// import getApiUrl, { APIAddressesType } from 'requests/reqFn/apiUrls'
+// import CreateArticleDto from '../../../../api/src/modules/articles/dto/create-article.dto'
 
 // Объект с функциями запросов к статьям
-export const articleRequests = {
+/*export const articleRequests = {
 
 	// Получение списка всех статей
 	getAll: async function () {
@@ -49,4 +49,6 @@ export const articleRequests = {
 			getApiUrl(urlKey, articleId), options
 		)
 	}
-}
+}*/
+
+export {}

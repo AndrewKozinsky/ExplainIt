@@ -1,11 +1,11 @@
 $CN: 'index-list';
 
-.#{$CN} {
+/*.#{$CN} {
 	flex-grow: 1;
-}
+}*/
 
 
-.#{$CN}__item {
+/*.#{$CN}__item {
 	position: relative;
 	cursor: pointer;
 	transition: background-color .1s;
@@ -18,23 +18,23 @@ $CN: 'index-list';
 			display: block;
 		}
 	}
-}
+}*/
 
-.#{$CN}__item--selected {
+/*.#{$CN}__item--selected {
 	color: white;
 	background-color: var(--selected-color);
 
 	&:hover {
 		background-color: var(--selected-color);
 	}
-}
+}*/
 
 
-.#{$CN}__item-text {
+/*.#{$CN}__item-text {
 	margin-right: 5px;
-}
+}*/
 
-.#{$CN}__pay-atn {
+/*.#{$CN}__pay-atn {
 	display: inline-block;
 	font-size: 13px;
 	line-height: 13px;
@@ -43,14 +43,14 @@ $CN: 'index-list';
 	padding: 1px 3px;
 	margin-right: 5px;
 	border-radius: var(--radius);
-}
+}*/
 
-.#{$CN}__hidden-sign {
+/*.#{$CN}__hidden-sign {
 	vertical-align: -4px;
-}
-.#{$CN}__hidden-sign--white {
+}*/
+/*.#{$CN}__hidden-sign--white {
 	fill: white;
-}
+}*/
 
 
 .#{$CN}__item-controls {

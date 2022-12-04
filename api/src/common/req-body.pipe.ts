@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common'
 import { plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
-import { ResponseObjType } from '../types/responseTypes'
+import { GeneralRespType } from '../types/generalResponse'
 
 /**
  * Трубка проверяющая соответствие тела запроса данным описанным в DTO
@@ -36,7 +36,7 @@ export class ReqBodyPipe implements PipeTransform {
 		return !types.includes(metatype)
 	}
 
-	formatErrors(errors: ValidationError[]): ResponseObjType.Errors {
+	formatErrors(errors: ValidationError[]): GeneralRespType.Errors {
 		return errors.reduce((acc, err) => {
 			//@ts-ignore
 			acc[err.property] = Object.values(err.constraints)

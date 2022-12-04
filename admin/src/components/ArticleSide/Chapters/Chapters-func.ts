@@ -1,20 +1,20 @@
-import { useEffect } from 'react'
-import articleSlice from 'store/article/articleSlice'
-import { useDispatch } from 'react-redux'
-import { Dispatch } from 'redux'
-import store from 'store/store'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
-import { articleRequests } from 'requests/articles/articleRequests'
-import UpdateArticleDto from '../../../../../api/src/modules/articles/dto/update-article.dto'
-import { restoreStateFromLocalStorage, saveAppDataToLocalStorage } from 'components/App/App-restoreStateFunc'
+// import { useEffect } from 'react'
+// import articleSlice from 'store/article/articleSlice'
+// import { useDispatch } from 'react-redux'
+// import { Dispatch } from 'redux'
+// import store from 'store/store'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
+// import { articleRequests } from 'requests/articles/articleRequests'
+// import UpdateArticleDto from '../../../../../api/src/modules/articles/dto/update-article.dto'
+// import { restoreStateFromLocalStorage, saveAppDataToLocalStorage } from 'components/App/App-restoreStateFunc'
 
 
 /**
  * Хук отслеживает изменение свойства needToLoadAllArticles из store.articles.
  * И если оно в true, то скачивает список статей и ставит в Хранилище.
  */
-export function useRequestArticles(): void {
+/*export function useRequestArticles(): void {
 	const dispatch = useDispatch()
 	const { needToLoadAllArticles } = useGetArticleSelectors()
 
@@ -25,13 +25,13 @@ export function useRequestArticles(): void {
 			})
 		}
 	}, [needToLoadAllArticles])
-}
+}*/
 
 /**
  * Функция получает список статей и помещает в Хранилище
  * @param {Object} dispatch — функция-диспетчер Редакса
  */
-async function requestArticles(dispatch: Dispatch): Promise<void> {
+/*async function requestArticles(dispatch: Dispatch): Promise<void> {
 	try {
 		const response = await articleRequests.getAll()
 
@@ -56,27 +56,27 @@ async function requestArticles(dispatch: Dispatch): Promise<void> {
 
 		dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
 	}
-}
+}*/
 
 /**
  * Обработчик щелчка по статьи в списке статей. Ставит в Хранилище, что статья выделена.
  * @param articleId
  */
-export function onItemClick(articleId: number) {
+/*export function onItemClick(articleId: number) {
 	store.dispatch(
 		articleSlice.actions.setSelectedArticleId(articleId)
 	)
 
 	// Сохранить id выделенной статьи в LocalStorage чтобы при загрузке страницы снова её выделить
 	saveAppDataToLocalStorage('articleId', articleId)
-}
+}*/
 
 
 /**
  * Функция удаляющая статью
  * @param {Number} articleId — id статьи
  */
-export async function deleteArticle(articleId: number) {
+/*export async function deleteArticle(articleId: number) {
 	try {
 		// Сделать запрос на удаление статьи
 		const response = await articleRequests.deleteOne(articleId)
@@ -104,7 +104,7 @@ export async function deleteArticle(articleId: number) {
 	catch(err) {
 		store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении главы.'))
 	}
-}
+}*/
 
 
 /**
@@ -112,7 +112,7 @@ export async function deleteArticle(articleId: number) {
  * @param {Number} articleId — id статьи
  * @param {Object} body — объект с данными, которые нужно поставить в статью
  */
-async function requestUpdateArticle(articleId: number, body: UpdateArticleDto) {
+/*async function requestUpdateArticle(articleId: number, body: UpdateArticleDto) {
 	try {
 		// Сделать запрос на обновление статьи
 		const response = await articleRequests.updateOne(articleId, body)
@@ -126,14 +126,14 @@ async function requestUpdateArticle(articleId: number, body: UpdateArticleDto) {
 	catch(err) {
 		store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении главы.'))
 	}
-}
+}*/
 
 
 /**
  * После изменения порядка статей в списке нужно актуализировать свойство order чтобы значения шли по текущему порядку.
  * Функция обновляет значение свойства order и в данных статьи на сервере и в Хранилище.
  */
-function updateArticlesOrderProp() {
+/*function updateArticlesOrderProp() {
 	const articlesList = store.getState().article.articles
 	if (!articlesList) return
 
@@ -148,7 +148,7 @@ function updateArticlesOrderProp() {
 			))
 		}
 	})
-}
+}*/
 
 
 /**
@@ -156,7 +156,7 @@ function updateArticlesOrderProp() {
  * @param {Number} articleId — id статьи
  * @param {String} direction — направление перемещения
  */
-export function changeArticleOrder(
+/*export function changeArticleOrder(
 	articleId: number,
 	direction: 'up' | 'down',
 ) {
@@ -178,14 +178,16 @@ export function changeArticleOrder(
 
 		updateArticlesOrderProp()
 	}
-}
+}*/
 
 
 /**
  * Хук при загрузке страницы запускает функцию восстанавливающую значения Хранилища
  */
-export function useRestoreAppState() {
+/*export function useRestoreAppState() {
 	useEffect(() => {
 		restoreStateFromLocalStorage()
 	}, [])
-}
+}*/
+
+export {}

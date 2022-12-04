@@ -1,8 +1,8 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
+// import { PayloadAction } from '@reduxjs/toolkit'
+// import { IndexListItemType } from 'components/common/IndexList/IndexList'
 
 
-namespace ArticleStoreType {
+/*namespace ArticleStoreType {
 	export type SelectedArticleId = null | number
 
 	// Состояние Хранилища
@@ -38,7 +38,8 @@ namespace ArticleStoreType {
 		articleId: number
 		direction: 'up' | 'down'
 	}>
-}
+}*/
 
-export default ArticleStoreType
+// export default ArticleStoreType
 
+export {}

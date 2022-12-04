@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
-import GlobalErrorsStoreType from './GlobalErrorsStoreType'
+// import { createSlice } from '@reduxjs/toolkit'
+// import GlobalErrorsStoreType from './GlobalErrorsStoreType'
 
 
-const initialState: GlobalErrorsStoreType.State = {
+/*const initialState: GlobalErrorsStoreType.State = {
 	errorMaxId: 1,
 	errors: []
-}
+}*/
 
-const globalErrorsSlice = createSlice({
+/*const globalErrorsSlice = createSlice({
 	name: 'globalErrors',
 	initialState,
 	reducers: {
@@ -25,7 +25,8 @@ const globalErrorsSlice = createSlice({
 			state.errors = state.errors.filter(errObj => errObj.id !== action.payload)
 		},
 	}
-})
+})*/
 
-export default globalErrorsSlice
+// export default globalErrorsSlice
 
+export {}

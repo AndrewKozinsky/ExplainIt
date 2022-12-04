@@ -1,14 +1,14 @@
-import React, { ReactElement } from 'react'
-import './SideBlock.scss'
+// import React, { ReactElement } from 'react'
+// import './SideBlock.scss'
 
-type SideBlockPropType = {
+/*type SideBlockPropType = {
 	leftTop?: ReactElement | null
 	leftBottom?: ReactElement | null
 	right?: ReactElement | null
-}
+}*/
 
 /** Блок со списком статей/предложений и блок с контентом */
-function SideBlock(props: SideBlockPropType): ReactElement {
+/*function SideBlock(props: SideBlockPropType): ReactElement {
 	const {
 		leftTop = null,
 		leftBottom = null,
@@ -30,6 +30,8 @@ function SideBlock(props: SideBlockPropType): ReactElement {
 			</div>
 		</div>
 	)
-}
+}*/
 
-export default SideBlock
+// export default SideBlock
+
+export {}

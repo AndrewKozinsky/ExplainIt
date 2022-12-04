@@ -1,13 +1,13 @@
-import React, { ReactElement } from 'react'
-import useGetGlobalErrorsSelectors from 'store/globalErrors/globalErrorsSelectors'
-import GlobalErrorsStoreType from 'store/globalErrors/GlobalErrorsStoreType'
-import Button from '../formElements/Button/Button'
-import { useGetOnCloseError } from './GlobalErrors-func'
-import './GlobalErrors.scss'
+// import React, { ReactElement } from 'react'
+// import useGetGlobalErrorsSelectors from 'store/globalErrors/globalErrorsSelectors'
+// import GlobalErrorsStoreType from 'store/globalErrors/GlobalErrorsStoreType'
+// import Button from '../formElements/Button/Button'
+// import { useGetOnCloseError } from './GlobalErrors-func'
+// import './GlobalErrors.scss'
 
 
 /** Блок с сообщениями об ошибках */
-function GlobalErrors(): null | ReactElement {
+/*function GlobalErrors(): null | ReactElement {
 	const { errors } = useGetGlobalErrorsSelectors()
 
 	if (errors.length === 0) return null
@@ -19,17 +19,17 @@ function GlobalErrors(): null | ReactElement {
 			})}
 		</section>
 	)
-}
+}*/
 
-export default GlobalErrors
+// export default GlobalErrors
 
 
 
-type GlobalErrorPropType = {
+/*type GlobalErrorPropType = {
 	error: GlobalErrorsStoreType.GlobalError
-}
+}*/
 
-function GlobalError(props: GlobalErrorPropType): ReactElement {
+/*function GlobalError(props: GlobalErrorPropType): ReactElement {
 	const { error } = props
 	const closeHandler = useGetOnCloseError(error.id)
 
@@ -43,4 +43,6 @@ function GlobalError(props: GlobalErrorPropType): ReactElement {
 			/>
 		</div>
 	)
-}
+}*/
+
+export {}

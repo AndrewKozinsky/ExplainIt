@@ -1,14 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
-import ArticleStoreType from 'store/article/ArticleStoreType'
+// import { createSlice } from '@reduxjs/toolkit'
+// import ArticleStoreType from 'store/article/ArticleStoreType'
 
 
-const initialState: ArticleStoreType.State = {
+/*const initialState: ArticleStoreType.State = {
 	selectedArticleId: null, // id выбранной статьи
 	articles: [],          // Массив всех статей
 	needToLoadAllArticles: true    // Нужно ли загрузить массив статей. После загрузки статус становится в false.
-}
+}*/
 
-const articleSlice = createSlice({
+/*const articleSlice = createSlice({
 	name: 'articles',
 	initialState,
 	reducers: {
@@ -61,6 +61,8 @@ const articleSlice = createSlice({
 			}
 		},
 	}
-})
+})*/
 
-export default articleSlice
+// export default articleSlice
+
+export {}

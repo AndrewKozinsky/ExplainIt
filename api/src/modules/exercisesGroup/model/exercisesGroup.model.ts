@@ -1,7 +1,10 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript'
-import exercisesGroupConstraints from './exercisesGroup.constraints'
+import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
+import groupConstraints from './group.constraints'
+import { Article } from '../../articles/model/article.model'
 
-@Table
+@Table({
+	timestamps: false
+})
 export class ExercisesGroup extends Model<Partial<ExercisesGroup>> {
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
@@ -11,13 +14,7 @@ export class ExercisesGroup extends Model<Partial<ExercisesGroup>> {
 	id: number
 
 	@Column({
-		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
-		allowNull: false,
-	})
-	article_id: number // id статьи к которой принадлежит эта группа упражнений
-
-	@Column({
-		type: DataType.STRING(exercisesGroupConstraints.type.maxLength),  // Varchar(255)
+		type: DataType.STRING(groupConstraints.type.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
 	type: string // Тип упражнений: oral или writing
@@ -27,4 +24,8 @@ export class ExercisesGroup extends Model<Partial<ExercisesGroup>> {
 		allowNull: false,
 	})
 	order: number // Порядковый номер блока с упражнениями в списке упражнений статьи
+
+	@ForeignKey(() => Article)
+	@Column({ allowNull: false })
+	articleId: number // id статьи к которой принадлежит эта группа упражнений
 }

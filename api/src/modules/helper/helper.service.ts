@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { ValidationError } from 'sequelize'
-import { ResponseObjType } from '../../types/responseTypes'
-import { log } from 'util'
+import { GeneralRespType } from '../../types/generalResponse'
 
 /** Класс с различными методами используемые на всём приложении */
 @Injectable()
@@ -19,7 +18,7 @@ export class HelperService {
 		catch(validationError) {
 			if (validationError instanceof ValidationError) {
 
-				const errorsCollector: ResponseObjType.Errors = {}
+				const errorsCollector: GeneralRespType.Errors = {}
 
 				validationError.errors.forEach(error => {
 					if (!error.path || !error.type) return
@@ -55,7 +54,7 @@ export class HelperService {
 	 * @param {Object} data — данные клиенту
 	 * @param {Number} statusCode — код статуса
 	 */
-	createSuccessResponse<T>(data: T, statusCode: HttpStatus): ResponseObjType.Success<T> {
+	createSuccessResponse<T>(data: T, statusCode: HttpStatus): GeneralRespType.Success<T> {
 		return {
 			status: 'success',
 			statusCode,
@@ -68,7 +67,7 @@ export class HelperService {
 	 * @param {Number} statusCode — код статуса
 	 * @param {String} message — общий текст ошибки
 	 */
-	createFailResponse(statusCode: HttpStatus, message?: string, ): ResponseObjType.Fail {
+	createFailResponse(statusCode: HttpStatus, message?: string, ): GeneralRespType.Fail {
 		return {
 			status: 'fail',
 			statusCode,

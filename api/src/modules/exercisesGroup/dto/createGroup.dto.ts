@@ -1,16 +1,16 @@
 import { IsPositive, IsString, Max, Validate } from 'class-validator'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
-import exercisesGroupConstraints from '../model/exercisesGroup.constraints'
+import groupConstraints from '../model/group.constraints'
 import { OneOfConstraint } from '../../../utils/customClassValidators'
 
 
-export default class CreateExercisesGroupDto {
+export default class CreateGroupDto {
 	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
-		exercisesGroupConstraints.article_id.max,
-		{ message: dtoErrorMessages.shouldNotBeMore(exercisesGroupConstraints.order.max) }
+		groupConstraints.articleId.max,
+		{ message: dtoErrorMessages.shouldNotBeMore(groupConstraints.order.max) }
 	)
-	article_id: number
+	articleId: number
 
 	@IsString({ message: dtoErrorMessages.mustBeString })
 	@Validate(
@@ -21,8 +21,8 @@ export default class CreateExercisesGroupDto {
 
 	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
-		exercisesGroupConstraints.order.max,
-		{ message: dtoErrorMessages.shouldNotBeMore(exercisesGroupConstraints.order.max) }
+		groupConstraints.order.max,
+		{ message: dtoErrorMessages.shouldNotBeMore(groupConstraints.order.max) }
 	)
 	order: number
 }

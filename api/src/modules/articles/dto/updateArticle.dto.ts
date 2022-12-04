@@ -1,5 +1,4 @@
-// import { ApiProperty } from '@nestjs/swagger'
-import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength, Min, MinLength } from 'class-validator'
+import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength, MinLength } from 'class-validator'
 import dtoErrorMessages from 'src/utils/dtoErrorMessages'
 import articleConstraints from '../model/article.constraints'
 

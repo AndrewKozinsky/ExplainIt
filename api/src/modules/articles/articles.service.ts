@@ -2,11 +2,11 @@ import { Inject, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import { Sequelize } from 'sequelize-typescript'
 import { Article } from './model/article.model'
-import CreateArticleDto from './dto/create-article.dto'
+import CreateArticleDto from './dto/createArticle.dto'
 import { HelperService } from '../helper/helper.service'
-import UpdateArticleDto from './dto/update-article.dto'
-import { ArticleRespType } from '../../types/responseTypes'
-import { log } from 'util'
+import UpdateArticleDto from './dto/updateArticle.dto'
+import { ExercisesGroup } from '../exercisesGroup/model/exercisesGroup.model'
+import { ArticleRespType } from './response/responseTypes'
 
 @Injectable()
 export class ArticlesService {
@@ -15,12 +15,13 @@ export class ArticlesService {
 
 		@InjectModel(Article)
 		private articleModel: typeof Article,
+
 		private readonly helperService: HelperService
 	) {}
 
 	// Получение всех статей
-	async getAll(): Promise<ArticleRespType.ArticleListItem[] | never> {
-		return this.helperService.runQuery<ArticleRespType.ArticleListItem[]>(() => {
+	async getAll(): Promise<ArticleRespType.GetAll | never> {
+		return this.helperService.runQuery<ArticleRespType.GetAll>(() => {
 			return this.articleModel.findAll({
 				attributes: ['id', 'name', 'published', 'order'],
 				order: [['order', 'ASC']]
@@ -29,9 +30,12 @@ export class ArticlesService {
 	}
 
 	// Получение статьи
-	async getOne(articleId: number): Promise<ArticleRespType.FullArticle | null | never> {
-		return this.helperService.runQuery<Article | null>(() => {
-			return this.articleModel.findByPk(articleId)
+	async getOne(articleId: number): Promise<ArticleRespType.GetOne | null | never> {
+		return this.helperService.runQuery<ArticleRespType.GetOne | null>(() => {
+			return this.articleModel.findByPk(
+				articleId,
+				{ include: [ExercisesGroup] }
+			)
 		})
 	}
 
@@ -42,15 +46,15 @@ export class ArticlesService {
 	}
 
 	// Создание статьи
-	async createOne(articleDto: CreateArticleDto): Promise<ArticleRespType.FullArticle | never> {
-		return this.helperService.runQuery<Article>(() => {
+	async createOne(articleDto: CreateArticleDto): Promise<ArticleRespType.CreateOne | never> {
+		return this.helperService.runQuery<ArticleRespType.CreateOne>(() => {
 			return this.articleModel.create(articleDto)
 		})
 	}
 
 	// Обновление статьи
-	async updateOne(articleId: number, articleDto: UpdateArticleDto): Promise<ArticleRespType.FullArticle | never> {
-		return this.helperService.runQuery<Article>(async () => {
+	async updateOne(articleId: number, articleDto: UpdateArticleDto): Promise<ArticleRespType.UpdateOne | never> {
+		return this.helperService.runQuery<ArticleRespType.UpdateOne>(async () => {
 			const result = await this.articleModel.update(
 				articleDto,
 				{
@@ -64,8 +68,8 @@ export class ArticlesService {
 	}
 
 	// Удаление статьи
-	async deleteOne(articleId: number): Promise<true | never> {
-		return this.helperService.runQuery<true>(async () => {
+	async deleteOne(articleId: number): Promise<ArticleRespType.DeleteOne | never> {
+		return this.helperService.runQuery<ArticleRespType.DeleteOne>(async () => {
 			await this.articleModel.destroy(
 				{
 					where: { id: articleId },

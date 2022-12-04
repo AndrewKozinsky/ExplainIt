@@ -1,17 +1,17 @@
-import React, { ReactElement } from 'react'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import {
-	useRequestArticles,
-	deleteArticle,
-	changeArticleOrder,
-	onItemClick,
-	useRestoreAppState
-} from './Chapters-func'
-import { ContentLoading } from '../../common/Loading/Loading'
-import IndexList from '../../common/IndexList/IndexList'
+// import React, { ReactElement } from 'react'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import {
+// 	useRequestArticles,
+// 	deleteArticle,
+// 	changeArticleOrder,
+// 	onItemClick,
+// 	useRestoreAppState
+// } from './Chapters-func'
+// import { ContentLoading } from '../../common/Loading/Loading'
+// import IndexList from '../../common/IndexList/IndexList'
 
 /** Список статей */
-function Chapters(): ReactElement {
+/*function Chapters(): ReactElement {
 	// Запрос списка статей и помещение в Хранилище при изменении свойства needToLoadAllArticles в Хранилище
 	useRequestArticles()
 
@@ -32,6 +32,8 @@ function Chapters(): ReactElement {
 			/>
 		</ContentLoading>
 	)
-}
+}*/
 
-export default Chapters
+// export default Chapters
+
+export {}

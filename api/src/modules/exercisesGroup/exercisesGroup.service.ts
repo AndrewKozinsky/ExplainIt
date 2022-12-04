@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { Sequelize } from 'sequelize-typescript'
 import { InjectModel } from '@nestjs/sequelize'
-import { ExercisesGroupRespType } from '../../types/responseTypes'
 import { HelperService } from '../helper/helper.service'
 import { ExercisesGroup } from './model/exercisesGroup.model'
-import CreateExercisesGroupDto from './dto/create-exercises-group.dto'
+import CreateGroupDto from './dto/createGroup.dto'
+import { ExercisesGroupRespType } from './response/responseTypes'
+import UpdateGroupDto from './dto/updateGroup.dto'
 
 @Injectable()
 export class ExercisesGroupService {
@@ -14,19 +15,33 @@ export class ExercisesGroupService {
 		@InjectModel(ExercisesGroup)
 		private exercisesGroup: typeof ExercisesGroup,
 
-
 		private readonly helperService: HelperService
 	) {}
 
 	// Создание группы упражнений
-	async createOne(exercisesGroupDto: CreateExercisesGroupDto): Promise<ExercisesGroupRespType.CreateOne | never> {
-		return this.helperService.runQuery<ExercisesGroup>(() => {
+	async createOne(exercisesGroupDto: CreateGroupDto): Promise<ExercisesGroupRespType.CreateOne | never> {
+		return this.helperService.runQuery<ExercisesGroupRespType.CreateOne>(() => {
 			return this.exercisesGroup.create(exercisesGroupDto)
 		})
 	}
 
+	// Обновление группы упражнений
+	async updateOne(groupId: number, groupDto: UpdateGroupDto): Promise<ExercisesGroupRespType.UpdateOne> {
+		return this.helperService.runQuery<ExercisesGroupRespType.UpdateOne>(async () => {
+			const result = await this.exercisesGroup.update(
+				groupDto,
+				{
+					where: { id: groupId },
+					returning: true
+				}
+			)
+
+			return result[1][0]
+		})
+	}
+
 	// Удаление группы упражнений
-	async deleteOne(groupId: number): Promise<true | never> {
+	async deleteOne(groupId: number): Promise<ExercisesGroupRespType.DeleteOne | never> {
 		return this.helperService.runQuery<true>(async () => {
 			await this.exercisesGroup.destroy(
 				{

@@ -10,16 +10,3 @@ export class OneOfConstraint implements ValidatorConstraintInterface {
 		return rightValues.includes(value)
 	}
 }
-
-
-const gg = {
-	targetName: 'CreateExercisesGroupDto',
-	property: 'type',
-	object: {
-		article_id: 1,
-		type: '12 глава',
-		order: 12
-	},
-	value: '12 глава',
-	constraints: [ 'oral', 'writing' ]
-}

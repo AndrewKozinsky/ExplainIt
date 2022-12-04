@@ -1,28 +1,28 @@
-import React, { ReactElement } from 'react'
-import makeClasses, { DetailsType } from 'components/common/IndexList/IndexList-classes'
-import SvgIcon from 'components/icons/SvgIcon'
-import { onControlClick } from 'components/common/IndexList/IndexList-func'
+// import React, { ReactElement } from 'react'
+// import makeClasses, { DetailsType } from 'components/common/IndexList/IndexList-classes'
+// import SvgIcon from 'components/icons/SvgIcon'
+// import { onControlClick } from 'components/common/IndexList/IndexList-func'
 
 // Тип пункта списка
-export type IndexListItemType = {
+/*export type IndexListItemType = {
 	id: number,
 	name: string
 	payAtn?: boolean
 	published?: boolean
 	selected?: boolean
 	order: number
-}
+}*/
 
-type IndexListPropType = {
+/*type IndexListPropType = {
 	items: IndexListItemType[] // Список пунктов
 	selectedItemId: null | number // id выделенного пункта
 	onClickHandler: (selectedItemId: number) => void // Обработчик щелчка по элементу
 	onDeleteItem: (itemId: number) => void // Обработчик удаления элемента
 	onChangeItemOrder: (itemId: number, direction: 'up' | 'down') => void // Обработчик изменения порядка элементов
-}
+}*/
 
 /** Список названий глав или предложений */
-function IndexList(props: IndexListPropType): ReactElement {
+/*function IndexList(props: IndexListPropType): ReactElement {
 	const { items, selectedItemId, onClickHandler, onDeleteItem, onChangeItemOrder } = props
 
 	return (
@@ -41,22 +41,21 @@ function IndexList(props: IndexListPropType): ReactElement {
 			})}
 		</menu>
 	)
-}
+}*/
 
-export default IndexList
+// export default IndexList
 
 
-
-type IndexItemPropType = {
+/*type IndexItemPropType = {
 	item: IndexListItemType
 	selectedItemId: null | number
 	onClickHandler: (itemId: number) => void
 	onDeleteItem: (itemId: number) => void
 	onChangeItemOrder: (itemId: number, direction: 'up' | 'down') => void
-}
+}*/
 
 /** Элемент списка */
-function IndexItem(props: IndexItemPropType) {
+/*function IndexItem(props: IndexItemPropType) {
 	const { item, selectedItemId, onClickHandler, onDeleteItem, onChangeItemOrder } = props
 	const isItemSelected = item.id === selectedItemId
 
@@ -86,30 +85,30 @@ function IndexItem(props: IndexItemPropType) {
 			</div>
 		</div>
 	)
-}
+}*/
 
-type PayAtnPropType = {
+/*type PayAtnPropType = {
 	visible: boolean
-}
+}*/
 
 /** Значок PayAtn */
-function PayAtn(props: PayAtnPropType) {
+/*function PayAtn(props: PayAtnPropType) {
 	const { visible } = props
 	const CN = makeClasses({} as DetailsType)
 
 	if (!visible) return null
 
 	return <span className={CN.payAtn}>PayAtn</span>
-}
+}*/
 
 
-type HiddenSignPropType = {
+/*type HiddenSignPropType = {
 	published: boolean
 	isSelected: boolean
-}
+}*/
 
 /** Значок неопубликованного материала */
-function HiddenSign(props: HiddenSignPropType) {
+/*function HiddenSign(props: HiddenSignPropType) {
 	const { published, isSelected } = props
 
 	const CN = makeClasses({ isSelected } as DetailsType)
@@ -117,4 +116,6 @@ function HiddenSign(props: HiddenSignPropType) {
 	if (published) return null
 
 	return <SvgIcon type='hidden' extraClass={CN.hiddenSign} />
-}
+}*/
+
+export {}

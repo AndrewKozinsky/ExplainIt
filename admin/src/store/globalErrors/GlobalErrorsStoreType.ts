@@ -1,7 +1,7 @@
-import { PayloadAction } from '@reduxjs/toolkit'
+// import { PayloadAction } from '@reduxjs/toolkit'
 
 
-namespace GlobalErrorsStoreType {
+/*namespace GlobalErrorsStoreType {
 	// Состояние Хранилища
 	export type State = {
 		errorMaxId: GlobalErrorId
@@ -22,7 +22,8 @@ namespace GlobalErrorsStoreType {
 
 	// Удаление объекта глобальной ошибки из массива ошибок
 	export type RemoveErrorAction = PayloadAction<GlobalErrorId>
-}
+}*/
 
-export default GlobalErrorsStoreType
+// export default GlobalErrorsStoreType
 
+export {}

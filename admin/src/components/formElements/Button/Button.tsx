@@ -1,11 +1,11 @@
-import { Loader } from 'components/common/Loading/Loading'
-import React, { ReactElement } from 'react'
-import SvgIcon, { SvgIconPropType, SvgIconType } from '../../icons/SvgIcon'
-import makeClasses from './Button-classes'
+// import { Loader } from 'components/common/Loading/Loading'
+// import React, { ReactElement } from 'react'
+// import SvgIcon, { SvgIconPropType, SvgIconType } from '../../icons/SvgIcon'
+// import makeClasses from './Button-classes'
 
-type ButtonColorType = 'base' | 'white'
+// type ButtonColorType = 'base' | 'white'
 
-export type ButtonPropType = {
+/*export type ButtonPropType = {
     type?: 'button' | 'submit' | 'reset'
     view?: 'standard' | 'onlyIcon'
     color?: ButtonColorType
@@ -15,11 +15,11 @@ export type ButtonPropType = {
     block?: boolean // Должна ли кнопка быть блочным элементом на всю ширину
     onClick?: (...args: any[]) => void
     disabled?: boolean
-}
+}*/
 
 
 /** Компонент кнопки */
-export default function Button(props: ButtonPropType): ReactElement {
+/*export default function Button(props: ButtonPropType): ReactElement {
 
 	let {
 		type = 'button', // Тип кнопки. Варианты: standard (стандартная кнопка), onlyIcon (только значок)
@@ -63,16 +63,16 @@ export default function Button(props: ButtonPropType): ReactElement {
 			{btnText}
 		</button>
 	)
-}
+}*/
 
 
-type ButtonIconPropType = {
+/*type ButtonIconPropType = {
     iconType: SvgIconType | undefined // Тип значка. Если не передан, то кнопка не будет отрисована
 	CN: Record<string, string>
-}
+}*/
 
 /* Значок на кнопке */
-function ButtonIcon(props: ButtonIconPropType) {
+/*function ButtonIcon(props: ButtonIconPropType) {
 	const { iconType, CN } = props
 
 	if (!iconType) return null
@@ -80,17 +80,19 @@ function ButtonIcon(props: ButtonIconPropType) {
 	const attrs: SvgIconPropType = { type: iconType }
 
 	return <SvgIcon {...attrs} extraClass={CN.icon}  />
-}
+}*/
 
 
-type ButtonLoaderPropType = {
+/*type ButtonLoaderPropType = {
     loading?: boolean // Нужно ли отрисовать загрузчик
-}
+}*/
 
 /** Компонент загрузчика кнопки */
-function ButtonLoader(props: ButtonLoaderPropType) {
+/*function ButtonLoader(props: ButtonLoaderPropType) {
 	const { loading = false } = props
 
 	if (!loading) return null
 	return <Loader className="btn-loader"/>
-}
+}*/
+
+export {}

@@ -1,18 +1,18 @@
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
-import { makeCN } from 'utils/stringUtils'
-import './IndexList.scss'
+// import { IndexListItemType } from 'components/common/IndexList/IndexList'
+// import { makeCN } from 'utils/stringUtils'
+// import './IndexList.scss'
 
 
-export type DetailsType = {
+/*export type DetailsType = {
 	item?: IndexListItemType
 	isSelected?: boolean
-}
+}*/
 
 /**
  * Функция возвращающая классы для элементов
  * @param {Object} details — объект с параметрами влияющие на внешний вид элемента
  */
-export default function makeClasses(details: DetailsType) {
+/*export default function makeClasses(details: DetailsType) {
 	return {
 		item: getItemClasses(details),
 		itemText: 'index-list__item-text',
@@ -21,13 +21,13 @@ export default function makeClasses(details: DetailsType) {
 		payAtn: 'index-list__pay-atn',
 		hiddenSign: getHiddenSignClasses(details),
 	}
-}
+}*/
 
 /**
  * Функция возвращает классы пункта списка
  * @param {Object} details — объект с параметрами влияющие на внешний вид элемента
  */
-function getItemClasses(details: DetailsType ) {
+/*function getItemClasses(details: DetailsType ) {
 	// Классы кнопки
 	const classes = ['index-list__item']
 
@@ -36,13 +36,13 @@ function getItemClasses(details: DetailsType ) {
 	}
 
 	return makeCN(classes)
-}
+}*/
 
 /**
  * Функция возвращает классы пункта списка
  * @param {Object} details — объект с параметрами влияющие на внешний вид элемента
  */
-function getHiddenSignClasses(details: DetailsType ) {
+/*function getHiddenSignClasses(details: DetailsType ) {
 	// Классы кнопки
 	const classes = ['index-list__hidden-sign']
 
@@ -51,5 +51,6 @@ function getHiddenSignClasses(details: DetailsType ) {
 	}
 
 	return makeCN(classes)
-}
+}*/
 
+export {}
