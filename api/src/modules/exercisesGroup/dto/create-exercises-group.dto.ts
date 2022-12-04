@@ -1,4 +1,4 @@
-import { IsPositive, IsString, Max, MaxLength, Validate } from 'class-validator'
+import { IsPositive, IsString, Max, Validate } from 'class-validator'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
 import exercisesGroupConstraints from '../model/exercisesGroup.constraints'
 import { OneOfConstraint } from '../../../utils/customClassValidators'
@@ -17,7 +17,7 @@ export default class CreateExercisesGroupDto {
 		OneOfConstraint,
 		['oral', 'writing'],
 		{ message: dtoErrorMessages.oneOf(['oral', 'writing']) })
-	type: string // Тип упражнений (oral | writing)
+	type: string // Тип упражнений: oral или writing
 
 	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import { ExercisesGroupRespType } from '../../types/responseTypes'
 import { Sequelize } from 'sequelize-typescript'
 import { InjectModel } from '@nestjs/sequelize'
+import { ExercisesGroupRespType } from '../../types/responseTypes'
 import { HelperService } from '../helper/helper.service'
 import { ExercisesGroup } from './model/exercisesGroup.model'
 import CreateExercisesGroupDto from './dto/create-exercises-group.dto'
@@ -13,6 +13,8 @@ export class ExercisesGroupService {
 
 		@InjectModel(ExercisesGroup)
 		private exercisesGroup: typeof ExercisesGroup,
+
+
 		private readonly helperService: HelperService
 	) {}
 

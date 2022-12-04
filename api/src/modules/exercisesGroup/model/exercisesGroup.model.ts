@@ -20,7 +20,7 @@ export class ExercisesGroup extends Model<Partial<ExercisesGroup>> {
 		type: DataType.STRING(exercisesGroupConstraints.type.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
-	type: string // Тип упражнений (oral | writing)
+	type: string // Тип упражнений: oral или writing
 
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)

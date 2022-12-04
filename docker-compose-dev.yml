@@ -49,7 +49,7 @@ services:
     command: npm run start:dev
 
   db:
-    image: postgres:13-alpine
+    image: postgres:15-alpine
     container_name: explain-db
     restart: unless-stopped
     ports:

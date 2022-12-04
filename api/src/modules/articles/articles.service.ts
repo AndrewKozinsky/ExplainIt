@@ -6,6 +6,7 @@ import CreateArticleDto from './dto/create-article.dto'
 import { HelperService } from '../helper/helper.service'
 import UpdateArticleDto from './dto/update-article.dto'
 import { ArticleRespType } from '../../types/responseTypes'
+import { log } from 'util'
 
 @Injectable()
 export class ArticlesService {
@@ -32,6 +33,12 @@ export class ArticlesService {
 		return this.helperService.runQuery<Article | null>(() => {
 			return this.articleModel.findByPk(articleId)
 		})
+	}
+
+	// Существует ли статья?
+	async isExist(articleId: number): Promise<boolean> {
+		const foundedArticle = await this.articleModel.findByPk(articleId)
+		return !!foundedArticle
 	}
 
 	// Создание статьи
