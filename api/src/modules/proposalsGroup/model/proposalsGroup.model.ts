@@ -30,6 +30,9 @@ export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
 	@Column({ allowNull: false })
 	articleId: number // id статьи к которой принадлежит эта группа предложений
 
-	@HasMany(() => OralProposal)
-	proposals: OralProposal[]
+	@HasMany(
+		() => OralProposal,
+		{ onDelete: 'CASCADE' }
+	)
+	oralProposals: OralProposal[]
 }

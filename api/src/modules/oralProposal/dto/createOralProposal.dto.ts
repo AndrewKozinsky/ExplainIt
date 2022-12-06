@@ -40,8 +40,8 @@ export default class CreateOralProposalDto {
 
 	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
-		groupConstraints.articleId.max,
-		{ message: dtoErrorMessages.shouldNotBeMore(groupConstraints.proposalsGroupId.max) }
+		oralProposalConstraints.proposalsGroupId.max,
+		{ message: dtoErrorMessages.shouldNotBeMore(oralProposalConstraints.proposalsGroupId.max) }
 	)
 	proposalsGroupId: number
 }

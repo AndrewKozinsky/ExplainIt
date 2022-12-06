@@ -46,6 +46,12 @@ export class ProposalsGroupService {
 	// Обновление группы упражнений
 	async updateOne(groupId: number, groupDto: UpdateGroupDto): Promise<ProposalsGroupRespType.UpdateOne> {
 		return this.helperService.runQuery<ProposalsGroupRespType.UpdateOne>(async () => {
+			const currentGroup = await this.getOne(groupId)
+
+			if (groupDto.type !== currentGroup?.type) {
+				// Тут нужно очистить все разговорные и письменные предложения относящиеся к этой группе
+			}
+
 			const result = await this.proposalsGroupModel.update(
 				groupDto,
 				{

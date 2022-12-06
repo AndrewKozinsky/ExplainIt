@@ -1,8 +1,12 @@
 import {
 	Body,
 	Controller,
+	Delete,
 	HttpCode,
 	HttpStatus,
+	Param,
+	ParseIntPipe,
+	Patch,
 	Post, Res,
 } from '@nestjs/common'
 import CreateOralProposalDto from './dto/createOralProposal.dto'
@@ -11,6 +15,7 @@ import { OralProposalService } from './oralProposal.service'
 import { HelperService } from '../helper/helper.service'
 import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 import { Response } from 'express'
+import UpdateOralProposalDto from './dto/updateOralProposal.dto'
 
 @Controller('oralProposal')
 export class OralProposalController {
@@ -19,41 +24,6 @@ export class OralProposalController {
 		private readonly proposalsGroupService: ProposalsGroupService,
 		private readonly helperService: HelperService
 	) {}
-
-	// @Get()
-	// @HttpCode(HttpStatus.OK)
-	/*async getAll(): Promise<ArticleRespType.GetAllWrap> {
-		// Найти статью в БД
-		const foundedArticles = await this.oralProposalService.getAll()
-
-		// Сформировать и возвратить клиенту ответ
-		return this.helperService.createSuccessResponse (
-			{ articles: foundedArticles }, HttpStatus.OK
-		)
-	}*/
-
-	// @Get(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async getOne(
-		@Param('id', ParseIntPipe) id: number,
-		@Res({ passthrough: true }) res: Response
-	): Promise<ArticleRespType.GetOneWrap> {
-		// Найти статью в БД
-		const foundArticle = await this.oralProposalService.getOne(id)
-
-		if (foundArticle) {
-			return this.helperService.createSuccessResponse (
-				{ articles: foundArticle }, HttpStatus.OK
-			)
-		}
-		else {
-			res.status(HttpStatus.BAD_REQUEST)
-
-			return this.helperService.createFailResponse (
-				HttpStatus.BAD_REQUEST, 'Статья не найдена'
-			)
-		}
-	}*/
 
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
@@ -76,53 +46,53 @@ export class OralProposalController {
 
 		// Сформировать и возвратить клиенту ответ
 		return this.helperService.createSuccessResponse(
-			{ articles: createdArticle }, HttpStatus.CREATED
+			{ oralProposals: createdArticle }, HttpStatus.CREATED
 		)
 	}
 
-	// @Patch(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async update(
-		@Body() articleDto: UpdateOralProposalDto,
+	@Patch(':id')
+	@HttpCode(HttpStatus.OK)
+	async update(
+		@Body() proposalDto: UpdateOralProposalDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<ArticleRespType.UpdateOneWrap> {
-		// Обновить статью в БД
-		const updatedArticle = await this.oralProposalService.updateOne(id, articleDto)
+	): Promise<OralProposalRespType.UpdateOneWrap> {
+		// Обновить предложение в БД
+		const updatedArticle = await this.oralProposalService.updateOne(id, proposalDto)
 
 		// Сформировать и возвратить клиенту ответ
 		if (updatedArticle) {
 			return this.helperService.createSuccessResponse (
-				{ articles: updatedArticle }, HttpStatus.OK
+				{ oralProposals: updatedArticle }, HttpStatus.OK
 			)
 		}
 		else {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
-				HttpStatus.BAD_REQUEST, 'Статья не найдена'
+				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
 			)
 		}
-	}*/
+	}
 
-	// @Delete(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async deleteOne(
+	@Delete(':id')
+	@HttpCode(HttpStatus.OK)
+	async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<ArticleRespType.DeleteOneWrap> {
-		// Удалить статью
+	): Promise<OralProposalRespType.DeleteOneWrap> {
+		// Удалить предложение
 		const isDeleted = await this.oralProposalService.deleteOne(id)
 
 		if (isDeleted) {
 			return this.helperService.createSuccessResponse (
-				{ articles: null }, HttpStatus.OK
+				{ oralProposals: null }, HttpStatus.OK
 			)
 		}
 		else {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
-				HttpStatus.BAD_REQUEST, 'Статья не найдена'
+				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
 			)
 		}
-	}*/
+	}
 }

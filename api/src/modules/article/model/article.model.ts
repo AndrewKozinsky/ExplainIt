@@ -47,6 +47,8 @@ export class Article extends Model<Partial<Article>> {
 	})
 	order: number
 
-	@HasMany(() => ProposalsGroup)
+	@HasMany(
+		() => ProposalsGroup,
+		{ onDelete: 'CASCADE' })
 	proposalsGroups: ProposalsGroup[]
 }

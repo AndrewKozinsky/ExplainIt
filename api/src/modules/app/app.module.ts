@@ -5,6 +5,12 @@ import { HelperModule } from '../helper/helper.module'
 import { OralProposalModule } from '../oralProposal/oralProposal.module'
 import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
 
+// TODO При удалении проверяй наличие ресурса.
+// TODO При изменении типа группы предложений очищать массив предложений прикреплённый к этой группе.
+// TODO Сделай таблицу письменных предложений
+// TODO Сделай таблицу переводов
+// TODO Сделай таблицу слов
+
 @Module({
 	imports: [
 		SequelizeModule.forRoot({

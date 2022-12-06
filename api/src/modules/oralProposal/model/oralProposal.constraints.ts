@@ -15,6 +15,10 @@ const oralProposalConstraints = {
 	order: {
 		min: -32768,
 		max: 32767
+	},
+	proposalsGroupId: {
+		min: -32768,
+		max: 32767
 	}
 }
 

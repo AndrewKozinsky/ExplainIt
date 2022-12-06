@@ -6,6 +6,7 @@ import CreateOralProposalDto from './dto/createOralProposal.dto'
 import { OralProposalRespType } from './response/responseTypes'
 import { HelperService } from '../helper/helper.service'
 import { OralProposal } from './model/oralProposal.model'
+import UpdateOralProposalDto from './dto/updateOralProposal.dto'
 // import UpdateOralProposalDto from './dto/updateOralProposal.dto'
 // import { ProposalsGroup } from '../proposalsGroup/model/proposalsGroup.model'
 
@@ -48,7 +49,7 @@ export class OralProposalService {
 	}
 
 	// Обновление предложения
-	/*async updateOne(articleId: number, articleDto: UpdateOralProposalDto): Promise<OralProposalRespType.UpdateOne | never> {
+	async updateOne(articleId: number, articleDto: UpdateOralProposalDto): Promise<OralProposalRespType.UpdateOne | never> {
 		return this.helperService.runQuery<OralProposalRespType.UpdateOne>(async () => {
 			const result = await this.oralProposalModel.update(
 				articleDto,
@@ -60,18 +61,18 @@ export class OralProposalService {
 
 			return result[1][0]
 		})
-	}*/
+	}
 
 	// Удаление предложения
-	/*async deleteOne(articleId: number): Promise<ArticleRespType.DeleteOne | never> {
-		return this.helperService.runQuery<ArticleRespType.DeleteOne>(async () => {
+	async deleteOne(proposalId: number): Promise<OralProposalRespType.DeleteOne | never> {
+		return this.helperService.runQuery<OralProposalRespType.DeleteOne>(async () => {
 			await this.oralProposalModel.destroy(
 				{
-					where: { id: articleId },
+					where: { id: proposalId },
 				}
 			)
 
 			return true
 		})
-	}*/
+	}
 }

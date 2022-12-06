@@ -32,7 +32,7 @@ export class ProposalsGroupController {
 	async getOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<ProposalsGroupRespType.CreateOneWrap> {
+	): Promise<ProposalsGroupRespType.GetOneWrap> {
 		// Проверить существует ли статья к которой делают группу упражнений
 		const isGroupExist = await this.proposalsGroupService.getOne(id)
 
