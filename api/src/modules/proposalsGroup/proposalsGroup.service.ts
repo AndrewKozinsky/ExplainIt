@@ -6,8 +6,8 @@ import { ProposalsGroup } from './model/proposalsGroup.model'
 import CreateGroupDto from './dto/createGroup.dto'
 import { ProposalsGroupRespType } from './response/responseTypes'
 import UpdateGroupDto from './dto/updateGroup.dto'
-import { ArticleRespType } from '../article/response/responseTypes'
 import { OralProposal } from '../oralProposal/model/oralProposal.model'
+import { OralProposalService } from '../oralProposal/oralProposal.service'
 
 @Injectable()
 export class ProposalsGroupService {
@@ -17,7 +17,8 @@ export class ProposalsGroupService {
 		@InjectModel(ProposalsGroup)
 		private proposalsGroupModel: typeof ProposalsGroup,
 
-		private readonly helperService: HelperService
+		private readonly helperService: HelperService,
+		private readonly oralProposalService: OralProposalService
 	) {}
 
 	// Получение группы предложений
@@ -49,7 +50,8 @@ export class ProposalsGroupService {
 			const currentGroup = await this.getOne(groupId)
 
 			if (groupDto.type !== currentGroup?.type) {
-				// Тут нужно очистить все разговорные и письменные предложения относящиеся к этой группе
+				// Тут нужно удалить все разговорные и письменные предложения относящиеся к этой группе
+				await this.oralProposalService.deleteProposalsWithGroup(groupId)
 			}
 
 			const result = await this.proposalsGroupModel.update(

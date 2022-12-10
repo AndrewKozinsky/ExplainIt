@@ -102,19 +102,21 @@ export class ArticleController {
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<ArticleRespType.DeleteOneWrap> {
-		// Удалить статью
-		const isDeleted = await this.articlesService.deleteOne(id)
+		// Проверить существование статьи
+		const thisArticle = await this.articlesService.getOne(id)
 
-		if (isDeleted) {
-			return this.helperService.createSuccessResponse (
-				{ articles: null }, HttpStatus.OK
-			)
-		}
-		else {
+		if (!thisArticle) {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
 				HttpStatus.BAD_REQUEST, 'Статья не найдена'
 			)
 		}
+
+		// Удалить статью
+		await this.articlesService.deleteOne(id)
+
+		return this.helperService.createSuccessResponse (
+			{ articles: null }, HttpStatus.OK
+		)
 	}
 }

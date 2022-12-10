@@ -53,9 +53,4 @@ export default class UpdateArticleDto {
 	)
     @IsOptional()
     order?: number
-
-	// @ApiProperty({ description: 'Есть ли новые варианты переводов упражнений', default: false })
-	// @IsBoolean({ message: 'Должно быть булевым значением' })
-	// @IsOptional()
-	// payAtn?: boolean
 }

@@ -24,7 +24,7 @@ export class ProposalsGroupController {
 	constructor(
 		private readonly proposalsGroupService: ProposalsGroupService,
 		private readonly articlesService: ArticleService,
-		private readonly helperService: HelperService
+		private readonly helperService: HelperService,
 	) {}
 
 	@Get(':id')
@@ -33,12 +33,12 @@ export class ProposalsGroupController {
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<ProposalsGroupRespType.GetOneWrap> {
-		// Проверить существует ли статья к которой делают группу упражнений
-		const isGroupExist = await this.proposalsGroupService.getOne(id)
+		// Найти группу в БД
+		const group = await this.proposalsGroupService.getOne(id)
 
-		if (isGroupExist) {
+		if (group) {
 			return this.helperService.createSuccessResponse (
-				{ proposalsGroups: isGroupExist }, HttpStatus.OK
+				{ proposalsGroups: group }, HttpStatus.OK
 			)
 		}
 		else {
@@ -66,7 +66,7 @@ export class ProposalsGroupController {
 			)
 		}
 
-		// Создать новую группу упражнений в БД
+		// Создать группу упражнений в БД
 		const createdGroup = await this.proposalsGroupService.createOne(articleDto)
 
 		// Сформировать и возвратить клиенту ответ
@@ -105,19 +105,21 @@ export class ProposalsGroupController {
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<ProposalsGroupRespType.DeleteOneWrap> {
-		// Удалить группу упражнений
-		const isDeleted = await this.proposalsGroupService.deleteOne(id)
+		// Проверить существование группы
+		const thisGroup = await this.proposalsGroupService.getOne(id)
 
-		if (isDeleted) {
-			return this.helperService.createSuccessResponse (
-				{ proposalsGroups: null }, HttpStatus.OK
-			)
-		}
-		else {
+		if (!thisGroup) {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
 				HttpStatus.BAD_REQUEST, 'Группа упражнений не найдена'
 			)
 		}
+
+		// Удалить группу упражнений
+		await this.proposalsGroupService.deleteOne(id)
+
+		return this.helperService.createSuccessResponse (
+			{ proposalsGroups: null }, HttpStatus.OK
+		)
 	}
 }

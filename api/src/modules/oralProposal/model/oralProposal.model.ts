@@ -15,24 +15,24 @@ export class OralProposal extends Model<Partial<OralProposal>> {
 		type: DataType.STRING(oralProposalConstraints.rusProposal.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
-	rusProposal: string // Название главы
+	rusProposal: string // Русский вариант предложения
 
 	@Column({
 		type: DataType.STRING(oralProposalConstraints.note.maxLength),  // Varchar(255)
 	})
-	note?: string // Номер главы. Например «Вводная глава» или «Глава 5»
+	note?: string // Заметка про голосовое упражнение
 
 	@Column({
 		type: DataType.STRING(oralProposalConstraints.engProposal.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
-	engProposal: string
+	engProposal: string // Английский вариант предложения
 
 	@Column({
 		type: DataType.BOOLEAN,
 		defaultValue: false
 	})
-	published?: boolean // Опубликована ли глава
+	published?: boolean // Опубликовано ли предложение
 
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)

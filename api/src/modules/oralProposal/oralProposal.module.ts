@@ -12,5 +12,6 @@ import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
 	],
 	controllers: [OralProposalController],
 	providers: [OralProposalService],
+	exports: [OralProposalService]
 })
 export class OralProposalModule {}

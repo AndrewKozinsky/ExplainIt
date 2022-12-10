@@ -79,20 +79,22 @@ export class OralProposalController {
 	async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<OralProposalRespType.DeleteOneWrap> {
-		// Удалить предложение
-		const isDeleted = await this.oralProposalService.deleteOne(id)
+	): Promise<OralProposalRespType.DeleteWrap> {
+		// Проверить существование предложения
+		const thisProposal = await this.oralProposalService.getOne(id)
 
-		if (isDeleted) {
-			return this.helperService.createSuccessResponse (
-				{ oralProposals: null }, HttpStatus.OK
-			)
-		}
-		else {
+		if (!thisProposal) {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
 				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
 			)
 		}
+
+		// Удалить предложение
+		await this.oralProposalService.deleteOne(id)
+
+		return this.helperService.createSuccessResponse (
+			{ oralProposals: null }, HttpStatus.OK
+		)
 	}
 }

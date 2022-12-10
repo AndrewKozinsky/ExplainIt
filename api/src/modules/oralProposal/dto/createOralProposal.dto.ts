@@ -1,7 +1,6 @@
 import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
 import oralProposalConstraints from '../model/oralProposal.constraints'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
-import groupConstraints from '../../proposalsGroup/model/group.constraints'
 
 
 export default class CreateOralProposalDto {

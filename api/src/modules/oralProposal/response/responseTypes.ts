@@ -3,6 +3,12 @@ import { GeneralRespType } from '../../../types/generalResponse'
 
 /** Типы данных возвращаемыми методами статьи */
 export namespace OralProposalRespType {
+	// Получение статьи
+	export type GetOne = OralProposal
+	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
+	export type GetOneFailWrap = GeneralRespType.Fail
+	export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
+
 	// Создание предложения
 	export type CreateOne = OralProposal
 	export type CreateOneSuccessWrap = GeneralRespType.Success<Payload<CreateOne>>
@@ -17,10 +23,10 @@ export namespace OralProposalRespType {
 	export type UpdateOneWrap = UpdateOneSuccessWrap | UpdateOneFailWrap
 
 	// Удаление предложения
-	export type DeleteOne = true
-	export type DeleteOneSuccessWrap = GeneralRespType.Success<Payload<null>>
-	export type DeleteOneFailWrap = GeneralRespType.Fail
-	export type DeleteOneWrap = DeleteOneSuccessWrap | DeleteOneFailWrap
+	export type Delete = true
+	export type DeleteSuccessWrap = GeneralRespType.Success<Payload<null>>
+	export type DeleteFailWrap = GeneralRespType.Fail
+	export type DeleteWrap = DeleteSuccessWrap | DeleteFailWrap
 
 	// ====================================
 

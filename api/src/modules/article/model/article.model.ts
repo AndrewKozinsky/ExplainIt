@@ -33,19 +33,19 @@ export class Article extends Model<Partial<Article>> {
 		type: DataType.STRING(articleConstraints.summary.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
-	summary: string
+	summary: string // Краткое описание главы
 
 	@Column({
 		type: DataType.TEXT,
 		allowNull: false,
 	})
-	content: string
+	content: string // Содержимое главы
 
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		allowNull: false,
 	})
-	order: number
+	order: number // Порядковый номер статьи
 
 	@HasMany(
 		() => ProposalsGroup,
