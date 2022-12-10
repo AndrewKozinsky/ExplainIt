@@ -4,11 +4,11 @@ import { ArticleModule } from '../article/article.module'
 import { HelperModule } from '../helper/helper.module'
 import { OralProposalModule } from '../oralProposal/oralProposal.module'
 import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
+import { WritingProposalModule } from '../writingProposal/writingProposal.module'
+import { TranslateModule } from '../translate/translate.module'
 
-// TODO Сделай таблицу письменных предложений
-// TODO При изменении типа группы предложений очищать массив предложений прикреплённый к этой группе.
-// TODO Сделай таблицу переводов
 // TODO Сделай таблицу слов
+// TODO При удалении предложения нужно автоматически удалять его слова
 
 @Module({
 	imports: [
@@ -23,11 +23,13 @@ import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
 
 			autoLoadModels: true,
 			synchronize: true,
-			sync: { alter: true, force: false }
+			sync: { alter: true, force: true }
 		}),
 		ArticleModule,
 		ProposalsGroupModule,
 		OralProposalModule,
+		WritingProposalModule,
+		TranslateModule,
 		HelperModule
 	],
 	controllers: [],

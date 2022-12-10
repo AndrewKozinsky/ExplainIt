@@ -4,6 +4,7 @@ const dtoErrorMessages = {
 	mustBeNumber: 'Должно быть число.',
 	mustBeString: 'Должно быть строковым значением.',
 	mustBeBool: 'Должно быть строковым значением.',
+	mustBeStringsArray: 'Должен быть массивом строк.',
 
 	// Про строки
 	mustBeEqualOrShorter(length: number | string) {

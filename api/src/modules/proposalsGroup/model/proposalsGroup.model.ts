@@ -2,6 +2,7 @@ import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-t
 import groupConstraints from './group.constraints'
 import { Article } from '../../article/model/article.model'
 import { OralProposal } from '../../oralProposal/model/oralProposal.model'
+import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
 
 @Table({
 	timestamps: false
@@ -35,4 +36,10 @@ export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
 		{ onDelete: 'CASCADE' }
 	)
 	oralProposals: OralProposal[]
+
+	@HasMany(
+		() => WritingProposal,
+		{ onDelete: 'CASCADE' }
+	)
+	writingProposals: WritingProposal[]
 }

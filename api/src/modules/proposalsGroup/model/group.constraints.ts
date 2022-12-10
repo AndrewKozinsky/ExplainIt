@@ -16,6 +16,10 @@ const groupConstraints = {
 	proposalsGroupId: {
 		min: -32768,
 		max: 32767
+	},
+	exerciseId: {
+		min: -32768,
+		max: 32767
 	}
 }
 

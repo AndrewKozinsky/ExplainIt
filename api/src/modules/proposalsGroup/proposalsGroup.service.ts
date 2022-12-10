@@ -8,6 +8,7 @@ import { ProposalsGroupRespType } from './response/responseTypes'
 import UpdateGroupDto from './dto/updateGroup.dto'
 import { OralProposal } from '../oralProposal/model/oralProposal.model'
 import { OralProposalService } from '../oralProposal/oralProposal.service'
+import { WritingProposalService } from '../writingProposal/writingProposal.service'
 
 @Injectable()
 export class ProposalsGroupService {
@@ -18,7 +19,8 @@ export class ProposalsGroupService {
 		private proposalsGroupModel: typeof ProposalsGroup,
 
 		private readonly helperService: HelperService,
-		private readonly oralProposalService: OralProposalService
+		private readonly oralProposalService: OralProposalService,
+		private readonly writingProposalService: WritingProposalService
 	) {}
 
 	// Получение группы предложений
@@ -52,6 +54,7 @@ export class ProposalsGroupService {
 			if (groupDto.type !== currentGroup?.type) {
 				// Тут нужно удалить все разговорные и письменные предложения относящиеся к этой группе
 				await this.oralProposalService.deleteProposalsWithGroup(groupId)
+				await this.writingProposalService.deleteProposalsWithGroup(groupId)
 			}
 
 			const result = await this.proposalsGroupModel.update(

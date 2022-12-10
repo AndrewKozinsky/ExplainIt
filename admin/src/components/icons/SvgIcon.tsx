@@ -1,18 +1,18 @@
 // import React from 'react'
-// import iconsCollector from './js/getIcon'
-// import { getIconSize } from './js/getIconSize'
-// import './css/SvgIcon.scss'
+import iconsCollector from './js/getIcon'
+import { getIconSize } from './js/getIconSize'
+import './css/SvgIcon.scss'
 
 
-// export type SvgIconType = keyof typeof iconsCollector
+export type SvgIconType = keyof typeof iconsCollector
 
-/*export type SvgIconPropType = {
+export type SvgIconPropType = {
 	type: SvgIconType // Тип значка
 	extraClass?: string // Дополнительный класс значка
-}*/
+}
 
 /** Значок */
-/*export default function SvgIcon(props: SvgIconPropType) {
+export default function SvgIcon(props: SvgIconPropType) {
 
 	const {
 		type, // Тип значка
@@ -34,6 +34,4 @@
 			<Icon/>
 		</svg>
 	)
-}*/
-
-export {}
+}

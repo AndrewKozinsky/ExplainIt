@@ -18,7 +18,7 @@
  * @param {String} defaultValue — значение по умолчанию, которое будет возвращено
  * если в localStorage у запрашиваемого свойства нет значения.
  */
-/*export function getFromLocalStorage<T>(propName: string, defaultValue?: T) : T | any {
+export function getFromLocalStorage<T>(propName: string, defaultValue?: T) : T | any {
 	const value = localStorage.getItem(propName)
 
 	if (!value && defaultValue !== undefined) {
@@ -33,7 +33,7 @@
 			return value
 		}
 	}
-}*/
+}
 
 /**
  * Удаление данных из localStorage

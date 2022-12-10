@@ -3,7 +3,7 @@ import { GeneralRespType } from '../../../types/generalResponse'
 
 /** Типы данных возвращаемыми методами статьи */
 export namespace OralProposalRespType {
-	// Получение статьи
+	// Получение предложения
 	export type GetOne = OralProposal
 	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
 	export type GetOneFailWrap = GeneralRespType.Fail

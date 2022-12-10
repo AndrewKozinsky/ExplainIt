@@ -1,4 +1,4 @@
-// import React, { ReactElement } from 'react'
+import React, { ReactElement } from 'react'
 // import useGetArticleSelectors from 'store/article/articleSelectors'
 // import {
 // 	useRequestArticles,
@@ -11,17 +11,17 @@
 // import IndexList from '../../common/IndexList/IndexList'
 
 /** Список статей */
-/*function Chapters(): ReactElement {
+function Chapters() {
 	// Запрос списка статей и помещение в Хранилище при изменении свойства needToLoadAllArticles в Хранилище
-	useRequestArticles()
+	// useRequestArticles()
 
 	// При загрузке страницы восстановить значения Хранилища
-	useRestoreAppState()
+	// useRestoreAppState()
 
 	// Список статей
-	const { articles, selectedArticleId, needToLoadAllArticles } = useGetArticleSelectors()
+	// const { articles, selectedArticleId, needToLoadAllArticles } = useGetArticleSelectors()
 
-	return (
+	/*return (
 		<ContentLoading loading={needToLoadAllArticles}>
 			<IndexList
 				items={articles}
@@ -31,9 +31,9 @@
 				onChangeItemOrder={changeArticleOrder}
 			/>
 		</ContentLoading>
-	)
-}*/
+	)*/
 
-// export default Chapters
+	return <p>Chapters</p>
+}
 
-export {}
+export default Chapters

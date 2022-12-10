@@ -8,6 +8,8 @@ import UpdateArticleDto from './dto/updateArticle.dto'
 import { ProposalsGroup } from '../proposalsGroup/model/proposalsGroup.model'
 import { ArticleRespType } from './response/responseTypes'
 import { OralProposal } from '../oralProposal/model/oralProposal.model'
+import { WritingProposal } from '../writingProposal/model/writingProposal.model'
+import { Translate } from '../translate/model/translate.model'
 
 @Injectable()
 export class ArticleService {
@@ -40,7 +42,15 @@ export class ArticleService {
 				{
 					include: {
 						model: ProposalsGroup,
-						include: [OralProposal]
+						include: [
+							{
+								model: OralProposal
+							},
+							{
+								model: WritingProposal,
+								include: [Translate]
+							},
+						]
 					}
 				}
 			)

@@ -1,6 +1,7 @@
-import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
+import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript'
 import oralProposalConstraints from './oralProposal.constraints'
 import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
+import { Word } from '../../word/model/word.model'
 
 @Table
 export class OralProposal extends Model<Partial<OralProposal>> {
@@ -46,4 +47,9 @@ export class OralProposal extends Model<Partial<OralProposal>> {
 		allowNull: false
 	})
 	proposalsGroupId: number // id группы предложений, к которой принадлежит это предложение
+
+	@HasMany(
+		() => Word,
+		{ onDelete: 'CASCADE' })
+	words: Word[]
 }

@@ -1,11 +1,11 @@
-// import iconsCollector from './getIcon'
+import iconsCollector from './getIcon'
 
 
 /**
  * Функция возвращает объект с размерами значка в SVG в зависимости от переданного типа.
  * @param {String} type — тип значка.
  */
-/*export function getIconRowSize(type: keyof typeof iconsCollector) {
+export function getIconRowSize(type: keyof typeof iconsCollector) {
 	switch (type) {
 		// Логотип редактора
 		case 'btnSignUp':
@@ -33,15 +33,14 @@
 			}
 		}
 	}
-}*/
-
+}
 
 /**
  * Функция возвращает атрибуты с полными размерами значка в SVG.
  * В зависимости от типа значка будут возвращены разные названия размеры
  * @param {String} type — тип значка.
  */
-/*export function getIconSize(type: keyof typeof iconsCollector) {
+export function getIconSize(type: keyof typeof iconsCollector) {
 	const rowIconSizeObj = getIconRowSize(type)
 
 	return {
@@ -49,6 +48,4 @@
 		height: rowIconSizeObj.height + 'px',
 		viewBox: `0 0 ${rowIconSizeObj.width} ${rowIconSizeObj.height}`
 	}
-}*/
-
-export {}
+}
