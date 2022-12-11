@@ -49,4 +49,8 @@ export default class UpdateWritingProposalDto {
 		{ message: dtoErrorMessages.shouldNotBeMore(writingProposalConstraints.proposalsGroupId.max) }
 	)
 	proposalsGroupId?: number
+
+	@IsBoolean({ message: dtoErrorMessages.mustBeBool })
+	@IsOptional()
+	payAtn?: boolean // Нужно ли обратить внимание на эту статью
 }

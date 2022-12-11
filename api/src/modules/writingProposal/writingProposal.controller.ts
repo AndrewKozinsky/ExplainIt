@@ -1,7 +1,7 @@
 import {
 	Body,
 	Controller,
-	// 	Delete,
+	Delete,
 	HttpCode,
 	HttpStatus,
 	Param,
@@ -75,9 +75,9 @@ export class WritingProposalController {
 		}
 	}
 
-	// @Delete(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async deleteOne(
+	@Delete(':id')
+	@HttpCode(HttpStatus.OK)
+	async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<WritingProposalRespType.DeleteWrap> {
@@ -97,5 +97,5 @@ export class WritingProposalController {
 		return this.helperService.createSuccessResponse (
 			{ writingProposals: null }, HttpStatus.OK
 		)
-	}*/
+	}
 }

@@ -4,11 +4,13 @@ import { WritingProposalController } from './writingProposal.controller'
 import { WritingProposalService } from './writingProposal.service'
 import { WritingProposal } from './model/writingProposal.model'
 import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
+import { ArticleModule } from '../article/article.module'
 
 @Module({
 	imports: [
 		SequelizeModule.forFeature([WritingProposal]),
-		forwardRef(() => ProposalsGroupModule)
+		forwardRef(() => ProposalsGroupModule),
+		ArticleModule,
 	],
 	controllers: [WritingProposalController],
 	providers: [WritingProposalService],

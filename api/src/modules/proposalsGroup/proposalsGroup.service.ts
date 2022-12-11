@@ -5,10 +5,10 @@ import { HelperService } from '../helper/helper.service'
 import { ProposalsGroup } from './model/proposalsGroup.model'
 import CreateGroupDto from './dto/createGroup.dto'
 import { ProposalsGroupRespType } from './response/responseTypes'
-// import UpdateGroupDto from './dto/updateGroup.dto'
-// import { OralProposal } from '../oralProposal/model/oralProposal.model'
-// import { OralProposalService } from '../oralProposal/oralProposal.service'
-// import { WritingProposalService } from '../writingProposal/writingProposal.service'
+import UpdateGroupDto from './dto/updateGroup.dto'
+import { OralProposal } from '../oralProposal/model/oralProposal.model'
+import { OralProposalService } from '../oralProposal/oralProposal.service'
+import { WritingProposalService } from '../writingProposal/writingProposal.service'
 
 @Injectable()
 export class ProposalsGroupService {
@@ -19,19 +19,19 @@ export class ProposalsGroupService {
 		private proposalsGroupModel: typeof ProposalsGroup,
 
 		private readonly helperService: HelperService,
-		// private readonly oralProposalService: OralProposalService,
-		// private readonly writingProposalService: WritingProposalService
+		private readonly oralProposalService: OralProposalService,
+		private readonly writingProposalService: WritingProposalService
 	) {}
 
 	// Получение группы предложений
-	/*async getOne(groupId: number): Promise<ProposalsGroupRespType.GetOne | null | never> {
+	async getOne(groupId: number): Promise<ProposalsGroupRespType.GetOne | null | never> {
 		return this.helperService.runQuery<ProposalsGroupRespType.GetOne | null>(() => {
 			return this.proposalsGroupModel.findByPk(
 				groupId,
 				{ include: [OralProposal] }
 			)
 		})
-	}*/
+	}
 
 	// Существует ли группа предложений?
 	async isExist(groupId: number): Promise<boolean> {
@@ -47,12 +47,12 @@ export class ProposalsGroupService {
 	}
 
 	// Обновление группы упражнений
-	/*async updateOne(groupId: number, groupDto: UpdateGroupDto): Promise<ProposalsGroupRespType.UpdateOne> {
+	async updateOne(groupId: number, groupDto: UpdateGroupDto): Promise<ProposalsGroupRespType.UpdateOne> {
 		return this.helperService.runQuery<ProposalsGroupRespType.UpdateOne>(async () => {
 			const currentGroup = await this.getOne(groupId)
 
 			if (groupDto.type !== currentGroup?.type) {
-				// Тут нужно удалить все разговорные и письменные предложения относящиеся к этой группе
+				// Удалить все разговорные и письменные предложения относящиеся к этой группе
 				await this.oralProposalService.deleteProposalsWithGroup(groupId)
 				await this.writingProposalService.deleteProposalsWithGroup(groupId)
 			}
@@ -67,7 +67,7 @@ export class ProposalsGroupService {
 
 			return result[1][0]
 		})
-	}*/
+	}
 
 	// Удаление группы упражнений
 	/*async deleteOne(groupId: number): Promise<ProposalsGroupRespType.DeleteOne | never> {

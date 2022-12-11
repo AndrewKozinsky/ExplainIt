@@ -1,4 +1,4 @@
-import { IsPositive, IsString, Max, Validate } from 'class-validator'
+import { IsBoolean, IsOptional, IsPositive, IsString, Max, Validate } from 'class-validator'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
 import groupConstraints from '../model/group.constraints'
 import { OneOfConstraint } from '../../../utils/customClassValidators'
@@ -25,4 +25,8 @@ export default class CreateGroupDto {
 		{ message: dtoErrorMessages.shouldNotBeMore(groupConstraints.order.max) }
 	)
 	order: number
+
+	@IsBoolean({ message: dtoErrorMessages.mustBeBool })
+	@IsOptional()
+	payAtn?: boolean // Нужно ли обратить внимание на эту группу предложений
 }

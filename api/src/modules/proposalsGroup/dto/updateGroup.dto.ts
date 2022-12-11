@@ -1,10 +1,10 @@
-// import { IsOptional, IsPositive, IsString, Max, Validate } from 'class-validator'
-// import dtoErrorMessages from '../../../utils/dtoErrorMessages'
-// import groupConstraints from '../model/group.constraints'
-// import { OneOfConstraint } from '../../../utils/customClassValidators'
+import { IsBoolean, IsOptional, IsPositive, IsString, Max, Validate } from 'class-validator'
+import dtoErrorMessages from '../../../utils/dtoErrorMessages'
+import groupConstraints from '../model/group.constraints'
+import { OneOfConstraint } from '../../../utils/customClassValidators'
 
 
-/*export default class UpdateGroupDto {
+export default class UpdateGroupDto {
 	@IsString({ message: dtoErrorMessages.mustBeString })
 	@Validate(
 		OneOfConstraint,
@@ -20,4 +20,8 @@
 	)
 	@IsOptional()
 	order?: number
-}*/
+
+	@IsBoolean({ message: dtoErrorMessages.mustBeBool })
+	@IsOptional()
+	payAtn?: boolean // Нужно ли обратить внимание на эту группу предложений
+}

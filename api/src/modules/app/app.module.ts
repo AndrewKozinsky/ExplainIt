@@ -8,6 +8,7 @@ import { WordModule } from '../word/word.module'
 import { WritingProposalModule } from '../writingProposal/writingProposal.module'
 import { TranslateModule } from '../translate/translate.module'
 
+// TODO Раскомментируй proposalsGroupService в api/src/modules/writingProposal/writingProposal.service.ts и разберись почему появляется ошибка
 // TODO В нужных таблицах сделай свойство payAtn куда автоматически бы записывалось true или false в зависимости от того появились или исчезли бы предложения из блока «Необработанные переводы» или есть ли непроверенные переводы.
 // TODO Напиши функцию переводящую присланный массив статей в массив данных подходящих для вывода
 

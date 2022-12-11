@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
-// import { InjectModel } from '@nestjs/sequelize'
+import { InjectModel } from '@nestjs/sequelize'
 // import CreateOralProposalDto from './dto/createOralProposal.dto'
-// import { OralProposalRespType } from './response/responseTypes'
-// import { HelperService } from '../helper/helper.service'
-// import { OralProposal } from './model/oralProposal.model'
+import { OralProposalRespType } from './response/responseTypes'
+import { HelperService } from '../helper/helper.service'
+import { OralProposal } from './model/oralProposal.model'
 // import UpdateOralProposalDto from './dto/updateOralProposal.dto'
 
 @Injectable()
@@ -11,10 +11,10 @@ export class OralProposalService {
 	constructor(
 		// private sequelize: Sequelize,
 
-		// @InjectModel(OralProposal)
-		// private oralProposalModel: typeof OralProposal,
+		@InjectModel(OralProposal)
+		private oralProposalModel: typeof OralProposal,
 
-		// private readonly helperService: HelperService
+		private readonly helperService: HelperService
 	) {}
 
 	// Получение предложения
@@ -60,7 +60,7 @@ export class OralProposalService {
 	}*/
 
 	// Удаление предложений с переданном идентификатором группы
-	/*async deleteProposalsWithGroup(groupId: number): Promise<OralProposalRespType.Delete | never> {
+	async deleteProposalsWithGroup(groupId: number): Promise<OralProposalRespType.Delete | never> {
 		return this.helperService.runQuery<OralProposalRespType.Delete>(async () => {
 			await this.oralProposalModel.destroy(
 				{
@@ -70,5 +70,5 @@ export class OralProposalService {
 
 			return true
 		})
-	}*/
+	}
 }
