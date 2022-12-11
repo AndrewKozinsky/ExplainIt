@@ -1,13 +1,13 @@
 import {
 	Body,
 	Controller,
-	Delete,
-	Get,
+	// 	Delete,
+	// 	Get,
 	HttpCode,
 	HttpStatus,
-	Param,
-	ParseIntPipe,
-	Patch,
+	// 	Param,
+	// 	ParseIntPipe,
+	// 	Patch,
 	Post,
 	Res
 } from '@nestjs/common'
@@ -17,7 +17,7 @@ import { ProposalsGroupService } from './proposalsGroup.service'
 import CreateGroupDto from './dto/createGroup.dto'
 import { ArticleService } from '../article/article.service'
 import { ProposalsGroupRespType } from './response/responseTypes'
-import UpdateGroupDto from './dto/updateGroup.dto'
+// import UpdateGroupDto from './dto/updateGroup.dto'
 
 @Controller('proposalsGroup')
 export class ProposalsGroupController {
@@ -27,9 +27,9 @@ export class ProposalsGroupController {
 		private readonly helperService: HelperService,
 	) {}
 
-	@Get(':id')
-	@HttpCode(HttpStatus.OK)
-	async getOne(
+	// @Get(':id')
+	// @HttpCode(HttpStatus.OK)
+	/*async getOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<ProposalsGroupRespType.GetOneWrap> {
@@ -48,7 +48,7 @@ export class ProposalsGroupController {
 				HttpStatus.BAD_REQUEST, 'Статья не найдена'
 			)
 		}
-	}
+	}*/
 
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
@@ -75,9 +75,9 @@ export class ProposalsGroupController {
 		)
 	}
 
-	@Patch(':id')
-	@HttpCode(HttpStatus.OK)
-	async update(
+	// @Patch(':id')
+	// @HttpCode(HttpStatus.OK)
+	/*async update(
 		@Body() groupDto: UpdateGroupDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
@@ -97,11 +97,11 @@ export class ProposalsGroupController {
 				HttpStatus.BAD_REQUEST, 'Группа упражнений не найдена'
 			)
 		}
-	}
+	}*/
 
-	@Delete(':id')
-	@HttpCode(HttpStatus.OK)
-	async deleteOne(
+	// @Delete(':id')
+	// @HttpCode(HttpStatus.OK)
+	/*async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<ProposalsGroupRespType.DeleteOneWrap> {
@@ -121,5 +121,5 @@ export class ProposalsGroupController {
 		return this.helperService.createSuccessResponse (
 			{ proposalsGroups: null }, HttpStatus.OK
 		)
-	}
+	}*/
 }

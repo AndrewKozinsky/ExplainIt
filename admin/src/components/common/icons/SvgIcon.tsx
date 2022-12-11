@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import iconsCollector from './js/getIcon'
 import { getIconSize } from './js/getIconSize'
 import './css/SvgIcon.scss'

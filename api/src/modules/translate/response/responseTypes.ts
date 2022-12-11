@@ -4,10 +4,10 @@ import { GeneralRespType } from '../../../types/generalResponse'
 /** Типы данных возвращаемыми методами статьи */
 export namespace TranslateRespType {
 	// Получение перевода
-	export type GetOne = Translate
-	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
-	export type GetOneFailWrap = GeneralRespType.Fail
-	export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
+	// export type GetOne = Translate
+	// export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
+	// export type GetOneFailWrap = GeneralRespType.Fail
+	// export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
 
 	// Создание перевода
 	export type CreateOne = Translate
@@ -23,10 +23,10 @@ export namespace TranslateRespType {
 	// export type UpdateOneWrap = UpdateOneSuccessWrap | UpdateOneFailWrap
 
 	// Удаление перевода
-	export type Delete = true
-	export type DeleteSuccessWrap = GeneralRespType.Success<Payload<null>>
-	export type DeleteFailWrap = GeneralRespType.Fail
-	export type DeleteWrap = DeleteSuccessWrap | DeleteFailWrap
+	// export type Delete = true
+	// export type DeleteSuccessWrap = GeneralRespType.Success<Payload<null>>
+	// export type DeleteFailWrap = GeneralRespType.Fail
+	// export type DeleteWrap = DeleteSuccessWrap | DeleteFailWrap
 
 	// ====================================
 

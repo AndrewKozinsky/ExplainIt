@@ -32,11 +32,13 @@ export default class CreateArticleDto {
 		articleConstraints.summary.maxLength,
 		{ message: dtoErrorMessages.mustBeEqualOrShorter(articleConstraints.summary.maxLength) }
 	)
-	summary: string
+	@IsOptional()
+	summary?: string
 
     // @ApiProperty({ description: 'Содержимое статьи. Разметка берётся из редактора и затем разбирается на компоненты' })
     @IsString({ message: dtoErrorMessages.mustBeString })
-    content: string
+	@IsOptional()
+    content?: string
 
     // @ApiProperty({ description: 'Порядковый номер статьи' })
     @IsPositive({ message: dtoErrorMessages.mustBeNumber })
@@ -45,4 +47,8 @@ export default class CreateArticleDto {
 		{ message: dtoErrorMessages.shouldNotBeMore(articleConstraints.order.max) }
 	)
 	order: number
+
+	@IsBoolean({ message: dtoErrorMessages.mustBeBool })
+	@IsOptional()
+	payAtn?: boolean // Нужно ли обратить внимание на эту статью
 }

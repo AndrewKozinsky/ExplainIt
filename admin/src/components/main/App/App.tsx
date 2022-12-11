@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
-import GlobalErrors from '../GlobalErrors/GlobalErrors'
-import SideBlock from '../common/Blocks/SideBlock/SideBlock'
-import Chapters from '../ArticleSide/Chapters/Chapters'
+import GlobalErrors from '../../GlobalErrors/GlobalErrors'
+import SideBlock from '../../common/Blocks/SideBlock/SideBlock'
+import Articles from '../../articles/Articles/Articles'
 import { useIsEnterAllow } from './App-func'
-import CreateChapterBtn from '../ArticleSide/CreateChapterBtn/CreateChapterBtn'
+import CreateArticleBtn from '../../articles/CreateArticleBtn/CreateArticleBtn'
 import './css/reset.css'
 import './css/variables.scss'
 import './css/general.scss'
@@ -20,7 +20,7 @@ function App(): ReactElement {
 
 	return (
 		<main className='app'>
-			<SideBlock leftTop={<Chapters />} leftBottom={<CreateChapterBtn />} />
+			<SideBlock leftTop={<Articles />} leftBottom={<CreateArticleBtn />} />
 			<SideBlock />
 			<GlobalErrors />
 		</main>

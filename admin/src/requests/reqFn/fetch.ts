@@ -1,22 +1,22 @@
 
 // Тип параметров запроса
-/*export type RequestOptionsType = {
+export type RequestOptionsType = {
     // Request method
     method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
     // Additional headers
     headers?: Record<string, string>
 	body?: Object
-}*/
+}
 
-/*export type RequestOptionsPreparedType = RequestOptionsType & {
+export type RequestOptionsPreparedType = RequestOptionsType & {
 	body?: string
-}*/
+}
 
 /** Функция загружающая данные с сервера
  * @param {String} urlKey — строка с адресом запроса
  * @param {Object} options — параметры запроса
  */
-/*export async function makeFetch<T>(urlKey: string, options: RequestOptionsType): Promise<T | never> {
+export async function makeFetch<T>(urlKey: string, options: RequestOptionsType): Promise<T | never> {
 	// Добавление заголовка языка интерфейса в параметры запроса
 	const extraOptions = prepareOptions(options)
 
@@ -28,13 +28,13 @@
 		const message = 'Couldn\'t get data.'
 		throw new Error(message)
 	}
-}*/
+}
 
 /**
- * Функция добавляет в объект параметров запроса заголовок Editor-Language с языком
+ * Функция добавляет в объект параметров запроса различные нужные данные
  * @param {Object} optionsObj — объект параметров запроса
  */
-/*function prepareOptions(optionsObj: RequestOptionsType): RequestOptionsPreparedType {
+function prepareOptions(optionsObj: RequestOptionsType): RequestOptionsPreparedType {
 	const fixedOptions: RequestOptionsPreparedType = {
 		method: optionsObj.method,
 		headers: {
@@ -50,6 +50,4 @@
 	}
 
 	return fixedOptions
-}*/
-
-export {}
+}

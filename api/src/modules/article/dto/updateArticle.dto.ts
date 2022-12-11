@@ -1,5 +1,6 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength, MinLength } from 'class-validator'
-import dtoErrorMessages from 'src/utils/dtoErrorMessages'
+import dtoErrorMessages from '../../../utils/dtoErrorMessages'
 import articleConstraints from '../model/article.constraints'
 
 
@@ -26,7 +27,7 @@ export default class UpdateArticleDto {
     @IsOptional()
     chapter?: string
 
-    // @ApiProperty({ description: 'Опубликована ли глава', default: false })
+    @ApiProperty({ description: 'Опубликована ли глава', default: false })
     @IsBoolean({ message: dtoErrorMessages.mustBeBool })
     @IsOptional()
     published?: boolean
@@ -40,12 +41,12 @@ export default class UpdateArticleDto {
     @IsOptional()
     summary?: string
 
-    // @ApiProperty({ description: 'Содержимое статьи. Разметка берётся из редактора и затем разбирается на компоненты' })
+    @ApiProperty({ description: 'Содержимое статьи. Разметка берётся из редактора и затем разбирается на компоненты' })
     @IsString({ message: dtoErrorMessages.mustBeString })
     @IsOptional()
     content?: string
 
-    // @ApiProperty({ description: 'Порядковый номер статьи' })
+    @ApiProperty({ description: 'Порядковый номер статьи' })
     @IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
 		articleConstraints.order.max,
@@ -53,4 +54,8 @@ export default class UpdateArticleDto {
 	)
     @IsOptional()
     order?: number
+
+	@IsBoolean({ message: dtoErrorMessages.mustBeBool })
+	@IsOptional()
+	payAtn?: boolean // Нужно ли обратить внимание на эту статью
 }

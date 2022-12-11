@@ -1,16 +1,16 @@
 import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import translateConstraints from './translate.constraints'
 import { DataTypes } from 'sequelize'
-import { WritingProposal } from 'src/modules/writingProposal/model/writingProposal.model'
+import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
 
 @Table
 export class Translate extends Model<Partial<Translate>> {
-	@Column({
+	/*@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		autoIncrement: true,
 		primaryKey: true
 	})
-	id: number
+	id: number*/
 
 	@Column({
 		type: DataType.TEXT(),

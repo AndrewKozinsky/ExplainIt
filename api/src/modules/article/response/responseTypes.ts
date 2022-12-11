@@ -2,10 +2,12 @@ import { Article } from '../model/article.model'
 import { GeneralRespType } from '../../../types/generalResponse'
 
 /** Типы данных возвращаемыми методами статьи */
-export namespace ArticleRespType {
+namespace ArticleRespType {
 	// Получение всех статей
 	export type GetAll = ListItem[]
-	export type GetAllWrap = GeneralRespType.Success<Payload<GetAll>>
+	export type GetAllSuccessWrap = GeneralRespType.Success<Payload<GetAll>>
+	export type GetAllFailWrap = GeneralRespType.Fail
+	export type GetAllWrap = GetAllSuccessWrap | GetAllFailWrap
 
 	// Получение статьи
 	export type GetOne = Article
@@ -15,7 +17,9 @@ export namespace ArticleRespType {
 
 	// Создание статьи
 	export type CreateOne = Article
-	export type CreateOneWrap = GeneralRespType.Success<Payload<CreateOne>>
+	export type CreateOneSuccessWrap = GeneralRespType.Success<Payload<CreateOne>>
+	export type CreateOneFailWrap = GeneralRespType.Fail
+	export type CreateOneWrap = CreateOneSuccessWrap | CreateOneFailWrap
 
 	// Обновление статьи
 	export type UpdateOne = Article
@@ -32,7 +36,9 @@ export namespace ArticleRespType {
 	// ====================================
 
 	// Статья с сокращённым набором данных
-	type ListItem = Pick<Article, 'id' | 'name' | 'published' | 'order'>
+	export type ListItem = Pick<Article, 'id' | 'name' | 'published' | 'order' | 'payAtn'>
 
 	type Payload<T> = { articles: T }
 }
+
+export default ArticleRespType

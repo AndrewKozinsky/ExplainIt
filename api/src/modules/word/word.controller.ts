@@ -1,57 +1,59 @@
 import {
-	// Body,
+	Body,
 	Controller,
 	// Delete,
-	// HttpCode,
-	// HttpStatus,
+	HttpCode,
+	HttpStatus,
 	// Param,
 	// ParseIntPipe,
 	// 		Patch,
-	// Post,
-	// Res,
+	Post,
+	Res,
 } from '@nestjs/common'
-// import { Response } from 'express'
-// import { WritingProposalService } from '../writingProposal/writingProposal.service'
-// import CreateWordDto from './dto/createWord.dto'
-// import { TranslateRespType } from './response/responseTypes'
-// import { WordService } from './word.service'
-// import { TranslateService } from './translate.service'
-// import { HelperService } from '../helper/helper.service'
+import { Response } from 'express'
+import { WritingProposalService } from '../writingProposal/writingProposal.service'
+import CreateWordDto from './dto/createWord.dto'
+import { WordRespType } from './response/responseTypes'
+import { WordService } from './word.service'
+import { HelperService } from '../helper/helper.service'
 // import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 // import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 
-@Controller('translate')
+@Controller('word')
 export class WordController {
 	constructor(
-		// private readonly writingProposalService: WritingProposalService,
-		// private readonly translateService: WordService,
-		// private readonly helperService: HelperService
+		private readonly writingProposalService: WritingProposalService,
+		private readonly wordService: WordService,
+		private readonly helperService: HelperService
 	) {}
 
-	// @Post()
-	// @HttpCode(HttpStatus.CREATED)
-	/*async create(
-		@Body() translateDto: CreateWordDto,
+	@Post()
+	@HttpCode(HttpStatus.CREATED)
+	async create(
+		@Body() createWordDto: CreateWordDto,
 		@Res({ passthrough: true }) res: Response
-	): Promise<TranslateRespType.CreateOneWrap> {
-		// Проверить существует ли предложение к которой делают перевод
-		const isProposalExist = await this.writingProposalService.isExist(translateDto.proposalId)
+	): Promise<WordRespType.CreateOneWrap> {
 
-		if (!isProposalExist) {
+		// Проверить существует ли предложение к которой делают перевод
+		const isOralProposalExist = await this.writingProposalService.isExist(createWordDto.oralProposalId)
+		const isWritingProposalExist = await this.writingProposalService.isExist(createWordDto.writingProposalId)
+
+		if (!isOralProposalExist && !isWritingProposalExist) {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
 				HttpStatus.BAD_REQUEST, 'Не существует предложения, к которому создают перевод.'
 			)
 		}
 
-		// Создать новое предложение
-		const createdTranslate = await this.translateService.createOne(translateDto)
+		// Создать новое слово
+		const createdWord = await this.wordService.createOne(createWordDto)
+		console.log(createdWord)
 
 		// Сформировать и возвратить клиенту ответ
 		return this.helperService.createSuccessResponse(
-			{ translates: createdTranslate }, HttpStatus.CREATED
+			{ words: createdWord }, HttpStatus.CREATED
 		)
-	}*/
+	}
 
 	// @Patch(':id')
 	// @HttpCode(HttpStatus.OK)

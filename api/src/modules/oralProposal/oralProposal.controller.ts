@@ -1,33 +1,33 @@
 import {
-	Body,
+// 	Body,
 	Controller,
-	Delete,
-	HttpCode,
-	HttpStatus,
-	Param,
-	ParseIntPipe,
-	Patch,
-	Post, Res,
+// 	Delete,
+// 	HttpCode,
+// 	HttpStatus,
+// 	Param,
+// 	ParseIntPipe,
+// 	Patch,
+// 	Post, Res,
 } from '@nestjs/common'
-import CreateOralProposalDto from './dto/createOralProposal.dto'
-import { OralProposalRespType } from './response/responseTypes'
-import { OralProposalService } from './oralProposal.service'
-import { HelperService } from '../helper/helper.service'
-import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
-import { Response } from 'express'
-import UpdateOralProposalDto from './dto/updateOralProposal.dto'
+// import CreateOralProposalDto from './dto/createOralProposal.dto'
+// import { OralProposalRespType } from './response/responseTypes'
+// import { OralProposalService } from './oralProposal.service'
+// import { HelperService } from '../helper/helper.service'
+// import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
+// import { Response } from 'express'
+// import UpdateOralProposalDto from './dto/updateOralProposal.dto'
 
 @Controller('oralProposal')
 export class OralProposalController {
 	constructor(
-		private readonly oralProposalService: OralProposalService,
-		private readonly proposalsGroupService: ProposalsGroupService,
-		private readonly helperService: HelperService
+		// private readonly oralProposalService: OralProposalService,
+		// private readonly proposalsGroupService: ProposalsGroupService,
+		// private readonly helperService: HelperService
 	) {}
 
-	@Post()
-	@HttpCode(HttpStatus.CREATED)
-	async create(
+	// @Post()
+	// @HttpCode(HttpStatus.CREATED)
+	/*async create(
 		@Body() proposalDto: CreateOralProposalDto,
 		@Res({ passthrough: true }) res: Response
 	): Promise<OralProposalRespType.CreateOneWrap> {
@@ -48,11 +48,11 @@ export class OralProposalController {
 		return this.helperService.createSuccessResponse(
 			{ oralProposals: createdArticle }, HttpStatus.CREATED
 		)
-	}
+	}*/
 
-	@Patch(':id')
-	@HttpCode(HttpStatus.OK)
-	async update(
+	// @Patch(':id')
+	// @HttpCode(HttpStatus.OK)
+	/*async update(
 		@Body() proposalDto: UpdateOralProposalDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
@@ -72,11 +72,11 @@ export class OralProposalController {
 				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
 			)
 		}
-	}
+	}*/
 
-	@Delete(':id')
-	@HttpCode(HttpStatus.OK)
-	async deleteOne(
+	// @Delete(':id')
+	// @HttpCode(HttpStatus.OK)
+	/*async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<OralProposalRespType.DeleteWrap> {
@@ -96,5 +96,5 @@ export class OralProposalController {
 		return this.helperService.createSuccessResponse (
 			{ oralProposals: null }, HttpStatus.OK
 		)
-	}
+	}*/
 }

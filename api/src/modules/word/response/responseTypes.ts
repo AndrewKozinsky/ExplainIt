@@ -1,8 +1,8 @@
-import { Word } from '../model/word.model'
 import { GeneralRespType } from '../../../types/generalResponse'
+import { Word } from '../model/word.model'
 
 /** Типы данных возвращаемыми методами статьи */
-export namespace TranslateRespType {
+export namespace WordRespType {
 	// Получение перевода
 	// export type GetOne = Translate
 	// export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
@@ -10,10 +10,10 @@ export namespace TranslateRespType {
 	// export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
 
 	// Создание перевода
-	// export type CreateOne = Translate
-	// export type CreateOneSuccessWrap = GeneralRespType.Success<Payload<CreateOne>>
-	// export type CreateOneFailWrap = GeneralRespType.Fail
-	// export type CreateOneWrap = CreateOneSuccessWrap | CreateOneFailWrap
+	export type CreateOne = Word
+	export type CreateOneSuccessWrap = GeneralRespType.Success<Payload<CreateOne>>
+	export type CreateOneFailWrap = GeneralRespType.Fail
+	export type CreateOneWrap = CreateOneSuccessWrap | CreateOneFailWrap
 
 
 	// Обновление перевода

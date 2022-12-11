@@ -1,6 +1,6 @@
-import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
-import dtoErrorMessages from 'src/utils/dtoErrorMessages'
-import translateConstraints from '../model/translate.constraints'
+// import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
+// import dtoErrorMessages from 'src/utils/dtoErrorMessages'
+// import translateConstraints from '../model/translate.constraints'
 
 
 export default class UpdateTranslateDto {

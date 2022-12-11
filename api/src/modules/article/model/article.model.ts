@@ -4,12 +4,12 @@ import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
 
 @Table
 export class Article extends Model<Partial<Article>> {
-	@Column({
+	/*@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		autoIncrement: true,
 		primaryKey: true
 	})
-	id: number
+	id: number*/
 
 	@Column({
 		type: DataType.STRING(articleConstraints.name.maxLength),  // Varchar(255)
@@ -46,6 +46,12 @@ export class Article extends Model<Partial<Article>> {
 		allowNull: false,
 	})
 	order: number // Порядковый номер статьи
+
+	@Column({
+		type: DataType.BOOLEAN,
+		defaultValue: false
+	})
+	payAtn?: boolean // Нужно ли обратить внимание на эту статью
 
 	@HasMany(
 		() => ProposalsGroup,

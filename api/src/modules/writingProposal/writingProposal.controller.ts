@@ -1,12 +1,12 @@
 import {
 	Body,
 	Controller,
-	Delete,
+	// 	Delete,
 	HttpCode,
 	HttpStatus,
 	Param,
 	ParseIntPipe,
-	// 	Patch,
+	Patch,
 	Post,
 	Res,
 } from '@nestjs/common'
@@ -16,13 +16,13 @@ import { WritingProposalRespType } from './response/responseTypes'
 import { WritingProposalService } from './writingProposal.service'
 import { HelperService } from '../helper/helper.service'
 import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
-// import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
+import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 
 @Controller('writingProposal')
 export class WritingProposalController {
 	constructor(
 		private readonly writingProposalService: WritingProposalService,
-			private readonly proposalsGroupService: ProposalsGroupService,
+		private readonly proposalsGroupService: ProposalsGroupService,
 		private readonly helperService: HelperService
 	) {}
 
@@ -51,9 +51,9 @@ export class WritingProposalController {
 		)
 	}
 
-	// @Patch(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async update(
+	@Patch(':id')
+	@HttpCode(HttpStatus.OK)
+	async update(
 		@Body() proposalDto: UpdateWritingProposalDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
@@ -64,7 +64,7 @@ export class WritingProposalController {
 		// Сформировать и возвратить клиенту ответ
 		if (updatedProposal) {
 			return this.helperService.createSuccessResponse (
-				{ oralProposals: updatedArticle }, HttpStatus.OK
+				{ writingProposals: updatedProposal }, HttpStatus.OK
 			)
 		}
 		else {
@@ -73,11 +73,11 @@ export class WritingProposalController {
 				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
 			)
 		}
-	}*/
+	}
 
-	@Delete(':id')
-	@HttpCode(HttpStatus.OK)
-	async deleteOne(
+	// @Delete(':id')
+	// @HttpCode(HttpStatus.OK)
+	/*async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<WritingProposalRespType.DeleteWrap> {
@@ -97,5 +97,5 @@ export class WritingProposalController {
 		return this.helperService.createSuccessResponse (
 			{ writingProposals: null }, HttpStatus.OK
 		)
-	}
+	}*/
 }

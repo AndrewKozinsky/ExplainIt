@@ -1,8 +1,8 @@
-import { OralProposal } from '../model/oralProposal.model'
-import { GeneralRespType } from '../../../types/generalResponse'
+// import { OralProposal } from '../model/oralProposal.model'
+// import { GeneralRespType } from '../../../types/generalResponse'
 
 /** Типы данных возвращаемыми методами статьи */
-export namespace OralProposalRespType {
+/*export namespace OralProposalRespType {
 	// Получение предложения
 	export type GetOne = OralProposal
 	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
@@ -31,4 +31,4 @@ export namespace OralProposalRespType {
 	// ====================================
 
 	type Payload<T> = { oralProposals: T }
-}
+}*/

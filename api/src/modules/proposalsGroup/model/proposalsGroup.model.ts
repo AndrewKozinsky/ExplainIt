@@ -4,16 +4,14 @@ import { Article } from '../../article/model/article.model'
 import { OralProposal } from '../../oralProposal/model/oralProposal.model'
 import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
 
-@Table({
-	timestamps: false
-})
+@Table({ timestamps: false })
 export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
-	@Column({
+	/*@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		autoIncrement: true,
 		primaryKey: true
 	})
-	id: number
+	id: number*/
 
 	@Column({
 		type: DataType.STRING(groupConstraints.type.maxLength),  // Varchar(255)
@@ -26,6 +24,12 @@ export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
 		allowNull: false,
 	})
 	order: number // Порядковый номер блока с упражнениями в списке упражнений статьи
+
+	@Column({
+		type: DataType.BOOLEAN,
+		defaultValue: false
+	})
+	payAtn?: boolean // Нужно ли обратить внимание на эту группу предложений
 
 	@ForeignKey(() => Article)
 	@Column({ allowNull: false })

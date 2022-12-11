@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import CreateWordDto from './dto/createWord.dto'
-import { TranslateRespType } from './response/responseTypes'
-import { HelperService } from '../helper/helper.service'
 import { Word } from './model/word.model'
+import { WordRespType } from './response/responseTypes'
+// import { TranslateRespType } from './response/responseTypes'
+import { HelperService } from '../helper/helper.service'
+// import { Word } from './model/word.model'
 // import { WritingProposal } from './model/translate.model'
 // import UpdateTranslateDto from './dto/updateTranslate.dto'
 
@@ -12,10 +14,10 @@ export class WordService {
 	constructor(
 		// private sequelize: Sequelize,
 
-		// @InjectModel(Translate)
-		// private translateModel: typeof Translate,
+		@InjectModel(Word)
+		private wordModel: typeof Word,
 
-		// private readonly helperService: HelperService
+		private readonly helperService: HelperService
 	) {}
 
 	// Получение перевода
@@ -26,11 +28,11 @@ export class WordService {
 	}*/
 
 	// Создание перевода
-	/*async createOne(articleDto: CreateWordDto): Promise<TranslateRespType.CreateOne | never> {
-		return this.helperService.runQuery<TranslateRespType.CreateOne>(() => {
-			return this.translateModel.create(articleDto)
+	async createOne(createWordDto: CreateWordDto): Promise<WordRespType.CreateOne | never> {
+		return this.helperService.runQuery<WordRespType.CreateOne>(() => {
+			return this.wordModel.create(createWordDto)
 		})
-	}*/
+	}
 
 	// Обновление перевода
 	/*async updateOne(articleId: number, articleDto: UpdateWritingProposalDto): Promise<WritingProposalRespType.UpdateOne | never> {

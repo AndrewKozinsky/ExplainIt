@@ -1,6 +1,6 @@
 import { IsArray, IsBoolean, IsOptional, IsPositive, IsString, Max } from 'class-validator'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
-import groupConstraints from '../../proposalsGroup/model/group.constraints'
+import translateConstraints from '../model/translate.constraints'
 
 
 export default class CreateTranslateDto {
@@ -23,8 +23,8 @@ export default class CreateTranslateDto {
 
 	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
-		groupConstraints.exerciseId.max,
-		{ message: dtoErrorMessages.shouldNotBeMore(groupConstraints.exerciseId.max) }
+		translateConstraints.proposalId.max,
+		{ message: dtoErrorMessages.shouldNotBeMore(translateConstraints.proposalId.max) }
 	)
 	proposalId: number
 }

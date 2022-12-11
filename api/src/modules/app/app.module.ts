@@ -4,11 +4,12 @@ import { ArticleModule } from '../article/article.module'
 import { HelperModule } from '../helper/helper.module'
 import { OralProposalModule } from '../oralProposal/oralProposal.module'
 import { ProposalsGroupModule } from '../proposalsGroup/proposalsGroup.module'
+import { WordModule } from '../word/word.module'
 import { WritingProposalModule } from '../writingProposal/writingProposal.module'
 import { TranslateModule } from '../translate/translate.module'
 
-// TODO Сделай таблицу слов
-// TODO При удалении предложения нужно автоматически удалять его слова
+// TODO В нужных таблицах сделай свойство payAtn куда автоматически бы записывалось true или false в зависимости от того появились или исчезли бы предложения из блока «Необработанные переводы» или есть ли непроверенные переводы.
+// TODO Напиши функцию переводящую присланный массив статей в массив данных подходящих для вывода
 
 @Module({
 	imports: [
@@ -23,13 +24,14 @@ import { TranslateModule } from '../translate/translate.module'
 
 			autoLoadModels: true,
 			synchronize: true,
-			sync: { alter: true, force: true }
+			sync: { alter: true, force: false }
 		}),
 		ArticleModule,
 		ProposalsGroupModule,
 		OralProposalModule,
 		WritingProposalModule,
 		TranslateModule,
+		WordModule,
 		HelperModule
 	],
 	controllers: [],

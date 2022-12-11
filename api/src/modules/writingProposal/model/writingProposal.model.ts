@@ -1,18 +1,18 @@
 import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript'
+import { DataTypes } from 'sequelize'
 import writingProposalConstraints from './writingProposal.constraints'
 import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
-import { DataTypes } from 'sequelize'
 import { Translate } from '../../translate/model/translate.model'
 import { Word } from '../../word/model/word.model'
 
 @Table
 export class WritingProposal extends Model<Partial<WritingProposal>> {
-	@Column({
+	/*@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		autoIncrement: true,
 		primaryKey: true
 	})
-	id: number
+	id: number*/
 
 	@Column({
 		type: DataType.STRING(writingProposalConstraints.rusProposal.maxLength),  // Varchar(255)
@@ -49,6 +49,12 @@ export class WritingProposal extends Model<Partial<WritingProposal>> {
 	})
 	order: number
 
+	@Column({
+		type: DataType.BOOLEAN,
+		defaultValue: false
+	})
+	payAtn?: boolean // Нужно ли обратить внимание на это предложение
+
 	@ForeignKey(() => ProposalsGroup)
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
@@ -62,8 +68,8 @@ export class WritingProposal extends Model<Partial<WritingProposal>> {
 	)
 	translates: Translate[]
 
-	// @HasMany(
-	// 	() => Word,
-	// 	{ onDelete: 'CASCADE' })
-	// words: Word[]
+	@HasMany(
+		() => Word,
+		{ onDelete: 'CASCADE' })
+	words: Word[]
 }

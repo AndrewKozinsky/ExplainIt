@@ -5,12 +5,12 @@ import { Word } from '../../word/model/word.model'
 
 @Table
 export class OralProposal extends Model<Partial<OralProposal>> {
-	@Column({
+	/*@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 		autoIncrement: true,
 		primaryKey: true
 	})
-	id: number
+	id: number*/
 
 	@Column({
 		type: DataType.STRING(oralProposalConstraints.rusProposal.maxLength),  // Varchar(255)

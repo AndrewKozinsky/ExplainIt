@@ -1,8 +1,8 @@
-// import { PayloadAction } from '@reduxjs/toolkit'
-// import { IndexListItemType } from 'components/common/IndexList/IndexList'
+import { PayloadAction } from '@reduxjs/toolkit'
+import { IndexListItemType } from 'components/common/IndexList/IndexList'
 
 
-/*namespace ArticleStoreType {
+namespace ArticleStoreType {
 	export type SelectedArticleId = null | number
 
 	// Состояние Хранилища
@@ -22,24 +22,23 @@
 	export type SetLoadAllArticles = PayloadAction<boolean>
 
 	// Изменение статуса необходимости скачивания списка всех статей
-	export type InsertNewArticle = PayloadAction<IndexListItemType>
+	// export type InsertNewArticle = PayloadAction<IndexListItemType>
 
 	// Удаление статьи
 	export type DeleteArticle = PayloadAction<number>
 
 	// Обновление свойств элемента массива articles
-	export type UpdateArticleListItem = PayloadAction<{
+	/*export type UpdateArticleListItem = PayloadAction<{
 		articleId: number
 		newProps: Partial<IndexListItemType>
-	}>
+	}>*/
 
 	// Передвижение элемента вверх/вниз в массиве articles
 	export type ChangeOrderArticleListItem = PayloadAction<{
 		articleId: number
 		direction: 'up' | 'down'
 	}>
-}*/
+}
 
-// export default ArticleStoreType
+export default ArticleStoreType
 
-export {}

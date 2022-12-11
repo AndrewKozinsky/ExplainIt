@@ -11,6 +11,10 @@ const translateConstraints = {
 	checked: {
 
 	},
+	proposalId: {
+		min: -32768,
+		max: 32767
+	}
 }
 
 export default translateConstraints

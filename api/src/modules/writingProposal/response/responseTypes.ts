@@ -4,10 +4,10 @@ import { GeneralRespType } from '../../../types/generalResponse'
 /** Типы данных возвращаемыми методами статьи */
 export namespace WritingProposalRespType {
 	// Получение предложения
-	export type GetOne = WritingProposal
-	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
-	export type GetOneFailWrap = GeneralRespType.Fail
-	export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
+	// export type GetOne = WritingProposal
+	// export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
+	// export type GetOneFailWrap = GeneralRespType.Fail
+	// export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
 
 	// Создание предложения
 	export type CreateOne = WritingProposal
@@ -17,16 +17,16 @@ export namespace WritingProposalRespType {
 
 
 	// Обновление предложения
-	// export type UpdateOne = WritingProposal
-	// export type UpdateOneSuccessWrap = GeneralRespType.Success<Payload<UpdateOne>>
-	// export type UpdateOneFailWrap = GeneralRespType.Fail
-	// export type UpdateOneWrap = UpdateOneSuccessWrap | UpdateOneFailWrap
+	export type UpdateOne = WritingProposal
+	export type UpdateOneSuccessWrap = GeneralRespType.Success<Payload<UpdateOne>>
+	export type UpdateOneFailWrap = GeneralRespType.Fail
+	export type UpdateOneWrap = UpdateOneSuccessWrap | UpdateOneFailWrap
 
 	// Удаление предложения
-	export type Delete = true
-	export type DeleteSuccessWrap = GeneralRespType.Success<Payload<null>>
-	export type DeleteFailWrap = GeneralRespType.Fail
-	export type DeleteWrap = DeleteSuccessWrap | DeleteFailWrap
+	// export type Delete = true
+	// export type DeleteSuccessWrap = GeneralRespType.Success<Payload<null>>
+	// export type DeleteFailWrap = GeneralRespType.Fail
+	// export type DeleteWrap = DeleteSuccessWrap | DeleteFailWrap
 
 	// ====================================
 

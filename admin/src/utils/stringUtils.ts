@@ -5,7 +5,7 @@
  * строку разделённую пробелами для формирования классов CSS.
  * @param {Array} classesArr
  */
-/*export function makeCN(classesArr: string[]): string {
+export function makeCN(classesArr: string[]): string {
 	// Сформировать новый массив классов без пустых значений
 	const filteredClassesArr = classesArr.filter(cls => {
 		return (cls && cls !== '')
@@ -13,6 +13,4 @@
 
 	// Составить строку из массива строк
 	return filteredClassesArr.join(' ')
-}*/
-
-export {}
+}

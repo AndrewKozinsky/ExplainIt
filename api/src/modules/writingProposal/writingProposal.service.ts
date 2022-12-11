@@ -4,6 +4,7 @@ import CreateWritingProposalDto from './dto/createWritingProposal.dto'
 import { WritingProposalRespType } from './response/responseTypes'
 import { HelperService } from '../helper/helper.service'
 import { WritingProposal } from './model/writingProposal.model'
+import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 
 @Injectable()
 export class WritingProposalService {
@@ -17,11 +18,11 @@ export class WritingProposalService {
 	) {}
 
 	// Получение предложения
-	async getOne(articleId: number): Promise<WritingProposalRespType.GetOne | null | never> {
+	/*async getOne(articleId: number): Promise<WritingProposalRespType.GetOne | null | never> {
 		return this.helperService.runQuery<WritingProposalRespType.GetOne | null>(() => {
 			return this.writingProposalModel.findByPk(articleId)
 		})
-	}
+	}*/
 
 	// Существует ли предложение?
 	async isExist(groupId: number): Promise<boolean> {
@@ -37,22 +38,22 @@ export class WritingProposalService {
 	}
 
 	// Обновление предложения
-	/*async updateOne(articleId: number, articleDto: UpdateWritingProposalDto): Promise<WritingProposalRespType.UpdateOne | never> {
+	async updateOne(proposalId: number, articleDto: UpdateWritingProposalDto): Promise<WritingProposalRespType.UpdateOne | never> {
 		return this.helperService.runQuery<WritingProposalRespType.UpdateOne>(async () => {
 			const result = await this.writingProposalModel.update(
 				articleDto,
 				{
-					where: { id: articleId },
+					where: { id: proposalId },
 					returning: true
 				}
 			)
 
 			return result[1][0]
 		})
-	}*/
+	}
 
 	// Удаление предложения
-	async deleteOne(proposalId: number): Promise<WritingProposalRespType.Delete | never> {
+	/*async deleteOne(proposalId: number): Promise<WritingProposalRespType.Delete | never> {
 		return this.helperService.runQuery<WritingProposalRespType.Delete>(async () => {
 			await this.writingProposalModel.destroy(
 				{
@@ -62,10 +63,10 @@ export class WritingProposalService {
 
 			return true
 		})
-	}
+	}*/
 
 	// Удаление предложений с переданном идентификатором группы
-	async deleteProposalsWithGroup(groupId: number): Promise<WritingProposalRespType.Delete | never> {
+	/*async deleteProposalsWithGroup(groupId: number): Promise<WritingProposalRespType.Delete | never> {
 		return this.helperService.runQuery<WritingProposalRespType.Delete>(async () => {
 			await this.writingProposalModel.destroy(
 				{
@@ -75,5 +76,5 @@ export class WritingProposalService {
 
 			return true
 		})
-	}
+	}*/
 }

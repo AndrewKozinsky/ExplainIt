@@ -1,54 +1,50 @@
-// import { ArticleRespType } from '../../../../api/src/types/generalResponse'
 // import UpdateArticleDto from '../../../../api/src/modules/articles/dto/update-article.dto'
-// import { makeFetch, RequestOptionsType } from 'requests/reqFn/fetch'
+import { makeFetch, RequestOptionsType } from 'requests/reqFn/fetch'
 // import getApiUrl, { APIAddressesType } from 'requests/reqFn/apiUrls'
 // import CreateArticleDto from '../../../../api/src/modules/articles/dto/create-article.dto'
+import { addresses } from 'requests/reqFn/apiUrls'
+import Types from '../../types/Types'
 
 // Объект с функциями запросов к статьям
-/*export const articleRequests = {
+export const articleRequests = {
 
-	// Получение списка всех статей
+	// Получение всех статей
 	getAll: async function () {
-		const urlKey: APIAddressesType = 'articles'
 		const options: RequestOptionsType = { method: 'GET' }
 
-		return await makeFetch<ArticleRespType.SuccessOrFailReturn<ArticleRespType.ArticleItem[]>>(
-			getApiUrl(urlKey), options
+		return await makeFetch<Types.Req.Article.GetAll>(
+			addresses.articles, options
 		)
 	},
 
 	// Создание статьи
-	createOne: async function (body: CreateArticleDto) {
+	/*createOne: async function (body: CreateArticleDto) {
 		const urlKey: APIAddressesType = 'articles'
 		const options: RequestOptionsType = { method: 'POST', body }
 
 		return await makeFetch<ArticleRespType.SuccessOrFailReturn<ArticleRespType.Article[]>>(
 			getApiUrl(urlKey), options
 		)
-	},
+	},*/
 
 	// Обновление статьи
-	updateOne: async function (articleId: number, body: UpdateArticleDto) {
-		const urlKey: APIAddressesType = 'article'
+	updateOne: async function (articleId: number, body: Types.Req.Article.UpdateOneDto) {
 		const options: RequestOptionsType = {
 			method: 'PATCH',
 			body
 		}
 
-		return await makeFetch<ArticleRespType.SuccessOrFailReturn<ArticleRespType.Article[]>>(
-			getApiUrl(urlKey, articleId), options
+		return await makeFetch<Types.Req.Article.UpdateOne>(
+			addresses.article(articleId), options
 		)
 	},
 
 	// Удаление статьи
 	deleteOne: async function (articleId: number) {
-		const urlKey: APIAddressesType = 'article'
 		const options: RequestOptionsType = { method: 'DELETE' }
 
-		return await makeFetch<ArticleRespType.SuccessOrFailReturn<ArticleRespType.Article[]>>(
-			getApiUrl(urlKey, articleId), options
+		return await makeFetch<Types.Req.Article.DeleteOne>(
+			addresses.article(articleId), options
 		)
 	}
-}*/
-
-export {}
+}

@@ -4,13 +4,13 @@
  * @param {String} propName — имя свойства
  * @param {String} value — значение свойства
  */
-/*export function setToLocalStorage(propName: string, value: any): void {
+export function setToLocalStorage(propName: string, value: any): void {
 	const savedValue = isPrimitiveDataType(value)
 		? value
 		: JSON.stringify(value)
 
 	localStorage.setItem(propName, savedValue)
-}*/
+}
 
 /**
  * Получение из localStorage данных предварительно пропущенных через JSON.parse
@@ -47,8 +47,6 @@ export function getFromLocalStorage<T>(propName: string, defaultValue?: T) : T |
  * Функция проверяет является ли переданные данные примитивного типа
  * @param {Object} val — данные, которые нужно проверить
  */
-/*function isPrimitiveDataType(val: any) {
+function isPrimitiveDataType(val: any) {
 	return val !== Object(val)
-}*/
-
-export {}
+}

@@ -1,12 +1,12 @@
 import {
 	Body,
 	Controller,
-	Delete,
+	// 	Delete,
 	HttpCode,
 	HttpStatus,
-	Param,
-	ParseIntPipe,
-	// 		Patch,
+	// 	Param,
+	// 	ParseIntPipe,
+	// 			Patch,
 	Post,
 	Res,
 } from '@nestjs/common'
@@ -15,7 +15,6 @@ import { WritingProposalService } from '../writingProposal/writingProposal.servi
 import CreateTranslateDto from './dto/createTranslate.dto'
 import { TranslateRespType } from './response/responseTypes'
 import { TranslateService } from './translate.service'
-// import { TranslateService } from './translate.service'
 import { HelperService } from '../helper/helper.service'
 // import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 // import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
@@ -77,9 +76,9 @@ export class TranslateController {
 		}
 	}*/
 
-	@Delete(':id')
-	@HttpCode(HttpStatus.OK)
-	async deleteOne(
+	// @Delete(':id')
+	// @HttpCode(HttpStatus.OK)
+	/*async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<TranslateRespType.DeleteWrap> {
@@ -99,5 +98,5 @@ export class TranslateController {
 		return this.helperService.createSuccessResponse (
 			{ translates: null }, HttpStatus.OK
 		)
-	}
+	}*/
 }

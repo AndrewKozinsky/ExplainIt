@@ -1,20 +1,21 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
-import { Sequelize } from 'sequelize-typescript'
+// import { Sequelize } from 'sequelize-typescript'
 import { Article } from './model/article.model'
 import CreateArticleDto from './dto/createArticle.dto'
 import { HelperService } from '../helper/helper.service'
 import UpdateArticleDto from './dto/updateArticle.dto'
 import { ProposalsGroup } from '../proposalsGroup/model/proposalsGroup.model'
-import { ArticleRespType } from './response/responseTypes'
+import ArticleRespType from './response/responseTypes'
 import { OralProposal } from '../oralProposal/model/oralProposal.model'
 import { WritingProposal } from '../writingProposal/model/writingProposal.model'
 import { Translate } from '../translate/model/translate.model'
+import { Word } from '../word/model/word.model'
 
 @Injectable()
 export class ArticleService {
 	constructor(
-		private sequelize: Sequelize,
+		// private sequelize: Sequelize,
 
 		@InjectModel(Article)
 		private articleModel: typeof Article,
@@ -26,7 +27,7 @@ export class ArticleService {
 	async getAll(): Promise<ArticleRespType.GetAll | never> {
 		return this.helperService.runQuery<ArticleRespType.GetAll>(() => {
 			return this.articleModel.findAll({
-				attributes: ['id', 'name', 'published', 'order'],
+				attributes: ['id', 'name', 'published', 'order', 'payAtn'],
 				order: [['order', 'ASC']]
 			})
 		})
@@ -44,11 +45,12 @@ export class ArticleService {
 						model: ProposalsGroup,
 						include: [
 							{
-								model: OralProposal
+								model: OralProposal,
+								include: [Word]
 							},
 							{
 								model: WritingProposal,
-								include: [Translate]
+								include: [Translate, Word]
 							},
 						]
 					}

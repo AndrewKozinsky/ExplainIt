@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 // import { Loader } from 'components/common/Loading/Loading'
-import SvgIcon, { SvgIconPropType, SvgIconType } from '../../icons/SvgIcon'
+import SvgIcon, { SvgIconPropType, SvgIconType } from '../../common/icons/SvgIcon'
 // import makeClasses from './Button-classes'
 
 // type ButtonColorType = 'base' | 'white'

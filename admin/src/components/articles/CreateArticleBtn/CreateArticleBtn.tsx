@@ -2,7 +2,7 @@ import React from 'react'
 // import Button from '../../formElements/Button/Button'
 // import { createNewArticle, useIsDisabled } from './CreateChapterBtn-func'
 
-function CreateChapterBtn() {
+function CreateArticleBtn() {
 	// const isDisabled = useIsDisabled()
 
 	/*return (
@@ -17,4 +17,4 @@ function CreateChapterBtn() {
 	return <p>CreateChapterBtn</p>
 }
 
-export default CreateChapterBtn
+export default CreateArticleBtn

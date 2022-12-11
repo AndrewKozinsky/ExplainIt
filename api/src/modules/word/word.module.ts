@@ -7,8 +7,8 @@ import { WritingProposalModule } from '../writingProposal/writingProposal.module
 
 @Module({
 	imports: [
-		// SequelizeModule.forFeature([Translate]),
-		// WritingProposalModule,
+		SequelizeModule.forFeature([Word]),
+		WritingProposalModule,
 		// forwardRef(() => ProposalsGroupModule)
 	],
 	controllers: [WordController],

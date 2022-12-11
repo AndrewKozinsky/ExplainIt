@@ -11,6 +11,14 @@ const wordConstraints = {
 	wrongVerbs: {
 		maxLength: 255
 	},
+	order: {
+		min: -32768,
+		max: 32767
+	},
+	proposalId: {
+		min: -32768,
+		max: 32767
+	}
 }
 
 export default wordConstraints

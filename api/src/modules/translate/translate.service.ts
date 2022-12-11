@@ -19,11 +19,11 @@ export class TranslateService {
 	) {}
 
 	// Получение перевода
-	async getOne(articleId: number): Promise<TranslateRespType.GetOne | null | never> {
+	/*async getOne(articleId: number): Promise<TranslateRespType.GetOne | null | never> {
 		return this.helperService.runQuery<TranslateRespType.GetOne | null>(() => {
 			return this.translateModel.findByPk(articleId)
 		})
-	}
+	}*/
 
 	// Создание перевода
 	async createOne(articleDto: CreateTranslateDto): Promise<TranslateRespType.CreateOne | never> {

@@ -1,10 +1,10 @@
 // ОБЁРТКА ПРИНИМАЮЩАЯ КОМПОНЕНТ И РИСУЮЩАЯ ЗАГРУЗЧИК ПОВЕРХ
-/*.content-loading {
+.content-loading {
 	position: relative;
 	flex-grow: 1;
-}*/
+}
 
-/*.content-loading__cover {
+.content-loading__cover {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -18,29 +18,29 @@
 	opacity: 0;
 	pointer-events: none;
 	transition: opacity .3s;
-}*/
+}
 
-/*.content-loading__cover--open {
+.content-loading__cover--open {
 	opacity: .5;
-}*/
+}
 
 
 // ОБЁРТКА ПУСТОГО ЗАГРУЗЧИКА
-/*.loading {
+.loading {
 	display: flex;
 	flex-grow: 1;
 	justify-content: center;
 	align-items: center;
-}*/
+}
 
 
 // ЗАГРУЗЧИК
-/*.loader__wrapper {
+.loader__wrapper {
     width: 30px;
     height: 30px;
-}*/
+}
 
-/*.loader__svg {
+.loader__svg {
     animation: spin 1.25s linear infinite;
 
     circle {
@@ -51,10 +51,10 @@
         fill: var(--bg-color);
         opacity: .8;
     }
-}*/
+}
 
-/*@keyframes spin {
+@keyframes spin {
     to {
         transform: rotate(360deg);
     }
-}*/
+}
