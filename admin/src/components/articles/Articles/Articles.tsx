@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import useGetArticleSelectors from 'store/article/articleSelectors'
 import {
+	deleteArticle,
 	useRequestArticles,
 	useRestoreAppState
 } from './Articles-func'
@@ -25,8 +26,8 @@ function Articles() {
 				items={articles}
 				selectedItemId={selectedArticleId}
 				onClickHandler={articleService.select}
-				onDeleteItem={articleService.delete}
-				onChangeItemOrder={articleService.changeOrder}
+				onDeleteItem={deleteArticle}
+				onChangeItemOrder={articleService.changeOrder.bind(articleService)}
 			/>
 		</ContentLoading>
 	)

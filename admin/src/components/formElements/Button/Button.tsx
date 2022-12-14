@@ -1,20 +1,21 @@
 import React, { ReactElement } from 'react'
-// import { Loader } from 'components/common/Loading/Loading'
+import { Loader } from 'components/common/Loading/Loading'
 import SvgIcon, { SvgIconPropType, SvgIconType } from '../../common/icons/SvgIcon'
-// import makeClasses from './Button-classes'
+import makeClasses from './Button-classes'
+import { isAllOf } from '@reduxjs/toolkit'
 
-// type ButtonColorType = 'base' | 'white'
+type ButtonColorType = 'base' | 'white'
 
 export type ButtonPropType = {
-    // type?: 'button' | 'submit' | 'reset'
+    type?: 'button' | 'submit' | 'reset'
     view?: 'standard' | 'onlyIcon'
-    // color?: ButtonColorType
+    color?: ButtonColorType
     icon?: SvgIconType
     text?: string | ReactElement
-	// loading?: boolean
-    // block?: boolean // Должна ли кнопка быть блочным элементом на всю ширину
+	loading?: boolean
+    block?: boolean // Должна ли кнопка быть блочным элементом на всю ширину
     onClick?: (...args: any[]) => void
-    // disabled?: boolean
+    disabled?: boolean
 }
 
 
@@ -22,12 +23,12 @@ export type ButtonPropType = {
 export default function Button(props: ButtonPropType): ReactElement {
 
 	let {
-		// type = 'button', // Тип кнопки. Варианты: standard (стандартная кнопка), onlyIcon (только значок)
+		type = 'button', // Тип кнопки. Варианты: standard (стандартная кнопка), onlyIcon (только значок)
 		view = 'standard', // Вид кнопки. Варианты: standard (стандартная кнопка), onlyIcon (только значок)
-		// icon, // Тип значка
+		icon, // Тип значка
 		text, // Текст на кнопке
-		// loading = false, // Нужно ли на кнопке рисовать загрузчик
-		// disabled = false, // Заблокирована ли кнопка
+		loading = false, // Нужно ли на кнопке рисовать загрузчик
+		disabled = false, // Заблокирована ли кнопка
 		onClick,
 	} = props
 
@@ -36,63 +37,64 @@ export default function Button(props: ButtonPropType): ReactElement {
 	if (view !== 'onlyIcon' && text) btnText = text
 
 	// При загрузке поменять текст кнопки
-	/*if (btnText && loading) {
+	if (btnText && loading) {
 		btnText = 'Отправка...'
-	}*/
+	}
 
 	// Если включена загрузка, то заблокировать кнопку и убрать значок
-	/*if (loading) {
+	if (loading) {
 		disabled = true
 		icon = undefined
-	}*/
+	}
 
-	// const CN = makeClasses(props)
+	const CN = makeClasses(props)
 
 	// Атрибуты кнопки
 	const btnAttrs: Record<string, any> = {
-		// type,
-		// className: CN.root,
-		// disabled
+		type,
+		className: CN.root,
+		disabled
 	}
 	if (onClick) btnAttrs.onClick = onClick
 
 	return (
 		<button {...btnAttrs}>
-			{/*<ButtonIcon iconType={icon} CN={CN} />*/}
-			{/*<ButtonLoader loading={loading} />*/}
+			<ButtonIcon iconType={icon} CN={CN} />
+			<ButtonLoader loading={loading} />
 			{btnText}
 		</button>
 	)
 }
 
 
-/*type ButtonIconPropType = {
+type ButtonIconPropType = {
     iconType: SvgIconType | undefined // Тип значка. Если не передан, то кнопка не будет отрисована
 	CN: Record<string, string>
-}*/
+}
 
 /* Значок на кнопке */
-/*function ButtonIcon(props: ButtonIconPropType) {
+function ButtonIcon(props: ButtonIconPropType) {
 	const { iconType, CN } = props
 
 	if (!iconType) return null
 
-	const attrs: SvgIconPropType = { type: iconType }
+	const attrs: SvgIconPropType = {
+		type: iconType,
+		extraClass: CN.icon
+	}
 
-	return <SvgIcon {...attrs} extraClass={CN.icon}  />
-}*/
+	return <SvgIcon {...attrs} />
+}
 
 
-/*type ButtonLoaderPropType = {
+type ButtonLoaderPropType = {
     loading?: boolean // Нужно ли отрисовать загрузчик
-}*/
+}
 
 /** Компонент загрузчика кнопки */
-/*function ButtonLoader(props: ButtonLoaderPropType) {
+function ButtonLoader(props: ButtonLoaderPropType) {
 	const { loading = false } = props
 
 	if (!loading) return null
 	return <Loader className="btn-loader"/>
-}*/
-
-export {}
+}

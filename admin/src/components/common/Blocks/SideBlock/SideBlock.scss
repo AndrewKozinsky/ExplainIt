@@ -2,7 +2,8 @@ $CN: side-block;
 
 .#{$CN} {
 	display: flex;
-	width: 100%;
+	//width: 100%;
+	width: 200%;
 }
 
 .#{$CN}__left {

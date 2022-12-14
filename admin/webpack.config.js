@@ -82,6 +82,7 @@ function getResolve() {
 			store:    path.resolve(__dirname, './src/store'),
 			requests: path.resolve(__dirname, './src/requests'),
 			utils:    path.resolve(__dirname, './src/utils'),
+			types:    path.resolve(__dirname, './src/types'),
 		}
 	}
 }

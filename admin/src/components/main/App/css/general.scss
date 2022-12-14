@@ -18,6 +18,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+input, textarea {
+  font-family: 'Suisse', sans-serif;
+  font-size: 1.5rem;
+  line-height: 2.1rem;
+  font-weight: 400;
+}
+
 /** {
     &::-webkit-scrollbar {
         width: .6rem;

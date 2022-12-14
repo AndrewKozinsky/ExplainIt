@@ -2,15 +2,14 @@ import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-t
 import oralProposalConstraints from './oralProposal.constraints'
 import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
 import { Word } from '../../word/model/word.model'
+import { CreationOptional } from 'sequelize'
 
 @Table
 export class OralProposal extends Model<Partial<OralProposal>> {
-	/*@Column({
-		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
-		autoIncrement: true,
-		primaryKey: true
-	})
-	id: number*/
+	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
+	declare id: number
+	declare createdAt: CreationOptional<Date>
+	declare updatedAt: CreationOptional<Date>
 
 	@Column({
 		type: DataType.STRING(oralProposalConstraints.rusProposal.maxLength),  // Varchar(255)

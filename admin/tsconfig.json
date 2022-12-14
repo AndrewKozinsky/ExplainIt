@@ -25,7 +25,8 @@
             "components/*": ["./src/components/*"],
             "store/*": ["./src/store/*"],
             "requests/*": ["./src/requests/*"],
-            "utils/*": ["./src/utils/*"]
+            "utils/*": ["./src/utils/*"],
+            "types/*": ["./src/types/*"],
         }
     },
     "include": [

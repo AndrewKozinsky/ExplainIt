@@ -3,15 +3,14 @@ import groupConstraints from './group.constraints'
 import { Article } from '../../article/model/article.model'
 import { OralProposal } from '../../oralProposal/model/oralProposal.model'
 import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
+import { CreationOptional } from 'sequelize'
 
 @Table({ timestamps: false })
 export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
-	/*@Column({
-		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
-		autoIncrement: true,
-		primaryKey: true
-	})
-	id: number*/
+	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
+	declare id: number
+	declare createdAt: CreationOptional<Date>
+	declare updatedAt: CreationOptional<Date>
 
 	@Column({
 		type: DataType.STRING(groupConstraints.type.maxLength),  // Varchar(255)

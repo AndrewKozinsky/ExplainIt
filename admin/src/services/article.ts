@@ -1,13 +1,45 @@
 import { Dispatch } from 'redux'
+import store from 'store/store'
 import { articleRequests } from 'requests/articles/articleRequests'
 import articleSlice from 'store/article/articleSlice'
 import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
 import Types from '../types/Types'
 import { IndexListItemType } from 'components/common/IndexList/IndexList'
-import store from 'store/store'
 import { saveAppDataToLocalStorage } from 'components/main/App/App-restoreStateFunc'
 
 const articleService = {
+	async createArticle() {
+		const articlesArr = store.getState().article.articles
+
+		const reqBody: Types.Req.Article.CreateOneDto = {
+			name: 'New article',
+			chapter: 'Не известно',
+			published: false,
+			summary: 'Краткое содержимое статьи',
+			order: articlesArr?.length ? articlesArr.length + 1 : 1
+		}
+
+		try {
+			const response = await articleRequests.createOne(reqBody)
+			store.dispatch(articleSlice.actions.setNeedToLoadAllArticles(true))
+
+			if (response.status === 'success') {
+				const newIndexListItemArr = this.artsListDataFromServerToIndexListData([response.data.articles])
+				store.dispatch(articleSlice.actions.insertNewArticle(newIndexListItemArr[0]))
+			}
+			else if (response.status === 'fail' && response.message) {
+				store.dispatch(globalErrorsSlice.actions.setError(response.message))
+			}
+		}
+		catch(err) {
+			store.dispatch(globalErrorsSlice.actions.setError(
+				'Возникла неизвестная ошибка при создании статьи.'
+			))
+
+			store.dispatch(articleSlice.actions.setNeedToLoadAllArticles(true))
+		}
+	},
+
 	/**
 	 * Функция получает список статей и помещает в Хранилище
 	 * @param {Object} dispatch — функция-диспетчер Редакса
@@ -119,9 +151,9 @@ const articleService = {
 				this.requestUpdateArticle(article.id, { order: i + 1 })
 
 				// Обновить порядковый номер статьи в Хранилище
-				/*store.dispatch(articleSlice.actions.updateArticleListItem(
+				store.dispatch(articleSlice.actions.updateArticleListItem(
 					{ articleId: article.id, newProps: { order: i + 1 } }
-				))*/
+				))
 			}
 		})
 	},
@@ -169,10 +201,32 @@ const articleService = {
 				)
 			)
 
-			console.log(this)
-			// this.updateArticlesOrderProp()
+			this.updateArticlesOrderProp()
 		}
-	}
+	},
+
+	/** Функция получает статью и помещает в Хранилище */
+	async requestArticleAndSetToStore(articleId: number) {
+		try {
+			const response = await articleRequests.getOne(articleId)
+
+			if (response.status === 'success') {
+				store.dispatch(
+					articleSlice.actions.setArticle(response.data.articles)
+				)
+			}
+			else if (response.status === 'fail') {
+				store.dispatch(articleSlice.actions.setArticles([]))
+
+				if (response.message) {
+					store.dispatch(globalErrorsSlice.actions.setError(response.message))
+				}
+			}
+		}
+		catch(err) {
+			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.'))
+		}
+	},
 }
 
 export default articleService

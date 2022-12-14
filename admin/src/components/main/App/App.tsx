@@ -8,6 +8,7 @@ import './css/reset.css'
 import './css/variables.scss'
 import './css/general.scss'
 import './css/app.scss'
+import Article from 'components/article/Article/Article'
 
 
 function App(): ReactElement {
@@ -20,8 +21,8 @@ function App(): ReactElement {
 
 	return (
 		<main className='app'>
-			<SideBlock leftTop={<Articles />} leftBottom={<CreateArticleBtn />} />
-			<SideBlock />
+			<SideBlock leftTop={<Articles />} leftBottom={<CreateArticleBtn />} right={<Article />} />
+			{/*<SideBlock />*/}
 			<GlobalErrors />
 		</main>
 	)

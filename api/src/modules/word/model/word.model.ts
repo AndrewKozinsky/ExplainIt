@@ -1,5 +1,5 @@
 import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
-import { DataTypes } from 'sequelize'
+import { CreationOptional, DataTypes } from 'sequelize'
 import { IsPositive, Max } from 'class-validator'
 import wordConstraints from './word.constraints'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
@@ -8,12 +8,10 @@ import { OralProposal } from '../../oralProposal/model/oralProposal.model'
 
 @Table
 export class Word extends Model<Partial<Word>> {
-	/*@Column({
-		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
-		autoIncrement: true,
-		primaryKey: true
-	})
-	id: number*/
+	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
+	declare id: number
+	declare createdAt: CreationOptional<Date>
+	declare updatedAt: CreationOptional<Date>
 
 	@Column({
 		type: DataType.STRING(wordConstraints.rusWord.maxLength),  // Varchar(255)

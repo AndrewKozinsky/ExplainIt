@@ -1,0 +1,53 @@
+$CN: toggle;
+
+.#{$CN} {
+
+}
+
+.#{$CN}__checkbox + .#{$CN}__label {
+  cursor: pointer; /*Чтобы курсор был пальцем при наведении на название*/
+}
+.#{$CN}__checkbox:not(checked){
+  position: absolute; /*Абсолютное позиционирование нужно чтобы флаг не мешал потоку*/
+  opacity: 0;
+}
+.#{$CN}__checkbox:not(checked) + .#{$CN}__label {
+  position: relative; /* будем позиционировать псевдофлаг относительно label */
+  padding: 0 0 0 40px; /* оставляем слева от label место под псевдофлаг */
+}
+
+/*Оформление псевдофлага в выключенном состоянии*/
+.#{$CN}__checkbox:not(checked) + .#{$CN}__label:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 16px;
+  border: 1px solid var(--text-color);
+  border-radius: 10px;
+  transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */
+}
+.#{$CN}__checkbox:not(checked) + .#{$CN}__label:after{
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--text-color);
+  transition: all .2s; /* анимация, чтобы чекбокс переключался плавно */
+}
+/*Оформление псевдофлага в включенном состоянии*/
+.#{$CN}__checkbox:checked + .#{$CN}__label:before{
+	background-color: var(--text-color);
+}
+.#{$CN}__checkbox:checked + .#{$CN}__label:after{
+  left: 17px;
+  background-color: white;
+  border-color: white;
+}
+.#{$CN}__checkbox:focus + .#{$CN}__label:before{
+  //box-shadow: 0 0 0 3px rgba(255, 255, 0, .5);
+}

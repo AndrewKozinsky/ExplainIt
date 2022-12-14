@@ -1,15 +1,14 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript'
 import articleConstraints from './article.constraints'
 import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
+import { CreationOptional } from 'sequelize'
 
 @Table
 export class Article extends Model<Partial<Article>> {
-	/*@Column({
-		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
-		autoIncrement: true,
-		primaryKey: true
-	})
-	id: number*/
+	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
+	declare id: number
+	declare createdAt: CreationOptional<Date>
+	declare updatedAt: CreationOptional<Date>
 
 	@Column({
 		type: DataType.STRING(articleConstraints.name.maxLength),  // Varchar(255)
@@ -38,6 +37,7 @@ export class Article extends Model<Partial<Article>> {
 	@Column({
 		type: DataType.TEXT,
 		allowNull: false,
+		defaultValue: ''
 	})
 	content: string // Содержимое главы
 

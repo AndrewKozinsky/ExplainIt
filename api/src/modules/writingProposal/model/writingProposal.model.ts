@@ -1,5 +1,5 @@
 import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript'
-import { DataTypes } from 'sequelize'
+import { CreationOptional, DataTypes } from 'sequelize'
 import writingProposalConstraints from './writingProposal.constraints'
 import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
 import { Translate } from '../../translate/model/translate.model'
@@ -7,12 +7,10 @@ import { Word } from '../../word/model/word.model'
 
 @Table
 export class WritingProposal extends Model<Partial<WritingProposal>> {
-	/*@Column({
-		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
-		autoIncrement: true,
-		primaryKey: true
-	})
-	id: number*/
+	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
+	declare id: number
+	declare createdAt: CreationOptional<Date>
+	declare updatedAt: CreationOptional<Date>
 
 	@Column({
 		type: DataType.STRING(writingProposalConstraints.rusProposal.maxLength),  // Varchar(255)

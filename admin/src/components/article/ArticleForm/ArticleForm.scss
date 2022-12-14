@@ -1,0 +1,11 @@
+$CN: article-form;
+
+.#{$CN} {
+  display: grid;
+  gap: 15px;
+}
+
+.#{$CN}__bottom {
+  display: flex;
+  justify-content: flex-end;
+}

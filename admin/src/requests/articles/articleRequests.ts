@@ -17,15 +17,23 @@ export const articleRequests = {
 		)
 	},
 
+	// Получение статьи
+	getOne: async function (articleId: number) {
+		const options: RequestOptionsType = { method: 'GET' }
+
+		return await makeFetch<Types.Req.Article.GetOne>(
+			addresses.article(articleId), options
+		)
+	},
+
 	// Создание статьи
-	/*createOne: async function (body: CreateArticleDto) {
-		const urlKey: APIAddressesType = 'articles'
+	createOne: async function (body: Types.Req.Article.CreateOneDto) {
 		const options: RequestOptionsType = { method: 'POST', body }
 
-		return await makeFetch<ArticleRespType.SuccessOrFailReturn<ArticleRespType.Article[]>>(
-			getApiUrl(urlKey), options
+		return await makeFetch<Types.Req.Article.CreateOne>(
+			addresses.articles, options
 		)
-	},*/
+	},
 
 	// Обновление статьи
 	updateOne: async function (articleId: number, body: Types.Req.Article.UpdateOneDto) {

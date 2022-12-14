@@ -19,13 +19,17 @@ export function useRequestArticles(): void {
 	}, [needToLoadAllArticles])
 }
 
-
-
-/**
- * Хук при загрузке страницы запускает функцию восстанавливающую значения Хранилища
- */
+/** Хук при загрузке страницы запускает функцию восстанавливающую значения Хранилища */
 export function useRestoreAppState() {
 	useEffect(() => {
 		restoreStateFromLocalStorage()
 	}, [])
+}
+
+export function deleteArticle(articleId: number) {
+	const result = confirm('Вы уверены в удалении статьи')
+
+	if (result) {
+		articleService.delete(articleId)
+	}
 }

@@ -1,6 +1,8 @@
 $CN: btn;
 
-/*.#{$CN} {
+.#{$CN} {
+  display: flex;
+  align-items: center;
     text-align: left;
     cursor: pointer;
     font-size: 1.5rem;
@@ -21,34 +23,34 @@ $CN: btn;
         cursor: default;
 		border-color: var(--gray-color-1);
     }
-}*/
+}
 
 
 // Белый цвет кнопки.
-/*.#{$CN}--white-color {
+.#{$CN}--white-color {
     border: none;
-}*/
+}
 
 
 // Значок
-/*.#{$CN}__icon {
-    margin-bottom: -2px;
-}*/
+.#{$CN}__icon {
+    margin: 0 5px 0 0;
+}
 
 // Если кнопка должна быть блочным элементом на всю ширину
-/*.#{$CN}--block {
+.#{$CN}--block {
     display: block;
     width: 100%;
 	text-align: center;
-}*/
+}
 
 // Загрузчик
 $loaderCN: btn-loader;
 
-/*.#{$loaderCN} {
+.#{$loaderCN} {
 	display: inline-block;
 	width: 14px;
 	height: 14px;
 	vertical-align: -2px;
 	margin-right: 4px;
-}*/
+}

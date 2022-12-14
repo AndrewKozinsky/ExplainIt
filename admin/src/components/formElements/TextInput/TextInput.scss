@@ -1,37 +1,17 @@
 $CN: text-input;
 
-/*.#{$CN} {
-    display: block;
-    width: 100%;
-    font-family: 'SF UI Display', sans-serif;
-    font-size: 1.4rem;
-    line-height: 1.8rem;
-    padding: .4rem 0.8rem;
-    color: hsl(var(--text-color));
-    box-sizing: border-box;
+.#{$CN} {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: 1px solid var(--gray-color-1);
+  border-radius: var(--radius);
+  transition: border-color .2s;
 
-    background-color: var(--text-input-color);
-    border: none;
-    border-radius: var(--radius);
-    transition: opacity .3s;
+  &:focus {
+	border-color: var(--gray-color-2);
+  }
+}
 
-    &::placeholder {
-        font-size: 1.3rem;
-        line-height: 1.7rem;
-        color: hsl(var(--text-placeholder-color));
-    }
 
-    &:focus {
-        // Включение стандартной фокусировки
-        @include focus
-    }
-
-    &:disabled {
-        opacity: .5;
-    }
-}*/
-
-// Задание максимальной ширины
-/*.#{$CN}--maxWidth-250 {
-    max-width: 250px;
-}*/

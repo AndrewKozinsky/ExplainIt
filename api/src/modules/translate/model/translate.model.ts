@@ -1,16 +1,14 @@
 import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import translateConstraints from './translate.constraints'
-import { DataTypes } from 'sequelize'
+import { CreationOptional, DataTypes } from 'sequelize'
 import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
 
 @Table
 export class Translate extends Model<Partial<Translate>> {
-	/*@Column({
-		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
-		autoIncrement: true,
-		primaryKey: true
-	})
-	id: number*/
+	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
+	declare id: number
+	declare createdAt: CreationOptional<Date>
+	declare updatedAt: CreationOptional<Date>
 
 	@Column({
 		type: DataType.TEXT(),
