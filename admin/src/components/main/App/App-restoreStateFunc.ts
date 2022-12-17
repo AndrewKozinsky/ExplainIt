@@ -24,7 +24,7 @@ export function restoreStateFromLocalStorage() {
 
 		if (prop === 'articleId') {
 			store.dispatch(
-				articleSlice.actions.setSelectedArticleId(propValue)
+				articleSlice.actions.setArticleId(propValue)
 			)
 		}
 	}

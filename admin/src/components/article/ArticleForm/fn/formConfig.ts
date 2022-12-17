@@ -2,13 +2,32 @@ import { getEmptyFormConfig } from 'utils/miscUtils'
 import MFTypes from 'utils/modernForm/lib/MFTypes'
 import Types from '../../../../types/Types'
 import { articleRequests } from 'requests/articles/articleRequests'
-import {isAllOf} from "@reduxjs/toolkit";
+import { useEffect, useState } from 'react'
+import useGetArticleSelectors from 'store/article/articleSelectors'
 
-export function getFormConfig(article: Types.Req.Article.FullArticle | null): MFTypes.Config {
-	if (!article) {
-		return getEmptyFormConfig()
-	}
+export function useGetFormConfig() {
+	const { article, articleStatus } = useGetArticleSelectors()
 
+	const [formConfig, setFormConfig] = useState<MFTypes.Config>(
+		getFormConfig(article as Types.Req.Article.FullArticle)
+	)
+
+	const [isFirstRender, setIsFirstRender] = useState(true)
+
+	useEffect(function () {
+		if (articleStatus !== 'downloaded' || !article || isFirstRender) {
+			setIsFirstRender(false)
+			return
+		}
+
+		const formConfig = getFormConfig(article)
+		setFormConfig(formConfig)
+	}, [articleStatus])
+
+	return formConfig
+}
+
+function getFormConfig(article: Types.Req.Article.FullArticle): MFTypes.Config {
 	return {
 		fields: {
 			name: {

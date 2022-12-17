@@ -3,8 +3,9 @@ import ArticleStoreType from 'store/article/ArticleStoreType'
 
 
 const initialState: ArticleStoreType.State = {
-	selectedArticleId: null, // id выбранной статьи
 	articles: [],            // Массив всех статей
+	articleId: null, // id выбранной статьи
+	articleStatus: 'empty', // статус загрузки статьи
 	article: null,           // Текущая статья
 	needToLoadAllArticles: true    // Нужно ли загрузить массив статей. После загрузки статус становится в false.
 }
@@ -16,11 +17,14 @@ const articleSlice = createSlice({
 		setArticles(state, action: ArticleStoreType.SetArticlesAction) {
 			state.articles = action.payload
 		},
+		setArticleId(state, action: ArticleStoreType.SetArticleId) {
+			state.articleId = action.payload
+		},
+		setArticleStatus(state, action: ArticleStoreType.SetArticleStatus) {
+			state.articleStatus = action.payload
+		},
 		setArticle(state, action: ArticleStoreType.SetArticleAction) {
 			state.article = action.payload
-		},
-		setSelectedArticleId(state, action: ArticleStoreType.SetSelectedArticleId) {
-			state.selectedArticleId = action.payload
 		},
 		setNeedToLoadAllArticles(state, action: ArticleStoreType.SetLoadAllArticles) {
 			state.needToLoadAllArticles = action.payload

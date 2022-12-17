@@ -5,11 +5,14 @@ import Types from '../../types/Types'
 
 namespace ArticleStoreType {
 	export type SelectedArticleId = null | number
+	// Статус загрузки статьи: empty (статьи нет), pending (загрузка), downloaded (загружена)
+	export type ArticleStatus = 'empty' | 'pending' | 'downloaded'
 
 	// Состояние Хранилища
 	export type State = {
-		selectedArticleId: SelectedArticleId
 		articles: IndexListItemType[]
+		articleId: SelectedArticleId
+		articleStatus: ArticleStatus
 		article: null | Types.Req.Article.FullArticle
 		needToLoadAllArticles: boolean
 	}
@@ -21,7 +24,9 @@ namespace ArticleStoreType {
 	export type SetArticleAction = PayloadAction<Types.Req.Article.FullArticle>
 
 	// Установка id выбранной статьи
-	export type SetSelectedArticleId = PayloadAction<SelectedArticleId>
+	export type SetArticleId = PayloadAction<SelectedArticleId>
+
+	export type SetArticleStatus = PayloadAction<ArticleStatus>
 
 	// Изменение статуса необходимости скачивания списка всех статей
 	export type SetLoadAllArticles = PayloadAction<boolean>

@@ -96,7 +96,10 @@ const articleService = {
 	 */
 	select(articleId: number) {
 		store.dispatch(
-			articleSlice.actions.setSelectedArticleId(articleId)
+			articleSlice.actions.setArticleId(articleId)
+		)
+		store.dispatch(
+			articleSlice.actions.setArticleStatus('pending')
 		)
 
 		// Сохранить id выделенной статьи в LocalStorage чтобы при загрузке страницы снова её выделить
@@ -114,10 +117,10 @@ const articleService = {
 
 			if (response.status === 'success') {
 				// Если удалили выделенную статью, то обнулять выделение
-				const selectedArticleId = store.getState().article.selectedArticleId
+				const selectedArticleId = store.getState().article.articleId
 
 				if (selectedArticleId === articleId) {
-					store.dispatch( articleSlice.actions.setSelectedArticleId(null) )
+					store.dispatch( articleSlice.actions.setArticleId(null) )
 				}
 
 				// Удалить элемент из массива статей
@@ -214,6 +217,9 @@ const articleService = {
 				store.dispatch(
 					articleSlice.actions.setArticle(response.data.articles)
 				)
+				store.dispatch(
+					articleSlice.actions.setArticleStatus('downloaded')
+				)
 			}
 			else if (response.status === 'fail') {
 				store.dispatch(articleSlice.actions.setArticles([]))
@@ -221,6 +227,9 @@ const articleService = {
 				if (response.message) {
 					store.dispatch(globalErrorsSlice.actions.setError(response.message))
 				}
+				store.dispatch(
+					articleSlice.actions.setArticleStatus('empty')
+				)
 			}
 		}
 		catch(err) {

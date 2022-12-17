@@ -10,7 +10,7 @@ import { createFieldProps } from './components/createFieldComps'
 export default function useGetModernForm(formConfig: MFTypes.Config) {
 	// Получения хранилищ и обработчиков используемых в форме
 	const formState = useFormState(formConfig)
-	
+
 	return {
 		fieldAttrs: createFieldProps(formState, formConfig), // Объект с состоянием полей
 		onSubmit: formState.onSubmitFn,                      // Обработчик отправки форм, который нужно поставить в свойство onSubmit в <form>

@@ -18,13 +18,13 @@ function Articles() {
 	useRestoreAppState()
 
 	// Список статей
-	const { articles, selectedArticleId, needToLoadAllArticles } = useGetArticleSelectors()
+	const { articles, articleId, needToLoadAllArticles } = useGetArticleSelectors()
 
 	return (
 		<ContentLoading loading={needToLoadAllArticles}>
 			<IndexList
 				items={articles}
-				selectedItemId={selectedArticleId}
+				selectedItemId={articleId}
 				onClickHandler={articleService.select}
 				onDeleteItem={deleteArticle}
 				onChangeItemOrder={articleService.changeOrder.bind(articleService)}

@@ -9,6 +9,8 @@ module.exports = {
 		sourceType: 'module'
 	},
 	rules: {
-		'object-curly-spacing': ['warn', 'always']
+		'object-curly-spacing': ['warn', 'always'],
+		quotes: ['warn', 'single'],
+		semi: ['warn', 'never'],
 	}
 }
