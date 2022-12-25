@@ -1,13 +1,13 @@
 import {
 	Body,
 	Controller,
-	// 	Delete,
+	Delete,
 	// 	Get,
 	HttpCode,
 	HttpStatus,
-	// 	Param,
-	// 	ParseIntPipe,
-	// 	Patch,
+	Param,
+	ParseIntPipe,
+	Patch,
 	Post,
 	Res
 } from '@nestjs/common'
@@ -16,8 +16,8 @@ import { HelperService } from '../helper/helper.service'
 import { ProposalsGroupService } from './proposalsGroup.service'
 import CreateGroupDto from './dto/createGroup.dto'
 import { ArticleService } from '../article/article.service'
-import { ProposalsGroupRespType } from './response/responseTypes'
-// import UpdateGroupDto from './dto/updateGroup.dto'
+import ProposalsGroupRespType from './response/responseTypes'
+import UpdateGroupDto from './dto/updateGroup.dto'
 
 @Controller('proposalsGroup')
 export class ProposalsGroupController {
@@ -75,14 +75,15 @@ export class ProposalsGroupController {
 		)
 	}
 
-	// @Patch(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async update(
+	@Patch(':id')
+	@HttpCode(HttpStatus.OK)
+	async update(
 		@Body() groupDto: UpdateGroupDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<ProposalsGroupRespType.UpdateOneWrap> {
-		// Обновить статью в БД
+
+		// Обновить группу в БД
 		const updatedGroup = await this.proposalsGroupService.updateOne(id, groupDto)
 
 		// Сформировать и возвратить клиенту ответ
@@ -97,11 +98,11 @@ export class ProposalsGroupController {
 				HttpStatus.BAD_REQUEST, 'Группа упражнений не найдена'
 			)
 		}
-	}*/
+	}
 
-	// @Delete(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async deleteOne(
+	@Delete(':id')
+	@HttpCode(HttpStatus.OK)
+	async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<ProposalsGroupRespType.DeleteOneWrap> {
@@ -121,5 +122,5 @@ export class ProposalsGroupController {
 		return this.helperService.createSuccessResponse (
 			{ proposalsGroups: null }, HttpStatus.OK
 		)
-	}*/
+	}
 }

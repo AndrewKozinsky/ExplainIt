@@ -7,13 +7,13 @@ import MFTypes from '../MFTypes'
 export default function getInitialFieldsState(formConfig: MFTypes.Config): MFTypes.StateFields {
 	// Объект состояния полей
 	const fields: MFTypes.StateFields = {}
-	
+
 	const formConfigFields = formConfig.fields
-	
+
 	// Перебор полей переданных в объекте конфигурации и на основе их строится объект состояния полей формы
 	Object.keys(formConfigFields).forEach(fieldName => {
 		const fieldConfig = formConfigFields[fieldName]
-		
+
 		if (fieldConfig.fieldType === 'text') {
 			const fieldProps: MFTypes.StateTextField = {
 				fieldType: 'text',
@@ -21,7 +21,7 @@ export default function getInitialFieldsState(formConfig: MFTypes.Config): MFTyp
 				disabled: false,
 				error: null
 			}
-			
+
 			fields[fieldName] = fieldProps
 		}
 		else if (fieldConfig.fieldType === 'checkbox') {
@@ -31,7 +31,7 @@ export default function getInitialFieldsState(formConfig: MFTypes.Config): MFTyp
 				disabled: false,
 				error: null
 			}
-			
+
 			fields[fieldName] = fieldProps
 		}
 		else if (fieldConfig.fieldType === 'radio') {
@@ -41,7 +41,7 @@ export default function getInitialFieldsState(formConfig: MFTypes.Config): MFTyp
 				disabled: false,
 				error: null
 			}
-			
+
 			fields[fieldName] = fieldProps
 		}
 		else if (fieldConfig.fieldType === 'toggle') {
@@ -51,22 +51,22 @@ export default function getInitialFieldsState(formConfig: MFTypes.Config): MFTyp
 				disabled: false,
 				error: null
 			}
-			
+
 			fields[fieldName] = fieldProps
 		}
 		else if (fieldConfig.fieldType === 'select') {
 			const fieldProps: MFTypes.StateSelectField = {
 				fieldType: 'select',
-				checkedValue: getSelectValue(fieldConfig.options),
+				checkedValue: fieldConfig.initialCheckedValue || getSelectValue(fieldConfig.options),
 				options: fieldConfig.options,
 				disabled: false,
 				error: null
 			}
-			
+
 			fields[fieldName] = fieldProps
 		}
 	})
-	
+
 	return fields
 }
 
@@ -95,7 +95,7 @@ function getSelectValue(options: MFTypes.FieldGroupInputData[]): string {
 			return options[i].value
 		}
 	}
-	
+
 	// В противном случае вернуть value первого элемента
 	return options[0].value
 }

@@ -1,10 +1,10 @@
-import { getEmptyFormConfig } from 'utils/miscUtils'
-import MFTypes from 'utils/modernForm/lib/MFTypes'
-import Types from '../../../../types/Types'
-import { articleRequests } from 'requests/articles/articleRequests'
+import { articleRequests } from 'requests/articleRequests'
 import { useEffect, useState } from 'react'
 import useGetArticleSelectors from 'store/article/articleSelectors'
+import MFTypes from 'utils/modernForm/lib/MFTypes'
+import Types from 'types/Types'
 
+/** Хук возвращает объект конфигурации формы редактирования статьи. Этот объект пересобирается после получения другой статьи. */
 export function useGetFormConfig() {
 	const { article, articleStatus } = useGetArticleSelectors()
 
@@ -27,6 +27,10 @@ export function useGetFormConfig() {
 	return formConfig
 }
 
+/**
+ * Функция возвращает объект конфигурации формы редактирования статьи
+ * @param {Object} article — объект статьи
+ */
 function getFormConfig(article: Types.Req.Article.FullArticle): MFTypes.Config {
 	return {
 		fields: {
@@ -57,8 +61,7 @@ function getFormConfig(article: Types.Req.Article.FullArticle): MFTypes.Config {
 		},
 		async requestFn(readyFieldValues) {
 			return updateArticleRequest(article.id, readyFieldValues as FormValuesType)
-		},
-		settings: {/*...*/},
+		}
 	}
 }
 
@@ -70,6 +73,11 @@ type FormValuesType = {
 	summary: string
 }
 
+/**
+ * Обработчик отправки формы
+ * @param {Number} articleId — id текущей статьи
+ * @param {Object} formValues — объект с введёнными в форму редактирования статьи значениями
+ */
 async function updateArticleRequest(articleId: number, formValues: FormValuesType): Promise<MFTypes.RequestFnReturn> {
 	const dto: Types.Req.Article.UpdateOneDto = {
 		name: formValues.name,

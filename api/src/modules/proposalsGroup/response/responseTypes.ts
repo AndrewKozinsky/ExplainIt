@@ -1,8 +1,9 @@
-import { ProposalsGroup } from 'src/modules/proposalsGroup/model/proposalsGroup.model'
 import { GeneralRespType } from '../../../types/generalResponse'
+import { ProposalsGroup } from '../model/proposalsGroup.model'
+import ModelTypes from '../../../types/modelTypes'
 
 /** Типы данных возвращаемыми методами группы упражнений */
-export namespace ProposalsGroupRespType {
+namespace ProposalsGroupRespType {
 	// Получение группы предложений
 	export type GetOne = ProposalsGroup
 	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
@@ -22,12 +23,15 @@ export namespace ProposalsGroupRespType {
 	export type UpdateOneWrap = UpdateOneSuccessWrap | UpdateOneFailWrap
 
 	// Удаление группы предложений
-	// export type DeleteOne = true
-	// export type DeleteOneSuccessWrap = GeneralRespType.Success<Payload<null>>
-	// export type DeleteOneFailWrap = GeneralRespType.Fail | GeneralRespType.Error
-	// export type DeleteOneWrap = DeleteOneSuccessWrap | DeleteOneFailWrap
+	export type DeleteOne = true
+	export type DeleteOneSuccessWrap = GeneralRespType.Success<Payload<null>>
+	export type DeleteOneFailWrap = GeneralRespType.Fail | GeneralRespType.Error
+	export type DeleteOneWrap = DeleteOneSuccessWrap | DeleteOneFailWrap
 
 	// ====================================
 
 	type Payload<T> = { proposalsGroups: T }
+	export type GroupType = ModelTypes.ProposalGroup.GroupType
 }
+
+export default ProposalsGroupRespType

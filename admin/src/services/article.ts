@@ -1,6 +1,5 @@
-import { Dispatch } from 'redux'
 import store from 'store/store'
-import { articleRequests } from 'requests/articles/articleRequests'
+import { articleRequests } from 'requests/articleRequests'
 import articleSlice from 'store/article/articleSlice'
 import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
 import Types from '../types/Types'
@@ -8,6 +7,7 @@ import { IndexListItemType } from 'components/common/IndexList/IndexList'
 import { saveAppDataToLocalStorage } from 'components/main/App/App-restoreStateFunc'
 
 const articleService = {
+	// Создание статьи
 	async createArticle() {
 		const articlesArr = store.getState().article.articles
 
@@ -27,7 +27,7 @@ const articleService = {
 				const newIndexListItemArr = this.artsListDataFromServerToIndexListData([response.data.articles])
 				store.dispatch(articleSlice.actions.insertNewArticle(newIndexListItemArr[0]))
 			}
-			else if (response.status === 'fail' && response.message) {
+			else {
 				store.dispatch(globalErrorsSlice.actions.setError(response.message))
 			}
 		}
@@ -35,41 +35,33 @@ const articleService = {
 			store.dispatch(globalErrorsSlice.actions.setError(
 				'Возникла неизвестная ошибка при создании статьи.'
 			))
-
-			store.dispatch(articleSlice.actions.setNeedToLoadAllArticles(true))
 		}
 	},
 
-	/**
-	 * Функция получает список статей и помещает в Хранилище
-	 * @param {Object} dispatch — функция-диспетчер Редакса
-	 */
-	async requestArticlesAndSetToStore(dispatch: Dispatch) {
+	/** Функция получает список статей и помещает в Хранилище */
+	async requestArticlesAndSetToStore() {
 		try {
 			const response = await articleRequests.getAll()
 
 			if (response.status === 'success') {
 				const indexListData = this.artsListDataFromServerToIndexListData(response.data.articles)
 
-				dispatch(
+				store.dispatch(
 					articleSlice.actions.setArticles(indexListData)
 				)
 			}
-			else if (response.status === 'fail') {
-				dispatch(articleSlice.actions.setArticles([]))
-
-				if (response.message) {
-					dispatch(globalErrorsSlice.actions.setError(response.message))
-				}
+			else {
+				store.dispatch(articleSlice.actions.setArticles([]))
+				store.dispatch(globalErrorsSlice.actions.setError(response.message))
 			}
 
-			dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
+			store.dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
 		}
 		catch(err) {
-			dispatch(articleSlice.actions.setArticles([]))
-			dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.'))
+			store.dispatch(articleSlice.actions.setArticles([]))
+			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.'))
 
-			dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
+			store.dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
 		}
 	},
 
@@ -77,7 +69,7 @@ const articleService = {
 	 * Переводит массив статей полученный с сервера в формат данных для отрисовки компонентом IndexList.
 	 * @param {Array} articlesList — список статей присланный с сервера
 	 */
-	artsListDataFromServerToIndexListData(articlesList: Types.Req.Article.ArticleListItem[]): IndexListItemType[] {
+	artsListDataFromServerToIndexListData(articlesList: Types.Entity.Article.ListItem[]): IndexListItemType[] {
 		return  articlesList.map(article => {
 			return {
 				id: article.id,
@@ -92,9 +84,9 @@ const articleService = {
 
 	/**
 	 * Выделение статьи
-	 * @param {Number} articleId — id выделяемой статьи
+	 * @param {Number} articleId — id текущей статьи
 	 */
-	select(articleId: number) {
+	selectArticle(articleId: number) {
 		store.dispatch(
 			articleSlice.actions.setArticleId(articleId)
 		)
@@ -110,7 +102,7 @@ const articleService = {
 	 * Удаление статьи
 	 * @param {Number} articleId — id статьи
 	 */
-	async delete(articleId: number) {
+	async deleteArticle(articleId: number) {
 		try {
 			// Сделать запрос на удаление статьи
 			const response = await articleRequests.deleteOne(articleId)
@@ -129,10 +121,8 @@ const articleService = {
 				// Актуализировать порядковый номер в статьях
 				this.updateArticlesOrderProp()
 			}
-			else if (response.status === 'fail') {
-				if (response.message) {
-					store.dispatch(globalErrorsSlice.actions.setError(response.message))
-				}
+			else {
+				store.dispatch(globalErrorsSlice.actions.setError(response.message))
 			}
 		}
 		catch(err) {
@@ -149,13 +139,15 @@ const articleService = {
 		if (!articlesList) return
 
 		articlesList.forEach((article, i) => {
-			if (article.order !== i + 1) {
+			const thisOrder = i + 1
+
+			if (article.order !== thisOrder) {
 				// Сделать запрос на обновление порядкового номера статьи
-				this.requestUpdateArticle(article.id, { order: i + 1 })
+				this.requestUpdateArticle(article.id, { order: thisOrder })
 
 				// Обновить порядковый номер статьи в Хранилище
 				store.dispatch(articleSlice.actions.updateArticleListItem(
-					{ articleId: article.id, newProps: { order: i + 1 } }
+					{ articleId: article.id, newProps: { order: thisOrder } }
 				))
 			}
 		})
@@ -171,10 +163,8 @@ const articleService = {
 			// Сделать запрос на обновление статьи
 			const response = await articleRequests.updateOne(articleId, body)
 
-			if (response.status === 'fail') {
-				if (response.message) {
-					store.dispatch(globalErrorsSlice.actions.setError(response.message))
-				}
+			if (response.status !== 'success') {
+				store.dispatch(globalErrorsSlice.actions.setError(response.message))
 			}
 		}
 		catch(err) {
@@ -208,7 +198,7 @@ const articleService = {
 		}
 	},
 
-	/** Функция получает статью и помещает в Хранилище */
+	/** Функция получает статью и помещает в Хранилище в качестве текущей */
 	async requestArticleAndSetToStore(articleId: number) {
 		try {
 			const response = await articleRequests.getOne(articleId)
@@ -221,15 +211,10 @@ const articleService = {
 					articleSlice.actions.setArticleStatus('downloaded')
 				)
 			}
-			else if (response.status === 'fail') {
+			else {
 				store.dispatch(articleSlice.actions.setArticles([]))
-
-				if (response.message) {
-					store.dispatch(globalErrorsSlice.actions.setError(response.message))
-				}
-				store.dispatch(
-					articleSlice.actions.setArticleStatus('empty')
-				)
+				store.dispatch(globalErrorsSlice.actions.setError(response.message))
+				store.dispatch(articleSlice.actions.setArticleStatus('empty'))
 			}
 		}
 		catch(err) {

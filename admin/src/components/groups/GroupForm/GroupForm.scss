@@ -1,0 +1,16 @@
+$CN: group-form;
+
+.#{$CN} {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.#{$CN}__order {
+	min-width: 10px;
+}
+.group--selected {
+	.#{$CN}__order {
+		color: white;
+	}
+}

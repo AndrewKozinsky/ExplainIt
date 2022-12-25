@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import GlobalErrorsStoreType from './GlobalErrorsStoreType'
 
-
 const initialState: GlobalErrorsStoreType.State = {
 	errorMaxId: 1,
 	errors: []

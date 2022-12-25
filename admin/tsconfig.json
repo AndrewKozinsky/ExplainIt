@@ -22,11 +22,12 @@
         "experimentalDecorators": true,
         "jsx": "react-jsx",
         "paths": {
-            "components/*": ["./src/components/*"],
-            "store/*": ["./src/store/*"],
-            "requests/*": ["./src/requests/*"],
-            "utils/*": ["./src/utils/*"],
-            "types/*": ["./src/types/*"],
+          "components/*": ["./src/components/*"],
+          "requests/*": ["./src/requests/*"],
+          "services/*": ["./src/services/*"],
+          "store/*": ["./src/store/*"],
+          "types/*": ["./src/types/*"],
+          "utils/*": ["./src/utils/*"],
         }
     },
     "include": [

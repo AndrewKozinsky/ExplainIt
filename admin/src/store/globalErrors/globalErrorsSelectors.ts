@@ -5,3 +5,4 @@ import GlobalErrorsStoreType from './GlobalErrorsStoreType'
 export default function useGetGlobalErrorsSelectors(): GlobalErrorsStoreType.State {
 	return useAppSelector<GlobalErrorsStoreType.State>(store => store.globalErrors)
 }
+

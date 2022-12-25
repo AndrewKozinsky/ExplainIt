@@ -1,6 +1,6 @@
-import { restoreStateFromLocalStorage } from 'components/main/App/App-restoreStateFunc'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { restoreStateFromLocalStorage } from 'components/main/App/App-restoreStateFunc'
+// import { useDispatch } from 'react-redux'
 import useGetArticleSelectors from 'store/article/articleSelectors'
 import articleService from '../../../services/article'
 
@@ -9,12 +9,11 @@ import articleService from '../../../services/article'
  * И если оно в true, то скачивает список статей и ставит в Хранилище.
  */
 export function useRequestArticles(): void {
-	const dispatch = useDispatch()
 	const { needToLoadAllArticles } = useGetArticleSelectors()
 
 	useEffect(() => {
 		if (needToLoadAllArticles) {
-			articleService.requestArticlesAndSetToStore(dispatch)
+			articleService.requestArticlesAndSetToStore()
 		}
 	}, [needToLoadAllArticles])
 }
@@ -26,10 +25,11 @@ export function useRestoreAppState() {
 	}, [])
 }
 
+// Функция удаления статьи
 export function deleteArticle(articleId: number) {
-	const result = confirm('Вы уверены в удалении статьи')
+	const confirmed = confirm('Вы уверены в удалении статьи')
 
-	if (result) {
-		articleService.delete(articleId)
+	if (confirmed) {
+		articleService.deleteArticle(articleId)
 	}
 }

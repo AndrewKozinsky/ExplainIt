@@ -1,7 +1,6 @@
 import { IndexListItemType } from 'components/common/IndexList/IndexList'
-import { makeCN } from 'utils/stringUtils'
+import cn from 'classnames'
 import './IndexList.scss'
-
 
 export type DetailsType = {
 	item?: IndexListItemType
@@ -35,7 +34,7 @@ function getItemClasses(details: DetailsType ) {
 		classes.push('index-list__item--selected')
 	}
 
-	return makeCN(classes)
+	return cn(classes)
 }
 
 /**
@@ -50,5 +49,5 @@ function getHiddenSignClasses(details: DetailsType ) {
 		classes.push('index-list__hidden-sign--white')
 	}
 
-	return makeCN(classes)
+	return cn(classes)
 }

@@ -2,16 +2,17 @@ import { IsBoolean, IsOptional, IsPositive, IsString, Max, Validate } from 'clas
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
 import groupConstraints from '../model/group.constraints'
 import { OneOfConstraint } from '../../../utils/customClassValidators'
+import ModelTypes from '../../../types/modelTypes'
 
 
 export default class UpdateGroupDto {
 	@IsString({ message: dtoErrorMessages.mustBeString })
 	@Validate(
 		OneOfConstraint,
-		['oral', 'writing'],
-		{ message: dtoErrorMessages.oneOf(['oral', 'writing']) })
+		[ModelTypes.ProposalGroup.GroupTypeEnum.ORAL, ModelTypes.ProposalGroup.GroupTypeEnum.WRITING],
+		{ message: dtoErrorMessages.oneOf([ModelTypes.ProposalGroup.GroupTypeEnum.ORAL, ModelTypes.ProposalGroup.GroupTypeEnum.WRITING]) })
 	@IsOptional()
-	type?: string // Тип упражнений: oral или writing
+	type?: ModelTypes.ProposalGroup.GroupType // Тип упражнений: oral или writing
 
 	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(

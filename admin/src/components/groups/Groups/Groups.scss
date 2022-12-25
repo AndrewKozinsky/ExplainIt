@@ -1,0 +1,18 @@
+$CN: groups;
+
+.#{$CN} {
+	margin: 20px 0 0 0;
+}
+
+.#{$CN}__wrapper {
+	overflow: hidden;
+	margin: 10px 0 0 0;
+	border: 1px solid var(--gray-color-1);
+	border-radius: var(--radius);
+}
+
+.#{$CN}__bottom {
+	display: flex;
+	justify-content: flex-end;
+	margin: 10px 0 0 0;
+}

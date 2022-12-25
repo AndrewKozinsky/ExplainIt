@@ -3,6 +3,7 @@ import Button from '../../formElements/Button/Button'
 import { useIsDisabled } from './CreateArticleBtn-func'
 import articleService from '../../../services/article'
 
+// Кнопка создающая пустую новую статью
 function CreateArticleBtn() {
 	const isDisabled = useIsDisabled()
 

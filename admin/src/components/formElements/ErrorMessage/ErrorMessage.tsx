@@ -5,6 +5,7 @@ type ErrorMessagePropType = {
 	text: string
 }
 
+// Универсальное сообщение об ошибке
 function ErrorMessage(props: ErrorMessagePropType) {
 	const { text }= props
 

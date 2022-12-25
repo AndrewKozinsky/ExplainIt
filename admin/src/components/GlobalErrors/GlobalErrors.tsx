@@ -10,7 +10,9 @@ import './GlobalErrors.scss'
 function GlobalErrors(): null | ReactElement {
 	const { errors } = useGetGlobalErrorsSelectors()
 
-	if (errors.length === 0) return null
+	if (errors.length === 0) {
+		return null
+	}
 
 	return (
 		<section className='global-errors'>
@@ -22,8 +24,6 @@ function GlobalErrors(): null | ReactElement {
 }
 
 export default GlobalErrors
-
-
 
 type GlobalErrorPropType = {
 	error: GlobalErrorsStoreType.GlobalError
@@ -44,3 +44,4 @@ function GlobalError(props: GlobalErrorPropType): ReactElement {
 		</div>
 	)
 }
+

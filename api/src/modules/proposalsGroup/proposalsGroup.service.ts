@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/sequelize'
 import { HelperService } from '../helper/helper.service'
 import { ProposalsGroup } from './model/proposalsGroup.model'
 import CreateGroupDto from './dto/createGroup.dto'
-import { ProposalsGroupRespType } from './response/responseTypes'
+import ProposalsGroupRespType from './response/responseTypes'
 import UpdateGroupDto from './dto/updateGroup.dto'
 import { OralProposal } from '../oralProposal/model/oralProposal.model'
 import { OralProposalService } from '../oralProposal/oralProposal.service'
@@ -70,7 +70,7 @@ export class ProposalsGroupService {
 	}
 
 	// Удаление группы упражнений
-	/*async deleteOne(groupId: number): Promise<ProposalsGroupRespType.DeleteOne | never> {
+	async deleteOne(groupId: number): Promise<ProposalsGroupRespType.DeleteOne | never> {
 		return this.helperService.runQuery<true>(async () => {
 			await this.proposalsGroupModel.destroy(
 				{
@@ -80,5 +80,5 @@ export class ProposalsGroupService {
 
 			return true
 		})
-	}*/
+	}
 }

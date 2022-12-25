@@ -1,7 +1,8 @@
-import useGetArticleSelectors from 'store/article/articleSelectors'
 import { useEffect } from 'react'
+import useGetArticleSelectors from 'store/article/articleSelectors'
 import articleService from '../../../services/article'
 
+// Запрашивает выбранную статью и ставит в Хранилище
 export function useSetArticleInStore() {
 	const { articleId } = useGetArticleSelectors()
 
@@ -11,3 +12,4 @@ export function useSetArticleInStore() {
 		articleService.requestArticleAndSetToStore(articleId)
 	}, [articleId])
 }
+

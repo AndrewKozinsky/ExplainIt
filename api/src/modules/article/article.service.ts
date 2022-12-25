@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
-// import { Sequelize } from 'sequelize-typescript'
+import { Sequelize } from 'sequelize-typescript'
 import { Article } from './model/article.model'
 import CreateArticleDto from './dto/createArticle.dto'
 import { HelperService } from '../helper/helper.service'
@@ -11,11 +11,12 @@ import { OralProposal } from '../oralProposal/model/oralProposal.model'
 import { WritingProposal } from '../writingProposal/model/writingProposal.model'
 import { Translate } from '../translate/model/translate.model'
 import { Word } from '../word/model/word.model'
+import { QueryTypes } from 'sequelize'
 
 @Injectable()
 export class ArticleService {
 	constructor(
-		// private sequelize: Sequelize,
+		private sequelize: Sequelize,
 
 		@InjectModel(Article)
 		private articleModel: typeof Article,
@@ -46,14 +47,17 @@ export class ArticleService {
 						include: [
 							{
 								model: OralProposal,
-								include: [Word]
+								include: [Word],
 							},
 							{
 								model: WritingProposal,
 								include: [Translate, Word]
 							},
 						]
-					}
+					},
+					order: [
+						[{ model: ProposalsGroup, as: 'proposalsGroups' }, 'order', 'ASC'],
+					],
 				}
 			)
 		})

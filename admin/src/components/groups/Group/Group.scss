@@ -1,0 +1,16 @@
+$CN: group;
+
+.#{$CN} {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+	padding: 10px 15px;
+	border-bottom: 1px solid var(--gray-color-1);
+}
+.#{$CN}:last-child {
+	border-bottom: none;
+}
+.#{$CN}--selected {
+	background-color: var(--selected-color);
+}

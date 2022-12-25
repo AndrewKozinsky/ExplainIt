@@ -1,9 +1,6 @@
-// import UpdateArticleDto from '../../../../api/src/modules/articles/dto/update-article.dto'
 import { makeFetch, RequestOptionsType } from 'requests/reqFn/fetch'
-// import getApiUrl, { APIAddressesType } from 'requests/reqFn/apiUrls'
-// import CreateArticleDto from '../../../../api/src/modules/articles/dto/create-article.dto'
 import { addresses } from 'requests/reqFn/apiUrls'
-import Types from '../../types/Types'
+import Types from 'types/Types'
 
 // Объект с функциями запросов к статьям
 export const articleRequests = {
@@ -54,5 +51,5 @@ export const articleRequests = {
 		return await makeFetch<Types.Req.Article.DeleteOne>(
 			addresses.article(articleId), options
 		)
-	}
+	},
 }

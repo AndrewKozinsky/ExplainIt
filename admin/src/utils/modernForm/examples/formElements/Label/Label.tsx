@@ -1,3 +1,4 @@
+import React from 'react'
 
 type LabelPropType = {
 	label?: string // Текст подписи
@@ -6,9 +7,9 @@ type LabelPropType = {
 /** Компонент подписи поля ввода */
 function Label(props: LabelPropType) {
 	const { label } = props
-	
+
 	if (!label) return null
-	
+
 	return (
 		<div>
 			<label>{label}</label>

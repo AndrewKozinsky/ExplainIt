@@ -33,7 +33,7 @@ export default function useFormState(formConfig: MFTypes.Config): MFTypes.State 
 	const [submitStatus, setSubmitStatus] = useState<MFTypes.SubmitStatus>('waiting')
 
 	// Настройки проверки правильности полей формы
-	const settings = useMemo(getFormSettings(formConfig.settings), [])
+	const settings = useMemo(getFormSettings(formConfig.settings), [formConfig])
 
 	// Функция обновляет объект состояния любого поля
 	const updateField = useCallback((fieldName: string, newFieldData: Partial<MFTypes.StateField>) => {

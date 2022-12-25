@@ -2,19 +2,20 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { IndexListItemType } from 'components/common/IndexList/IndexList'
 import Types from '../../types/Types'
 
-
 namespace ArticleStoreType {
-	export type SelectedArticleId = null | number
+	export type SelectedItemId = null | number
 	// Статус загрузки статьи: empty (статьи нет), pending (загрузка), downloaded (загружена)
 	export type ArticleStatus = 'empty' | 'pending' | 'downloaded'
 
 	// Состояние Хранилища
 	export type State = {
 		articles: IndexListItemType[]
-		articleId: SelectedArticleId
+		needToLoadAllArticles: boolean
+		articleId: SelectedItemId
 		articleStatus: ArticleStatus
 		article: null | Types.Req.Article.FullArticle
-		needToLoadAllArticles: boolean
+		currentGroupId: SelectedItemId
+		currentProposalId: SelectedItemId
 	}
 
 	// Установка списка статей
@@ -24,8 +25,9 @@ namespace ArticleStoreType {
 	export type SetArticleAction = PayloadAction<Types.Req.Article.FullArticle>
 
 	// Установка id выбранной статьи
-	export type SetArticleId = PayloadAction<SelectedArticleId>
+	export type SetArticleId = PayloadAction<SelectedItemId>
 
+	// Установка статуса загрузки статьи
 	export type SetArticleStatus = PayloadAction<ArticleStatus>
 
 	// Изменение статуса необходимости скачивания списка всех статей
@@ -48,7 +50,24 @@ namespace ArticleStoreType {
 		articleId: number
 		direction: 'up' | 'down'
 	}>
+
+	// Установка id выбранной группы упражнений
+	export type SetGroupId = PayloadAction<SelectedItemId>
+
+	// Передвижение элемента вверх/вниз в массиве articles
+	export type ChangeOrderGroupListItem = PayloadAction<{
+		groupId: number
+		direction: 'up' | 'down'
+	}>
+
+	// Обновление свойств элемента массива groups в статье
+	export type UpdateGroupListItem = PayloadAction<{
+		groupId: number
+		newProps: Types.Req.ProposalGroup.UpdateOneDto
+	}>
+
+	// Удаление группы предложений
+	export type DeleteGroup = PayloadAction<number>
 }
 
 export default ArticleStoreType
-

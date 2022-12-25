@@ -1,6 +1,5 @@
-import { makeCN } from 'utils/stringUtils'
+import cn from 'classnames'
 import './Loading.scss'
-
 
 /** Функция возвращающая классы для элементов */
 export default function makeClasses(isLoading: boolean, loaderExtClasses?: string) {
@@ -33,5 +32,6 @@ function getLoaderRootClass(externalClasses?: string) {
 		classes.push(externalClasses)
 	}
 
-	return makeCN(classes)
+	return cn(classes)
 }
+

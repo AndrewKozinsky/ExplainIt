@@ -14,7 +14,7 @@ export default function getFormSettings(configCheckingOpts: MFTypes.FormSettings
 			sendFormOnFieldBlur: false,
 			sendFormOnFieldChange: false,
 		}
-		
+
 		return Object.assign(defaultCheckingOpts, configCheckingOpts)
 	}
 }

@@ -1,4 +1,4 @@
-import MFTypes from 'utils/modernForm/lib/MFTypes'
+// import MFTypes from 'utils/modernForm/lib/MFTypes'
 
 /**
  * Функция получает данные, которые нужно записать в localStorage.
@@ -54,7 +54,7 @@ function isPrimitiveDataType(val: any) {
 }
 
 // Возвращает пустой объект конфигурации формы
-export function getEmptyFormConfig(): MFTypes.Config {
+/*export function getEmptyFormConfig(): MFTypes.Config {
 	return {
 		fields: {},
 		async requestFn() {
@@ -63,4 +63,4 @@ export function getEmptyFormConfig(): MFTypes.Config {
 			})
 		},
 	}
-}
+}*/

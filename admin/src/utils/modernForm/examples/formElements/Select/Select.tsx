@@ -1,3 +1,4 @@
+import React from 'react'
 import Label from '../Label/Label'
 import { OptionsType } from './SelectTypes'
 import { getOptions } from './Select-func'
@@ -27,7 +28,7 @@ function Select(props: SelectPropType) {
 		mOnChange,
 		mOnBlur = () => {}
 	} = props
-	
+
 	// Атрибуты поля
 	const inputAttribs = {
 		name: mName,
@@ -36,7 +37,7 @@ function Select(props: SelectPropType) {
 		onChange: mOnChange,
 		onBlur: mOnBlur
 	}
-	
+
 	return (
 		<div>
 			<Label label={label} />

@@ -1,0 +1,7 @@
+$CN: group-buttons;
+
+.#{$CN} {
+	display: flex;
+	justify-content: space-between;
+	gap: 5px;
+}

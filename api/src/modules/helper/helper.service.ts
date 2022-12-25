@@ -66,7 +66,7 @@ export class HelperService {
 	 * @param {Number} statusCode — код статуса
 	 * @param {String} message — общий текст ошибки
 	 */
-	createFailResponse(statusCode: HttpStatus, message?: string, ): GeneralRespType.Fail {
+	createFailResponse(statusCode: HttpStatus, message: string, ): GeneralRespType.Fail {
 		return {
 			status: 'fail',
 			statusCode,

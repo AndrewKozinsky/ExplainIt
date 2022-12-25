@@ -4,6 +4,7 @@ import { Article } from '../../article/model/article.model'
 import { OralProposal } from '../../oralProposal/model/oralProposal.model'
 import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
 import { CreationOptional } from 'sequelize'
+import ModelTypes from '../../../types/modelTypes'
 
 @Table({ timestamps: false })
 export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
@@ -16,7 +17,7 @@ export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
 		type: DataType.STRING(groupConstraints.type.maxLength),  // Varchar(255)
 		allowNull: false,
 	})
-	type: string // Тип упражнений: oral или writing
+	type: ModelTypes.ProposalGroup.GroupType // Тип упражнений: oral или writing
 
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)

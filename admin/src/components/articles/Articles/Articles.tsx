@@ -25,7 +25,7 @@ function Articles() {
 			<IndexList
 				items={articles}
 				selectedItemId={articleId}
-				onClickHandler={articleService.select}
+				onClickHandler={articleService.selectArticle}
 				onDeleteItem={deleteArticle}
 				onChangeItemOrder={articleService.changeOrder.bind(articleService)}
 			/>

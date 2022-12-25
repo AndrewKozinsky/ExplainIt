@@ -1,5 +1,6 @@
 $CN: content-wrapper;
 
 .#{$CN} {
+	box-sizing: border-box;
   padding: 20px;
 }

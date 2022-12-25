@@ -19,6 +19,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
 			const respObj: GeneralRespType.Fail = {
 				status: 'fail',
+				message: exception.message,
 				statusCode,
 				...exception.getResponse() as GeneralRespType.ErrorsGroup
 			}

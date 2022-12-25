@@ -2,9 +2,10 @@ import React, { ReactElement } from 'react'
 import './ContentWrapper.scss'
 
 type ContentWrapperPropType = {
-	children: ReactElement
+	children: ReactElement | ReactElement[]
 }
 
+// Обертка для контента больших частей страницы редактирования статей.
 function ContentWrapper(props: ContentWrapperPropType) {
 	const { children } = props
 

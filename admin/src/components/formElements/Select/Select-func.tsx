@@ -1,10 +1,11 @@
-// import { OptionsType } from './SelectTypes'
+import React from 'react'
+import { OptionsType } from './SelectTypes'
 
 /**
  * Функция возвращает массив тегов <option>
  * @param {Array} options — массив пунктов выпадающего списка
  */
-/*export function getOptions(options: OptionsType) {
+export function getOptions(options: OptionsType) {
 	return options.map(function (option, i) {
 
 		// Атрибуты <option>
@@ -18,6 +19,4 @@
 
 		return <option {...optionAttrs}>{option.label}</option>
 	})
-}*/
-
-export {}
+}

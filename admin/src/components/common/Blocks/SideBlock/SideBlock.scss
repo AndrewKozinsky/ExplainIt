@@ -2,14 +2,13 @@ $CN: side-block;
 
 .#{$CN} {
 	display: flex;
-	//width: 100%;
-	width: 200%;
+	width: 100%;
 }
 
 .#{$CN}__left {
 	display: flex;
 	flex-direction: column;
-	width: 300px;
+	width: 160px;
 	border-right: 1px solid var(--gray-color-1);
 }
 

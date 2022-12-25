@@ -22,7 +22,7 @@ function App(): ReactElement {
 	return (
 		<main className='app'>
 			<SideBlock leftTop={<Articles />} leftBottom={<CreateArticleBtn />} right={<Article />} />
-			{/*<SideBlock />*/}
+			<SideBlock />
 			<GlobalErrors />
 		</main>
 	)

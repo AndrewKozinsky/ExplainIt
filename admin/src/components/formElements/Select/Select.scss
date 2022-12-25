@@ -1,0 +1,27 @@
+$CN: select-input;
+
+.#{$CN} {
+
+}
+.#{$CN}--horizontal {
+	display: flex;
+	align-items: center;
+}
+
+.#{$CN}__input {
+	display: block;
+	padding: 3px 10px;
+	box-sizing: border-box;
+	border: 1px solid transparent;
+	border-radius: var(--radius);
+	transition: border-color .2s;
+
+	&:focus {
+		border-color: var(--gray-color-2);
+	}
+}
+
+// Назначение цвета рамки.
+.#{$CN}__input--border-color {
+	border-color: var(--gray-color-1);
+}

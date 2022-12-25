@@ -1,10 +1,10 @@
 import React from 'react'
 import useGetModernForm from 'utils/modernForm/lib'
-import { useGetFormConfig } from 'components/article/ArticleForm/fn/formConfig'
 import TextInput from 'components/formElements/TextInput/TextInput'
 import Toggle from 'components/formElements/Toggle/Toggle'
 import Button from 'components/formElements/Button/Button'
 import ErrorMessage from 'components/formElements/ErrorMessage/ErrorMessage'
+import { useGetFormConfig } from './fn/formConfig'
 import './ArticleForm.scss'
 
 function ArticleForm() {
@@ -17,8 +17,6 @@ function ArticleForm() {
 		commonError,
 		submitStatus
 	} = useGetModernForm(formConfig)
-
-	if (!formConfig) return null
 
 	return (
 		<>

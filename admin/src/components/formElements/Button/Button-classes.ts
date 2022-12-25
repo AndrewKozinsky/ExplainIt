@@ -1,4 +1,4 @@
-import { makeCN } from 'utils/stringUtils'
+import cn from 'classnames'
 import { ButtonPropType } from './Button'
 import './Button.scss'
 
@@ -8,7 +8,7 @@ const CN = 'btn'
 export default function makeClasses(buttonProps: ButtonPropType) {
 	return {
 		root: getButtonClasses(buttonProps),
-		icon: CN + '__icon'
+		icon: getIconClasses(buttonProps)
 	}
 }
 
@@ -16,22 +16,39 @@ export default function makeClasses(buttonProps: ButtonPropType) {
  * Функция возвращает классы кнопки
  * @param {Object} buttonProps — props переданные в кнопку
  */
-export function getButtonClasses(buttonProps: ButtonPropType) {
+function getButtonClasses(buttonProps: ButtonPropType) {
 	const {
-		// view = 'standard', // Вид кнопки. Варианты: standard (стандартная кнопка), onlyIcon (только значок)
-		color = 'base', // Цвет кнопки. Варианты: base (стандартный цвет), accent (акцентный цвет)
+		view = 'standard', // Вид кнопки. Варианты: standard (стандартная кнопка), onlyIcon (только значок)
+		border = true, // Должна ли быть рамка у кнопки
 		block
 	} = buttonProps
 
 	// Классы кнопки
 	const classes = [CN]
 
-	// Цвет кнопки.
-	// white (белый цвет)
-	if (color === 'white') classes.push(`${CN}--white-color`)
+	if (border) {
+		classes.push(`${CN}--border-color`)
+	}
 
 	// Если кнопка должна быть блочным элементом на всю ширину
 	if (block) classes.push(`${CN}--block`)
 
-	return makeCN(classes)
+	return cn(classes)
+}
+
+/**
+ * Функция возвращает классы кнопки
+ * @param {Object} buttonProps — props переданные в кнопку
+ */
+function getIconClasses(buttonProps: ButtonPropType) {
+	const { text } = buttonProps
+
+	// Классы кнопки
+	const classes = [CN + '__icon']
+
+	if (!!text) {
+		classes.push(`${CN}__icon--right-offset`)
+	}
+
+	return cn(classes)
 }

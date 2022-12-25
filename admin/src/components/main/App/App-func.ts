@@ -18,3 +18,4 @@ function isEnterAllow(): boolean {
 
 	return adminPassword === 'ztpmftw4PO'
 }
+

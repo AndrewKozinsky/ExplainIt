@@ -1,4 +1,3 @@
-// import React from 'react'
 import MFTypes from '../MFTypes'
 import getReadyFieldsValues from '../misc/getReadyFieldsValues'
 import { setErrorToAllTextFields } from '../state/validateFields'
@@ -29,7 +28,7 @@ export default function formSubmitHandler(
 ) {
 	return function (e: React.SyntheticEvent) {
 		e.preventDefault()
-		
+
 		sendForm(
 			stateFields,
 			setStateFields,
@@ -70,42 +69,42 @@ export async function sendForm(
 ) {
 	// Увеличить счётчик отправок формы
 	setSubmitCounter(submitCounter + 1)
-	
+
 	// Проверить все текстовые поля на наличие ошибок и показать их
 	const formHasErrors = setErrorToAllTextFields(stateFields, setStateFields, formConfig)
-	
+
 	// Поставить флаг имеет ли форма ошибки
 	setFormHasErrors(formHasErrors)
-	
+
 	if (formHasErrors) return
-	
+
 	// Ошибок нет... Поставить флаг, что форма отправляется
 	setSubmitStatus('pending')
-	
+
 	// Значения полей формы
 	const readyFieldValues = getReadyFieldsValues(stateFields)
-	
+
 	// Настройки блокировки и очистки полей формы до и после отправки...
 	const disableFieldsOption = settings.disableFields
 	const clearAfterSubmit = settings.clearFieldsAfterSubmit
-	
+
 	// Если нужно заблокировать поля при отправке...
 	if (disableFieldsOption == 'whileSubmit' || disableFieldsOption == 'whileAndAfterSubmit') {
 		const newStateFields = disableFields(true, stateFields)
 		setStateFields(newStateFields)
 	}
-	
+
 	try {
 		// Формирование нового объекта состояния полей...
 		let newStateFields: MFTypes.StateFields = { ...stateFields }
-		
+
 		// Отправить запрос и получить ответ
 		const response = await formConfig.requestFn(readyFieldValues)
 
 		if (response.status == 'success') {
 			// Обнулить общую ошибку
 			setCommonError(null)
-			
+
 			// Разблокировать поля если они были заблокированы при отправке, но не нужно блокировать после
 			if (disableFieldsOption == 'whileSubmit') {
 				newStateFields = disableFields(false, stateFields)
@@ -114,12 +113,12 @@ export async function sendForm(
 			else if (disableFieldsOption == 'afterSubmit') {
 				newStateFields = disableFields(true, stateFields)
 			}
-			
+
 			// Если нужно очистить форму после отправки. Может стоит брать значения переданные в конфигурации?
 			if (clearAfterSubmit) {
 				newStateFields = clearFields(stateFields)
 			}
-			
+
 			// Поставить флаг, что форма отправилась успешно
 			setSubmitStatus('success')
 		}
@@ -127,32 +126,32 @@ export async function sendForm(
 		else {
 			// Поставить флаг, что форма содержит ошибки
 			setFormHasErrors(true)
-			
+
 			// Поставить текст общей ошибки если она есть
 			if (response.commonError) {
 				setCommonError(response.commonError)
 			}
 			// Поставить текст ошибки полей, если они есть
 			if (response.fieldsErrors) {
-				
+
 				response.fieldsErrors.forEach(fieldError => {
 					const fieldName = fieldError.name
-					
+
 					const fieldState = newStateFields[fieldName]
 					fieldState.error = fieldError.message
 				})
 			}
-			
+
 			// Поставить флаг, что форма отправилась неудачно
 			setSubmitStatus('error')
 		}
-		
+
 		// Поставить сформированный объект полей в качестве нового состояния
 		setStateFields(newStateFields)
 	}
 	catch (err) {
 		setFormHasErrors(true)
-		
+
 		// Поставить флаг, что форма отправилась неудачно
 		setSubmitStatus('error')
 	}
