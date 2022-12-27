@@ -4,7 +4,7 @@ import { GeneralRespType } from '../../types/generalResponse'
 
 /** Класс с различными методами используемые на всём приложении */
 @Injectable()
-export class HelperService {
+class HelperService {
 	/**
 	 * Метод запускает функцию из ОРМ для взаимодействия с БД.
 	 * При появлении ошибки будет выброшено исключение, которое будет обработано.
@@ -74,3 +74,5 @@ export class HelperService {
 		}
 	}
 }
+
+export default HelperService

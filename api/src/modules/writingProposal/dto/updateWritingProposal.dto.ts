@@ -1,6 +1,6 @@
 import { IsArray, IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
-import dtoErrorMessages from 'src/utils/dtoErrorMessages'
 import writingProposalConstraints from '../model/writingProposal.constraints'
+import dtoErrorMessages from '../../../utils/dtoErrorMessages'
 
 export default class UpdateWritingProposalDto {
 	@IsOptional()

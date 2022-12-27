@@ -6,9 +6,21 @@ export const addresses = {
 		return '/api/articles/' + artId
 	},
 
-	// ГРУППЫ УПРАЖНЕНИЙ
+	// ГРУППЫ ПРЕДЛОЖЕНИЙ
 	groups: '/api/proposalsGroup',
 	group(groupId: number | string): string {
 		return '/api/proposalsGroup/' + groupId
+	},
+
+	// ГОЛОСОВОЕ ПРЕДЛОЖЕНИЕ
+	oralProposals: '/api/oralProposal',
+	oralProposal(proposalId: number | string): string {
+		return '/api/oralProposal/' + proposalId
+	},
+
+	// ПИСЬМЕННОЕ ПРЕДЛОЖЕНИЕ
+	writingProposals: '/api/writingProposal',
+	writingProposal(proposalId: number | string): string {
+		return '/api/writingProposal/' + proposalId
 	}
 }

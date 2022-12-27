@@ -6,7 +6,7 @@ import { Translate } from '../../translate/model/translate.model'
 import { Word } from '../../word/model/word.model'
 
 @Table
-export class WritingProposal extends Model<Partial<WritingProposal>> {
+class WritingProposal extends Model<Partial<WritingProposal>> {
 	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
 	declare id: number
 	declare createdAt: CreationOptional<Date>
@@ -71,3 +71,5 @@ export class WritingProposal extends Model<Partial<WritingProposal>> {
 		{ onDelete: 'CASCADE' })
 	words: Word[]
 }
+
+export default WritingProposal

@@ -15,6 +15,7 @@ namespace ArticleStoreType {
 		articleStatus: ArticleStatus
 		article: null | Types.Req.Article.FullArticle
 		currentGroupId: SelectedItemId
+		currentGroupType: null | Types.Entity.Group.GroupType
 		currentProposalId: SelectedItemId
 	}
 
@@ -22,7 +23,7 @@ namespace ArticleStoreType {
 	export type SetArticlesAction = PayloadAction<IndexListItemType[]>
 
 	// Установка текущей статьи
-	export type SetArticleAction = PayloadAction<Types.Req.Article.FullArticle>
+	export type SetArticleAction = PayloadAction<null | Types.Req.Article.FullArticle>
 
 	// Установка id выбранной статьи
 	export type SetArticleId = PayloadAction<SelectedItemId>
@@ -52,7 +53,9 @@ namespace ArticleStoreType {
 	}>
 
 	// Установка id выбранной группы упражнений
-	export type SetGroupId = PayloadAction<SelectedItemId>
+	export type SetGroup = PayloadAction<
+		{groupId: SelectedItemId, groupType: null | Types.Entity.Group.GroupType}
+	>
 
 	// Передвижение элемента вверх/вниз в массиве articles
 	export type ChangeOrderGroupListItem = PayloadAction<{
@@ -68,6 +71,19 @@ namespace ArticleStoreType {
 
 	// Удаление группы предложений
 	export type DeleteGroup = PayloadAction<number>
+
+	// Установка id выбранной статьи
+	export type SetProposalId = PayloadAction<SelectedItemId>
+
+	// Удаление предложения
+	export type DeleteProposal = PayloadAction<{groupId: number, proposalId: number}>
+
+	// Обновление свойств элемента массива groups в статье
+	export type UpdateProposalListItem = PayloadAction<{
+		groupId: number
+		proposalId: number
+		newProps: Types.Req.OralProposal.UpdateOneDto | Types.Req.WritingProposal.UpdateOneDto
+	}>
 }
 
 export default ArticleStoreType

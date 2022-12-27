@@ -3,15 +3,14 @@ import { InjectModel } from '@nestjs/sequelize'
 import { Sequelize } from 'sequelize-typescript'
 import { Article } from './model/article.model'
 import CreateArticleDto from './dto/createArticle.dto'
-import { HelperService } from '../helper/helper.service'
+import HelperService from '../helper/helper.service'
 import UpdateArticleDto from './dto/updateArticle.dto'
 import { ProposalsGroup } from '../proposalsGroup/model/proposalsGroup.model'
 import ArticleRespType from './response/responseTypes'
-import { OralProposal } from '../oralProposal/model/oralProposal.model'
-import { WritingProposal } from '../writingProposal/model/writingProposal.model'
+import OralProposal from '../oralProposal/model/oralProposal.model'
+import WritingProposal from '../writingProposal/model/writingProposal.model'
 import { Translate } from '../translate/model/translate.model'
 import { Word } from '../word/model/word.model'
-import { QueryTypes } from 'sequelize'
 
 @Injectable()
 export class ArticleService {
@@ -51,15 +50,40 @@ export class ArticleService {
 							},
 							{
 								model: WritingProposal,
-								include: [Translate, Word]
+								include: [Translate, Word],
 							},
-						]
+						],
 					},
 					order: [
 						[{ model: ProposalsGroup, as: 'proposalsGroups' }, 'order', 'ASC'],
 					],
 				}
 			)
+			/*return this.articleModel.findOne(
+				{
+					where: {
+						id: articleId
+					},
+					attributes: ['id', 'name'],
+					include: {
+						model: ProposalsGroup,
+						attributes: ['order'],
+
+						include: [
+							{
+								model: OralProposal,
+								attributes: ['order'],
+							},
+						],
+						order: [
+							[OralProposal, 'order', 'DESC'],
+						],
+					},
+					order: [
+						[{ model: ProposalsGroup, as: 'proposalsGroups' }, 'order', 'DESC'],
+					],
+				}
+			)*/
 		})
 	}
 

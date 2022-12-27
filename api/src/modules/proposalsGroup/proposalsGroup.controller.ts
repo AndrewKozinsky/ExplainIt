@@ -12,7 +12,7 @@ import {
 	Res
 } from '@nestjs/common'
 import { Response } from 'express'
-import { HelperService } from '../helper/helper.service'
+import HelperService from '../helper/helper.service'
 import { ProposalsGroupService } from './proposalsGroup.service'
 import CreateGroupDto from './dto/createGroup.dto'
 import { ArticleService } from '../article/article.service'

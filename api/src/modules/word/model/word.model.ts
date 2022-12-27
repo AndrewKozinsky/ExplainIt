@@ -3,8 +3,8 @@ import { CreationOptional, DataTypes } from 'sequelize'
 import { IsPositive, Max } from 'class-validator'
 import wordConstraints from './word.constraints'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
-import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
-import { OralProposal } from '../../oralProposal/model/oralProposal.model'
+import WritingProposal from '../../writingProposal/model/writingProposal.model'
+import OralProposal from '../../oralProposal/model/oralProposal.model'
 
 @Table
 export class Word extends Model<Partial<Word>> {

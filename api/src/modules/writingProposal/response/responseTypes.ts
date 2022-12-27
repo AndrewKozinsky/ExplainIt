@@ -1,8 +1,8 @@
-import { WritingProposal } from '../model/writingProposal.model'
+import WritingProposal from '../model/writingProposal.model'
 import { GeneralRespType } from '../../../types/generalResponse'
 
 /** Типы данных возвращаемыми методами статьи */
-export namespace WritingProposalRespType {
+namespace WritingProposalRespType {
 	// Получение предложения
 	export type GetOne = WritingProposal
 	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
@@ -32,3 +32,5 @@ export namespace WritingProposalRespType {
 
 	type Payload<T> = { writingProposals: T }
 }
+
+export default WritingProposalRespType

@@ -4,8 +4,9 @@ import Types from '../types/Types'
 import { proposalGroupRequests } from 'requests/proposalGroupRequests'
 import articleService from './article'
 import articleSlice from 'store/article/articleSlice'
-import { saveAppDataToLocalStorage } from 'components/main/App/App-restoreStateFunc'
-// import articleSlice from 'store/article/articleSlice'
+import { saveAppDataToLocalStorage } from 'components/main/App/func/restoreStateFunc'
+import { isAllOf } from '@reduxjs/toolkit'
+import { removeFromLocalStorage } from 'utils/miscUtils'
 
 const proposalGroupService = {
 	async createGroup(groupType: Types.Entity.Group.GroupType) {
@@ -57,67 +58,27 @@ const proposalGroupService = {
 		})
 	},
 
-	/**
-	 * Функция получает список статей и помещает в Хранилище
-	 * @param {Object} dispatch — функция-диспетчер Редакса
-	 */
-	/*async requestArticlesAndSetToStore(dispatch: Dispatch) {
-		try {
-			const response = await articleRequests.getAll()
+	/** Получение выделенной группы упражнений */
+	getSelectedGroup() {
+		const { article, currentGroupId } = store.getState().article
+		if (!article || !currentGroupId) return null
 
-			if (response.status === 'success') {
-				const indexListData = this.artsListDataFromServerToIndexListData(response.data.articles)
-
-				dispatch(
-					articleSlice.actions.setArticles(indexListData)
-				)
-			}
-			else if (response.status === 'fail') {
-				dispatch(articleSlice.actions.setArticles([]))
-
-				if (response.message) {
-					dispatch(globalErrorsSlice.actions.setError(response.message))
-				}
-			}
-
-			dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
-		}
-		catch(err) {
-			dispatch(articleSlice.actions.setArticles([]))
-			dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.'))
-
-			dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
-		}
-	},*/
-
-	/**
-	 * Переводит массив статей полученный с сервера в формат данных для отрисовки компонентом IndexList.
-	 * @param {Array} articlesList — список статей присланный с сервера
-	 */
-	/*artsListDataFromServerToIndexListData(articlesList: Types.Entity.Article.ListItem[]): IndexListItemType[] {
-		return  articlesList.map(article => {
-			return {
-				id: article.id,
-				name: article.name,
-				payAtn: article.payAtn || false,
-				published: article.published,
-				selected: false,
-				order: article.order
-			}
-		})
-	},*/
+		return this.findById(article, currentGroupId)
+	},
 
 	/**
 	 * Выделение группы
 	 * @param {Number} groupId — id группы предложений
+	 * @param {String} groupType — тип группы: oral или writing
 	 */
-	select(groupId: number) {
+	select(groupId: number, groupType: Types.Entity.Group.GroupType) {
 		store.dispatch(
-			articleSlice.actions.setGroupId(groupId)
+			articleSlice.actions.setGroup({ groupId, groupType })
 		)
 
-		// Сохранить id выделенной статьи в LocalStorage чтобы при загрузке страницы снова её выделить
+		// Сохранить id выделенной группы и её тип в LocalStorage чтобы при загрузке страницы снова её выделить
 		saveAppDataToLocalStorage('groupId', groupId)
+		saveAppDataToLocalStorage('groupType', groupType)
 	},
 
 	/**
@@ -135,13 +96,18 @@ const proposalGroupService = {
 			if (response.status === 'success') {
 				// Если удалили выделенную группу, то обнулять выделение
 				if (currentGroupId === groupId) {
-					store.dispatch( articleSlice.actions.setGroupId(null) )
+					removeFromLocalStorage('groupType')
+					removeFromLocalStorage('groupId')
+					removeFromLocalStorage('proposalId')
+
+					store.dispatch( articleSlice.actions.setGroup({ groupId: null, groupType: null }) )
+					store.dispatch( articleSlice.actions.setProposalId(null) )
 				}
 
 				// Удалить группу в Хранилище
 				store.dispatch(articleSlice.actions.deleteGroup(groupId))
 
-				// Актуализировать порядковый номер в статьях
+				// Актуализировать порядковый номер в группах
 				await this.updateGroupOrderProp()
 			}
 			else if (response.status === 'fail' || response.status === 'error') {
@@ -243,36 +209,7 @@ const proposalGroupService = {
 			(direction === 'up' && groupIdx > 0) ||
 			(direction === 'down' && groupIdx < groups.length -1)
 		)
-	},
-
-	/** Функция получает статью и помещает в Хранилище */
-	/*async requestArticleAndSetToStore(articleId: number) {
-		try {
-			const response = await articleRequests.getOne(articleId)
-
-			if (response.status === 'success') {
-				store.dispatch(
-					articleSlice.actions.setArticle(response.data.articles)
-				)
-				store.dispatch(
-					articleSlice.actions.setArticleStatus('downloaded')
-				)
-			}
-			else if (response.status === 'fail') {
-				store.dispatch(articleSlice.actions.setArticles([]))
-
-				if (response.message) {
-					store.dispatch(globalErrorsSlice.actions.setError(response.message))
-				}
-				store.dispatch(
-					articleSlice.actions.setArticleStatus('empty')
-				)
-			}
-		}
-		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.'))
-		}
-	},*/
+	}
 }
 
 export default proposalGroupService

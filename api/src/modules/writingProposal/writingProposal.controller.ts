@@ -12,9 +12,9 @@ import {
 } from '@nestjs/common'
 import { Response } from 'express'
 import CreateWritingProposalDto from './dto/createWritingProposal.dto'
-import { WritingProposalRespType } from './response/responseTypes'
+import WritingProposalRespType from './response/responseTypes'
 import { WritingProposalService } from './writingProposal.service'
-import { HelperService } from '../helper/helper.service'
+import HelperService from '../helper/helper.service'
 import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 

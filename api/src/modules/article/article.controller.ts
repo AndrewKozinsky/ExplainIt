@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import CreateArticleDto from './dto/createArticle.dto'
 import { ArticleService } from './article.service'
-import { HelperService } from '../helper/helper.service'
+import HelperService from '../helper/helper.service'
 import UpdateArticleDto from './dto/updateArticle.dto'
 import { Response } from 'express'
 import ArticleRespType from './response/responseTypes'

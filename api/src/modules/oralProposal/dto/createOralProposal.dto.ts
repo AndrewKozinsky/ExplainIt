@@ -1,9 +1,9 @@
-// import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
-// import oralProposalConstraints from '../model/oralProposal.constraints'
-// import dtoErrorMessages from '../../../utils/dtoErrorMessages'
+import { IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
+import oralProposalConstraints from '../model/oralProposal.constraints'
+import dtoErrorMessages from '../../../utils/dtoErrorMessages'
 
 
-/*export default class CreateOralProposalDto {
+export default class CreateOralProposalDto {
 	@IsString({ message: dtoErrorMessages.mustBeString })
 	@MaxLength(
 		oralProposalConstraints.rusProposal.maxLength,
@@ -43,4 +43,4 @@
 		{ message: dtoErrorMessages.shouldNotBeMore(oralProposalConstraints.proposalsGroupId.max) }
 	)
 	proposalsGroupId: number
-}*/
+}

@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import ArticleStoreType from 'store/article/ArticleStoreType'
+import proposalService from 'services/proposal'
+import proposalGroupService from 'services/proposalGroup'
+import proposal from 'services/proposal'
+import group from 'components/groups/Group/Group'
 
 const initialState: ArticleStoreType.State = {
 	articles: [],            // Массив всех статей
@@ -8,6 +12,7 @@ const initialState: ArticleStoreType.State = {
 	articleStatus: 'empty', // статус загрузки статьи
 	article: null, // Текущая статья
 	currentGroupId: null, // id выделенной группы упражнений
+	currentGroupType: null, // тип выделенной группы
 	currentProposalId: null, // id выделенного предложения
 }
 
@@ -69,8 +74,9 @@ const articleSlice = createSlice({
 				state.articles.splice(idx + 1, 0, article)
 			}
 		},
-		setGroupId(state, action: ArticleStoreType.SetGroupId) {
-			state.currentGroupId = action.payload
+		setGroup(state, action: ArticleStoreType.SetGroup) {
+			state.currentGroupId = action.payload.groupId
+			state.currentGroupType = action.payload.groupType
 		},
 		// Перемещение элемента массива articles вверх или вниз
 		changeOrderGroupListItem(state, action: ArticleStoreType.ChangeOrderGroupListItem) {
@@ -95,7 +101,7 @@ const articleSlice = createSlice({
 				groups.splice(idx + 1, 0, group)
 			}
 		},
-		// Обновление свойств элемента массива articles
+		// Обновление свойств элемента массива групп
 		updateGroupListItem(state, action: ArticleStoreType.UpdateGroupListItem) {
 			const { article } = state
 			if (!article) return state
@@ -117,6 +123,39 @@ const articleSlice = createSlice({
 			article.proposalsGroups = article.proposalsGroups.filter(group => {
 				return group.id !== action.payload
 			})
+		},
+		// Установка id активной статьи
+		setProposalId(state, action: ArticleStoreType.SetProposalId) {
+			state.currentProposalId = action.payload
+		},
+		deleteProposal(state, action: ArticleStoreType.DeleteProposal) {
+			const { article } = state
+			if (!article) return state
+
+			const group = proposalGroupService.findById(article, action.payload.groupId)
+			if (!group) return
+
+			if (group.type === 'oral') {
+				group.oralProposals = group.oralProposals.filter(proposal => {
+					return proposal.id !== action.payload.proposalId
+				})
+			}
+		},
+		// Обновление свойств элемента массива групп
+		updateProposalListItem(state, action: ArticleStoreType.UpdateProposalListItem) {
+			const { article } = state
+			if (!article) return state
+
+			const group = proposalGroupService.findById(article,action.payload.groupId)
+			if (!group) return
+
+			const proposal = proposalService.findByIdInGroup(group, group.type, action.payload.proposalId)
+			if (!proposal) return
+
+			for (let key in action.payload.newProps) {
+				// @ts-ignore
+				proposal[key] = action.payload.newProps[key]
+			}
 		},
 	}
 })

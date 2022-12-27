@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 // import { Sequelize } from 'sequelize-typescript'
 import { InjectModel } from '@nestjs/sequelize'
-import { HelperService } from '../helper/helper.service'
+import HelperService from '../helper/helper.service'
 import { ProposalsGroup } from './model/proposalsGroup.model'
 import CreateGroupDto from './dto/createGroup.dto'
 import ProposalsGroupRespType from './response/responseTypes'
 import UpdateGroupDto from './dto/updateGroup.dto'
-import { OralProposal } from '../oralProposal/model/oralProposal.model'
-import { OralProposalService } from '../oralProposal/oralProposal.service'
+import OralProposal from '../oralProposal/model/oralProposal.model'
+import OralProposalService from '../oralProposal/oralProposal.service'
 import { WritingProposalService } from '../writingProposal/writingProposal.service'
 
 @Injectable()

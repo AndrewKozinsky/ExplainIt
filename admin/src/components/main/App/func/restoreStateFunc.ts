@@ -4,7 +4,12 @@ import articleSlice from 'store/article/articleSlice'
 
 // Названия свойств сохранённых в LocalStorage.
 // В них сохраняются различные данные нужные для восстановления Хранилища после перезагрузке страницы.
-const localStorageAppProps = { articleId: true, groupId: true }
+const localStorageAppProps = {
+	articleId: true,
+	groupId: true,
+	groupType: true,
+	proposalId: true
+}
 
 /**
  * Функция сохраняет в LocalStorage данные для восстановления Хранилища после перезагрузки страницы.
@@ -26,8 +31,17 @@ export function restoreStateFromLocalStorage() {
 			)
 		}
 		else if (prop === 'groupId') {
+			const groupType = getFromLocalStorage('groupType')
+
 			store.dispatch(
-				articleSlice.actions.setGroupId(propValue)
+				articleSlice.actions.setGroup(
+					{ groupId: propValue, groupType }
+				)
+			)
+		}
+		else if (prop === 'proposalId') {
+			store.dispatch(
+				articleSlice.actions.setProposalId(propValue)
 			)
 		}
 	}

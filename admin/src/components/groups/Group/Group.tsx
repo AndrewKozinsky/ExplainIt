@@ -5,6 +5,7 @@ import useGetArticleSelectors from 'store/article/articleSelectors'
 import proposalGroupService from '../../../services/proposalGroup'
 import GroupForm from '../GroupForm/GroupForm'
 import GroupButtons from '../GroupButtons/GroupButtons'
+import { getOnSelectGroup } from 'components/groups/Group/Group-func'
 import './Group.scss'
 
 type GroupPropType = {
@@ -16,9 +17,10 @@ function Group(props: GroupPropType) {
 
 	const { currentGroupId } = useGetArticleSelectors()
 	const classes = cn('group', currentGroupId == group.id && 'group--selected')
+	const onSelectGroup = getOnSelectGroup(group)
 
 	return (
-		<div className={classes} onClick={() => proposalGroupService.select(group.id)}>
+		<div className={classes} onClick={onSelectGroup}>
 			<GroupForm group={group} />
 			<GroupButtons groupId={group.id} />
 		</div>

@@ -4,7 +4,8 @@ import articleSlice from 'store/article/articleSlice'
 import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
 import Types from '../types/Types'
 import { IndexListItemType } from 'components/common/IndexList/IndexList'
-import { saveAppDataToLocalStorage } from 'components/main/App/App-restoreStateFunc'
+import { saveAppDataToLocalStorage } from 'components/main/App/func/restoreStateFunc'
+import { removeFromLocalStorage } from 'utils/miscUtils'
 
 const articleService = {
 	// Создание статьи
@@ -112,7 +113,15 @@ const articleService = {
 				const selectedArticleId = store.getState().article.articleId
 
 				if (selectedArticleId === articleId) {
+					removeFromLocalStorage('articleId')
+					removeFromLocalStorage('groupType')
+					removeFromLocalStorage('groupId')
+					removeFromLocalStorage('proposalId')
+
 					store.dispatch( articleSlice.actions.setArticleId(null) )
+					store.dispatch( articleSlice.actions.setArticle(null) )
+					store.dispatch( articleSlice.actions.setGroup({ groupId: null, groupType: null }) )
+					store.dispatch( articleSlice.actions.setProposalId(null) )
 				}
 
 				// Удалить элемент из массива статей

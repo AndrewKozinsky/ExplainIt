@@ -41,9 +41,9 @@ export function getFromLocalStorage<T>(propName: string, defaultValue?: T) : T |
  * Удаление данных из localStorage
  * @param {String} propName — имя свойства
  */
-/*export function removeFromLocalStorage(propName: string): void {
+export function removeFromLocalStorage(propName: string): void {
 	localStorage.removeItem(propName)
-}*/
+}
 
 /**
  * Функция проверяет является ли переданные данные примитивного типа

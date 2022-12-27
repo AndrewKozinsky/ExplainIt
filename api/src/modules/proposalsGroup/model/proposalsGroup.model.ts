@@ -1,8 +1,8 @@
 import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript'
 import groupConstraints from './group.constraints'
 import { Article } from '../../article/model/article.model'
-import { OralProposal } from '../../oralProposal/model/oralProposal.model'
-import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
+import OralProposal from '../../oralProposal/model/oralProposal.model'
+import WritingProposal from '../../writingProposal/model/writingProposal.model'
 import { CreationOptional } from 'sequelize'
 import ModelTypes from '../../../types/modelTypes'
 

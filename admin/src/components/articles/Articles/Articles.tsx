@@ -1,9 +1,8 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import useGetArticleSelectors from 'store/article/articleSelectors'
 import {
 	deleteArticle,
 	useRequestArticles,
-	useRestoreAppState
 } from './Articles-func'
 import { ContentLoading } from '../../common/Loading/Loading'
 import IndexList from '../../common/IndexList/IndexList'
@@ -13,9 +12,6 @@ import articleService from '../../../services/article'
 function Articles() {
 	// Запрос списка статей и помещение в Хранилище при изменении свойства needToLoadAllArticles в Хранилище
 	useRequestArticles()
-
-	// При загрузке страницы восстановить значения Хранилища
-	useRestoreAppState()
 
 	// Список статей
 	const { articles, articleId, needToLoadAllArticles } = useGetArticleSelectors()

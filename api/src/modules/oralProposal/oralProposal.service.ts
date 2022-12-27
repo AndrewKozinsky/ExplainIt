@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
-// import CreateOralProposalDto from './dto/createOralProposal.dto'
-import { OralProposalRespType } from './response/responseTypes'
-import { HelperService } from '../helper/helper.service'
-import { OralProposal } from './model/oralProposal.model'
-// import UpdateOralProposalDto from './dto/updateOralProposal.dto'
+import CreateOralProposalDto from './dto/createOralProposal.dto'
+import OralProposalRespType from './response/responseTypes'
+import HelperService from '../helper/helper.service'
+import OralProposal from './model/oralProposal.model'
+import UpdateOralProposalDto from './dto/updateOralProposal.dto'
 
 @Injectable()
-export class OralProposalService {
+class OralProposalService {
 	constructor(
 		// private sequelize: Sequelize,
 
@@ -18,21 +18,21 @@ export class OralProposalService {
 	) {}
 
 	// Получение предложения
-	/*async getOne(articleId: number): Promise<OralProposalRespType.GetOne | null | never> {
+	async getOne(articleId: number): Promise<OralProposalRespType.GetOne | null | never> {
 		return this.helperService.runQuery<OralProposalRespType.GetOne | null>(() => {
 			return this.oralProposalModel.findByPk(articleId)
 		})
-	}*/
+	}
 
 	// Создание предложения
-	/*async createOne(articleDto: CreateOralProposalDto): Promise<OralProposalRespType.CreateOne | never> {
+	async createOne(articleDto: CreateOralProposalDto): Promise<OralProposalRespType.CreateOne | never> {
 		return this.helperService.runQuery<OralProposalRespType.CreateOne>(() => {
 			return this.oralProposalModel.create(articleDto)
 		})
-	}*/
+	}
 
 	// Обновление предложения
-	/*async updateOne(articleId: number, articleDto: UpdateOralProposalDto): Promise<OralProposalRespType.UpdateOne | never> {
+	async updateOne(articleId: number, articleDto: UpdateOralProposalDto): Promise<OralProposalRespType.UpdateOne | never> {
 		return this.helperService.runQuery<OralProposalRespType.UpdateOne>(async () => {
 			const result = await this.oralProposalModel.update(
 				articleDto,
@@ -44,10 +44,10 @@ export class OralProposalService {
 
 			return result[1][0]
 		})
-	}*/
+	}
 
 	// Удаление предложения
-	/*async deleteOne(proposalId: number): Promise<OralProposalRespType.Delete | never> {
+	async deleteOne(proposalId: number): Promise<OralProposalRespType.Delete | never> {
 		return this.helperService.runQuery<OralProposalRespType.Delete>(async () => {
 			await this.oralProposalModel.destroy(
 				{
@@ -57,7 +57,7 @@ export class OralProposalService {
 
 			return true
 		})
-	}*/
+	}
 
 	// Удаление предложений с переданном идентификатором группы
 	async deleteProposalsWithGroup(groupId: number): Promise<OralProposalRespType.Delete | never> {
@@ -72,3 +72,5 @@ export class OralProposalService {
 		})
 	}
 }
+
+export default OralProposalService

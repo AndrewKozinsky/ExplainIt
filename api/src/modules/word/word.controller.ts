@@ -15,7 +15,7 @@ import { WritingProposalService } from '../writingProposal/writingProposal.servi
 import CreateWordDto from './dto/createWord.dto'
 import { WordRespType } from './response/responseTypes'
 import { WordService } from './word.service'
-import { HelperService } from '../helper/helper.service'
+import HelperService from '../helper/helper.service'
 // import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 // import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 

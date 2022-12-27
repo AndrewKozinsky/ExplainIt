@@ -5,7 +5,7 @@ import { Word } from '../../word/model/word.model'
 import { CreationOptional } from 'sequelize'
 
 @Table
-export class OralProposal extends Model<Partial<OralProposal>> {
+class OralProposal extends Model<Partial<OralProposal>> {
 	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
 	declare id: number
 	declare createdAt: CreationOptional<Date>
@@ -40,6 +40,12 @@ export class OralProposal extends Model<Partial<OralProposal>> {
 	})
 	order: number
 
+	@Column({
+		type: DataType.BOOLEAN,
+		defaultValue: false
+	})
+	payAtn?: boolean // Нужно ли обратить внимание на это предложение
+
 	@ForeignKey(() => ProposalsGroup)
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
@@ -52,3 +58,5 @@ export class OralProposal extends Model<Partial<OralProposal>> {
 		{ onDelete: 'CASCADE' })
 	words: Word[]
 }
+
+export default OralProposal

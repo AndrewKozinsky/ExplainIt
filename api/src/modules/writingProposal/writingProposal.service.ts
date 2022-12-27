@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import CreateWritingProposalDto from './dto/createWritingProposal.dto'
-import { WritingProposalRespType } from './response/responseTypes'
-import { HelperService } from '../helper/helper.service'
-import { WritingProposal } from './model/writingProposal.model'
+import WritingProposalRespType from './response/responseTypes'
+import HelperService from '../helper/helper.service'
+import WritingProposal from './model/writingProposal.model'
 import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 import { ArticleService } from '../article/article.service'
-import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 
 @Injectable()
 export class WritingProposalService {

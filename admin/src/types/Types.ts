@@ -5,6 +5,14 @@ import CreateGroupDto from '../../../api/src/modules/proposalsGroup/dto/createGr
 import ProposalsGroupRespType from '../../../api/src/modules/proposalsGroup/response/responseTypes'
 import ModelTypes from '../../../api/src/types/modelTypes'
 import UpdateGroupDto from '../../../api/src/modules/proposalsGroup/dto/updateGroup.dto'
+import OralProposalRespType from '../../../api/src/modules/oralProposal/response/responseTypes'
+import CreateOralProposalDto from '../../../api/src/modules/oralProposal/dto/createOralProposal.dto'
+import WritingProposalRespType from '../../../api/src/modules/writingProposal/response/responseTypes'
+import CreateWritingProposalDto from '../../../api/src/modules/writingProposal/dto/createWritingProposal.dto'
+import OralProposalModel from '../../../api/src/modules/oralProposal/model/oralProposal.model'
+import WritingProposalModel from '../../../api/src/modules/writingProposal/model/writingProposal.model'
+import UpdateOralProposalDto from '../../../api/src/modules/oralProposal/dto/updateOralProposal.dto'
+import UpdateWritingProposalDto from '../../../api/src/modules/writingProposal/dto/updateWritingProposal.dto'
 
 namespace Types {
 	// Ответы от сервера
@@ -51,6 +59,38 @@ namespace Types {
 			// Удаление группы предложений
 			export type DeleteOne = ProposalsGroupRespType.DeleteOneWrap
 		}
+
+		// Сущность голосового предложения
+		export namespace OralProposal {
+			// Создание предложения
+			export type CreateOne = OralProposalRespType.CreateOneWrap
+			// DTO для создания предложения
+			export type CreateOneDto = CreateOralProposalDto
+
+			// Обновление голосового предложения
+			export type UpdateOne = OralProposalRespType.UpdateOneWrap
+			// DTO для обновления голосового предложения
+			export type UpdateOneDto = UpdateOralProposalDto
+
+			// Удаление группы предложений
+			export type DeleteOne = OralProposalRespType.DeleteWrap
+		}
+
+		// Сущность письменного предложения
+		export namespace WritingProposal {
+			// Создание предложения
+			export type CreateOne = WritingProposalRespType.CreateOneWrap
+			// DTO для создания предложения
+			export type CreateOneDto = CreateWritingProposalDto
+
+			// Обновление голосового предложения
+			export type UpdateOne = WritingProposalRespType.UpdateOneWrap
+			// DTO для обновления голосового предложения
+			export type UpdateOneDto = UpdateWritingProposalDto
+
+			// Удаление группы предложений
+			export type DeleteOne = WritingProposalRespType.DeleteWrap
+		}
 	}
 
 	export namespace Entity {
@@ -62,6 +102,14 @@ namespace Types {
 		export namespace Group {
 			// Типы групп
 			export type GroupType = ModelTypes.ProposalGroup.GroupType
+		}
+		export namespace OralProposal {
+			// Объект предложения
+			export type Item = OralProposalModel
+		}
+		export namespace WritingProposal {
+			// Объект предложения
+			export type Item = WritingProposalModel
 		}
 	}
 }

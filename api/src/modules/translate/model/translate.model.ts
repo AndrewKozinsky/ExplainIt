@@ -1,7 +1,7 @@
 import { Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import translateConstraints from './translate.constraints'
 import { CreationOptional, DataTypes } from 'sequelize'
-import { WritingProposal } from '../../writingProposal/model/writingProposal.model'
+import WritingProposal from '../../writingProposal/model/writingProposal.model'
 
 @Table
 export class Translate extends Model<Partial<Translate>> {

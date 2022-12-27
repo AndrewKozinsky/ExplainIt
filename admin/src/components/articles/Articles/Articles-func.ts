@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { restoreStateFromLocalStorage } from 'components/main/App/App-restoreStateFunc'
+import { restoreStateFromLocalStorage } from 'components/main/App/func/restoreStateFunc'
 // import { useDispatch } from 'react-redux'
 import useGetArticleSelectors from 'store/article/articleSelectors'
 import articleService from '../../../services/article'
@@ -16,13 +16,6 @@ export function useRequestArticles(): void {
 			articleService.requestArticlesAndSetToStore()
 		}
 	}, [needToLoadAllArticles])
-}
-
-/** Хук при загрузке страницы запускает функцию восстанавливающую значения Хранилища */
-export function useRestoreAppState() {
-	useEffect(() => {
-		restoreStateFromLocalStorage()
-	}, [])
 }
 
 // Функция удаления статьи
