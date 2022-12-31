@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
-import { Loader } from 'components/common/Loading/Loading'
 import SvgIcon, { SvgIconPropType, SvgIconType } from '../../common/icons/SvgIcon'
 import makeClasses from './Button-classes'
+import { Loader } from '../../common/Loading/Loading'
 
 export type ButtonPropType = {
     type?: 'button' | 'submit' | 'reset' // Что будет записано в свойстве type

@@ -1,9 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import ArticleStoreType from 'store/article/ArticleStoreType'
-import proposalService from 'services/proposal'
-import proposalGroupService from 'services/proposalGroup'
-import proposal from 'services/proposal'
-import group from 'components/groups/Group/Group'
+import findService from 'services/find.service'
+import Types from 'types/Types'
 
 const initialState: ArticleStoreType.State = {
 	articles: [],            // Массив всех статей
@@ -132,7 +130,7 @@ const articleSlice = createSlice({
 			const { article } = state
 			if (!article) return state
 
-			const group = proposalGroupService.findById(article, action.payload.groupId)
+			const group = findService.findGroupInArticle(article, action.payload.groupId)
 			if (!group) return
 
 			if (group.type === 'oral') {
@@ -146,16 +144,34 @@ const articleSlice = createSlice({
 			const { article } = state
 			if (!article) return state
 
-			const group = proposalGroupService.findById(article,action.payload.groupId)
+			const group = findService.findGroupInArticle(article,action.payload.groupId)
 			if (!group) return
 
-			const proposal = proposalService.findByIdInGroup(group, group.type, action.payload.proposalId)
+			const proposal = findService.findProposalInGroup(
+				group, group.type, action.payload.proposalId
+			)
 			if (!proposal) return
 
 			for (let key in action.payload.newProps) {
 				// @ts-ignore
 				proposal[key] = action.payload.newProps[key]
 			}
+		},
+
+		// Обновление свойств элемента массива групп
+		removeRawTranslate(state, action: ArticleStoreType.RemoveRawTranslate) {
+			const { article, currentGroupId, currentGroupType, currentProposalId } = state
+			if (!article || !currentGroupId || !currentGroupType || !currentProposalId) return
+
+			const proposal = findService.findProposalInArticle(
+				article, currentGroupId, currentGroupType, currentProposalId
+			) as Types.Entity.WritingProposal.Item
+
+			if (!proposal) return
+
+			proposal.rawTranslations = proposal.rawTranslations.filter(translation => {
+				return translation !== action.payload
+			})
 		},
 	}
 })

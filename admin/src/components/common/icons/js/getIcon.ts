@@ -2,7 +2,7 @@ import BtnSignDown from '../icons/btnSignDown'
 import BtnSignUp from '../icons/btnSignUp'
 import BtnSignSave from '../icons/btnSignSave'
 import BtnSignTrash from '../icons/btnSignTrash'
-import HiddenSign from 'components/common/icons/icons/HiddenSign'
+import HiddenSign from '../icons/HiddenSign'
 
 // Объект с названиями значков и ссылок на них
 const iconsCollector = {

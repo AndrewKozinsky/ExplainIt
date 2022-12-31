@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../../formElements/Button/Button'
 import { useIsDisabled } from './CreateArticleBtn-func'
-import articleService from '../../../services/article'
+import articleService from 'services/article.service'
 
 // Кнопка создающая пустую новую статью
 function CreateArticleBtn() {

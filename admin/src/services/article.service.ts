@@ -3,9 +3,10 @@ import { articleRequests } from 'requests/articleRequests'
 import articleSlice from 'store/article/articleSlice'
 import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
 import Types from '../types/Types'
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
-import { saveAppDataToLocalStorage } from 'components/main/App/func/restoreStateFunc'
 import { removeFromLocalStorage } from 'utils/miscUtils'
+import { IndexListItemType } from '../components/common/IndexList/IndexList'
+import { saveAppDataToLocalStorage } from '../components/main/App/func/restoreStateFunc'
+import proposalGroupService from 'services/proposalGroup.service'
 
 const articleService = {
 	// Создание статьи
@@ -135,7 +136,9 @@ const articleService = {
 			}
 		}
 		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении главы.'))
+			store.dispatch(
+				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении главы.')
+			)
 		}
 	},
 
@@ -177,7 +180,9 @@ const articleService = {
 			}
 		}
 		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении главы.'))
+			store.dispatch(
+				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении главы.')
+			)
 		}
 	},
 
@@ -227,7 +232,9 @@ const articleService = {
 			}
 		}
 		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.'))
+			store.dispatch(
+				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.')
+			)
 		}
 	},
 }

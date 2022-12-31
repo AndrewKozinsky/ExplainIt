@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
-import makeClasses, { DetailsType } from 'components/common/IndexList/IndexList-classes'
 import SvgIcon from '../icons/SvgIcon'
 import { onControlClick } from './IndexList-func'
+import makeClasses, { DetailsType } from './IndexList-classes'
 
 // Тип пункта списка
 export type IndexListItemType = {

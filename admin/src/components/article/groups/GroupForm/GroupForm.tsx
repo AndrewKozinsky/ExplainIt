@@ -1,10 +1,10 @@
 import React from 'react'
 import useGetModernForm from 'utils/modernForm/lib'
 import { useGetFormConfig } from './fn/formConfig'
-import Select from 'components/formElements/Select/Select'
 import Types from 'types/Types'
 import useGetArticleSelectors from 'store/article/articleSelectors'
 import './GroupForm.scss'
+import Select from '../../../formElements/Select/Select'
 
 type GroupFormPropType = {
 	group: Types.Req.ProposalGroup.Group

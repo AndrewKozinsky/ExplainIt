@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import MFTypes from 'utils/modernForm/lib/MFTypes'
-import Types from '../../../../types/Types'
+import Types from 'types/Types'
 import useGetArticleSelectors from 'store/article/articleSelectors'
-import proposalGroupService from '../../../../services/proposalGroup'
+import proposalGroupService from 'services/proposalGroup.service'
 import { proposalGroupRequests } from 'requests/proposalGroupRequests'
+import articleService from 'services/article.service'
+import findService from 'services/find.service'
 
 /**
  * Возвращает объект конфигурации формы редактирования группы упражнений
@@ -34,7 +36,7 @@ export function useGetFormConfig(groupId: number) {
  * @param {Number} groupId — id группы предложений
  */
 export function getFormConfig(article: Types.Req.Article.FullArticle, groupId: number): MFTypes.Config {
-	const groupObj = proposalGroupService.findById(article, groupId)
+	const groupObj = findService.findGroupInArticle(article, groupId)
 
 	return {
 		fields: {

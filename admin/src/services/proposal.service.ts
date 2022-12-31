@@ -2,14 +2,15 @@ import store from 'store/store'
 import articleSlice from 'store/article/articleSlice'
 import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
 import Types from '../types/Types'
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
-import { saveAppDataToLocalStorage } from 'components/main/App/func/restoreStateFunc'
-import proposalGroupService from 'services/proposalGroup'
 import oralProposalRequests from 'requests/oralProposalRequests'
 import writingProposalRequests from 'requests/writingProposalRequests'
-import articleService from 'services/article'
-import ModelTypes from '../../../api/src/types/modelTypes'
+import articleService from 'services/article.service'
 import { removeFromLocalStorage } from 'utils/miscUtils'
+import { IndexListItemType } from '../components/common/IndexList/IndexList'
+import { saveAppDataToLocalStorage } from '../components/main/App/func/restoreStateFunc'
+import findService from 'services/find.service'
+import writingProposalService from 'services/writingProposal.service'
+import oralProposalService from 'services/oralProposal.service'
 
 const proposalService = {
 	// Создание предложения
@@ -17,81 +18,18 @@ const proposalService = {
 		const { article, currentGroupId } = store.getState().article
 		if (!article || !currentGroupId) return
 
-		const group = proposalGroupService.findById(article, currentGroupId)
+		const group = findService.findGroupInArticle(article, currentGroupId)
 		if (!group) return
 
 		if (group.type == 'oral') {
-			await this.createOralProposal()
+			await oralProposalService.createProposal()
 		}
 		else if (group.type == 'writing') {
-			await this.createWritingProposal()
+			await writingProposalService.createProposal()
 		}
 	},
 
-	// Создание голосового предложения
-	async createOralProposal() {
-		const { article, currentGroupId } = store.getState().article
-		if (!article || !currentGroupId) return
 
-		const group = proposalGroupService.findById(article, currentGroupId)
-		if (!group) return
-
-		const reqBody: Types.Req.OralProposal.CreateOneDto = {
-			rusProposal: 'Новое предложение',
-			engProposal: 'New proposal',
-			order: group.oralProposals.length + 1,
-			proposalsGroupId: currentGroupId,
-		}
-
-		try {
-			const response = await oralProposalRequests.createOne(reqBody)
-
-			if (response.status === 'success') {
-				await articleService.requestArticleAndSetToStore(article.id)
-			}
-			else {
-				store.dispatch(globalErrorsSlice.actions.setError(response.message))
-			}
-		}
-		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError(
-				'Возникла неизвестная ошибка при создании голосового предложения.'
-			))
-		}
-	},
-
-	// Создание письменного предложения
-	async createWritingProposal() {
-		const { article, currentGroupId } = store.getState().article
-		if (!article || !currentGroupId) return
-
-		const group = proposalGroupService.findById(article, currentGroupId)
-		if (!group) return
-
-		const reqBody: Types.Req.WritingProposal.CreateOneDto = {
-			rusProposal: 'Новое предложение',
-			badTranslations: [],
-			rawTranslations: [],
-			order: group.oralProposals.length + 1,
-			proposalsGroupId: currentGroupId,
-		}
-
-		try {
-			const response = await writingProposalRequests.createOne(reqBody)
-
-			if (response.status === 'success') {
-				await articleService.requestArticleAndSetToStore(article.id)
-			}
-			else {
-				store.dispatch(globalErrorsSlice.actions.setError(response.message))
-			}
-		}
-		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError(
-				'Возникла неизвестная ошибка при создании письменного предложения.'
-			))
-		}
-	},
 
 	/**
 	 * Переводит массив статей полученный с сервера в формат данных для отрисовки компонентом IndexList.
@@ -121,7 +59,8 @@ const proposalService = {
 			articleSlice.actions.setProposalId(proposalId)
 		)
 
-		// Сохранить id выделенного предложения в LocalStorage чтобы при загрузке страницы снова его выделить
+		// Сохранить id выделенного предложения в LocalStorage
+		// чтобы при загрузке страницы снова его выделить
 		saveAppDataToLocalStorage('proposalId', proposalId)
 	},
 
@@ -130,7 +69,7 @@ const proposalService = {
 	 * @param {Number} proposalId — id предложения
 	 * @param {String} proposalType — тип предложения (голосовое или письменное)
 	 */
-	async delete(proposalId: number, proposalType: ModelTypes.ProposalGroup.GroupType) {
+	async delete(proposalId: number, proposalType: Types.Entity.Group.GroupType) {
 		try {
 			let response: Types.Req.OralProposal.DeleteOne | Types.Req.WritingProposal.DeleteOne
 
@@ -168,19 +107,22 @@ const proposalService = {
 			}
 		}
 		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении предложения.'))
+			store.dispatch(
+				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении предложения.')
+			)
 		}
 	},
 
 	/**
-	 * После изменения порядка статей в списке нужно актуализировать свойство order чтобы значения шли по текущему порядку.
+	 * После изменения порядка статей в списке нужно актуализировать свойство order
+	 * чтобы значения располагались по текущему порядку.
 	 * Функция обновляет значение свойства order и в данных статьи на сервере и в Хранилище.
 	 */
 	updateProposalOrderProp() {
 		const { article, currentGroupId, currentGroupType } = store.getState().article
 		if (!article || !currentGroupId || !currentGroupType) return
 
-		const proposals = this.findAll(article, currentGroupId)
+		const proposals = findService.findGroupProposalsInArticle(article, currentGroupId)
 		if (!proposals) return
 
 		proposals.forEach((proposal, i) => {
@@ -198,19 +140,6 @@ const proposalService = {
 		})
 	},
 
-	// Поиск всех предложений указанной группы
-	findAll(article:  Types.Req.Article.FullArticle, groupId: number) {
-		const group = proposalGroupService.findById(article, groupId)
-		if (!group) return
-
-		if (group.type === 'oral') {
-			return group.oralProposals
-		}
-		else {
-			return group.writingProposals
-		}
-	},
-
 	/**
 	 * Функция обновляет свойства у предложения на сервере
 	 * @param {Number} proposalId — id предложения
@@ -219,7 +148,7 @@ const proposalService = {
 	 */
 	async requestUpdateProposal(
 		proposalId: number,
-		proposalType: ModelTypes.ProposalGroup.GroupType,
+		proposalType: Types.Entity.Group.GroupType,
 		body: Types.Req.OralProposal.UpdateOneDto | Types.Req.WritingProposal.UpdateOneDto
 	) {
 		try {
@@ -237,7 +166,9 @@ const proposalService = {
 			}
 		}
 		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении предложения.'))
+			store.dispatch(
+				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении предложения.')
+			)
 		}
 	},
 
@@ -265,24 +196,6 @@ const proposalService = {
 
 			this.updateArticlesOrderProp()
 		}*/
-	},
-
-	// Поиск группы предложений по идентификатору
-	findByIdInGroup(
-		group: Types.Req.ProposalGroup.Group,
-		proposalType: ModelTypes.ProposalGroup.GroupType,
-		proposalId: number
-	) {
-		if (proposalType == 'oral') {
-			return group.oralProposals.find(proposal => {
-				return proposal.id == proposalId
-			})
-		}
-		else {
-			return group.writingProposals.find(proposal => {
-				return proposal.id == proposalId
-			})
-		}
 	},
 }
 

@@ -17,6 +17,7 @@ import { WritingProposalService } from './writingProposal.service'
 import HelperService from '../helper/helper.service'
 import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
+import RawTranslateDto from './dto/rawTranslate.dto'
 
 @Controller('writingProposal')
 export class WritingProposalController {
@@ -26,6 +27,7 @@ export class WritingProposalController {
 		private readonly helperService: HelperService
 	) {}
 
+	// Создание письменного предложения
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
 	async create(
@@ -51,6 +53,7 @@ export class WritingProposalController {
 		)
 	}
 
+	// Обновление письменного предложения
 	@Patch(':id')
 	@HttpCode(HttpStatus.OK)
 	async update(
@@ -75,6 +78,7 @@ export class WritingProposalController {
 		}
 	}
 
+	// Удаление письменного предложения
 	@Delete(':id')
 	@HttpCode(HttpStatus.OK)
 	async deleteOne(
@@ -97,5 +101,86 @@ export class WritingProposalController {
 		return this.helperService.createSuccessResponse (
 			{ writingProposals: null }, HttpStatus.OK
 		)
+	}
+
+	// Добавление необработанного перевода в массив необработанных переводов письменного предложения
+	@Post(':id/rawProposal')
+	@HttpCode(HttpStatus.OK)
+	async addRawProposal(
+		@Body() rawProposalDto: RawTranslateDto,
+		@Param('id', ParseIntPipe) id: number,
+		@Res({ passthrough: true }) res: Response
+	): Promise<WritingProposalRespType.UpdateOneWrap> {
+		// Получить письменное предложение
+		const thisProposal = await this.writingProposalService.getOne(id)
+
+		if (!thisProposal) {
+			res.status(HttpStatus.BAD_REQUEST)
+			return this.helperService.createFailResponse (
+				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
+			)
+		}
+
+		const newRowProposals = thisProposal.rawTranslations
+		newRowProposals.push(rawProposalDto.text)
+
+		// Обновить предложение в БД
+		const updatedProposal = await this.writingProposalService.updateOne(
+			id, { rawTranslations: newRowProposals }
+		)
+
+		// Сформировать и возвратить клиенту ответ
+		if (updatedProposal) {
+			return this.helperService.createSuccessResponse (
+				{ writingProposals: updatedProposal }, HttpStatus.OK
+			)
+		}
+		else {
+			res.status(HttpStatus.BAD_REQUEST)
+			return this.helperService.createFailResponse (
+				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
+			)
+		}
+	}
+
+	// Удаление необработанного перевода из массива необработанных переводов письменного предложения
+	@Delete(':id/rawProposal')
+	@HttpCode(HttpStatus.OK)
+	async removeRawProposal(
+		@Body() rawProposalDto: RawTranslateDto,
+		@Param('id', ParseIntPipe) id: number,
+		@Res({ passthrough: true }) res: Response
+	): Promise<WritingProposalRespType.UpdateOneWrap> {
+		// Получить письменное предложение
+		const thisProposal = await this.writingProposalService.getOne(id)
+
+		if (!thisProposal) {
+			res.status(HttpStatus.BAD_REQUEST)
+			return this.helperService.createFailResponse (
+				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
+			)
+		}
+
+		const newRowProposals = thisProposal.rawTranslations.filter(proposal => {
+			return proposal !== rawProposalDto.text
+		})
+
+		// Обновить предложение в БД
+		const updatedProposal = await this.writingProposalService.updateOne(
+			id, { rawTranslations: newRowProposals }
+		)
+
+		// Сформировать и возвратить клиенту ответ
+		if (updatedProposal) {
+			return this.helperService.createSuccessResponse (
+				{ writingProposals: updatedProposal }, HttpStatus.OK
+			)
+		}
+		else {
+			res.status(HttpStatus.BAD_REQUEST)
+			return this.helperService.createFailResponse (
+				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
+			)
+		}
 	}
 }

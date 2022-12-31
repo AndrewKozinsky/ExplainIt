@@ -1,8 +1,9 @@
 import React from 'react'
-import Button from 'components/formElements/Button/Button'
-import proposalGroupService from '../../../services/proposalGroup'
+import proposalGroupService from 'services/proposalGroup.service'
 import useGetArticleSelectors from 'store/article/articleSelectors'
-import Group from 'components/groups/Group/Group'
+import Button from '../../../formElements/Button/Button'
+import Group from '../Group/Group'
+import Header from '../../../common/Header/Header'
 import './Groups.scss'
 
 function Groups() {
@@ -14,7 +15,7 @@ function Groups() {
 
 	return (
 		<div className='groups'>
-			Блоки упражнений
+			<Header text='Блоки упражнений' />
 			{article.proposalsGroups.length !== 0 && <div className='groups__wrapper'>
 				{article.proposalsGroups.map(group => {
 					return <Group group={group} key={group.id} />

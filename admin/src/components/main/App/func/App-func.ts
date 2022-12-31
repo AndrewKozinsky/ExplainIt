@@ -1,7 +1,6 @@
 import { getFromLocalStorage } from 'utils/miscUtils'
 import { useEffect, useState } from 'react'
-import { restoreStateFromLocalStorage } from 'components/main/App/func/restoreStateFunc'
-import articleService from 'services/article'
+import { restoreStateFromLocalStorage } from './restoreStateFunc'
 
 /** Хук проверяет можно ли пользователю смотреть административную часть. */
 export function useIsEnterAllow() {

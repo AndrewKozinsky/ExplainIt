@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit'
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
 import Types from '../../types/Types'
+import { IndexListItemType } from '../../components/common/IndexList/IndexList'
 
 namespace ArticleStoreType {
 	export type SelectedItemId = null | number
@@ -84,6 +84,10 @@ namespace ArticleStoreType {
 		proposalId: number
 		newProps: Types.Req.OralProposal.UpdateOneDto | Types.Req.WritingProposal.UpdateOneDto
 	}>
+
+	// Обновление свойств элемента массива groups в статье.
+	// Принимает текст удаляемого предложения из массива необработанных предложений.
+	export type RemoveRawTranslate = PayloadAction<string>
 }
 
 export default ArticleStoreType

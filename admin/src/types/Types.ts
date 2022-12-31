@@ -13,6 +13,7 @@ import OralProposalModel from '../../../api/src/modules/oralProposal/model/oralP
 import WritingProposalModel from '../../../api/src/modules/writingProposal/model/writingProposal.model'
 import UpdateOralProposalDto from '../../../api/src/modules/oralProposal/dto/updateOralProposal.dto'
 import UpdateWritingProposalDto from '../../../api/src/modules/writingProposal/dto/updateWritingProposal.dto'
+import RawTranslateDto from '../../../api/src/modules/writingProposal/dto/rawTranslate.dto'
 
 namespace Types {
 	// Ответы от сервера
@@ -90,6 +91,9 @@ namespace Types {
 
 			// Удаление группы предложений
 			export type DeleteOne = WritingProposalRespType.DeleteWrap
+
+			// DTO для добавления/удаления необработанного перевода письменного предложения
+			export type RawTranslateDTO = RawTranslateDto
 		}
 	}
 
@@ -110,6 +114,7 @@ namespace Types {
 		export namespace WritingProposal {
 			// Объект предложения
 			export type Item = WritingProposalModel
+			export type RowTranslate = string
 		}
 	}
 }

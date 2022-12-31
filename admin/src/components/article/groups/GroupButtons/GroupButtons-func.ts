@@ -1,5 +1,5 @@
 import React, { MouseEvent, useCallback, useMemo } from 'react'
-import proposalGroupService from '../../../services/proposalGroup'
+import proposalGroupService from 'services/proposalGroup.service'
 import useGetArticleSelectors from 'store/article/articleSelectors'
 import store from 'store/store'
 

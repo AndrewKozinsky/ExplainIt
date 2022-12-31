@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
-import { restoreStateFromLocalStorage } from 'components/main/App/func/restoreStateFunc'
-// import { useDispatch } from 'react-redux'
 import useGetArticleSelectors from 'store/article/articleSelectors'
-import articleService from '../../../services/article'
+import articleService from 'services/article.service'
 
 /**
  * Хук отслеживает изменение свойства needToLoadAllArticles из store.articles.

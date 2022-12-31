@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import Label from '../Label/Label'
 import MFTypes from 'utils/modernForm/lib/MFTypes'
-import ErrorMessage from 'components/formElements/ErrorMessage/ErrorMessage'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import './TextInput.scss'
 
 export type TextInputPropType = MFTypes.TextCompProps & {

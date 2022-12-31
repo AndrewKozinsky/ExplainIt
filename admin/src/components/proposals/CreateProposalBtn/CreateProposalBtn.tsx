@@ -1,5 +1,5 @@
 import React from 'react'
-import proposalService from 'services/proposal'
+import proposalService from 'services/proposal.service'
 import Button from '../../formElements/Button/Button'
 import { useIsDisabled } from './CreateProposalBtn-func'
 

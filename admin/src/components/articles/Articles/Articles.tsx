@@ -6,7 +6,7 @@ import {
 } from './Articles-func'
 import { ContentLoading } from '../../common/Loading/Loading'
 import IndexList from '../../common/IndexList/IndexList'
-import articleService from '../../../services/article'
+import articleService from 'services/article.service'
 
 /** Список статей */
 function Articles() {

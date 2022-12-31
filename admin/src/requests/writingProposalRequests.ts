@@ -4,25 +4,6 @@ import Types from 'types/Types'
 
 // Объект с функциями запросов к статьям
 const writingProposalRequests = {
-
-	// Получение всех статей
-	/*getAll: async function () {
-		const options: RequestOptionsType = { method: 'GET' }
-
-		return await makeFetch<Types.Req.Article.GetAll>(
-			addresses.articles, options
-		)
-	},*/
-
-	// Получение статьи
-	/*getOne: async function (proposalId: number) {
-		const options: RequestOptionsType = { method: 'GET' }
-
-		return await makeFetch<Types.Req.Article.GetOne>(
-			addresses.article(proposalId), options
-		)
-	},*/
-
 	// Создание письменного предложения
 	createOne: async function (body: Types.Req.WritingProposal.CreateOneDto) {
 		const options: RequestOptionsType = { method: 'POST', body }
@@ -52,6 +33,34 @@ const writingProposalRequests = {
 			addresses.writingProposal(proposalId), options
 		)
 	},
+
+	// Добавление необработанного перевода в письменное предложение
+	addRawProposal: async function (
+		proposalId: number, body: Types.Req.WritingProposal.RawTranslateDTO
+	) {
+		const options: RequestOptionsType = {
+			method: 'DELETE',
+			body
+		}
+
+		return await makeFetch<Types.Req.WritingProposal.UpdateOne>(
+			addresses.writingProposalRawTranslate(proposalId), options
+		)
+	},
+
+	// Удаление необработанного перевода в письменное предложение
+	removeRawProposal: async function (
+		proposalId: number, body: Types.Req.WritingProposal.RawTranslateDTO
+	) {
+		const options: RequestOptionsType = {
+			method: 'DELETE',
+			body
+		}
+
+		return await makeFetch<Types.Req.WritingProposal.UpdateOne>(
+			addresses.writingProposalRawTranslate(proposalId), options
+		)
+	}
 }
 
 export default writingProposalRequests

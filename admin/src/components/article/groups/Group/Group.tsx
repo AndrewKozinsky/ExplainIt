@@ -2,10 +2,10 @@ import React from 'react'
 import Types from 'types/Types'
 import cn from 'classnames'
 import useGetArticleSelectors from 'store/article/articleSelectors'
-import proposalGroupService from '../../../services/proposalGroup'
+import proposalGroupService from 'services/proposalGroup.service'
 import GroupForm from '../GroupForm/GroupForm'
 import GroupButtons from '../GroupButtons/GroupButtons'
-import { getOnSelectGroup } from 'components/groups/Group/Group-func'
+import { getOnSelectGroup } from './Group-func'
 import './Group.scss'
 
 type GroupPropType = {

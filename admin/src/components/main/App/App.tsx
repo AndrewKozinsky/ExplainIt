@@ -4,9 +4,10 @@ import SideBlock from '../../common/Blocks/SideBlock/SideBlock'
 import Articles from '../../articles/Articles/Articles'
 import { useIsEnterAllow, useRestoreAppState } from './func/App-func'
 import CreateArticleBtn from '../../articles/CreateArticleBtn/CreateArticleBtn'
-import Article from 'components/article/Article/Article'
-import Proposals from 'components/proposals/Proposals/Proposals'
-import CreateProposalBtn from 'components/proposals/CreateProposalBtn/CreateProposalBtn'
+import Proposals from '../../proposals/Proposals/Proposals'
+import CreateProposalBtn from '../../proposals/CreateProposalBtn/CreateProposalBtn'
+import ProposalSwitch from '../../proposals/ProposalSwitch/ProposalSwitch'
+import Article from '../../article/Article/Article'
 import './css/reset.css'
 import './css/variables.scss'
 import './css/general.scss'
@@ -27,7 +28,7 @@ function App(): ReactElement {
 	return (
 		<main className='app'>
 			<SideBlock leftTop={<Articles />} leftBottom={<CreateArticleBtn />} right={<Article />} />
-			<SideBlock leftTop={<Proposals />} leftBottom={<CreateProposalBtn />} />
+			<SideBlock leftTop={<Proposals />} leftBottom={<CreateProposalBtn />} right={<ProposalSwitch />} />
 			<GlobalErrors />
 		</main>
 	)

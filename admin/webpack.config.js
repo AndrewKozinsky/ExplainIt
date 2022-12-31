@@ -78,7 +78,6 @@ function getResolve() {
 		modules: ['node_modules'],
 		alias: {
 			src:      path.resolve(__dirname, './src'),
-			components:   path.resolve(__dirname, './src/components'),
 			requests: path.resolve(__dirname, './src/requests'),
 			services:    path.resolve(__dirname, './src/services'),
 			store:    path.resolve(__dirname, './src/store'),

@@ -22,5 +22,8 @@ export const addresses = {
 	writingProposals: '/api/writingProposal',
 	writingProposal(proposalId: number | string): string {
 		return '/api/writingProposal/' + proposalId
+	},
+	writingProposalRawTranslate(proposalId: number | string): string {
+		return '/api/writingProposal/' + proposalId + '/rawProposal'
 	}
 }

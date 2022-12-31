@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import useGetArticleSelectors from 'store/article/articleSelectors'
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
-import proposalService from 'services/proposal'
-import proposalGroupService from 'services/proposalGroup'
+import proposalService from 'services/proposal.service'
+import proposalGroupService from 'services/proposalGroup.service'
 import Types from 'types/Types'
 import store from 'store/store'
+import { IndexListItemType } from '../../common/IndexList/IndexList'
 
 /** Формирует и возвращает данные для построения списка предложений выделенной гурппы предложений */
 export function useGetProposalsList() {

@@ -2,11 +2,11 @@ import store from 'store/store'
 import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
 import Types from '../types/Types'
 import { proposalGroupRequests } from 'requests/proposalGroupRequests'
-import articleService from './article'
+import articleService from './article.service'
 import articleSlice from 'store/article/articleSlice'
-import { saveAppDataToLocalStorage } from 'components/main/App/func/restoreStateFunc'
-import { isAllOf } from '@reduxjs/toolkit'
 import { removeFromLocalStorage } from 'utils/miscUtils'
+import { saveAppDataToLocalStorage } from '../components/main/App/func/restoreStateFunc'
+import findService from 'services/find.service'
 
 const proposalGroupService = {
 	async createGroup(groupType: Types.Entity.Group.GroupType) {
@@ -51,19 +51,12 @@ const proposalGroupService = {
 		}
 	},
 
-	// Поиск группы предложений по идентификатору
-	findById(article:  Types.Req.Article.FullArticle, groupId: number) {
-		return article.proposalsGroups.find(group => {
-			return group.id == groupId
-		})
-	},
-
 	/** Получение выделенной группы упражнений */
 	getSelectedGroup() {
 		const { article, currentGroupId } = store.getState().article
 		if (!article || !currentGroupId) return null
 
-		return this.findById(article, currentGroupId)
+		return findService.findGroupInArticle(article, currentGroupId)
 	},
 
 	/**
@@ -75,8 +68,12 @@ const proposalGroupService = {
 		store.dispatch(
 			articleSlice.actions.setGroup({ groupId, groupType })
 		)
+		store.dispatch(
+			articleSlice.actions.setProposalId(null)
+		)
 
-		// Сохранить id выделенной группы и её тип в LocalStorage чтобы при загрузке страницы снова её выделить
+		// Сохранить id выделенной группы и её тип в LocalStorage
+		// чтобы при загрузке страницы снова её выделить
 		saveAppDataToLocalStorage('groupId', groupId)
 		saveAppDataToLocalStorage('groupType', groupType)
 	},
@@ -117,12 +114,17 @@ const proposalGroupService = {
 			}
 		}
 		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении группы предложений.'))
+			store.dispatch(
+				globalErrorsSlice.actions.setError(
+					'Возникла неизвестная ошибка при удалении группы предложений.'
+				)
+			)
 		}
 	},
 
 	/**
-	 * После изменения порядка групп в списке нужно актуализировать свойство order чтобы значения шли по текущему порядку.
+	 * После изменения порядка групп в списке нужно актуализировать свойство order
+	 * чтобы значения шли по текущему порядку.
 	 * Функция обновляет значение свойства order и в данных статьи на сервере и в Хранилище.
 	 */
 	updateGroupOrderProp() {
@@ -162,7 +164,9 @@ const proposalGroupService = {
 			}
 		}
 		catch(err) {
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении главы.'))
+			store.dispatch(
+				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении главы.')
+			)
 		}
 	},
 

@@ -1,13 +1,13 @@
 import React from 'react'
 import useGetModernForm from 'utils/modernForm/lib'
 import { useGetFormConfig } from './fn/formConfig'
-import './ArticleForm.scss'
 import TextInput from '../../formElements/TextInput/TextInput'
 import Button from '../../formElements/Button/Button'
-import ErrorMessage from '../../formElements/ErrorMessage/ErrorMessage'
 import Toggle from '../../formElements/Toggle/Toggle'
+import ErrorMessage from '../../formElements/ErrorMessage/ErrorMessage'
 
-function ArticleForm() {
+// Форма редактирования голосового предложения
+function WritingProposalForm() {
 	const formConfig = useGetFormConfig()
 
 	const {
@@ -21,11 +21,9 @@ function ArticleForm() {
 	return (
 		<>
 			<form onSubmit={onSubmit} className='article-form'>
-				<TextInput {...fieldAttrs.name} label='Название статьи' />
-				<TextInput {...fieldAttrs.chapter} label='Номер главы' />
-				<Toggle {...fieldAttrs.published} label='Опубликована' />
-				<TextInput {...fieldAttrs.summary} label='Краткое описание статьи' inputType='textarea' />
-				<TextInput {...fieldAttrs.content} label='Разметка статьи из редактора' inputType='textarea' />
+				<TextInput {...fieldAttrs.rusProposal} label='Предложение' />
+				<TextInput {...fieldAttrs.note} label='Примечание' />
+				<Toggle {...fieldAttrs.published} label='Опубликовано' />
 				<div className='article-form__bottom'>
 					<Button
 						text='Сохранить'
@@ -40,4 +38,4 @@ function ArticleForm() {
 	)
 }
 
-export default ArticleForm
+export default WritingProposalForm

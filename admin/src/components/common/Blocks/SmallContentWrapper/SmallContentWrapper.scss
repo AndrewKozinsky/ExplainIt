@@ -1,0 +1,7 @@
+$CN: 'small-content-wrapper';
+
+.#{$CN} {
+	padding: 15px;
+	border: 1px solid var(--gray-color-1);
+	border-radius: var(--radius);
+}

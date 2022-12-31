@@ -1,9 +1,9 @@
 import React from 'react'
-import ContentWrapper from 'components/common/ContentWrapper/ContentWrapper'
-import { useSetArticleInStore } from 'components/article/Article/Article-func'
 import ArticleForm from '../ArticleForm/ArticleForm'
 import useGetArticleSelectors from 'store/article/articleSelectors'
-import Groups from '../../groups/Groups/Groups'
+import Groups from '../groups/Groups/Groups'
+import { useSetArticleInStore } from './Article-func'
+import ContentWrapper from '../../common/Blocks/ContentWrapper/ContentWrapper'
 
 // Форма редактирования статьи и групп
 function Article() {

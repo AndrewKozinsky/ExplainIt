@@ -22,7 +22,6 @@
         "experimentalDecorators": true,
         "jsx": "react-jsx",
         "paths": {
-          "components/*": ["./src/components/*"],
           "requests/*": ["./src/requests/*"],
           "services/*": ["./src/services/*"],
           "store/*": ["./src/store/*"],

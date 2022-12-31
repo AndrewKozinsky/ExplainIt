@@ -1,11 +1,7 @@
 import React from 'react'
-import Button from 'components/formElements/Button/Button'
-import {
-	useGetDeleteGroupFn,
-	useGetMoveGroupFn,
-	useIsMoveButtonActive
-} from 'components/groups/GroupButtons/GroupButtons-func'
 import useGetArticleSelectors from 'store/article/articleSelectors'
+import Button from '../../../formElements/Button/Button'
+import { useGetDeleteGroupFn, useGetMoveGroupFn, useIsMoveButtonActive } from './GroupButtons-func'
 import './GroupButtons.scss'
 
 type GroupButtonsPropType = {

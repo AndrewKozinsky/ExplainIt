@@ -1,5 +1,5 @@
-import { IndexListItemType } from 'components/common/IndexList/IndexList'
 import cn from 'classnames'
+import { IndexListItemType } from './IndexList'
 import './IndexList.scss'
 
 export type DetailsType = {

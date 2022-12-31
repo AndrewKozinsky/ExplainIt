@@ -1,0 +1,18 @@
+$CN: raw-translations;
+
+.#{$CN} {
+	display: grid;
+	gap: 10px;
+}
+
+.#{$CN}__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.#{$CN}__text {
+	flex-grow: 1;
+	margin: 4px 0 0 0;
+}
