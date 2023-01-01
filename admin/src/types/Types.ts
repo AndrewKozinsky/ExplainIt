@@ -14,6 +14,10 @@ import WritingProposalModel from '../../../api/src/modules/writingProposal/model
 import UpdateOralProposalDto from '../../../api/src/modules/oralProposal/dto/updateOralProposal.dto'
 import UpdateWritingProposalDto from '../../../api/src/modules/writingProposal/dto/updateWritingProposal.dto'
 import RawTranslateDto from '../../../api/src/modules/writingProposal/dto/rawTranslate.dto'
+import TranslateModel from '../../../api/src/modules/translate/model/translate.model'
+import UpdateTranslateDto from '../../../api/src/modules/translate/dto/updateTranslate.dto'
+import CreateTranslateDto from '../../../api/src/modules/translate/dto/createTranslate.dto'
+import TranslateRespType from '../../../api/src/modules/translate/response/responseTypes'
 
 namespace Types {
 	// Ответы от сервера
@@ -79,21 +83,37 @@ namespace Types {
 
 		// Сущность письменного предложения
 		export namespace WritingProposal {
-			// Создание предложения
+			// Создание письменного предложения
 			export type CreateOne = WritingProposalRespType.CreateOneWrap
-			// DTO для создания предложения
+			// DTO для создания письменного предложения
 			export type CreateOneDto = CreateWritingProposalDto
 
-			// Обновление голосового предложения
+			// Обновление письменного предложения
 			export type UpdateOne = WritingProposalRespType.UpdateOneWrap
 			// DTO для обновления голосового предложения
 			export type UpdateOneDto = UpdateWritingProposalDto
 
-			// Удаление группы предложений
+			// Удаление письменного предложения
 			export type DeleteOne = WritingProposalRespType.DeleteWrap
 
 			// DTO для добавления/удаления необработанного перевода письменного предложения
 			export type RawTranslateDTO = RawTranslateDto
+		}
+
+		// Сущность перевода
+		export namespace Translation {
+			// Создание перевода
+			export type CreateOne = TranslateRespType.CreateOneWrap
+			// DTO для создания перевода
+			export type CreateOneDto = CreateTranslateDto
+
+			// Обновление перевода
+			export type UpdateOne = TranslateRespType.UpdateOneWrap
+			// DTO для обновления перевода
+			export type UpdateOneDto = UpdateTranslateDto
+
+			// Удаление перевода
+			export type DeleteOne = TranslateRespType.DeleteWrap
 		}
 	}
 
@@ -114,7 +134,13 @@ namespace Types {
 		export namespace WritingProposal {
 			// Объект предложения
 			export type Item = WritingProposalModel
+
+			// Неразобранный перевод
 			export type RowTranslate = string
+		}
+		export namespace Translation {
+			// Перевод русского предложения
+			export type Item = TranslateModel
 		}
 	}
 }

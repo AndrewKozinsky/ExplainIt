@@ -4,7 +4,7 @@ import { CreationOptional, DataTypes } from 'sequelize'
 import WritingProposal from '../../writingProposal/model/writingProposal.model'
 
 @Table
-export class Translate extends Model<Partial<Translate>> {
+class Translate extends Model<Partial<Translate>> {
 	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
 	declare id: number
 	declare createdAt: CreationOptional<Date>
@@ -41,3 +41,5 @@ export class Translate extends Model<Partial<Translate>> {
 	})
 	proposalId: number // id предложения, к которой принадлежит этот перевод
 }
+
+export default Translate

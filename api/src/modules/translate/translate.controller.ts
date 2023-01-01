@@ -1,21 +1,22 @@
 import {
 	Body,
 	Controller,
-	// 	Delete,
+	Delete,
 	HttpCode,
 	HttpStatus,
-	// 	Param,
-	// 	ParseIntPipe,
-	// 			Patch,
+	Param,
+	ParseIntPipe,
+	Patch,
 	Post,
 	Res,
 } from '@nestjs/common'
 import { Response } from 'express'
 import { WritingProposalService } from '../writingProposal/writingProposal.service'
 import CreateTranslateDto from './dto/createTranslate.dto'
-import { TranslateRespType } from './response/responseTypes'
+import TranslateRespType from './response/responseTypes'
 import { TranslateService } from './translate.service'
 import HelperService from '../helper/helper.service'
+import UpdateTranslateDto from './dto/updateTranslate.dto'
 // import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 // import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 
@@ -52,20 +53,20 @@ export class TranslateController {
 		)
 	}
 
-	// @Patch(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async update(
-		@Body() proposalDto: UpdateWritingProposalDto,
+	@Patch(':id')
+	@HttpCode(HttpStatus.OK)
+	async update(
+		@Body() translateDto: UpdateTranslateDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<TranslateRespType.UpdateOneWrap> {
 		// Обновить предложение в БД
-		const updatedProposal = await this.writingProposalService.updateOne(id, proposalDto)
+		const updatedProposal = await this.translateService.updateOne(id, translateDto)
 
 		// Сформировать и возвратить клиенту ответ
 		if (updatedProposal) {
 			return this.helperService.createSuccessResponse (
-				{ translates: updatedArticle }, HttpStatus.OK
+				{ translates: updatedProposal }, HttpStatus.OK
 			)
 		}
 		else {
@@ -74,11 +75,11 @@ export class TranslateController {
 				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
 			)
 		}
-	}*/
+	}
 
-	// @Delete(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async deleteOne(
+	@Delete(':id')
+	@HttpCode(HttpStatus.OK)
+	async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
 	): Promise<TranslateRespType.DeleteWrap> {
@@ -93,10 +94,10 @@ export class TranslateController {
 		}
 
 		// Удалить перевод
-		await this.writingProposalService.deleteOne(id)
+		await this.translateService.deleteOne(id)
 
 		return this.helperService.createSuccessResponse (
 			{ translates: null }, HttpStatus.OK
 		)
-	}*/
+	}
 }

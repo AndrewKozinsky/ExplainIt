@@ -1,0 +1,18 @@
+$CN: eng-proposals;
+
+.#{$CN}__rows {
+	display: grid;
+	gap: 10px;
+}
+
+.#{$CN}__row {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 10px;
+	width: 100%;
+}
+
+.#{$CN}__add-btn {
+	margin: 10px 0 0 auto;
+}

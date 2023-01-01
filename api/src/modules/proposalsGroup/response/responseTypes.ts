@@ -1,5 +1,5 @@
 import { GeneralRespType } from '../../../types/generalResponse'
-import { ProposalsGroup } from '../model/proposalsGroup.model'
+import ProposalsGroup from '../model/proposalsGroup.model'
 import ModelTypes from '../../../types/modelTypes'
 
 /** Типы данных возвращаемыми методами группы упражнений */

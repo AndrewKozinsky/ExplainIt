@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import CreateTranslateDto from './dto/createTranslate.dto'
-import { TranslateRespType } from './response/responseTypes'
+import TranslateRespType from './response/responseTypes'
 import HelperService from '../helper/helper.service'
-import { Translate } from './model/translate.model'
+import Translate from './model/translate.model'
+import UpdateTranslateDto from './dto/updateTranslate.dto'
 // import { WritingProposal } from './model/translate.model'
 // import UpdateTranslateDto from './dto/updateTranslate.dto'
 
@@ -19,11 +20,11 @@ export class TranslateService {
 	) {}
 
 	// Получение перевода
-	/*async getOne(articleId: number): Promise<TranslateRespType.GetOne | null | never> {
+	async getOne(articleId: number): Promise<TranslateRespType.GetOne | null | never> {
 		return this.helperService.runQuery<TranslateRespType.GetOne | null>(() => {
 			return this.translateModel.findByPk(articleId)
 		})
-	}*/
+	}
 
 	// Создание перевода
 	async createOne(articleDto: CreateTranslateDto): Promise<TranslateRespType.CreateOne | never> {
@@ -33,24 +34,24 @@ export class TranslateService {
 	}
 
 	// Обновление перевода
-	/*async updateOne(articleId: number, articleDto: UpdateWritingProposalDto): Promise<WritingProposalRespType.UpdateOne | never> {
+	async updateOne(translateId: number, translateDto: UpdateTranslateDto): Promise<TranslateRespType.UpdateOne | never> {
 		return this.helperService.runQuery<TranslateRespType.UpdateOne>(async () => {
 			const result = await this.translateModel.update(
-				articleDto,
+				translateDto,
 				{
-					where: { id: articleId },
+					where: { id: translateId },
 					returning: true
 				}
 			)
 
 			return result[1][0]
 		})
-	}*/
+	}
 
 	// Удаление перевода
-	/*async deleteOne(proposalId: number): Promise<TranslateRespType.Delete | never> {
+	async deleteOne(proposalId: number): Promise<TranslateRespType.Delete | never> {
 		return this.helperService.runQuery<TranslateRespType.Delete>(async () => {
-			await this.oralProposalModel.destroy(
+			await this.translateModel.destroy(
 				{
 					where: { id: proposalId },
 				}
@@ -58,7 +59,7 @@ export class TranslateService {
 
 			return true
 		})
-	}*/
+	}
 
 	// Удаление предложений с переданном идентификатором группы
 	/*async deleteProposalsWithGroup(groupId: number): Promise<TranslateRespType.Delete | never> {

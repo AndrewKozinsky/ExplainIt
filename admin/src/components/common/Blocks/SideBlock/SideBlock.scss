@@ -3,6 +3,11 @@ $CN: side-block;
 .#{$CN} {
 	display: flex;
 	width: 100%;
+	overflow: auto;
+}
+
+.#{$CN}__left, .#{$CN}__right {
+	overflow: auto;
 }
 
 .#{$CN}__left {

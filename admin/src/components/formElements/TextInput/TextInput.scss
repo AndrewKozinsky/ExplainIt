@@ -1,23 +1,24 @@
 $CN: text-input;
 
 .#{$CN} {
-
+	width: 100%;
 }
+
 .#{$CN}--horizontal {
 	display: flex;
 	align-items: center;
 }
 
 .#{$CN}__input {
-  display: block;
-  width: 100%;
-  padding: 3px 10px;
-  box-sizing: border-box;
-  border: 1px solid var(--gray-color-1);
-  border-radius: var(--radius);
-  transition: border-color .2s;
+	display: block;
+	width: 100%;
+	padding: 3px 10px;
+	box-sizing: border-box;
+	border: 1px solid var(--gray-color-1);
+	border-radius: var(--radius);
+	transition: border-color .2s;
 
-  &:focus {
-	border-color: var(--gray-color-2);
-  }
+	&:focus {
+		border-color: var(--gray-color-2);
+	}
 }

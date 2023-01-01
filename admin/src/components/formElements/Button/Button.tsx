@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import cn from 'classnames'
 import SvgIcon, { SvgIconPropType, SvgIconType } from '../../common/icons/SvgIcon'
 import makeClasses from './Button-classes'
 import { Loader } from '../../common/Loading/Loading'
@@ -13,6 +14,7 @@ export type ButtonPropType = {
     block?: boolean // Должна ли кнопка быть блочным элементом на всю ширину
     onClick?: React.MouseEventHandler<HTMLButtonElement>
     disabled?: boolean
+	extraClass?: string // Дополнительный класс для кнопки
 }
 
 /** Компонент кнопки */
@@ -27,6 +29,7 @@ export default function Button(props: ButtonPropType): ReactElement {
 		loading = false, // Нужно ли на кнопке рисовать загрузчик
 		disabled = false, // Заблокирована ли кнопка
 		onClick,
+		extraClass
 	} = props
 
 	// Текст кнопки
@@ -49,7 +52,7 @@ export default function Button(props: ButtonPropType): ReactElement {
 	// Атрибуты кнопки
 	const btnAttrs: Record<string, any> = {
 		type,
-		className: CN.root,
+		className: cn(CN.root, extraClass),
 		disabled
 	}
 

@@ -1,10 +1,11 @@
 import React from 'react'
-import { useGetDeleteRowProposal, useGetRows } from './RawTranslations-func'
+import { useGetDeleteRowProposal, useGetRows } from './fn/RawTranslations-func'
 import SmallContentWrapper from '../../common/Blocks/SmallContentWrapper/SmallContentWrapper'
 import Header from '../../common/Header/Header'
 import Button from '../../formElements/Button/Button'
 import './RawTranslations.scss'
 
+// Список необработанных переводов русского предложения
 function RawTranslations() {
 	const rows = useGetRows()
 

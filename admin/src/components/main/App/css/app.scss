@@ -1,24 +1,24 @@
 $CN: app;
 
 .#{$CN} {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr auto;
-	grid-template-areas:
-            "app-left app-right"
-            "app-bottom app-bottom";
+	display: flex;
+	flex-direction: column;
     width: 100%;
-	min-height: 100vh;
+	height: 100vh;
 }
 
-.#{$CN} > *:nth-child(1)  {
-	grid-area: app-left;
-	border-right: 1px solid var(--gray-color-1);
+.#{$CN}__content {
+	flex-grow: 1;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	overflow: hidden;
+
+	& > *:nth-child(1)  {
+		border-right: 1px solid var(--gray-color-1);
+	}
 }
-.#{$CN} > *:nth-child(2)  {
-	grid-area: app-right;
-}
-.#{$CN} > *:nth-child(3)  {
-	grid-area: app-bottom;
+
+.#{$CN}__errors {
 	max-height: 200px;
 }
+

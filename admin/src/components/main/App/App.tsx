@@ -27,9 +27,13 @@ function App(): ReactElement {
 
 	return (
 		<main className='app'>
-			<SideBlock leftTop={<Articles />} leftBottom={<CreateArticleBtn />} right={<Article />} />
-			<SideBlock leftTop={<Proposals />} leftBottom={<CreateProposalBtn />} right={<ProposalSwitch />} />
-			<GlobalErrors />
+			<div className='app__content'>
+				<SideBlock leftTop={<Articles />} leftBottom={<CreateArticleBtn />} right={<Article />} />
+				<SideBlock leftTop={<Proposals />} leftBottom={<CreateProposalBtn />} right={<ProposalSwitch />} />
+			</div>
+			<div className='app__errors'>
+				<GlobalErrors />
+			</div>
 		</main>
 	)
 }

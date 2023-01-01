@@ -25,5 +25,11 @@ export const addresses = {
 	},
 	writingProposalRawTranslate(proposalId: number | string): string {
 		return '/api/writingProposal/' + proposalId + '/rawProposal'
-	}
+	},
+
+	// ПЕРЕВОД ПИСЬМЕННОГО ПРЕДЛОЖЕНИЯ
+	translates: '/api/translate',
+	translate(translateId: number | string): string {
+		return '/api/translate/' + translateId
+	},
 }

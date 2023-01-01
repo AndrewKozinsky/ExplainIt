@@ -1,6 +1,6 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript'
 import articleConstraints from './article.constraints'
-import { ProposalsGroup } from '../../proposalsGroup/model/proposalsGroup.model'
+import ProposalsGroup from '../../proposalsGroup/model/proposalsGroup.model'
 import { CreationOptional } from 'sequelize'
 
 @Table

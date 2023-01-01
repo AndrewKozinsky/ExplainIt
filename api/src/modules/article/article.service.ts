@@ -5,11 +5,11 @@ import { Article } from './model/article.model'
 import CreateArticleDto from './dto/createArticle.dto'
 import HelperService from '../helper/helper.service'
 import UpdateArticleDto from './dto/updateArticle.dto'
-import { ProposalsGroup } from '../proposalsGroup/model/proposalsGroup.model'
+import ProposalsGroup from '../proposalsGroup/model/proposalsGroup.model'
 import ArticleRespType from './response/responseTypes'
 import OralProposal from '../oralProposal/model/oralProposal.model'
 import WritingProposal from '../writingProposal/model/writingProposal.model'
-import { Translate } from '../translate/model/translate.model'
+import Translate from '../translate/model/translate.model'
 import { Word } from '../word/model/word.model'
 
 @Injectable()
@@ -59,28 +59,24 @@ export class ArticleService {
 					],
 				}
 			)
-			/*return this.articleModel.findOne(
+			/*return this.articleModel.findByPk(
+				articleId,
 				{
-					where: {
-						id: articleId
-					},
-					attributes: ['id', 'name'],
+					attributes: ['id'],
 					include: {
 						model: ProposalsGroup,
-						attributes: ['order'],
-
+						attributes: ['id'],
 						include: [
 							{
 								model: OralProposal,
-								attributes: ['order'],
-							},
+							}
 						],
 						order: [
-							[OralProposal, 'order', 'DESC'],
-						],
+							[{ model: OralProposal, as: 'oralProposals' }, 'order', 'ASC']
+						]
 					},
 					order: [
-						[{ model: ProposalsGroup, as: 'proposalsGroups' }, 'order', 'DESC'],
+						[{ model: ProposalsGroup, as: 'proposalsGroups' }, 'order', 'ASC'],
 					],
 				}
 			)*/

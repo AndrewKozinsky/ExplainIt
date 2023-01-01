@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import useGetGlobalErrorsSelectors from 'store/globalErrors/globalErrorsSelectors'
 import GlobalErrorsStoreType from 'store/globalErrors/GlobalErrorsStoreType'
 import Button from '../formElements/Button/Button'
-import { useGetOnCloseError } from './GlobalErrors-func'
+import { useGetOnCloseError } from './fn/main'
 import './GlobalErrors.scss'
 
 

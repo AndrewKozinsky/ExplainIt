@@ -1,13 +1,13 @@
-import { Translate } from '../model/translate.model'
+import Translate from '../model/translate.model'
 import { GeneralRespType } from '../../../types/generalResponse'
 
 /** Типы данных возвращаемыми методами статьи */
-export namespace TranslateRespType {
+namespace TranslateRespType {
 	// Получение перевода
-	// export type GetOne = Translate
-	// export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
-	// export type GetOneFailWrap = GeneralRespType.Fail | GeneralRespType.Error
-	// export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
+	export type GetOne = Translate
+	export type GetOneSuccessWrap = GeneralRespType.Success<Payload<GetOne>>
+	export type GetOneFailWrap = GeneralRespType.Fail | GeneralRespType.Error
+	export type GetOneWrap = GetOneSuccessWrap | GetOneFailWrap
 
 	// Создание перевода
 	export type CreateOne = Translate
@@ -17,18 +17,20 @@ export namespace TranslateRespType {
 
 
 	// Обновление перевода
-	// export type UpdateOne = Translate
-	// export type UpdateOneSuccessWrap = GeneralRespType.Success<Payload<UpdateOne>>
-	// export type UpdateOneFailWrap = GeneralRespType.Fail | GeneralRespType.Error
-	// export type UpdateOneWrap = UpdateOneSuccessWrap | UpdateOneFailWrap
+	export type UpdateOne = Translate
+	export type UpdateOneSuccessWrap = GeneralRespType.Success<Payload<UpdateOne>>
+	export type UpdateOneFailWrap = GeneralRespType.Fail | GeneralRespType.Error
+	export type UpdateOneWrap = UpdateOneSuccessWrap | UpdateOneFailWrap
 
 	// Удаление перевода
-	// export type Delete = true
-	// export type DeleteSuccessWrap = GeneralRespType.Success<Payload<null>>
-	// export type DeleteFailWrap = GeneralRespType.Fail | GeneralRespType.Error
-	// export type DeleteWrap = DeleteSuccessWrap | DeleteFailWrap
+	export type Delete = true
+	export type DeleteSuccessWrap = GeneralRespType.Success<Payload<null>>
+	export type DeleteFailWrap = GeneralRespType.Fail | GeneralRespType.Error
+	export type DeleteWrap = DeleteSuccessWrap | DeleteFailWrap
 
 	// ====================================
 
 	type Payload<T> = { translates: T }
 }
+
+export default TranslateRespType

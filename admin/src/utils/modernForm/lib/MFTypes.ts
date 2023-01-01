@@ -3,7 +3,7 @@ import React from 'react'
 // Все типы используемые ModernForm
 namespace MFTypes {
 	// КОНФИГУРАЦИЯ ==========================================
-	
+
 	// Объект конфигурации
 	export type Config = {
 		// Конфигурация полей формы
@@ -13,12 +13,12 @@ namespace MFTypes {
 		// Обработчик отправки формы
 		requestFn: (readyFieldValues: ReadyFieldsValues) => Promise<RequestFnReturn>
 	}
-	
+
 	// Конфигурация полей формы
 	export type ConfigFields = Record<string, ConfigField>
 	// Объединённый тип объекта настройки поля
 	export type ConfigField = ConfigTextField | ConfigCheckboxesField | ConfigRadiosField | ConfigToggleField | ConfigSelectField
-	
+
 	// Передаваемые настройки текстового поля
 	export type ConfigTextField = {
 		// Тип поля
@@ -28,7 +28,7 @@ namespace MFTypes {
 		// Функция проверки поля
 		schema?: FieldSchema<string>
 	}
-	
+
 	// Передаваемые настройки группы флагов
 	type ConfigCheckboxesField = {
 		// Тип поля
@@ -38,7 +38,7 @@ namespace MFTypes {
 		// Массив объектов с данными о флагах
 		inputs: FieldGroupInputData[]
 	}
-	
+
 	// Передаваемые настройки группы переключателей
 	type ConfigRadiosField = {
 		// Тип поля
@@ -48,7 +48,7 @@ namespace MFTypes {
 		// Массив объектов с данными о переключателях
 		inputs: FieldGroupInputData[]
 	}
-	
+
 	// Передаваемые настройки тумблера
 	type ConfigToggleField = {
 		// Тип поля
@@ -60,7 +60,7 @@ namespace MFTypes {
 		// Отмечен ли флаг изначально?
 		initialChecked?: boolean
 	}
-	
+
 	// Передаваемые настройки выпадающего списка
 	type ConfigSelectField = {
 		// Тип поля
@@ -72,34 +72,34 @@ namespace MFTypes {
 		// Массив объектов с данными о пунктах выпадающего списка
 		options: FieldGroupInputData[]
 	}
-	
+
 	// Объект с данными флага или переключателя
 	export type FieldGroupInputData = {
 		label: string,
 		value: string,
 		checked?: boolean
 	}
-	
+
 	// Функция проверяющая поле на правильность
 	type FieldSchema<T extends FieldSchemaFieldValue> = <T extends FieldSchemaFieldValue>(fields: StateFields, value: T) => null | string
 	export type FieldSchemaFieldValue = boolean | string | string[]
-	
+
 	// Обработчик изменения поля ввод
 	export type OnChangeFn = (fieldState: StateField, fieldConfig: ConfigField) => OnChangeInnerFn
 	export type OnChangeInnerFn = (e: React.BaseSyntheticEvent) => void
-	
+
 	// Обработчик потерей фокуса полем ввода
 	export type OnBlurFn = (fieldState: StateField, fieldConfig: ConfigField) => OnChangeInnerFn
 	export type OnBlurInnerFn = (e: React.BaseSyntheticEvent) => OnChangeInnerFn
-	
+
 	// Обработчик отправки формы
 	export type onSubmitFn = (e: React.SyntheticEvent) => void
-	
+
 	// Функция увеличивающая счётчик количества попыток отправок формы
 	export type SetSubmitCounter = ( counter: number ) => void
 	// Функция ставящая флаг содержит ли форма ошибки
 	export type SetFormHasErrors = ( counter: boolean ) => void
-	
+
 	// Объект возвращаемый функцией, которая запускается при отправке формы
 	export type RequestFnReturn = RequestFnSuccessReturn | RequestFnFailReturn
 	// Успешная отправка формы
@@ -110,7 +110,7 @@ namespace MFTypes {
 		commonError?: string,
 		fieldsErrors?: { name: string, message: string }[]
 	}
-	
+
 	// Настройки формы
 	export type FormSettings = {
 		// При каком событии проверять поля формы до первой отправки
@@ -132,33 +132,33 @@ namespace MFTypes {
 	}
 	type CheckFieldBeforeSubmit = 'never' | 'onChange' | 'onBlur' // never (не проверять), onChange (изменение значения поля), onBlur (потеря фокуса),
 	type CheckFieldAfterSubmit = 'onChange' | 'onBlur' // onChange (изменение значения поля), onBlur (потеря фокуса)
-	
-	
+
+
 	// ТИПЫ СВОЙСТВ ПЕРЕДАВАЕМЫХ КОМПОНЕНТАМ ==========================================
 	type BaseCompProps = {
-		mName: string
-		mDisabled: boolean
-		mError: null | string
-		mOnBlur: OnBlurInnerFn
+		mName?: string
+		mDisabled?: boolean
+		mError?: null | string
+		mOnBlur?: OnBlurInnerFn
 		mOnChange: OnChangeInnerFn
 	}
 	export type TextCompProps = BaseCompProps & { mValue: string }
 	export type FieldGroupCompProps = BaseCompProps & { mInputs: StateFieldInputItem[] }
 	export type ToggleCompProps = BaseCompProps & { mValue: string, mChecked: boolean }
 	export type SelectCompProps = BaseCompProps & { mValue: string, mOptions: StateSelectOption[] }
-	
-	
+
+
 	// СОСТОЯНИЕ ==========================================
-	
+
 	// Функция обновляющая объект состояния полей формы
 	export type SetStateFields = (fields: StateFields) => void
-	
+
 	// Объект с данными состояния полей формы. В key название поля, в значении данные поля
 	export type StateFields = Record<string, StateField>
-	
+
 	// Объединённый тип состояния поля
 	export type StateField = StateTextField | StateCheckboxesField | StateRadiosField | StateToggleField | StateSelectField
-	
+
 	// Объект состояния текстового поля
 	export type StateTextField = {
 		// Тип поля
@@ -216,7 +216,7 @@ namespace MFTypes {
 		// Ошибка поля
 		error?: null | string
 	}
-	
+
 	// Состояние пункта группового поля: флаги, переключатели или пункты выпадающего списка
 	export type StateFieldInputItem = {
 		label: string,
@@ -225,17 +225,17 @@ namespace MFTypes {
 	}
 	// Объект с данными пункта выпадающего списка
 	export type StateSelectOption = Omit<StateFieldInputItem, 'checked'>
-	
+
 	// Функция обновляет объект состояния любого поля
 	export type UpdateField = ( fieldName: string, newFieldData: StateField ) => void
-	
+
 	// Значения полей формы
 	export type ReadyFieldsValues = Record<string, null | FieldSchemaFieldValue>
-	
+
 	// Тип общей ошибки от сервера и функция устанавливающая его в Хранилище
 	export type CommonError = null | string
 	export type SetCommonError = ( err: CommonError ) => void
-	
+
 	// Статус отправки формы:
 	// waiting (форма ещё не отправлено)
 	// pending (форма отправлена и ответ ещё не пришёл)
@@ -243,7 +243,7 @@ namespace MFTypes {
 	// success — (после отправки получен успешный ответ)
 	export type SubmitStatus = 'waiting' | 'pending' | 'error' | 'success'
 	export type SetSubmitStatus = ( status: SubmitStatus ) => void
-	
+
 	export type State = {
 		fields: StateFields
 		updateField: UpdateField

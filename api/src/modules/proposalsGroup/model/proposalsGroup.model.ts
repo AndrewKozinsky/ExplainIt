@@ -7,7 +7,7 @@ import { CreationOptional } from 'sequelize'
 import ModelTypes from '../../../types/modelTypes'
 
 @Table({ timestamps: false })
-export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
+class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
 	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
 	declare id: number
 	declare createdAt: CreationOptional<Date>
@@ -47,3 +47,5 @@ export class ProposalsGroup extends Model<Partial<ProposalsGroup>> {
 	)
 	writingProposals: WritingProposal[]
 }
+
+export default ProposalsGroup

@@ -129,7 +129,6 @@ const proposalGroupService = {
 	 */
 	updateGroupOrderProp() {
 		const groupsList = store.getState().article.article?.proposalsGroups
-		console.log(groupsList)
 		if (!groupsList?.length) return
 
 		groupsList.forEach((group, i) => {

@@ -34,10 +34,10 @@ function FieldGroup(props: FieldGroupPropType) {
 		mOnChange,
 		mOnBlur = () => {},
 	} = props
-	
+
 	// Получение типа поля: переключатель или флаг
 	const Component = (inputType == 'checkbox') ? Checkbox : Radio
-	
+
 	return (
 		<>
 			<Label label={label}/>
@@ -46,13 +46,13 @@ function FieldGroup(props: FieldGroupPropType) {
 					const attrs = {
 						label: inputData.label,
 						value: inputData.value,
-						name: mName,
+						name: mName || '',
 						checked: !!inputData.checked,
 						disabled: mDisabled,
 						onChange: mOnChange,
 						onBlur: mOnBlur,
 					}
-					
+
 					return <Component {...attrs} key={i} />
 				})}
 				{mError && <p>{mError}</p>}
