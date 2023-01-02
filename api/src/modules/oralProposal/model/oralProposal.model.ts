@@ -1,7 +1,7 @@
 import { Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript'
 import oralProposalConstraints from './oralProposal.constraints'
 import ProposalsGroup from '../../proposalsGroup/model/proposalsGroup.model'
-import { Word } from '../../word/model/word.model'
+import Word from '../../word/model/word.model'
 import { CreationOptional } from 'sequelize'
 
 @Table

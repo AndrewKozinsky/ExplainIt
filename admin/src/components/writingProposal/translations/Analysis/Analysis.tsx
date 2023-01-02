@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
-import TextInput from '../../../formElements/TextInput/TextInput'
-import { StateContext } from '../Translations/fn/stateContext'
-import { useGetOnInputChange } from './fn/main'
+// import React, { useContext } from 'react'
+// import TextInput from '../../../formElements/TextInput/TextInput'
+// import { StateContext } from '../Translations/fn/stateContext'
+// import { useGetOnInputChange } from './fn/main'
 
-type AnalysisPropType = {
+/*type AnalysisPropType = {
 	blockId: number
 	text: string
-}
+}*/
 
 // Текстовое поле с кодом анализа перевода
-function Analysis(props: AnalysisPropType) {
+/*function Analysis(props: AnalysisPropType) {
 	const { blockId, text } = props
 
 	const { state, setState } = useContext(StateContext)
@@ -23,6 +23,7 @@ function Analysis(props: AnalysisPropType) {
 			mOnChange={onInputChange}
 		/>
 	)
-}
+}*/
 
-export default Analysis
+// export default Analysis
+export {}

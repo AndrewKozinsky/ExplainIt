@@ -1,10 +1,10 @@
-import React from 'react'
-import proposalService from 'services/proposal.service'
-import Button from '../../formElements/Button/Button'
-import { useIsDisabled } from './CreateProposalBtn-func'
+// import React from 'react'
+// import proposalService from 'services/proposal.service'
+// import Button from '../../formElements/Button/Button'
+// import { useIsDisabled } from './CreateProposalBtn-func'
 
 // Кнопка создающая новое предложение в зависимости от типа выделенной группы предложений
-function CreateProposalBtn() {
+/*function CreateProposalBtn() {
 	const isDisabled = useIsDisabled()
 
 	return (
@@ -15,6 +15,7 @@ function CreateProposalBtn() {
 			disabled={isDisabled}
 		/>
 	)
-}
+}*/
 
-export default CreateProposalBtn
+// export default CreateProposalBtn
+export {}

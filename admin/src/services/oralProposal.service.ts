@@ -1,14 +1,13 @@
-import store from 'store/store'
-import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
-import Types from '../types/Types'
-import writingProposalRequests from 'requests/writingProposalRequests'
-import articleService from 'services/article.service'
-import findService from 'services/find.service'
-import oralProposalRequests from 'requests/oralProposalRequests'
+// import store from 'store/store'
+// import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
+// import Types from '../types/Types'
+// import articleService from 'services/article.service'
+// import findService from 'services/find.service'
+// import oralProposalRequests from 'requests/oralProposalRequests'
 
 const oralProposalService = {
 	// Создание голосового предложения
-	async createProposal() {
+	/*async createProposal() {
 		const { article, currentGroupId } = store.getState().article
 		if (!article || !currentGroupId) return
 
@@ -37,7 +36,7 @@ const oralProposalService = {
 				'Возникла неизвестная ошибка при создании голосового предложения.'
 			))
 		}
-	},
+	},*/
 }
 
 export default oralProposalService

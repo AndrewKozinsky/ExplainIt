@@ -47,10 +47,26 @@ function TextInput(props: TextInputPropType) {
 	}
 
 	if (layout == 'vertical') {
-		return <VerticalInput label={label} inputType={inputType} rows={rows} mError={mError} inputAttribs={inputAttribs} />
+		return (
+			<VerticalInput
+				label={label}
+				inputType={inputType}
+				rows={rows}
+				mError={mError}
+				inputAttribs={inputAttribs}
+			/>
+		)
 	}
 	else {
-		return <HorizontalInput label={label} inputType={inputType} rows={rows} mError={mError} inputAttribs={inputAttribs} />
+		return (
+			<HorizontalInput
+				label={label}
+				inputType={inputType}
+				rows={rows}
+				mError={mError}
+				inputAttribs={inputAttribs}
+			/>
+		)
 	}
 }
 

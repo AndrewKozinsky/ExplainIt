@@ -1,13 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import CreateWordDto from './dto/createWord.dto'
-import { Word } from './model/word.model'
-import { WordRespType } from './response/responseTypes'
-// import { TranslateRespType } from './response/responseTypes'
+import Word from './model/word.model'
+import WordRespType from './response/responseTypes'
 import HelperService from '../helper/helper.service'
-// import { Word } from './model/word.model'
-// import { WritingProposal } from './model/translate.model'
-// import UpdateTranslateDto from './dto/updateTranslate.dto'
+import UpdateWordDto from './dto/updateWord.dto'
 
 @Injectable()
 export class WordService {
@@ -20,39 +17,39 @@ export class WordService {
 		private readonly helperService: HelperService
 	) {}
 
-	// Получение перевода
-	/*async getOne(articleId: number): Promise<TranslateRespType.GetOne | null | never> {
-		return this.helperService.runQuery<TranslateRespType.GetOne | null>(() => {
-			return this.translateModel.findByPk(articleId)
+	// Получение слова
+	async getOne(articleId: number): Promise<WordRespType.GetOne | null | never> {
+		return this.helperService.runQuery<WordRespType.GetOne | null>(() => {
+			return this.wordModel.findByPk(articleId)
 		})
-	}*/
+	}
 
-	// Создание перевода
+	// Создание слова
 	async createOne(createWordDto: CreateWordDto): Promise<WordRespType.CreateOne | never> {
 		return this.helperService.runQuery<WordRespType.CreateOne>(() => {
 			return this.wordModel.create(createWordDto)
 		})
 	}
 
-	// Обновление перевода
-	/*async updateOne(articleId: number, articleDto: UpdateWritingProposalDto): Promise<WritingProposalRespType.UpdateOne | never> {
-		return this.helperService.runQuery<TranslateRespType.UpdateOne>(async () => {
-			const result = await this.translateModel.update(
-				articleDto,
+	// Обновление слова
+	async updateOne(wordId: number, wordDto: UpdateWordDto): Promise<WordRespType.UpdateOne | never> {
+		return this.helperService.runQuery<WordRespType.UpdateOne>(async () => {
+			const result = await this.wordModel.update(
+				wordDto,
 				{
-					where: { id: articleId },
+					where: { id: wordId },
 					returning: true
 				}
 			)
 
 			return result[1][0]
 		})
-	}*/
+	}
 
-	// Удаление предложения
-	/*async deleteOne(proposalId: number): Promise<TranslateRespType.Delete | never> {
-		return this.helperService.runQuery<TranslateRespType.Delete>(async () => {
-			await this.oralProposalModel.destroy(
+	// Удаление слова
+	async deleteOne(proposalId: number): Promise<WordRespType.Delete | never> {
+		return this.helperService.runQuery<WordRespType.Delete>(async () => {
+			await this.wordModel.destroy(
 				{
 					where: { id: proposalId },
 				}
@@ -60,7 +57,7 @@ export class WordService {
 
 			return true
 		})
-	}*/
+	}
 
 	// Удаление предложений с переданном идентификатором группы
 	/*async deleteProposalsWithGroup(groupId: number): Promise<TranslateRespType.Delete | never> {

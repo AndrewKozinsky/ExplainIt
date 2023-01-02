@@ -1,18 +1,17 @@
-import React from 'react'
-import Types from 'types/Types'
-import cn from 'classnames'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import proposalGroupService from 'services/proposalGroup.service'
-import GroupForm from '../GroupForm/GroupForm'
-import GroupButtons from '../GroupButtons/GroupButtons'
-import { getOnSelectGroup } from './Group-func'
-import './Group.scss'
+// import React from 'react'
+// import Types from 'types/Types'
+// import cn from 'classnames'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import GroupForm from '../GroupForm/GroupForm'
+// import GroupButtons from '../GroupButtons/GroupButtons'
+// import { getOnSelectGroup } from './Group-func'
+// import './Group.scss'
 
-type GroupPropType = {
+/*type GroupPropType = {
 	group: Types.Req.ProposalGroup.Group
-}
+}*/
 
-function Group(props: GroupPropType) {
+/*function Group(props: GroupPropType) {
 	const { group } = props
 
 	const { currentGroupId } = useGetArticleSelectors()
@@ -25,6 +24,7 @@ function Group(props: GroupPropType) {
 			<GroupButtons groupId={group.id} />
 		</div>
 	)
-}
+}*/
 
-export default Group
+// export default Group
+export {}

@@ -1,13 +1,13 @@
-import React from 'react'
-import useGetModernForm from 'utils/modernForm/lib'
-import { useGetFormConfig } from './fn/formConfig'
-import TextInput from '../../formElements/TextInput/TextInput'
-import Button from '../../formElements/Button/Button'
-import Toggle from '../../formElements/Toggle/Toggle'
-import ErrorMessage from '../../formElements/ErrorMessage/ErrorMessage'
+// import React from 'react'
+// import useGetModernForm from 'utils/modernForm/lib'
+// import { useGetFormConfig } from './fn/formConfig'
+// import TextInput from '../../formElements/TextInput/TextInput'
+// import Button from '../../formElements/Button/Button'
+// import Toggle from '../../formElements/Toggle/Toggle'
+// import ErrorMessage from '../../formElements/ErrorMessage/ErrorMessage'
 
 // Форма редактирования голосового предложения
-function WritingProposalForm() {
+/*function WritingProposalForm() {
 	const formConfig = useGetFormConfig()
 
 	const {
@@ -36,6 +36,7 @@ function WritingProposalForm() {
 			{commonError && <ErrorMessage text={commonError} />}
 		</>
 	)
-}
+}*/
 
-export default WritingProposalForm
+// export default WritingProposalForm
+export {}

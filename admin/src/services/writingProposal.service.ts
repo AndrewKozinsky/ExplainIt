@@ -8,7 +8,7 @@ import articleSlice from 'store/article/articleSlice'
 
 const writingProposalService = {
 	// Создание письменного предложения
-	async createProposal() {
+	/*async createProposal() {
 		const { article, currentGroupId } = store.getState().article
 		if (!article || !currentGroupId) return
 
@@ -38,14 +38,14 @@ const writingProposalService = {
 				'Возникла неизвестная ошибка при создании письменного предложения.'
 			))
 		}
-	},
+	},*/
 
 	/**
 	 * Удаление перевода из массива необработанных переводов письменного предложения
 	 * @param {Number} proposalId — id письменного предложения
 	 * @param {String} rawTranslation — вариант перевода, который нужно удалить
 	 */
-	async removeRawTranslation(proposalId: number, rawTranslation: string) {
+	/*async removeRawTranslation(proposalId: number, rawTranslation: string) {
 		const reqBody: Types.Req.WritingProposal.RawTranslateDTO = {
 			text: rawTranslation
 		}
@@ -67,14 +67,14 @@ const writingProposalService = {
 				'Возникла неизвестная ошибка при создании письменного предложения.'
 			))
 		}
-	},
+	},*/
 
 	/**
 	 * Удаление перевода из массива необработанных переводов письменного предложения
 	 * @param {Number} proposalId — id письменного предложения
 	 * @param {String} rawTranslations — массив с неподходящими переводами, которые нужно обновить
 	 */
-	async updateBadTranslations(proposalId: number, rawTranslations: string[]) {
+	/*async updateBadTranslations(proposalId: number, rawTranslations: string[]) {
 		const reqBody: Types.Req.WritingProposal.UpdateOneDto = {
 			badTranslations: rawTranslations
 		}
@@ -91,7 +91,7 @@ const writingProposalService = {
 				'Возникла неизвестная ошибка при создании письменного предложения.'
 			))
 		}
-	},
+	},*/
 }
 
 export default writingProposalService

@@ -1,12 +1,12 @@
-import React from 'react'
-import { useGetDeleteRowProposal, useGetRows } from './fn/RawTranslations-func'
-import SmallContentWrapper from '../../common/Blocks/SmallContentWrapper/SmallContentWrapper'
-import Header from '../../common/Header/Header'
-import Button from '../../formElements/Button/Button'
-import './RawTranslations.scss'
+// import React from 'react'
+// import { useGetDeleteRowProposal, useGetRows } from './fn/RawTranslations-func'
+// import SmallContentWrapper from '../../common/Blocks/SmallContentWrapper/SmallContentWrapper'
+// import Header from '../../common/Header/Header'
+// import Button from '../../formElements/Button/Button'
+// import './RawTranslations.scss'
 
 // Список необработанных переводов русского предложения
-function RawTranslations() {
+/*function RawTranslations() {
 	const rows = useGetRows()
 
 	if (rows.length == 0) {
@@ -23,16 +23,16 @@ function RawTranslations() {
 			</SmallContentWrapper>
 		</div>
 	)
-}
+}*/
 
-export default RawTranslations
+// export default RawTranslations
 
-type RowPropType = {
+/*type RowPropType = {
 	text: string
-}
+}*/
 
 // Ряд с текстом необработанного предложения и кнопкой удаления
-function Row(props: RowPropType) {
+/*function Row(props: RowPropType) {
 	const { text } = props
 
 	const deleteRowProposal = useGetDeleteRowProposal(text)
@@ -43,4 +43,5 @@ function Row(props: RowPropType) {
 			<Button view='onlyIcon' icon='btnSignTrash' onClick={deleteRowProposal} />
 		</div>
 	)
-}
+}*/
+export {}

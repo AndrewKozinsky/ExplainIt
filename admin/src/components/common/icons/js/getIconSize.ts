@@ -1,6 +1,5 @@
 import iconsCollector from './getIcon'
 
-
 /**
  * Функция возвращает объект с размерами значка в SVG в зависимости от переданного типа.
  * @param {String} type — тип значка.

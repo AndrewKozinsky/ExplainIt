@@ -5,7 +5,7 @@ type ContentWrapperPropType = {
 	children: ReactElement | ReactElement[]
 }
 
-// Обертка для контента больших частей страницы редактирования статей.
+// Обертка для контента больших частей контента.
 function ContentWrapper(props: ContentWrapperPropType) {
 	const { children } = props
 

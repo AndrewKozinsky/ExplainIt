@@ -1,14 +1,14 @@
-import React from 'react'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import Button from '../../../formElements/Button/Button'
-import { useGetDeleteGroupFn, useGetMoveGroupFn, useIsMoveButtonActive } from './GroupButtons-func'
-import './GroupButtons.scss'
+// import React from 'react'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import Button from '../../../formElements/Button/Button'
+// import { useGetDeleteGroupFn, useGetMoveGroupFn, useIsMoveButtonActive } from './GroupButtons-func'
+// import './GroupButtons.scss'
 
-type GroupButtonsPropType = {
+/*type GroupButtonsPropType = {
 	groupId: number
-}
+}*/
 
-function GroupButtons(props: GroupButtonsPropType) {
+/*function GroupButtons(props: GroupButtonsPropType) {
 	const { groupId } = props
 	const { currentGroupId } = useGetArticleSelectors()
 
@@ -40,6 +40,7 @@ function GroupButtons(props: GroupButtonsPropType) {
 			/>
 		</div>
 	)
-}
+}*/
 
-export default GroupButtons
+// export default GroupButtons
+export {}

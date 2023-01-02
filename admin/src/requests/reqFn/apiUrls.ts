@@ -32,4 +32,10 @@ export const addresses = {
 	translate(translateId: number | string): string {
 		return '/api/translate/' + translateId
 	},
+
+	// СЛОВО
+	words: '/api/word',
+	word(wordId: number | string): string {
+		return '/api/word/' + wordId
+	},
 }

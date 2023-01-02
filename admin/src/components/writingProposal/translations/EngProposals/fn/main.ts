@@ -1,9 +1,9 @@
-import { BaseSyntheticEvent, MouseEvent, useCallback } from 'react'
-import { State } from '../../Translations/fn/useGetState'
-import { SetStateType, StateType } from '../../Translations/fn/stateContext'
-import { produce } from 'immer'
+// import { BaseSyntheticEvent, MouseEvent, useCallback } from 'react'
+// import { produce } from 'immer'
+// import { State } from '../../Translations/fn/useGetState'
+// import { SetStateType, StateType } from '../../Translations/fn/stateContext'
 
-export function useGetOnInputChange(
+/*export function useGetOnInputChange(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -14,7 +14,7 @@ export function useGetOnInputChange(
 
 		changeEngProposal(value, state, setState, blockId, proposalObj)
 	}, [state])
-}
+}*/
 
 /**
  * Удаляет вариант перевода русского предложения
@@ -24,7 +24,7 @@ export function useGetOnInputChange(
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  * @param {Object} proposalObj — объект перевода русского предложения
  */
-function changeEngProposal(
+/*function changeEngProposal(
 	newValue: string,
 	state: StateType,
 	setState: SetStateType,
@@ -44,7 +44,7 @@ function changeEngProposal(
 	})
 
 	setState(newState)
-}
+}*/
 
 /**
  * Обработчик нажатия на кнопку удаления варианта перевода русского предложения
@@ -53,7 +53,7 @@ function changeEngProposal(
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  * @param {Object} proposalObj — объект перевода русского предложения
  */
-export function useGetDeleteEngProposal(
+/*export function useGetDeleteEngProposal(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -66,7 +66,7 @@ export function useGetDeleteEngProposal(
 			deleteEngProposal(state, setState, blockId, proposalObj)
 		}
 	}, [state])
-}
+}*/
 
 /**
  * Удаляет вариант перевода русского предложения
@@ -75,7 +75,7 @@ export function useGetDeleteEngProposal(
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  * @param {Object} proposalObj — объект перевода русского предложения
  */
-function deleteEngProposal(
+/*function deleteEngProposal(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -91,7 +91,7 @@ function deleteEngProposal(
 	})
 
 	setState(newState)
-}
+}*/
 
 /**
  * Обработчик нажатия на кнопку добавления варианта перевода русского предложения
@@ -99,7 +99,7 @@ function deleteEngProposal(
  * @param {Function} setState — функция ставящая новый объект состояния блоков переводов русского предложения
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  */
-export function useGetAddEngProposal(
+/*export function useGetAddEngProposal(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -107,7 +107,7 @@ export function useGetAddEngProposal(
 	return useCallback(function (e: MouseEvent<HTMLButtonElement>) {
 		addEngProposal(state, setState, blockId)
 	}, [state])
-}
+}*/
 
 /**
  * Добавляет вариант перевода русского предложения
@@ -115,7 +115,7 @@ export function useGetAddEngProposal(
  * @param {Function} setState — функция ставящая новый объект состояния блоков переводов русского предложения
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  */
-function addEngProposal(
+/*function addEngProposal(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -135,4 +135,5 @@ function addEngProposal(
 	})
 
 	setState(newState)
-}
+}*/
+export {}

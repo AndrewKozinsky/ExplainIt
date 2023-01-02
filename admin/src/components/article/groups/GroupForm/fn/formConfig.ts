@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react'
-import MFTypes from 'utils/modernForm/lib/MFTypes'
-import Types from 'types/Types'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import proposalGroupService from 'services/proposalGroup.service'
-import { proposalGroupRequests } from 'requests/proposalGroupRequests'
-import articleService from 'services/article.service'
-import findService from 'services/find.service'
+// import { useEffect, useState } from 'react'
+// import MFTypes from 'utils/modernForm/lib/MFTypes'
+// import Types from 'types/Types'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import { proposalGroupRequests } from 'requests/proposalGroupRequests'
+// import findService from 'services/find.service'
 
 /**
  * Возвращает объект конфигурации формы редактирования группы упражнений
  * @param {Number} groupId — id группы предложений
  */
-export function useGetFormConfig(groupId: number) {
+/*export function useGetFormConfig(groupId: number) {
 	const { article } = useGetArticleSelectors()
 
 	const [formConfig, setFormConfig] = useState<MFTypes.Config>(
@@ -28,14 +26,14 @@ export function useGetFormConfig(groupId: number) {
 	}, [groupId])
 
 	return formConfig
-}
+}*/
 
 /**
  * Формирует и возвращает объект конфигурации формы редактирования группы предложений
  * @param {Object} article — объект статьи
  * @param {Number} groupId — id группы предложений
  */
-export function getFormConfig(article: Types.Req.Article.FullArticle, groupId: number): MFTypes.Config {
+/*export function getFormConfig(article: Types.Req.Article.FullArticle, groupId: number): MFTypes.Config {
 	const groupObj = findService.findGroupInArticle(article, groupId)
 
 	return {
@@ -56,18 +54,18 @@ export function getFormConfig(article: Types.Req.Article.FullArticle, groupId: n
 			sendFormOnFieldChange: true
 		},
 	}
-}
+}*/
 
-type FormValuesType = {
+/*type FormValuesType = {
 	type: Types.Entity.Group.GroupType
-}
+}*/
 
 /**
  * Обработчик отправки формы
  * @param groupId
  * @param formValues
  */
-async function updateGroupRequest(
+/*async function updateGroupRequest(
 	groupId: number, formValues: FormValuesType
 ): Promise<MFTypes.RequestFnReturn> {
 	const dto: Types.Req.ProposalGroup.UpdateOneDto = {
@@ -84,4 +82,5 @@ async function updateGroupRequest(
 			commonError: response.message,
 		}
 	}
-}
+}*/
+export {}

@@ -3,21 +3,23 @@
 // import Types from 'types/Types'
 // import findService from 'services/find.service'
 
-/*export type BadTranslationType = {
+/*export type WordObjType = {
 	id: number
-	text: string // Текст неподходящего предложения
+	rusWord: string
+	note: string
+	engWord: string
 }*/
 
 /*export function useGetState() {
 	const { article, currentGroupId, currentGroupType, currentProposalId } = useGetArticleSelectors()
 
-	const [state, setState] = useState<BadTranslationType[]>(
+	const [wordsState, setWordsState] = useState<WordObjType[]>(
 		createState(article, currentGroupId, currentGroupType, currentProposalId)
 	)
 
 	return {
-		state,
-		setState
+		wordsState,
+		setWordsState
 	}
 }*/
 
@@ -26,7 +28,7 @@
 	currentGroupId: null | number,
 	currentGroupType: Types.Entity.Group.GroupType | null,
 	currentProposalId: null | number
-): BadTranslationType[] {
+): WordObjType[] {
 	if (!article || !currentGroupId || !currentGroupType || !currentProposalId) {
 		return []
 	}
@@ -35,7 +37,7 @@
 		article, currentGroupId, currentGroupType, currentProposalId
 	) as Types.Entity.WritingProposal.Item
 
-	return proposal.badTranslations.map(createStateBlockItemFromTranslation)
+	return proposal.words.map((wordObj) => createWordBlockItemFromWord(wordObj))
 }*/
 
 /**
@@ -43,14 +45,16 @@
  * и возвращает объект перевода требуемый для формата местного Состояния
  * для показа неправильных переводов письменного предложения.
  * @param {String} translationText — текст перевода
- * @param {Number} id — id перевода
  */
-/*export function createStateBlockItemFromTranslation(
-	translationText: string, id: number
-): BadTranslationType {
+/*export function createWordBlockItemFromWord(
+	wordObj: Types.Entity.Word.Item
+): WordObjType {
 	return {
-		id,
-		text: translationText
+		id: wordObj.id,
+		rusWord: wordObj.rusWord,
+		note: wordObj.note || '',
+		engWord: wordObj.engWord
 	}
 }*/
+
 export {}

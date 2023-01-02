@@ -1,11 +1,11 @@
 import React from 'react'
 import useGetModernForm from 'utils/modernForm/lib'
 import { useGetFormConfig } from './fn/formConfig'
-import './ArticleForm.scss'
 import TextInput from '../../formElements/TextInput/TextInput'
 import Button from '../../formElements/Button/Button'
 import ErrorMessage from '../../formElements/ErrorMessage/ErrorMessage'
 import Toggle from '../../formElements/Toggle/Toggle'
+import './ArticleForm.scss'
 
 function ArticleForm() {
 	const formConfig = useGetFormConfig()

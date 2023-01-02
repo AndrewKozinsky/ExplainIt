@@ -1,19 +1,19 @@
-import React, { Dispatch, SetStateAction, useContext } from 'react'
-import { StateContext } from './fn/stateContext'
-import Header from '../../common/Header/Header'
-import { BadTranslationType, useGetState } from './fn/useGetState'
-import SmallContentWrapper from '../../common/Blocks/SmallContentWrapper/SmallContentWrapper'
-import {
-	useGetAddTranslation,
-	useGetDeleteEngProposal,
-	useGetOnInputChange,
-	useGetOnSave
-} from './fn/main'
-import TextInput from '../../formElements/TextInput/TextInput'
-import Button from '../../formElements/Button/Button'
-import './BadTranslations.scss'
+// import React, { useContext } from 'react'
+// import { StateContext } from './fn/stateContext'
+// import Header from '../../common/Header/Header'
+// import { BadTranslationType, useGetState } from './fn/useGetState'
+// import SmallContentWrapper from '../../common/Blocks/SmallContentWrapper/SmallContentWrapper'
+// import {
+// 	useGetAddTranslation,
+// 	useGetDeleteEngProposal,
+// 	useGetOnInputChange,
+// 	useGetOnSave
+// } from './fn/main'
+// import TextInput from '../../formElements/TextInput/TextInput'
+// import Button from '../../formElements/Button/Button'
+// import './BadTranslations.scss'
 
-function BadTranslations() {
+/*function BadTranslations() {
 	const { state, setState } = useGetState()
 
 	return (
@@ -23,7 +23,7 @@ function BadTranslations() {
 				<SmallContentWrapper extraClass='bad-translations__wrapper'>
 					<div className='bad-translations__inputs'>
 						{state.map((badTranslationObj, i) => {
-							return <Row badTranslationObj={badTranslationObj} key={badTranslationObj.id} />
+							return <Row badTranslationObj={badTranslationObj} key={badTranslationObj.id}/>
 						})}
 					</div>
 					<div className='bad-translations__bottom'>
@@ -34,17 +34,17 @@ function BadTranslations() {
 			</div>
 		</StateContext.Provider>
 	)
-}
+}*/
 
-export default BadTranslations
+// export default BadTranslations
 
 
-type RowPropType = {
+/*type RowPropType = {
 	badTranslationObj: BadTranslationType
-}
+}*/
 
 // Ряд с текстом недопустимого предложения и кнопкой удаления
-function Row(props: RowPropType) {
+/*function Row(props: RowPropType) {
 	const { badTranslationObj } = props
 
 	const { state, setState } = useContext(StateContext)
@@ -58,18 +58,18 @@ function Row(props: RowPropType) {
 			<Button view='onlyIcon' icon='btnSignTrash' onClick={deleteTranslation} />
 		</div>
 	)
-}
+}*/
 
-function AddTranslationButton() {
+/*function AddTranslationButton() {
 	const addTranslation = useGetAddTranslation()
 
 	return (
 		<Button text='Добавить перевод' onClick={addTranslation} />
 	)
-}
+}*/
 
 // Переключатели правильности перевода и проверено ли предложение
-function SaveButton() {
+/*function SaveButton() {
 	const saveTranslation = useGetOnSave()
 
 	return (
@@ -77,4 +77,5 @@ function SaveButton() {
 			<Button text='Сохранить' onClick={saveTranslation} icon='btnSignSave' />
 		</div>
 	)
-}
+}*/
+export {}

@@ -1,12 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react'
-import Header from '../../../common/Header/Header'
-import TranslationBlock from '../TranslationBlock/TranslationBlock'
-import { useGetState } from './fn/useGetState'
-import { StateContext } from './fn/stateContext'
-import AddTranslation from '../AddTranslation/AddTranslation'
-import './Translations.scss'
+// import React from 'react'
+// import Header from '../../../common/Header/Header'
+// import TranslationBlock from '../TranslationBlock/TranslationBlock'
+// import { useGetState } from './fn/useGetState'
+// import { StateContext } from './fn/stateContext'
+// import AddTranslation from '../AddTranslation/AddTranslation'
+// import './Translations.scss'
 
-function Translations() {
+/*function Translations() {
 	const { state, setState } = useGetState()
 
 	return (
@@ -25,6 +25,7 @@ function Translations() {
 			</div>
 		</StateContext.Provider>
 	)
-}
+}*/
 
-export default Translations
+// export default Translations
+export {}

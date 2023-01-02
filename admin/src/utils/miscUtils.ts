@@ -1,5 +1,3 @@
-// import MFTypes from 'utils/modernForm/lib/MFTypes'
-
 /**
  * Функция получает данные, которые нужно записать в localStorage.
  * Чтобы сохранить типы полученные данные, предварительно пропускаются через JSON.stringify
@@ -52,15 +50,3 @@ export function removeFromLocalStorage(propName: string): void {
 function isPrimitiveDataType(val: any) {
 	return val !== Object(val)
 }
-
-// Возвращает пустой объект конфигурации формы
-/*export function getEmptyFormConfig(): MFTypes.Config {
-	return {
-		fields: {},
-		async requestFn() {
-			return new Promise(() => {
-
-			})
-		},
-	}
-}*/

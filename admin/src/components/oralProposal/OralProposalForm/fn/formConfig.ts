@@ -1,16 +1,13 @@
-import { useEffect, useState } from 'react'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import MFTypes from 'utils/modernForm/lib/MFTypes'
-import Types from 'types/Types'
-import proposalService from 'services/proposal.service'
-import proposalGroupService from 'services/proposalGroup.service'
-import oralProposalRequests from 'requests/oralProposalRequests'
-import articleService from 'services/article.service'
-import findService from 'services/find.service'
+// import { useEffect, useState } from 'react'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import MFTypes from 'utils/modernForm/lib/MFTypes'
+// import Types from 'types/Types'
+// import oralProposalRequests from 'requests/oralProposalRequests'
+// import findService from 'services/find.service'
 
 /** Хук возвращает объект конфигурации формы редактирования голосового предложения.
  * Этот объект пересобирается после получения другого предложения. */
-export function useGetFormConfig() {
+/*export function useGetFormConfig() {
 	const { article, currentGroupId, currentGroupType, currentProposalId } = useGetArticleSelectors()
 
 	const [formConfig, setFormConfig] = useState<MFTypes.Config>(
@@ -21,8 +18,6 @@ export function useGetFormConfig() {
 			currentProposalId as number
 		)
 	)
-
-	// const [isFirstRender, setIsFirstRender] = useState(true)
 
 	useEffect(function () {
 		if (!currentProposalId) {
@@ -39,7 +34,7 @@ export function useGetFormConfig() {
 	}, [currentProposalId])
 
 	return formConfig
-}
+}*/
 
 /**
  * Функция возвращает объект конфигурации формы редактирования предложения
@@ -48,7 +43,7 @@ export function useGetFormConfig() {
  * @param {String} proposalType — тип предложения (голосовое или письменное)
  * @param {Number} proposalId — id текущего предложения
  */
-function getFormConfig(
+/*function getFormConfig(
 	article: Types.Req.Article.FullArticle,
 	groupId: number,
 	proposalType: Types.Entity.Group.GroupType,
@@ -83,21 +78,21 @@ function getFormConfig(
 			return updateProposalRequest(proposal.id, readyFieldValues as FormValuesType)
 		}
 	}
-}
+}*/
 
-type FormValuesType = {
+/*type FormValuesType = {
 	rusProposal: string
 	note: string
 	engProposal: string
 	published: boolean
-}
+}*/
 
 /**
  * Обработчик отправки формы
  * @param {Number} proposalId — id текущего предложения
  * @param {Object} formValues — объект с введёнными в форму редактирования предложения значениями
  */
-async function updateProposalRequest(
+/*async function updateProposalRequest(
 	proposalId: number, formValues: FormValuesType
 ): Promise<MFTypes.RequestFnReturn> {
 	const dto: Types.Req.OralProposal.UpdateOneDto = {
@@ -135,4 +130,5 @@ async function updateProposalRequest(
 			commonError: response.message,
 		}
 	}
-}
+}*/
+export {}

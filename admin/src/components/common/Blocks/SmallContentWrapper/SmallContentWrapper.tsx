@@ -1,13 +1,13 @@
-import React, { ReactElement } from 'react'
-import cn from 'classnames'
-import './SmallContentWrapper.scss'
+// import React, { ReactElement } from 'react'
+// import cn from 'classnames'
+// import './SmallContentWrapper.scss'
 
-type SmallContentWrapper = {
+/*type SmallContentWrapper = {
 	children: ReactElement | ReactElement[]
 	extraClass?: string
-}
+}*/
 
-function SmallContentWrapper(props: SmallContentWrapper) {
+/*function SmallContentWrapper(props: SmallContentWrapper) {
 	const { children, extraClass } = props
 
 	return (
@@ -15,6 +15,7 @@ function SmallContentWrapper(props: SmallContentWrapper) {
 			{children}
 		</div>
 	)
-}
+}*/
 
-export default SmallContentWrapper
+// export default SmallContentWrapper
+export {}

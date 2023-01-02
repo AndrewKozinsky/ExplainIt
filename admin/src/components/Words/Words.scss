@@ -1,0 +1,24 @@
+$CN: words;
+
+.#{$CN} {
+
+}
+
+.#{$CN}__block-form {
+	display: grid;
+	gap: 15px;
+}
+
+.#{$CN}__block-bottom {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: flex-end;
+	margin: 15px 0 0 0;
+}
+
+.#{$CN}__add-word-block {
+	display: flex;
+	justify-content: flex-end;
+	margin: 10px 0 0 0;
+}

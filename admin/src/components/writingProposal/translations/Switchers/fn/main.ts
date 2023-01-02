@@ -1,8 +1,8 @@
-import { BaseSyntheticEvent, MouseEvent, useCallback } from 'react'
-import { SetStateType, StateType } from '../../Translations/fn/stateContext'
-import { produce } from 'immer'
+// import { BaseSyntheticEvent, MouseEvent, useCallback } from 'react'
+// import { SetStateType, StateType } from '../../Translations/fn/stateContext'
+// import { produce } from 'immer'
 
-type SwitchType = 'checked' | 'correct'
+// type SwitchType = 'checked' | 'correct'
 
 /**
  * Хук возвращает обработчик изменения переключатели правильности перевода и проверено ли предложение
@@ -11,7 +11,7 @@ type SwitchType = 'checked' | 'correct'
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  * @param {String} switchType — тип переключатели
  */
-export function useGetOnSwitchChange(
+/*export function useGetOnSwitchChange(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -22,7 +22,7 @@ export function useGetOnSwitchChange(
 
 		changeSwitch(state, setState, blockId, checked, switchType)
 	}, [state])
-}
+}*/
 
 /**
  * Функция изменяет текстовое поле анализа перевода русского предложения.
@@ -32,7 +32,7 @@ export function useGetOnSwitchChange(
  * @param {Boolean} checked — отмечен ли переключатель
  * @param {String} switchType — тип переключателя
  */
-function changeSwitch(
+/*function changeSwitch(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -52,4 +52,5 @@ function changeSwitch(
 	})
 
 	setState(newState)
-}
+}*/
+export {}

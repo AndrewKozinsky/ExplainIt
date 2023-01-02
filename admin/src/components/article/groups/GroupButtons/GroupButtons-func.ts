@@ -1,27 +1,26 @@
-import React, { MouseEvent, useCallback, useMemo } from 'react'
-import proposalGroupService from 'services/proposalGroup.service'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import store from 'store/store'
+// import React, { MouseEvent, useCallback, useMemo } from 'react'
+// import proposalGroupService from 'services/proposalGroup.service'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
 
 /**
  * Обработчик нажатия на кнопку перемещения группы предложений
  * @param {Number} groupId — id группы предложений
  * @param {String} destination — направление перемещения группы предложений
  */
-export function useGetMoveGroupFn(groupId: number, destination: 'up' | 'down') {
+/*export function useGetMoveGroupFn(groupId: number, destination: 'up' | 'down') {
 	return useCallback(function (e: MouseEvent<HTMLButtonElement>) {
 		e.stopPropagation()
 
 		proposalGroupService.changeOrder(groupId, destination)
 	}, [])
-}
+}*/
 
 /**
  * Хук возвращает булево значение должна ли кнопка перемещения группы быть активной
  * @param {Number} groupId — id группы предложений
  * @param {String} destination — направление перемещения группы предложений
  */
-export function useIsMoveButtonActive(groupId: number, destination: 'up' | 'down') {
+/*export function useIsMoveButtonActive(groupId: number, destination: 'up' | 'down') {
 	const { article } = useGetArticleSelectors()
 
 	return useMemo(function () {
@@ -30,13 +29,13 @@ export function useIsMoveButtonActive(groupId: number, destination: 'up' | 'down
 
 		return proposalGroupService.canChangeOrder(groups, groupId, destination)
 	}, [article])
-}
+}*/
 
 /**
  * Обработчик нажатия на кнопку удаления группы предложений
  * @param {Number} groupId — id группы предложений
  */
-export function useGetDeleteGroupFn(groupId: number) {
+/*export function useGetDeleteGroupFn(groupId: number) {
 	return useCallback(function (e: MouseEvent<HTMLButtonElement>) {
 		e.stopPropagation()
 
@@ -46,4 +45,5 @@ export function useGetDeleteGroupFn(groupId: number) {
 			proposalGroupService.delete(groupId)
 		}
 	}, [])
-}
+}*/
+export {}

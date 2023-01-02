@@ -1,6 +1,6 @@
-import { BaseSyntheticEvent, MouseEvent, useCallback } from 'react'
-import { SetStateType, StateType } from '../../Translations/fn/stateContext'
-import { produce } from 'immer'
+// import { BaseSyntheticEvent, useCallback } from 'react'
+// import { produce } from 'immer'
+// import { SetStateType, StateType } from '../../Translations/fn/stateContext'
 
 /**
  * Хук возвращает обработчик изменения текстового поля анализа перевода русского предложения.
@@ -8,7 +8,7 @@ import { produce } from 'immer'
  * @param {Function} setState — функция ставящая новый объект состояния блоков переводов русского предложения
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  */
-export function useGetOnInputChange(
+/*export function useGetOnInputChange(
 	state: StateType,
 	setState: SetStateType,
 	blockId: number,
@@ -18,7 +18,7 @@ export function useGetOnInputChange(
 
 		changeTextarea(value, state, setState, blockId)
 	}, [state])
-}
+}*/
 
 /**
  * Функция изменяет текстовое поле анализа перевода русского предложения.
@@ -27,7 +27,7 @@ export function useGetOnInputChange(
  * @param {Function} setState — функция ставящая новый объект состояния блоков переводов русского предложения
  * @param {Number} blockId — id блока переводов и разбора русского предложения
  */
-function changeTextarea(
+/*function changeTextarea(
 	newValue: string,
 	state: StateType,
 	setState: SetStateType,
@@ -41,4 +41,5 @@ function changeTextarea(
 	})
 
 	setState(newState)
-}
+}*/
+export {}

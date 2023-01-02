@@ -29,6 +29,7 @@ type GlobalErrorPropType = {
 	error: GlobalErrorsStoreType.GlobalError
 }
 
+// Блок сообщения об ошибке и кнопкой закрытия ошибки
 function GlobalError(props: GlobalErrorPropType): ReactElement {
 	const { error } = props
 	const closeHandler = useGetOnCloseError(error.id)
@@ -44,4 +45,3 @@ function GlobalError(props: GlobalErrorPropType): ReactElement {
 		</div>
 	)
 }
-

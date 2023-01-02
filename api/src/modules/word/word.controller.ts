@@ -1,21 +1,22 @@
 import {
 	Body,
 	Controller,
-	// Delete,
+	Delete,
 	HttpCode,
 	HttpStatus,
-	// Param,
-	// ParseIntPipe,
-	// 		Patch,
+	Param,
+	ParseIntPipe,
+	Patch,
 	Post,
 	Res,
 } from '@nestjs/common'
 import { Response } from 'express'
 import { WritingProposalService } from '../writingProposal/writingProposal.service'
 import CreateWordDto from './dto/createWord.dto'
-import { WordRespType } from './response/responseTypes'
+import WordRespType from './response/responseTypes'
 import { WordService } from './word.service'
 import HelperService from '../helper/helper.service'
+import UpdateWordDto from './dto/updateWord.dto'
 // import { ProposalsGroupService } from '../proposalsGroup/proposalsGroup.service'
 // import UpdateWritingProposalDto from './dto/updateWritingProposal.dto'
 
@@ -35,8 +36,10 @@ export class WordController {
 	): Promise<WordRespType.CreateOneWrap> {
 
 		// Проверить существует ли предложение к которой делают перевод
-		const isOralProposalExist = await this.writingProposalService.isExist(createWordDto.oralProposalId)
-		const isWritingProposalExist = await this.writingProposalService.isExist(createWordDto.writingProposalId)
+		const isOralProposalExist =
+			await this.writingProposalService.isExist(createWordDto.oralProposalId || 0)
+		const isWritingProposalExist =
+			await this.writingProposalService.isExist(createWordDto.writingProposalId || 0)
 
 		if (!isOralProposalExist && !isWritingProposalExist) {
 			res.status(HttpStatus.BAD_REQUEST)
@@ -47,7 +50,6 @@ export class WordController {
 
 		// Создать новое слово
 		const createdWord = await this.wordService.createOne(createWordDto)
-		console.log(createdWord)
 
 		// Сформировать и возвратить клиенту ответ
 		return this.helperService.createSuccessResponse(
@@ -55,51 +57,51 @@ export class WordController {
 		)
 	}
 
-	// @Patch(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async update(
-		@Body() proposalDto: UpdateWritingProposalDto,
+	@Patch(':id')
+	@HttpCode(HttpStatus.OK)
+	async update(
+		@Body() wordDto: UpdateWordDto,
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<TranslateRespType.UpdateOneWrap> {
-		// Обновить предложение в БД
-		const updatedProposal = await this.writingProposalService.updateOne(id, proposalDto)
+	): Promise<WordRespType.UpdateOneWrap> {
+		// Обновить слово в БД
+		const updatedWord = await this.wordService.updateOne(id, wordDto)
 
 		// Сформировать и возвратить клиенту ответ
-		if (updatedProposal) {
+		if (updatedWord) {
 			return this.helperService.createSuccessResponse (
-				{ translates: updatedArticle }, HttpStatus.OK
+				{ words: updatedWord }, HttpStatus.OK
 			)
 		}
 		else {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
-				HttpStatus.BAD_REQUEST, 'Предложение не найдено'
+				HttpStatus.BAD_REQUEST, 'Слово не найдено'
 			)
 		}
-	}*/
+	}
 
-	// @Delete(':id')
-	// @HttpCode(HttpStatus.OK)
-	/*async deleteOne(
+	@Delete(':id')
+	@HttpCode(HttpStatus.OK)
+	async deleteOne(
 		@Param('id', ParseIntPipe) id: number,
 		@Res({ passthrough: true }) res: Response
-	): Promise<TranslateRespType.DeleteWrap> {
-		// Проверить существование перевода
-		const thisTranslate = await this.translateService.getOne(id)
+	): Promise<WordRespType.DeleteWrap> {
+		// Проверить существование слова
+		const thisWord = await this.wordService.getOne(id)
 
-		if (!thisTranslate) {
+		if (!thisWord) {
 			res.status(HttpStatus.BAD_REQUEST)
 			return this.helperService.createFailResponse (
-				HttpStatus.BAD_REQUEST, 'Перевод не найден'
+				HttpStatus.BAD_REQUEST, 'Удаляемое слово не найдено'
 			)
 		}
 
-		// Удалить перевод
-		await this.writingProposalService.deleteOne(id)
+		// Удалить слово
+		await this.wordService.deleteOne(id)
 
 		return this.helperService.createSuccessResponse (
-			{ translates: null }, HttpStatus.OK
+			{ words: null }, HttpStatus.OK
 		)
-	}*/
+	}
 }

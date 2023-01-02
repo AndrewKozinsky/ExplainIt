@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
-import { State } from '../Translations/fn/useGetState'
-import Button from '../../../formElements/Button/Button'
-import TextInput from '../../../formElements/TextInput/TextInput'
-import { useGetAddEngProposal, useGetDeleteEngProposal, useGetOnInputChange } from './fn/main'
-import { StateContext } from '../Translations/fn/stateContext'
-import './EngProposals.scss'
+// import React, { useContext } from 'react'
+// import { State } from '../Translations/fn/useGetState'
+// import Button from '../../../formElements/Button/Button'
+// import TextInput from '../../../formElements/TextInput/TextInput'
+// import { useGetAddEngProposal, useGetDeleteEngProposal, useGetOnInputChange } from './fn/main'
+// import { StateContext } from '../Translations/fn/stateContext'
+// import './EngProposals.scss'
 
-type EngProposalsPropType = {
+/*type EngProposalsPropType = {
 	blockId: number
 	engProposals: State.EngProposal[]
-}
+}*/
 
-function EngProposals(props: EngProposalsPropType) {
+/*function EngProposals(props: EngProposalsPropType) {
 	const { blockId, engProposals } = props
 
 	const { state, setState } = useContext(StateContext)
@@ -30,17 +30,17 @@ function EngProposals(props: EngProposalsPropType) {
 				extraClass='eng-proposals__add-btn' />
 		</div>
 	)
-}
+}*/
 
-export default EngProposals
+// export default EngProposals
 
-type RowPropType = {
+/*type RowPropType = {
 	blockId: number
 	proposalObj: State.EngProposal
-}
+}*/
 
 // Ряд с текстом необработанного предложения и кнопкой удаления
-function Row(props: RowPropType) {
+/*function Row(props: RowPropType) {
 	const { blockId, proposalObj } = props
 
 	const { state, setState } = useContext(StateContext)
@@ -54,4 +54,5 @@ function Row(props: RowPropType) {
 			<Button view='onlyIcon' icon='btnSignTrash' onClick={deleteEngProposal} />
 		</div>
 	)
-}
+}*/
+export {}

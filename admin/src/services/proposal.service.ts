@@ -1,20 +1,19 @@
-import store from 'store/store'
-import articleSlice from 'store/article/articleSlice'
-import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
-import Types from '../types/Types'
-import oralProposalRequests from 'requests/oralProposalRequests'
-import writingProposalRequests from 'requests/writingProposalRequests'
-import articleService from 'services/article.service'
-import { removeFromLocalStorage } from 'utils/miscUtils'
-import { IndexListItemType } from '../components/common/IndexList/IndexList'
-import { saveAppDataToLocalStorage } from '../components/main/App/func/restoreStateFunc'
-import findService from 'services/find.service'
-import writingProposalService from 'services/writingProposal.service'
-import oralProposalService from 'services/oralProposal.service'
+// import store from 'store/store'
+// import articleSlice from 'store/article/articleSlice'
+// import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
+// import Types from '../types/Types'
+// import oralProposalRequests from 'requests/oralProposalRequests'
+// import writingProposalRequests from 'requests/writingProposalRequests'
+// import { removeFromLocalStorage } from 'utils/miscUtils'
+// import { IndexListItemType } from '../components/common/IndexList/IndexList'
+// import { saveAppDataToLocalStorage } from '../components/main/App/func/restoreStateFunc'
+// import findService from 'services/find.service'
+// import writingProposalService from 'services/writingProposal.service'
+// import oralProposalService from 'services/oralProposal.service'
 
 const proposalService = {
 	// Создание предложения
-	async createProposal() {
+	/*async createProposal() {
 		const { article, currentGroupId } = store.getState().article
 		if (!article || !currentGroupId) return
 
@@ -27,15 +26,14 @@ const proposalService = {
 		else if (group.type == 'writing') {
 			await writingProposalService.createProposal()
 		}
-	},
-
-
+	},*/
 
 	/**
-	 * Переводит массив статей полученный с сервера в формат данных для отрисовки компонентом IndexList.
+	 * Переводит массив статей полученный с сервера в формат данных
+	 * для отрисовки компонентом IndexList.
 	 * @param {Array} proposals — список предложений
 	 */
-	proposalsListDataFromServerToIndexListData(
+	/*proposalsListDataFromServerToIndexListData(
 		proposals: (Types.Entity.OralProposal.Item[] | Types.Entity.WritingProposal.Item[])
 	): IndexListItemType[] {
 		return  proposals.map(proposal => {
@@ -48,13 +46,13 @@ const proposalService = {
 				order: proposal.order
 			}
 		})
-	},
+	},*/
 
 	/**
 	 * Выделение статьи
 	 * @param {Number} proposalId — id текущего предложения
 	 */
-	select(proposalId: number) {
+	/*select(proposalId: number) {
 		store.dispatch(
 			articleSlice.actions.setProposalId(proposalId)
 		)
@@ -62,14 +60,14 @@ const proposalService = {
 		// Сохранить id выделенного предложения в LocalStorage
 		// чтобы при загрузке страницы снова его выделить
 		saveAppDataToLocalStorage('proposalId', proposalId)
-	},
+	},*/
 
 	/**
 	 * Удаление предложения
 	 * @param {Number} proposalId — id предложения
 	 * @param {String} proposalType — тип предложения (голосовое или письменное)
 	 */
-	async delete(proposalId: number, proposalType: Types.Entity.Group.GroupType) {
+	/*async delete(proposalId: number, proposalType: Types.Entity.Group.GroupType) {
 		try {
 			let response: Types.Req.OralProposal.DeleteOne | Types.Req.WritingProposal.DeleteOne
 
@@ -111,14 +109,14 @@ const proposalService = {
 				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении предложения.')
 			)
 		}
-	},
+	},*/
 
 	/**
 	 * После изменения порядка статей в списке нужно актуализировать свойство order
 	 * чтобы значения располагались по текущему порядку.
 	 * Функция обновляет значение свойства order и в данных статьи на сервере и в Хранилище.
 	 */
-	updateProposalOrderProp() {
+	/*updateProposalOrderProp() {
 		const { article, currentGroupId, currentGroupType } = store.getState().article
 		if (!article || !currentGroupId || !currentGroupType) return
 
@@ -138,7 +136,7 @@ const proposalService = {
 				))
 			}
 		})
-	},
+	},*/
 
 	/**
 	 * Функция обновляет свойства у предложения на сервере
@@ -146,7 +144,7 @@ const proposalService = {
 	 * @param {String} proposalType — тип предложения: oral или writing
 	 * @param {Object} body — объект с данными, которые нужно поставить в статью
 	 */
-	async requestUpdateProposal(
+	/*async requestUpdateProposal(
 		proposalId: number,
 		proposalType: Types.Entity.Group.GroupType,
 		body: Types.Req.OralProposal.UpdateOneDto | Types.Req.WritingProposal.UpdateOneDto
@@ -170,7 +168,7 @@ const proposalService = {
 				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при обновлении предложения.')
 			)
 		}
-	},
+	},*/
 
 	/**
 	 * Функция запускаемая при изменении порядка статьи в списке
@@ -178,24 +176,7 @@ const proposalService = {
 	 * @param {String} direction — направление перемещения
 	 */
 	changeOrder(articleId: number, direction: 'up' | 'down' ) {
-		// const articlesList = store.getState().article.articles
-		// if (!articlesList) return
 
-		// const articleIdx = articlesList.findIndex(art => art.id === articleId)
-		// if (articleIdx === -1) return
-
-		/*if (
-			(direction === 'up' && articleIdx > 0) ||
-			(direction === 'down' && articleIdx < articlesList.length -1)
-		) {
-			store.dispatch(
-				articleSlice.actions.changeOrderArticleListItem(
-					{ articleId: articlesList[articleIdx].id, direction }
-				)
-			)
-
-			this.updateArticlesOrderProp()
-		}*/
 	},
 }
 

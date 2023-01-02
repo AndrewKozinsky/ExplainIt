@@ -1,6 +1,14 @@
+import { useEffect } from 'react'
 import store from 'store/store'
 import { getFromLocalStorage, setToLocalStorage } from 'utils/miscUtils'
 import articleSlice from 'store/article/articleSlice'
+
+/** Хук при загрузке страницы запускает функцию восстанавливающую значения Хранилища */
+export function useRestoreAppState() {
+	useEffect(() => {
+		restoreStateFromLocalStorage()
+	}, [])
+}
 
 // Названия свойств сохранённых в LocalStorage.
 // В них сохраняются различные данные нужные для восстановления Хранилища после перезагрузке страницы.
@@ -46,4 +54,3 @@ export function restoreStateFromLocalStorage() {
 		}
 	}
 }
-

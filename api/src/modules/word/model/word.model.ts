@@ -7,7 +7,7 @@ import WritingProposal from '../../writingProposal/model/writingProposal.model'
 import OralProposal from '../../oralProposal/model/oralProposal.model'
 
 @Table
-export class Word extends Model<Partial<Word>> {
+class Word extends Model<Partial<Word>> {
 	// Объявление автоматически добавляемых свойств чтобы TS понимал типы
 	declare id: number
 	declare createdAt: CreationOptional<Date>
@@ -46,12 +46,14 @@ export class Word extends Model<Partial<Word>> {
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 	})
-	oralProposalId: number // id голосового предложения, к которой принадлежит этот перевод
+	oralProposalId?: number // id голосового предложения, к которой принадлежит этот перевод
 
 	// Пока оставить закомментированным
 	@ForeignKey(() => WritingProposal)
 	@Column({
 		type: DataType.SMALLINT, // smallint (-32 768 ... +32 767)
 	})
-	writingProposalId: number // id письменного предложения, к которой принадлежит этот перевод
+	writingProposalId?: number // id письменного предложения, к которой принадлежит этот перевод
 }
+
+export default Word

@@ -1,11 +1,11 @@
-import React from 'react'
-import './Header.scss'
+// import React from 'react'
+// import './Header.scss'
 
-type HeaderPropType = {
+/*type HeaderPropType = {
 	text: string
-}
+}*/
 
-function Header(props: HeaderPropType) {
+/*function Header(props: HeaderPropType) {
 	const { text } = props
 
 	return (
@@ -13,6 +13,7 @@ function Header(props: HeaderPropType) {
 			{text}
 		</h2>
 	)
-}
+}*/
 
-export default Header
+// export default Header
+export {}

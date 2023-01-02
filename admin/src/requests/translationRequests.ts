@@ -2,7 +2,7 @@ import { makeFetch, RequestOptionsType } from 'requests/reqFn/fetch'
 import { addresses } from 'requests/reqFn/apiUrls'
 import Types from 'types/Types'
 
-// Объект с функциями запросов к статьям
+// Объект с функциями запросов к переводам
 const translationRequests = {
 	// Создание перевода
 	createOne: async function (body: Types.Req.Translation.CreateOneDto) {

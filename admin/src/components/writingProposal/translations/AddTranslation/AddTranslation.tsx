@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import Button from '../../../formElements/Button/Button'
-import { useGetAddTranslationBlock } from './fn/main'
-import { StateContext } from '../Translations/fn/stateContext'
+// import React, { useContext } from 'react'
+// import Button from '../../../formElements/Button/Button'
+// import { useGetAddTranslationBlock } from './fn/main'
+// import { StateContext } from '../Translations/fn/stateContext'
 
-function AddTranslation() {
+/*function AddTranslation() {
 	const { state, setState } = useContext(StateContext)
 	const addTranslationBlock = useGetAddTranslationBlock(state, setState)
 
@@ -13,6 +13,8 @@ function AddTranslation() {
 			onClick={addTranslationBlock}
 		/>
 	)
-}
+}*/
 
-export default AddTranslation
+// export default AddTranslation
+
+export {}

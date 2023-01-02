@@ -1,4 +1,4 @@
-import { IsArray, IsBoolean, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
+import { IsArray, IsOptional, IsPositive, IsString, Max, MaxLength } from 'class-validator'
 import dtoErrorMessages from '../../../utils/dtoErrorMessages'
 import wordConstraints from '../model/word.constraints'
 
@@ -31,7 +31,6 @@ export default class CreateWordDto {
 	@IsString({ each: true, message: dtoErrorMessages.mustBeStringsArray })
 	wrongVerbs?: string[]
 
-	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
 		wordConstraints.order.max,
 		{ message: dtoErrorMessages.shouldNotBeMore(wordConstraints.order.max) }
@@ -39,18 +38,16 @@ export default class CreateWordDto {
 	order: number
 
 	@IsOptional()
-	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
 		wordConstraints.proposalId.max,
 		{ message: dtoErrorMessages.shouldNotBeMore(wordConstraints.proposalId.max) }
 	)
-	oralProposalId: number
+	oralProposalId?: number
 
 	@IsOptional()
-	@IsPositive({ message: dtoErrorMessages.mustBeNumber })
 	@Max(
 		wordConstraints.proposalId.max,
 		{ message: dtoErrorMessages.shouldNotBeMore(wordConstraints.proposalId.max) }
 	)
-	writingProposalId: number
+	writingProposalId?: number
 }

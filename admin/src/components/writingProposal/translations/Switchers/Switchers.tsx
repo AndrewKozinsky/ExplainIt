@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
-import { StateContext } from '../Translations/fn/stateContext'
-import { useGetOnSwitchChange } from './fn/main'
-import Toggle from '../../../formElements/Toggle/Toggle'
-import './Switchers.scss'
+// import React, { useContext } from 'react'
+// import { StateContext } from '../Translations/fn/stateContext'
+// import { useGetOnSwitchChange } from './fn/main'
+// import Toggle from '../../../formElements/Toggle/Toggle'
+// import './Switchers.scss'
 
-type AnalysisPropType = {
+/*type AnalysisPropType = {
 	blockId: number
 	checked: boolean
 	correct: boolean
-}
+}*/
 
 // Переключатели правильности перевода и проверено ли предложение
-function Switchers(props: AnalysisPropType) {
+/*function Switchers(props: AnalysisPropType) {
 	const { blockId, checked, correct } = props
 
 	const { state, setState } = useContext(StateContext)
@@ -34,6 +34,7 @@ function Switchers(props: AnalysisPropType) {
 			/>
 		</div>
 	)
-}
+}*/
 
-export default Switchers
+// export default Switchers
+export {}

@@ -1,13 +1,13 @@
-import React from 'react'
-import useGetModernForm from 'utils/modernForm/lib'
-import { useGetFormConfig } from './fn/formConfig'
-import TextInput from '../../formElements/TextInput/TextInput'
-import Toggle from '../../formElements/Toggle/Toggle'
-import Button from '../../formElements/Button/Button'
-import ErrorMessage from '../../formElements/ErrorMessage/ErrorMessage'
+// import React from 'react'
+// import useGetModernForm from 'utils/modernForm/lib'
+// import { useGetFormConfig } from './fn/formConfig'
+// import TextInput from '../../formElements/TextInput/TextInput'
+// import Toggle from '../../formElements/Toggle/Toggle'
+// import Button from '../../formElements/Button/Button'
+// import ErrorMessage from '../../formElements/ErrorMessage/ErrorMessage'
 
 // Форма редактирования голосового предложения
-function OralProposalForm() {
+/*function OralProposalForm() {
 	const formConfig = useGetFormConfig()
 
 	const {
@@ -37,6 +37,7 @@ function OralProposalForm() {
 			{commonError && <ErrorMessage text={commonError} />}
 		</>
 	)
-}
+}*/
 
-export default OralProposalForm
+// export default OralProposalForm
+export {}

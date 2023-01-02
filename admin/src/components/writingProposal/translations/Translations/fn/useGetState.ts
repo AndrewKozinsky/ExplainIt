@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import Types from 'types/Types'
-import findService from 'services/find.service'
+// import { useState } from 'react'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import Types from 'types/Types'
+// import findService from 'services/find.service'
 
-export namespace State {
+/*export namespace State {
 	export type TranslationsState = {
 		blocks: Block[]
 	}
@@ -20,9 +20,9 @@ export namespace State {
 		id: number
 		proposal: string
 	}
-}
+}*/
 
-export function useGetState() {
+/*export function useGetState() {
 	const { article, currentGroupId, currentGroupType, currentProposalId } = useGetArticleSelectors()
 
 	const [state, setState] = useState<State.TranslationsState>(
@@ -33,13 +33,13 @@ export function useGetState() {
 		state,
 		setState
 	}
-}
+}*/
 
-export const emptyState: State.TranslationsState = {
+/*export const emptyState: State.TranslationsState = {
 	blocks: []
-}
+}*/
 
-function createTranslationsState(
+/*function createTranslationsState(
 	article: null | Types.Req.Article.FullArticle,
 	currentGroupId: null | number,
 	currentGroupType: Types.Entity.Group.GroupType | null,
@@ -58,7 +58,7 @@ function createTranslationsState(
 			return createStateBlockItemFromTranslation(block)
 		})
 	}
-}
+}*/
 
 /**
  * Функция получает объект перевода из предложения статьи
@@ -66,7 +66,7 @@ function createTranslationsState(
  * для показа блоков переводов выбранного письменного предложения.
  * @param {Object} translateBlock — объект перевода из предложения статьи
  */
-export function createStateBlockItemFromTranslation(
+/*export function createStateBlockItemFromTranslation(
 	translateBlock: Types.Entity.Translation.Item
 ): State.Block {
 	return {
@@ -81,4 +81,5 @@ export function createStateBlockItemFromTranslation(
 		isCorrect: translateBlock.correct || false,
 		isChecked: translateBlock.checked || false
 	}
-}
+}*/
+export {}

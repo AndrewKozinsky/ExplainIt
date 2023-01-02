@@ -6,7 +6,6 @@ import Types from '../types/Types'
 import { removeFromLocalStorage } from 'utils/miscUtils'
 import { IndexListItemType } from '../components/common/IndexList/IndexList'
 import { saveAppDataToLocalStorage } from '../components/main/App/func/restoreStateFunc'
-import proposalGroupService from 'services/proposalGroup.service'
 
 const articleService = {
 	// Создание статьи
@@ -40,7 +39,7 @@ const articleService = {
 		}
 	},
 
-	/** Функция получает список статей и помещает в Хранилище */
+	/** Функция запрашивает с сервера список статей и помещает в Хранилище */
 	async requestArticlesAndSetToStore() {
 		try {
 			const response = await articleRequests.getAll()
@@ -61,17 +60,22 @@ const articleService = {
 		}
 		catch(err) {
 			store.dispatch(articleSlice.actions.setArticles([]))
-			store.dispatch(globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при получении списка глав.'))
+			store.dispatch(globalErrorsSlice.actions.setError(
+				'Возникла неизвестная ошибка при получении списка глав.'
+			))
 
 			store.dispatch(articleSlice.actions.setNeedToLoadAllArticles(false))
 		}
 	},
 
 	/**
-	 * Переводит массив статей полученный с сервера в формат данных для отрисовки компонентом IndexList.
+	 * Переводит массив статей полученный с сервера в формат данных
+	 * для отрисовки компонентом IndexList.
 	 * @param {Array} articlesList — список статей присланный с сервера
 	 */
-	artsListDataFromServerToIndexListData(articlesList: Types.Entity.Article.ListItem[]): IndexListItemType[] {
+	artsListDataFromServerToIndexListData(
+		articlesList: Types.Entity.Article.ListItem[]
+	): IndexListItemType[] {
 		return  articlesList.map(article => {
 			return {
 				id: article.id,
@@ -143,7 +147,8 @@ const articleService = {
 	},
 
 	/**
-	 * После изменения порядка статей в списке нужно актуализировать свойство order чтобы значения шли по текущему порядку.
+	 * После изменения порядка статей в списке нужно актуализировать свойство order
+	 * чтобы значения шли по текущему порядку.
 	 * Функция обновляет значение свойства order и в данных статьи на сервере и в Хранилище.
 	 */
 	updateArticlesOrderProp() {

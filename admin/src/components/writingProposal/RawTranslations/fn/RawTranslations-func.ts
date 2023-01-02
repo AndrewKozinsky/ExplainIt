@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
-import Types from 'types/Types'
-import findService from 'services/find.service'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import writingProposalService from 'services/writingProposal.service'
+// import { useCallback, useEffect, useState } from 'react'
+// import Types from 'types/Types'
+// import findService from 'services/find.service'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import writingProposalService from 'services/writingProposal.service'
 
 /** Возвращает массив строк необработанных вариантов перевода */
-export function useGetRows() {
+/*export function useGetRows() {
 	const { article, currentGroupId, currentGroupType, currentProposalId } = useGetArticleSelectors()
 
 	const [rows, setRows] = useState<Types.Entity.WritingProposal.RowTranslate[]>([])
@@ -23,13 +23,13 @@ export function useGetRows() {
 	}, [article])
 
 	return rows
-}
+}*/
 
 /**
  * Обработчик удаления необработанного предложения
  * @param {String} rowProposalText — текст удаляемого необработанного перевода из письменного предложения
  */
-export function useGetDeleteRowProposal(rowProposalText: string) {
+/*export function useGetDeleteRowProposal(rowProposalText: string) {
 	const { currentProposalId } = useGetArticleSelectors()
 
 	return useCallback(function () {
@@ -41,4 +41,5 @@ export function useGetDeleteRowProposal(rowProposalText: string) {
 			writingProposalService.removeRawTranslation(currentProposalId, rowProposalText)
 		}
 	}, [currentProposalId])
-}
+}*/
+export {}

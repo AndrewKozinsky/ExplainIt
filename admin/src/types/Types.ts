@@ -18,6 +18,10 @@ import TranslateModel from '../../../api/src/modules/translate/model/translate.m
 import UpdateTranslateDto from '../../../api/src/modules/translate/dto/updateTranslate.dto'
 import CreateTranslateDto from '../../../api/src/modules/translate/dto/createTranslate.dto'
 import TranslateRespType from '../../../api/src/modules/translate/response/responseTypes'
+import WordModel from '../../../api/src/modules/word/model/word.model'
+import WordRespType from '../../../api/src/modules/word/response/responseTypes'
+import CreateWordDto from '../../../api/src/modules/word/dto/createWord.dto'
+import UpdateWordDto from '../../../api/src/modules/word/dto/updateWord.dto'
 
 namespace Types {
 	// Ответы от сервера
@@ -115,6 +119,22 @@ namespace Types {
 			// Удаление перевода
 			export type DeleteOne = TranslateRespType.DeleteWrap
 		}
+
+		// Сущность слова
+		export namespace Word {
+			// Создание слова
+			export type CreateOne = WordRespType.CreateOneWrap
+			// DTO для создания слова
+			export type CreateOneDto = CreateWordDto
+
+			// Обновление слова
+			export type UpdateOne = WordRespType.UpdateOneWrap
+			// DTO для обновления слова
+			export type UpdateOneDto = UpdateWordDto
+
+			// Удаление слова
+			export type DeleteOne = WordRespType.DeleteWrap
+		}
 	}
 
 	export namespace Entity {
@@ -141,6 +161,10 @@ namespace Types {
 		export namespace Translation {
 			// Перевод русского предложения
 			export type Item = TranslateModel
+		}
+		export namespace Word {
+			// Перевод русского предложения
+			export type Item = WordModel
 		}
 	}
 }

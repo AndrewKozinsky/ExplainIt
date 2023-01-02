@@ -10,7 +10,7 @@ import ArticleRespType from './response/responseTypes'
 import OralProposal from '../oralProposal/model/oralProposal.model'
 import WritingProposal from '../writingProposal/model/writingProposal.model'
 import Translate from '../translate/model/translate.model'
-import { Word } from '../word/model/word.model'
+import Word from '../word/model/word.model'
 
 @Injectable()
 export class ArticleService {

@@ -4,7 +4,6 @@ import Types from 'types/Types'
 
 // Объект с функциями запросов к статьям
 export const articleRequests = {
-
 	// Получение всех статей
 	getAll: async function () {
 		const options: RequestOptionsType = { method: 'GET' }

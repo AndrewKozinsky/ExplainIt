@@ -1,6 +1,6 @@
 import cn from 'classnames'
-import { IndexListItemType } from './IndexList'
-import './IndexList.scss'
+import { IndexListItemType } from '../IndexList'
+// import './IndexList.scss'
 
 export type DetailsType = {
 	item?: IndexListItemType
@@ -8,7 +8,7 @@ export type DetailsType = {
 }
 
 /**
- * Функция возвращающая классы для элементов
+ * Функция возвращающая классы для элементов списка
  * @param {Object} details — объект с параметрами влияющие на внешний вид элемента
  */
 export default function makeClasses(details: DetailsType) {

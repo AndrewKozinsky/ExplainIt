@@ -1,6 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 
-
 namespace GlobalErrorsStoreType {
 	// Состояние Хранилища
 	export type State = {

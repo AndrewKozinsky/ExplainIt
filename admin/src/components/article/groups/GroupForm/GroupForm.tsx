@@ -1,16 +1,16 @@
-import React from 'react'
-import useGetModernForm from 'utils/modernForm/lib'
-import { useGetFormConfig } from './fn/formConfig'
-import Types from 'types/Types'
-import useGetArticleSelectors from 'store/article/articleSelectors'
-import './GroupForm.scss'
-import Select from '../../../formElements/Select/Select'
+// import React from 'react'
+// import useGetModernForm from 'utils/modernForm/lib'
+// import { useGetFormConfig } from './fn/formConfig'
+// import Types from 'types/Types'
+// import useGetArticleSelectors from 'store/article/articleSelectors'
+// import Select from '../../../formElements/Select/Select'
+// import './GroupForm.scss'
 
-type GroupFormPropType = {
+/*type GroupFormPropType = {
 	group: Types.Req.ProposalGroup.Group
-}
+}*/
 
-function GroupForm(props: GroupFormPropType) {
+/*function GroupForm(props: GroupFormPropType) {
 	const { group } = props
 
 	const { currentGroupId } = useGetArticleSelectors()
@@ -32,6 +32,7 @@ function GroupForm(props: GroupFormPropType) {
 			<Select {...fieldAttrs.type} layout='horizontal' border={currentGroupId !== group.id} />
 		</form>
 	)
-}
+}*/
 
-export default GroupForm
+// export default GroupForm
+export {}

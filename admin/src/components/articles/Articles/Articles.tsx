@@ -3,7 +3,7 @@ import useGetArticleSelectors from 'store/article/articleSelectors'
 import {
 	deleteArticle,
 	useRequestArticles,
-} from './Articles-func'
+} from './fn/Articles-func'
 import { ContentLoading } from '../../common/Loading/Loading'
 import IndexList from '../../common/IndexList/IndexList'
 import articleService from 'services/article.service'

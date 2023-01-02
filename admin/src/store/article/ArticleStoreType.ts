@@ -34,7 +34,7 @@ namespace ArticleStoreType {
 	// Изменение статуса необходимости скачивания списка всех статей
 	export type SetLoadAllArticles = PayloadAction<boolean>
 
-	// Изменение статуса необходимости скачивания списка всех статей
+	// Вставка новой статьи в список всех статей
 	export type InsertNewArticle = PayloadAction<IndexListItemType>
 
 	// Удаление статьи
@@ -52,42 +52,42 @@ namespace ArticleStoreType {
 		direction: 'up' | 'down'
 	}>
 
-	// Установка id выбранной группы упражнений
+	// Установка данных активной группы упражнений: идентификатор и её тип
 	export type SetGroup = PayloadAction<
 		{groupId: SelectedItemId, groupType: null | Types.Entity.Group.GroupType}
 	>
 
 	// Передвижение элемента вверх/вниз в массиве articles
-	export type ChangeOrderGroupListItem = PayloadAction<{
+	/*export type ChangeOrderGroupListItem = PayloadAction<{
 		groupId: number
 		direction: 'up' | 'down'
-	}>
+	}>*/
 
 	// Обновление свойств элемента массива groups в статье
-	export type UpdateGroupListItem = PayloadAction<{
+	/*export type UpdateGroupListItem = PayloadAction<{
 		groupId: number
 		newProps: Types.Req.ProposalGroup.UpdateOneDto
-	}>
+	}>*/
 
 	// Удаление группы предложений
-	export type DeleteGroup = PayloadAction<number>
+	// export type DeleteGroup = PayloadAction<number>
 
-	// Установка id выбранной статьи
+	// Установка id выбранного предложения
 	export type SetProposalId = PayloadAction<SelectedItemId>
 
 	// Удаление предложения
-	export type DeleteProposal = PayloadAction<{groupId: number, proposalId: number}>
+	// export type DeleteProposal = PayloadAction<{groupId: number, proposalId: number}>
 
 	// Обновление свойств элемента массива groups в статье
-	export type UpdateProposalListItem = PayloadAction<{
+	/*export type UpdateProposalListItem = PayloadAction<{
 		groupId: number
 		proposalId: number
 		newProps: Types.Req.OralProposal.UpdateOneDto | Types.Req.WritingProposal.UpdateOneDto
-	}>
+	}>*/
 
 	// Обновление свойств элемента массива groups в статье.
 	// Принимает текст удаляемого предложения из массива необработанных предложений.
-	export type RemoveRawTranslate = PayloadAction<string>
+	// export type RemoveRawTranslate = PayloadAction<string>
 }
 
 export default ArticleStoreType

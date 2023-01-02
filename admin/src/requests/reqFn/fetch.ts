@@ -16,7 +16,9 @@ export type RequestOptionsPreparedType = RequestOptionsType & {
  * @param {String} urlKey — строка с адресом запроса
  * @param {Object} options — параметры запроса
  */
-export async function makeFetch<T>(urlKey: string, options: RequestOptionsType): Promise<T | never> {
+export async function makeFetch<T>(
+	urlKey: string, options: RequestOptionsType
+): Promise<T | never> {
 	// Добавление заголовка языка интерфейса в параметры запроса
 	const extraOptions = prepareOptions(options)
 

@@ -5,16 +5,16 @@ import translationRequests from 'requests/translationRequests'
 
 const translationService = {
 	// Создание перевода
-	createAddTranslationDto(proposalId: number): Types.Req.Translation.CreateOneDto {
+	/*createAddTranslationDto(proposalId: number): Types.Req.Translation.CreateOneDto {
 		return {
 			analysis: '',
 			translations: [''],
 			proposalId
 		}
-	},
+	},*/
 
 	// Создание перевода
-	async createTranslation(proposalId: number) {
+	/*async createTranslation(proposalId: number) {
 		const reqBody = this.createAddTranslationDto(proposalId)
 
 		try {
@@ -29,13 +29,13 @@ const translationService = {
 				'Возникла неизвестная ошибка при создании статьи.'
 			))
 		}
-	},
+	},*/
 
 	/**
 	 * Удаление перевода
 	 * @param {Number} translationId — id перевода
 	 */
-	async deleteTranslation(translationId: number) {
+	/*async deleteTranslation(translationId: number) {
 		try {
 			// Сделать запрос на удаление статьи
 			const response = await translationRequests.deleteOne(translationId)
@@ -49,14 +49,14 @@ const translationService = {
 				globalErrorsSlice.actions.setError('Возникла неизвестная ошибка при удалении главы.')
 			)
 		}
-	},
+	},*/
 
 	/**
 	 * Функция обновляет свойства у статьи на сервере
 	 * @param {Number} translationId — id перевода
 	 * @param {Object} body — объект с данными, которые нужно поставить в перевод
 	 */
-	async requestUpdateTranslation(translationId: number, body: Types.Req.Translation.UpdateOneDto) {
+	/*async requestUpdateTranslation(translationId: number, body: Types.Req.Translation.UpdateOneDto) {
 		try {
 			// Сделать запрос на обновление статьи
 			const response = await translationRequests.updateOne(translationId, body)
@@ -72,7 +72,7 @@ const translationService = {
 				)
 			)
 		}
-	},
+	},*/
 }
 
 export default translationService

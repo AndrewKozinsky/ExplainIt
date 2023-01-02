@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
 import SvgIcon from '../icons/SvgIcon'
-import { onControlClick } from './IndexList-func'
-import makeClasses, { DetailsType } from './IndexList-classes'
+import { onControlClick } from './fn/IndexList-func'
+import makeClasses, { DetailsType } from './fn/IndexList-classes'
+import './IndexList.scss'
 
 // Тип пункта списка
 export type IndexListItemType = {
@@ -100,7 +101,6 @@ function PayAtn(props: PayAtnPropType) {
 
 	return <span className={CN.payAtn}>PayAtn</span>
 }
-
 
 type HiddenSignPropType = {
 	published: boolean

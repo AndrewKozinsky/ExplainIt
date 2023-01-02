@@ -5,7 +5,7 @@ import Types from 'types/Types'
 
 const initialState: ArticleStoreType.State = {
 	articles: [],            // Массив всех статей
-	needToLoadAllArticles: true,    // Нужно ли загрузить массив статей. После загрузки статус становится в false.
+	needToLoadAllArticles: true, // Нужно ли загрузить массив статей. После загрузки статус становится в false.
 	articleId: null, // id выбранной статьи
 	articleStatus: 'empty', // статус загрузки статьи
 	article: null, // Текущая статья
@@ -18,6 +18,7 @@ const articleSlice = createSlice({
 	name: 'articles',
 	initialState,
 	reducers: {
+		// Установка массива всех статей
 		setArticles(state, action: ArticleStoreType.SetArticlesAction) {
 			state.articles = action.payload
 		},
@@ -33,9 +34,11 @@ const articleSlice = createSlice({
 		setArticle(state, action: ArticleStoreType.SetArticleAction) {
 			state.article = action.payload
 		},
+		// Установка флага требуется ли скачивать все статьи
 		setNeedToLoadAllArticles(state, action: ArticleStoreType.SetLoadAllArticles) {
 			state.needToLoadAllArticles = action.payload
 		},
+		// Вставка новой статьи в список всех статей
 		insertNewArticle(state, action: ArticleStoreType.InsertNewArticle) {
 			state.articles.push(action.payload)
 		},
@@ -72,12 +75,13 @@ const articleSlice = createSlice({
 				state.articles.splice(idx + 1, 0, article)
 			}
 		},
+		// Установка данных активной группы упражнений: идентификатор и её тип
 		setGroup(state, action: ArticleStoreType.SetGroup) {
 			state.currentGroupId = action.payload.groupId
 			state.currentGroupType = action.payload.groupType
 		},
 		// Перемещение элемента массива articles вверх или вниз
-		changeOrderGroupListItem(state, action: ArticleStoreType.ChangeOrderGroupListItem) {
+		/*changeOrderGroupListItem(state, action: ArticleStoreType.ChangeOrderGroupListItem) {
 			if (!state.article) return
 
 			const groups = state.article.proposalsGroups
@@ -88,7 +92,6 @@ const articleSlice = createSlice({
 			if (idx === -1) return state
 
 			const group = groups[idx]
-			console.log(group)
 
 			if (action.payload.direction === 'up') {
 				groups.splice(idx, 1)
@@ -98,9 +101,9 @@ const articleSlice = createSlice({
 				groups.splice(idx, 1)
 				groups.splice(idx + 1, 0, group)
 			}
-		},
+		},*/
 		// Обновление свойств элемента массива групп
-		updateGroupListItem(state, action: ArticleStoreType.UpdateGroupListItem) {
+		/*updateGroupListItem(state, action: ArticleStoreType.UpdateGroupListItem) {
 			const { article } = state
 			if (!article) return state
 
@@ -113,20 +116,20 @@ const articleSlice = createSlice({
 				// @ts-ignore
 				group[key] = action.payload.newProps[key]
 			}
-		},
-		deleteGroup(state, action: ArticleStoreType.DeleteGroup) {
+		},*/
+		/*deleteGroup(state, action: ArticleStoreType.DeleteGroup) {
 			const { article } = state
 			if (!article) return state
 
 			article.proposalsGroups = article.proposalsGroups.filter(group => {
 				return group.id !== action.payload
 			})
-		},
-		// Установка id активной статьи
+		},*/
+		// Установка id активного предложения
 		setProposalId(state, action: ArticleStoreType.SetProposalId) {
 			state.currentProposalId = action.payload
 		},
-		deleteProposal(state, action: ArticleStoreType.DeleteProposal) {
+		/*deleteProposal(state, action: ArticleStoreType.DeleteProposal) {
 			const { article } = state
 			if (!article) return state
 
@@ -138,9 +141,9 @@ const articleSlice = createSlice({
 					return proposal.id !== action.payload.proposalId
 				})
 			}
-		},
+		},*/
 		// Обновление свойств элемента массива групп
-		updateProposalListItem(state, action: ArticleStoreType.UpdateProposalListItem) {
+		/*updateProposalListItem(state, action: ArticleStoreType.UpdateProposalListItem) {
 			const { article } = state
 			if (!article) return state
 
@@ -156,10 +159,10 @@ const articleSlice = createSlice({
 				// @ts-ignore
 				proposal[key] = action.payload.newProps[key]
 			}
-		},
+		},*/
 
 		// Обновление свойств элемента массива групп
-		removeRawTranslate(state, action: ArticleStoreType.RemoveRawTranslate) {
+		/*removeRawTranslate(state, action: ArticleStoreType.RemoveRawTranslate) {
 			const { article, currentGroupId, currentGroupType, currentProposalId } = state
 			if (!article || !currentGroupId || !currentGroupType || !currentProposalId) return
 
@@ -172,7 +175,7 @@ const articleSlice = createSlice({
 			proposal.rawTranslations = proposal.rawTranslations.filter(translation => {
 				return translation !== action.payload
 			})
-		},
+		},*/
 	}
 })
 

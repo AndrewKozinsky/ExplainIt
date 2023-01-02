@@ -1,7 +1,7 @@
 import React from 'react'
 import ArticleForm from '../ArticleForm/ArticleForm'
 import useGetArticleSelectors from 'store/article/articleSelectors'
-import Groups from '../groups/Groups/Groups'
+// import Groups from '../groups/Groups/Groups'
 import { useSetArticleInStore } from './Article-func'
 import ContentWrapper from '../../common/Blocks/ContentWrapper/ContentWrapper'
 
@@ -17,7 +17,7 @@ function Article() {
 	return (
 		<ContentWrapper>
 			<ArticleForm />
-			<Groups />
+			{/*<Groups />*/}
 		</ContentWrapper>
 	)
 }
