@@ -68,6 +68,30 @@ const writingProposalService = {
 			))
 		}
 	},
+
+	/**
+	 * Удаление перевода из массива необработанных переводов письменного предложения
+	 * @param {Number} proposalId — id письменного предложения
+	 * @param {String} rawTranslations — массив с неподходящими переводами, которые нужно обновить
+	 */
+	async updateBadTranslations(proposalId: number, rawTranslations: string[]) {
+		const reqBody: Types.Req.WritingProposal.UpdateOneDto = {
+			badTranslations: rawTranslations
+		}
+
+		try {
+			const response = await writingProposalRequests.updateOne(proposalId, reqBody)
+
+			if (response.status !== 'success') {
+				store.dispatch(globalErrorsSlice.actions.setError(response.message))
+			}
+		}
+		catch(err) {
+			store.dispatch(globalErrorsSlice.actions.setError(
+				'Возникла неизвестная ошибка при создании письменного предложения.'
+			))
+		}
+	},
 }
 
 export default writingProposalService

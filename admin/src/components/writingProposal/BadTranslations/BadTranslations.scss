@@ -1,0 +1,13 @@
+$CN: bad-translations;
+
+.#{$CN}__inputs {
+	display: grid;
+	gap: 10px;
+}
+
+.#{$CN}__bottom {
+	display: grid;
+	gap: 10px;
+	justify-content: flex-end;
+	margin: 10px 0 0 0;
+}
