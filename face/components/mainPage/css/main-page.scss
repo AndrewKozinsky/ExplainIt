@@ -1,0 +1,10 @@
+@import "app/css/variables";
+
+.main-page {
+	height: 100vh;
+	overflow: auto;
+	background-color: $bg-color;
+	box-sizing: border-box;
+	padding: 2rem 1.5rem;
+	transition: transform .3s;
+}

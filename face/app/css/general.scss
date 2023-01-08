@@ -1,0 +1,73 @@
+@import "variables.scss";
+
+:root {
+    font-size: 10px;
+}
+
+// Так как на телефонах шрифт меньше, то скорректирую основной размер
+@media (pointer: coarse) {
+	:root {
+		font-size: 12px;
+	}
+}
+
+@font-face {
+    font-family: "Suisse";
+    src: url("../fonts/SuisseIntl-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Suisse";
+    src: url("../fonts/SuisseIntl-Medium.woff2") format("woff2");
+    font-weight: 600;
+}
+@font-face {
+    font-family: "Suisse";
+    src: url("../fonts/SuisseIntl-Bold.woff2") format("woff2");
+    font-weight: 800;
+}
+
+body {
+    font-family: 'Suisse', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2.3rem;
+    font-weight: 400;
+	color: $text-color;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input, textarea, select, button {
+	font-family: 'Suisse', sans-serif;
+	font-size: 1.6rem;
+	line-height: 2.3rem;
+	font-weight: 400;
+	color: $text-color;
+}
+
+a {
+	color: $link-color;
+	text-decoration: none;
+	border-bottom: 1px solid rgba($link-color, .4);
+	transition: border-bottom-color .25s;
+
+	&:hover {
+		border-bottom-color: rgba($link-color, .6);
+	}
+
+	&:visited {
+		color: $visited-link-color;
+		border-bottom-color: rgba($visited-link-color, .4);
+
+		&:hover {
+			border-bottom-color: rgba($visited-link-color, .6);
+		}
+	}
+}
+
+#root {
+    height: 100vh;
+    box-sizing: border-box;
+	overflow: hidden;
+}

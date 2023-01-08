@@ -12,23 +12,18 @@ services:
     volumes:
       - ./nginx/nginx.conf.dev:/etc/nginx/nginx.conf
 
-  admin:
-    build:
-      context:   admin
-      dockerfile: Dockerfile.dev
-    container_name: explain-admin
+  db:
+    image: postgres:15-alpine
+    container_name: explain-db
     restart: unless-stopped
-    stdin_open: true
-    tty: true
+    ports:
+      - "4001:5432"
     environment:
-      NODE_ENV: development # Режим работы
-      PORT: 3001     # Порт приложения
-    depends_on:
-      - db
-      - api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: kxPQor_cf23GR
+      POSTGRES_DB: explain
     volumes:
-      - ./admin/src:/app/src
-    command: npm run dev
+      - postgres:/var/lib/postgresql/data
 
   api:
     build:
@@ -48,18 +43,43 @@ services:
       - ./api/test:/app/test
     command: npm run start:dev
 
-  db:
-    image: postgres:15-alpine
-    container_name: explain-db
+  admin:
+    build:
+      context: admin
+      dockerfile: Dockerfile.dev
+    container_name: explain-admin
     restart: unless-stopped
-    ports:
-      - "4001:5432"
+    stdin_open: true
+    tty: true
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: kxPQor_cf23GR
-      POSTGRES_DB: explain
+      NODE_ENV: development # Режим работы
+      PORT: 3001     # Порт приложения
+    depends_on:
+      - db
+      - api
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - ./admin/src:/app/src
+    command: npm run dev
+
+  face:
+    build:
+      context: face
+      dockerfile: Dockerfile.dev
+    container_name: explain-face
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    environment:
+      NODE_ENV: development # Режим работы
+      PORT: 3003     # Порт приложения
+    depends_on:
+      - db
+      - api
+    volumes:
+      - ./face/app:/app/app
+      - ./face/components:/app/components
+      - ./face/public:/app/public
+    command: npm run dev
 
 volumes:
   postgres:
