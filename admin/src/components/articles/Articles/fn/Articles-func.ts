@@ -11,7 +11,7 @@ export function useRequestArticles(): void {
 
 	useEffect(() => {
 		if (needToLoadAllArticles) {
-			articleService.requestArticlesAndSetToStore()
+			articleService.reqArticlesAndSetToStore()
 		}
 	}, [needToLoadAllArticles])
 }

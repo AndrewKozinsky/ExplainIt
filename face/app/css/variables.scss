@@ -7,3 +7,14 @@ $visited-link-color: rgb(85, 26, 139);
 
 // ЗАКРУГЛЕНИЯ
 $radius: 4px;
+
+// ДЛИТЕЛЬНОСТЬ АНИМАЦИЙ
+$duration: .27s;
+
+// МАСШТАБ СТРАНИЦ
+$page-zoom-back: 0.91;
+$page-zoom-front: 1.09;
+
+// ШИРИНА БРАУЗЕРА ПРИ КОТОРЫХ ИЗМЕНЯЕТСЯ РАСПОЛОЖЕНИЕ ЭЛЕМЕНТОВ
+$tablet-width: 'min-width: 500px';
+$desktop-width: 'min-width: 900px';

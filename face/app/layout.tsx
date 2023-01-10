@@ -1,5 +1,6 @@
 import React from 'react'
-import RootProvider from '../components/common/RootProvider/RootProvider'
+import RootProvider from '../src/components/common/RootProvider/RootProvider'
+import IndexModal from '../src/components/indexModal/IndexModal/IndexModal'
 
 type RootLayoutPropType = {
 	children: React.ReactNode
@@ -14,7 +15,8 @@ export default function RootLayout(props: RootLayoutPropType) {
 			<body>
 			<RootProvider>
 				<div id='root'>
-				{children}
+					{children}
+					<IndexModal />
 				</div>
 			</RootProvider>
 			</body>

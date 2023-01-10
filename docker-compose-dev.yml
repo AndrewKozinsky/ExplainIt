@@ -77,8 +77,8 @@ services:
       - api
     volumes:
       - ./face/app:/app/app
-      - ./face/components:/app/components
       - ./face/public:/app/public
+      - ./face/src:/app/src
     command: npm run dev
 
 volumes:

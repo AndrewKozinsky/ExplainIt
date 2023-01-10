@@ -1,0 +1,16 @@
+@import "../../../../app/css/variables";
+@import "../../../../app/css/mixins";
+
+.main-page {
+	height: 100vh;
+	overflow: auto;
+	background-color: $bg-color;
+	box-sizing: border-box;
+	@include page-top-padding();
+	@include page-left-right-paddings();
+	transition: transform $duration;
+
+	&--zoomed-back {
+		transform: scale($page-zoom-back);
+	}
+}

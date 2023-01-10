@@ -1,0 +1,14 @@
+@import "../../../../app/css/mixins";
+
+.index-modal {
+	box-sizing: border-box;
+	@include page-top-padding();
+	@include page-left-right-paddings();
+}
+
+.index-modal__header-block {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+}

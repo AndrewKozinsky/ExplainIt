@@ -1,7 +1,7 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript'
+import { CreationOptional } from 'sequelize'
 import articleConstraints from './article.constraints'
 import ProposalsGroup from '../../proposalsGroup/model/proposalsGroup.model'
-import { CreationOptional } from 'sequelize'
 
 @Table
 export class Article extends Model<Partial<Article>> {

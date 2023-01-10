@@ -26,6 +26,11 @@
     src: url("../fonts/SuisseIntl-Bold.woff2") format("woff2");
     font-weight: 800;
 }
+@font-face {
+    font-family: "Suisse";
+    src: url("../fonts/SuisseIntl-Black.woff2") format("woff2");
+    font-weight: 900;
+}
 
 body {
     font-family: 'Suisse', sans-serif;
@@ -50,7 +55,7 @@ a {
 	color: $link-color;
 	text-decoration: none;
 	border-bottom: 1px solid rgba($link-color, .4);
-	transition: border-bottom-color .25s;
+	transition: border-bottom-color $duration;
 
 	&:hover {
 		border-bottom-color: rgba($link-color, .6);
@@ -67,6 +72,7 @@ a {
 }
 
 #root {
+	position: relative;
     height: 100vh;
     box-sizing: border-box;
 	overflow: hidden;

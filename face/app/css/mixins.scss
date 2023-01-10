@@ -1,0 +1,10 @@
+// Верхний отступ страницы
+@mixin page-top-padding() {
+	padding-top: 1.5rem;
+}
+
+// Левые и правые отступы страницы
+@mixin page-left-right-paddings() {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}

@@ -1,12 +1,10 @@
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import articleSlice from './article/articleSlice'
-import globalErrorsSlice from 'store/globalErrors/globalErrorsSlice'
+import layoutSlice from './layout/layoutSlice'
 
 // Корневой редьюсер
 const rootReducer = combineReducers({
-	article: articleSlice.reducer,
-	globalErrors: globalErrorsSlice.reducer
+	layout: layoutSlice.reducer,
 })
 
 const store = configureStore({

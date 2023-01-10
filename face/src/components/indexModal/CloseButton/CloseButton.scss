@@ -1,0 +1,40 @@
+@import "../../../../app/css/variables";
+
+.close-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	width: 3.2rem;
+	height: 3.2rem;
+	cursor: pointer;
+	border: 1px solid rgba($text-color, .45);
+	border-radius: 50%;
+	transition: border-color $duration;
+
+	&:hover {
+		border-color: rgba($text-color, .8);
+	}
+
+	& > img {
+		transform: scale(.6);
+	}
+
+	@media ($tablet-width) {
+		width: 5rem;
+		height: 5rem;
+
+		& > img {
+			transform: scale(.7);
+		}
+	}
+
+	@media ($desktop-width) {
+		width: 5.8rem;
+		height: 5.8rem;
+
+		& > img {
+			transform: scale(.9);
+		}
+	}
+}

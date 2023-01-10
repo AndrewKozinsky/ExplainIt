@@ -40,7 +40,7 @@ const articleService = {
 	},
 
 	/** Функция запрашивает с сервера список статей и помещает в Хранилище */
-	async requestArticlesAndSetToStore() {
+	async reqArticlesAndSetToStore() {
 		try {
 			const response = await articleRequests.getAll()
 
